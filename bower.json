@@ -1,0 +1,28 @@
+{
+  "name": "adminwebapp",
+  "homepage": "http://admin.wholdus.com",
+  "authors": [
+    "Aditya Jha <batu.aditya007@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.5",
+    "angular-route": "^1.5.5",
+    "angular-resource": "^1.5.5",
+    "angular-local-storage": "^0.2.7",
+    "angular-animate": "^1.5.5",
+    "angular-aria": "^1.5.5",
+    "angular-material": "^1.0.8",
+    "ngprogress": "^1.1.3"
+  }
+}
