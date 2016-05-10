@@ -1,0 +1,39 @@
+<!doctype html>
+<html data-ng-app="adminapp">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <base href="/">
+
+    <title>Wholdus Admin</title>
+
+    <link rel='shortcut icon' href='images/wholdus-favicon.ico' type='image/x-icon' />
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css" />
+    <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+
+    <link href="styles/style.css" rel="stylesheet" />
+</head>
+<body layout="column">
+
+    <div wua-header></div>
+
+    <div data-ng-view>
+        
+    </div>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+    <script src="bower_components/angular-material/angular-material.min.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+    <script src="bower_components/ngprogress/build/ngprogress.min.js"></script>
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+
+    <script src="app.js"></script>
+
+    <script src="scripts/controllers/dashboardController.js"></script>
+</body>
+</html>
