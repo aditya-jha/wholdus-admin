@@ -3,3 +3,19 @@
 .header {
     color: white;
 }
+
+.curosr-pointer {
+    cursor: pointer;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.word-wrap {
+    word-wrap: break-word;
+}
+
+.small-font {
+    font-size: 0.9em;
+}

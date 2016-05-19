@@ -1,6 +1,6 @@
 <md-toolbar>
     <div class="md-toolbar-tools header">
-        <div layout="column" layout-align="center start" data-ng-click="toggleSidenav()" layout-margin>
+        <div layout="column" class="curosr-pointer" layout-align="center center" data-ng-click="toggleSidenav()" layout-margin>
             <svg style="width:20px;height:20px" viewBox="0 0 20 20">
                 <path fill="#fff" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
             </svg>
@@ -10,15 +10,19 @@
         </a>
         <span flex></span>
         <span data-ng-if="loggedIn">email goes here</span>
-        <md-menu>
-            <md-button  class="md-icon-button" aria-label="More" ng-click="openMenu($mdOpenMenu, $event)">
-                <md-icon md-svg-icon="images/icons/ic_more_vert_white_48px.svg"></md-icon>
-            </md-button>
-            <md-menu-content width="4">
-                <md-menu-item>
-                    <md-button data-ng-if="loggedIn" data-ng-click="logout()">logout</md-button>
-                </md-menu-item>
-            </md-menu-content>
-        </md-menu>
+        <div layout="row" layout-align="center center" layout-padding>
+            <md-menu>
+                <div ng-click="openMenu($mdOpenMenu, $event)">
+                    <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                        <path fill="#fff" d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z" />
+                    </svg>
+                </div>
+                <md-menu-content width="4">
+                    <md-menu-item>
+                        <md-button data-ng-if="loggedIn" data-ng-click="logout()">logout</md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </div>
     </div>
 </md-toolbar>

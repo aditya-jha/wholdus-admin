@@ -19,6 +19,9 @@ adminapp.config([
         }).when('/login', {
             templateUrl: 'views/login.html',
             controller: 'LoginController'
+        }).when('/users/sellers', {
+            templateUrl: 'views/seller.html',
+            controller: 'SellerController'
         });
 
         $locationProvider.html5Mode(true);
