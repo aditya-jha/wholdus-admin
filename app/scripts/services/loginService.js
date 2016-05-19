@@ -10,14 +10,15 @@
             var factory = {};
 
             factory.loginStatus = false;
-            factory.seller = {};
 
             function loginSuccess(response) {
                 factory.loginStatus = true;
-                factory.seller = response.seller;
+
                 ConstantKeyValueService.token = response.token;
+                ConstantKeyValueService.loggedInUser = response.internaluser;
 
                 localStorageService.set(ConstantKeyValueService.accessTokenKey, response.token);
+                localStorageService.set(ConstantKeyValueService.loggedInUserKey, response.internaluser);
             }
 
             factory.checkLoggedIn = function() {
@@ -25,6 +26,7 @@
                 if(token) {
                     factory.loginStatus = true;
                     ConstantKeyValueService.token = token;
+                    ConstantKeyValueService.loggedInUser = localStorageService.get(ConstantKeyValueService.loggedInUserKey);
                 } else {
                     factory.loginStatus = false;
                 }
@@ -34,9 +36,11 @@
             factory.logout = function() {
                 factory.loginStatus = false;
                 ConstantKeyValueService.token = null;
+                ConstantKeyValueService.loggedInUser = {};
                 factory.seller = {};
 
                 localStorageService.remove(ConstantKeyValueService.accessTokenKey);
+                localStorageService.remove(ConstantKeyValueService.loggedInUserKey);
             };
 
             factory.login = function(email, password) {
@@ -45,7 +49,7 @@
                     email: email,
                     password: password
                 };
-                var apicall = APIService.apiCall("POST", APIService.getAPIUrl('internalUser'), data, null, true, false, true);
+                var apicall = APIService.apiCall("POST", APIService.getAPIUrl('internalUserLogin'), data, null, true, false, true);
                 apicall.then(function(response) {
                     loginSuccess(response);
                     deferred.resolve(response);

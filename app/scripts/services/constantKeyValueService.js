@@ -16,9 +16,10 @@
                     payments: 'payments',
                     products: 'products',
                     sellerLogin: 'users/seller/login',
-                    internalUser: 'users/internaluser/login'
+                    internalUserLogin: 'users/internaluser/login'
                 },
                 accessTokenKey: 'randomData',
+                loggedInUserKey: 'loggedInUser',
                 sellerSuccessSignup: "Your application has been sent for approval. You will soon be contacted by our executive",
                 hideProductMessage: 'This product has now been hidden from the online store',
                 showProductMessage: 'The product will go live on the website once the changes have been verified',

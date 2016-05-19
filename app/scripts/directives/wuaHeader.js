@@ -13,14 +13,18 @@
                 '$log',
                 '$mdDialog',
                 'LoginService',
-                function($scope, $location, $rootScope, $log, $mdDialog, LoginService) {
+                'ConstantKeyValueService',
+                function($scope, $location, $rootScope, $log, $mdDialog, LoginService, ConstantKeyValueService) {
 
                     var listeners = [];
                     $scope.loggedIn = false;
+                    $scope.loggedInUser = {};
 
                     function loginState() {
                         if(LoginService.checkLoggedIn()) {
                             $scope.loggedIn = true;
+                            $scope.loggedInUser = ConstantKeyValueService.loggedInUser;
+
                             if($location.url().indexOf('login') >= 0) {
                                 $location.url('/');
                             }

@@ -9,7 +9,7 @@
             <h2>Wholdus Admin</h2>
         </a>
         <span flex></span>
-        <span data-ng-if="loggedIn">email goes here</span>
+        <span data-ng-if="loggedIn" class="small-font">{{loggedInUser.name}}</span>
         <div layout="row" layout-align="center center" layout-padding>
             <md-menu>
                 <div ng-click="openMenu($mdOpenMenu, $event)">

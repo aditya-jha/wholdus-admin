@@ -2,13 +2,12 @@
     class="md-sidenav-left"
     md-component-id="sidenav"
     md-whiteframe="4"
-    ng-click="sidenavClicked()"
     flex
     >
 
     <md-list>
         <md-list-item data-ng-repeat="item in items" flex>
-            <md-button data-ng-href="{{item.url}}" flex>
+            <md-button data-ng-href="{{item.url}}" ng-click="sidenavClicked()" flex>
                 {{item.name}}
             </md-button>
         </md-list-item>
