@@ -16,12 +16,15 @@ adminapp.config([
         $routeProvider.when('/', {
             templateUrl: 'views/dashboard.html',
             controller: 'DashboardController'
+        }).when('/login', {
+            templateUrl: 'views/login.html',
+            controller: 'LoginController'
         });
 
         $locationProvider.html5Mode(true);
         $mdThemingProvider.theme('default')
                    .primaryPalette('deep-purple')
-                   .accentPalette('orange');
+                   .accentPalette('deep-orange');
 
         localStorageServiceProvider.setPrefix('wholdus-admin');
     }

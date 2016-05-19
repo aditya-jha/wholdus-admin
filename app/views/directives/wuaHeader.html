@@ -1,14 +1,17 @@
 <md-toolbar>
     <div class="md-toolbar-tools header">
-        <h2>Wholdus Admin</h2>
+        <a href="/">
+            <h2>Wholdus Admin</h2>
+        </a>
         <span flex></span>
+        <span data-ng-if="loggedIn">email goes here</span>
         <md-menu>
             <md-button  class="md-icon-button" aria-label="More" ng-click="openMenu($mdOpenMenu, $event)">
                 <md-icon md-svg-icon="images/icons/ic_more_vert_white_48px.svg"></md-icon>
             </md-button>
             <md-menu-content width="4">
                 <md-menu-item>
-                    <md-button>login</md-button>
+                    <md-button data-ng-if="loggedIn" data-ng-click="logout()">logout</md-button>
                 </md-menu-item>
             </md-menu-content>
         </md-menu>
