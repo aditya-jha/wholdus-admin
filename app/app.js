@@ -22,6 +22,9 @@ adminapp.config([
         }).when('/users/sellers', {
             templateUrl: 'views/seller.html',
             controller: 'SellerController'
+        }).when('/users/sellers/:sellerID', {
+            templateUrl: 'views/sellerDetail.html',
+            controller: 'SellerController'
         });
 
         $locationProvider.html5Mode(true);
