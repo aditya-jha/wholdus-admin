@@ -44,7 +44,6 @@
                         deferred.reject(response.data.body);
                     }
                 }, function(error) {
-                    $location.url('/404');
                     deferred.reject(error);
                 });
 

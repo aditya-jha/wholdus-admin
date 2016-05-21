@@ -1,0 +1,145 @@
+<div layout="row">
+
+    <md-button class="md-fab md-mini" aria-label="go back" data-ng-href="/users/sellers">
+        <md-icon>
+            <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="#fff" d="M21,11H6.83L10.41,7.41L9,6L3,12L9,18L10.41,16.58L6.83,13H21V11Z" />
+            </svg>
+        </md-icon>
+        <md-tooltip md-direction="right">back</md-tooltip>
+    </md-button>
+    <div flex></div>
+    <md-button class="md-raised md-primary" aria-label="save" data-ng-click="changeSeller($event, 'PUT')">
+        <span>Save</span>
+        <md-tooltip md-direction="right">save the changes</md-tooltip>
+    </md-button>
+    <div flex></div>
+    <md-button class="md-raised md-warn" aria-label="reset" data-ng-click="reset()">
+        <span>Reset</span>
+        <md-tooltip md-direction="left">reset the changes</md-tooltip>
+    </md-button>
+    <div flex></div>
+    <md-button class="md-fab md-mini" aria-label="delete" data-ng-click="changeSeller($event, 'DELETE')">
+        <md-icon>
+            <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="#fff" d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z" />
+            </svg>
+        </md-icon>
+        <md-tooltip md-direction="left">delete this seller</md-tooltip>
+    </md-button>
+</div>
+<div layout="row" layout-align="space-around start">
+    <div layout="column" ng-cloak>
+        <h3>Personal Details</h3>
+        <md-input-container>
+            <label>Name</label>
+            <input type="text" data-ng-model="data.seller.name" ng-required="true" />
+        </md-input-container>
+        <md-input-container>
+            <label>Mobile Number</label>
+            <input type="text" data-ng-model="data.seller.mobile_number" ng-required="true" />
+        </md-input-container>
+        <md-input-container>
+            <label>Alt. Phone Number</label>
+            <input type="text" data-ng-model="data.seller.alternate_phone_number" ng-required="false" />
+        </md-input-container>
+        <md-input-container>
+            <label>Email</label>
+            <input type="email" data-ng-model="data.seller.email" ng-required="true" />
+        </md-input-container>
+        <md-switch data-ng-model="data.seller.mobile_verification">Mobile Verification</md-switch>
+        <md-switch data-ng-model="data.seller.email_verification">Email Verification</md-switch>
+        <md-switch data-ng-model="data.seller.show_online" class="md-warn">Show Online</md-switch>
+    </div>
+    <div layout="column" ng-cloak>
+        <h3>Company Details</h3>
+        <md-input-container>
+            <label>Company</label>
+            <input type="text" data-ng-model="data.seller.company_name" ng-required="true" />
+        </md-input-container>
+        <md-input-container>
+            <label>Company Profile</label>
+            <textarea data-ng-model="data.seller.company_profile" ng-required="false"></textarea>
+        </md-input-container>
+        <md-input-container>
+            <label>PAN</label>
+            <input type="text" data-ng-model="data.seller.details.pan" ng-required="false"></textarea>
+        </md-input-container>
+        <md-input-container>
+            <label>Name on PAN</label>
+            <input type="text" data-ng-model="data.seller.details.name_on_pan" ng-required="false"></textarea>
+        </md-input-container>
+        <md-input-container>
+            <label>DOB on PAN</label>
+            <input type="date" data-ng-model="data.seller.details.dob_on_pan" ng-required="false"></textarea>
+        </md-input-container>
+        <md-input-container>
+            <label>VAT / TIN</label>
+            <input type="text" data-ng-model="data.seller.details.vat_tin" ng-required="false"></textarea>
+        </md-input-container>
+        <md-input-container>
+            <label>CST</label>
+            <input type="text" data-ng-model="data.seller.details.cst" ng-required="false"></textarea>
+        </md-input-container>
+        <md-switch data-ng-model="data.seller.details.pan_verification">PAN Verification</md-switch>
+        <md-switch data-ng-model="data.seller.details.tin_verification">TIN Verification</md-switch>
+    </div>
+    <div layout="column" ng-cloak>
+        <h3>Address</h3>
+        <md-input-container>
+            <label>Address</label>
+            <input type="text" data-ng-model="data.seller.address[0].address" ng-required="true" />
+        </md-input-container>
+        <md-input-container>
+            <label>Landmark</label>
+            <input type="text" data-ng-model="data.seller.address[0].landmark" ng-required="true" />
+        </md-input-container>
+        <md-input-container>
+            <label>Contact No.</label>
+            <input type="text" data-ng-model="data.seller.address[0].contact_number" ng-required="true" />
+        </md-input-container>
+        <md-input-container>
+            <label>City</label>
+            <input type="text" data-ng-model="data.seller.address[0].city" ng-required="true" />
+        </md-input-container>
+        <md-input-container>
+            <label>State</label>
+            <input type="text" data-ng-model="data.seller.address[0].state" ng-required="true" />
+        </md-input-container>
+        <md-input-container>
+            <label>Pincode</label>
+            <input type="text" data-ng-model="data.seller.address[0].pincode" ng-required="true" />
+        </md-input-container>
+    </div>
+    <div layout="column" ng-cloak>
+        <h3>Bank Details</h3>
+        <md-input-container>
+            <label>Bank Name</label>
+            <input type="text" data-ng-model="data.seller.bank_details[0].bank_name" ng-required="false" />
+        </md-input-container>
+        <md-input-container>
+            <label>Account Number</label>
+            <input type="text" data-ng-model="data.seller.bank_details[0].account_number" ng-required="false" />
+        </md-input-container>
+        <md-input-container>
+            <label>Account Holders Name</label>
+            <input type="text" data-ng-model="data.seller.bank_details[0].account_holders_name" ng-required="false" />
+        </md-input-container>
+        <md-input-container>
+            <label>IFSC</label>
+            <input type="text" data-ng-model="data.seller.bank_details[0].ifsc" ng-required="false" />
+        </md-input-container>
+        <md-input-container>
+            <label>Branch</label>
+            <input type="text" data-ng-model="data.seller.bank_details[0].branch" ng-required="false" />
+        </md-input-container>
+        <md-input-container>
+            <label>Branch Pincode</label>
+            <input type="text" data-ng-model="data.seller.bank_details[0].branch_pincode" ng-required="false" />
+        </md-input-container>
+        <md-input-container>
+            <label>Branch City</label>
+            <input type="text" data-ng-model="data.seller.bank_details[0].branch_city" ng-required="false" />
+        </md-input-container>
+    </div>
+</div>
