@@ -1,0 +1,28 @@
+<div layout="row" flex="100" layout-align="center center">
+    <h2>Place New Order</h2>
+</div>
+
+<div layout="row" class="new-order-buyer-container" md-whiteframe="4dp" layout-wrap>
+    <div layout="row" flex="100" layout-align="center center">
+        <strong>select buyer</strong>
+    </div>
+    <div layout="row" flex="100">
+        <div layout="column" flex="15">
+            <md-input-container>
+                <label>Buyer ID</label>
+                <input type="number" data-ng-model="input.buyerID" min=1 />
+            </md-input-container>
+            <md-button class="md-raised md-warn" data-ng-click="selectBuyer()">
+                select
+            </md-button>
+        </div>
+        <md-divider></md-divider>
+
+        <div layout="row" data-ng-if="!selectedBuyer" layout-align="center center" flex="85">
+            <h2>No Buyer Selected</h2>
+        </div>
+
+        <div layout="row" data-ng-if="selectedBuyer" flex="85" data-ng-include="'views/partials/new-order-buyer.html'"></div>
+
+    </div>
+</div>

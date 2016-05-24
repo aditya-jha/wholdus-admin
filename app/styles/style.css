@@ -1,4 +1,25 @@
 
+.dark-primary-color    { background: #512DA8; }
+.default-primary-color { background: #673AB7; }
+.light-primary-color   { background: #D1C4E9; }
+.text-primary-color    { color: #FFFFFF; }
+.accent-color          { background: #FF5722; }
+.primary-text-color    { color: #212121; }
+.secondary-text-color  { color: #727272; }
+.divider-color         { border-color: #B6B6B6; }
+
+input[type='number'] {
+    -moz-appearance: textfield !important;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
 /** header realted css **/
 .header {
     color: white;
@@ -24,6 +45,11 @@ md-input-container {
     margin: 5px 0 !important;
 }
 
+.new-order-buyer-container {
+    margin: 0em 0.5em;
+    padding: 0.5em 0.5em;
+
+}
 /** ngProgress loader css*/
 #ngProgress {
     margin: 0;
