@@ -26,3 +26,35 @@
 
     </div>
 </div>
+
+<div id="productContainer" layout="row" layout-wrap>
+
+</div>
+
+<div layout="row" class="new-order-buyer-container">
+    <div flex="10">
+        <md-button class="md-raised md-warn" data-ng-click="addProduct()">Add Product</md-button>
+    </div>
+    <div flex="80" layout="row" flex-offset="10" style="font-size:1.2em">
+        <div flex>
+            <span class="small-font secondary-text-color">Sub-Total</span>
+            <span class="bold">{{costs.subTotal}}</span>
+        </div>
+        <div flex>
+            <span class="small-font secondary-text-color">Shipping Cost</span>
+            <span class="bold">{{costs.shippingCost}}</span>
+        </div>
+        <div flex>
+            <span class="small-font secondary-text-color">COD Cost</span>
+            <span class="bold">{{costs.COD}}</span>
+        </div>
+        <div flex>
+            <span class="small-font secondary-text-color">Total</span>
+            <span class="bold">{{costs.total}}</span>
+        </div>
+    </div>
+</div>
+
+<div layout="row" layout-margin layout-padding layout-align="center center">
+    <md-button class="md-raised md-primary" data-ng-click="placeOrder()">Place Order</md-button>
+</div>

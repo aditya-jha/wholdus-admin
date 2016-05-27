@@ -38,18 +38,22 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .small-font {
-    font-size: 0.9em;
+    font-size: 0.8em;
 }
 
 md-input-container {
-    margin: 5px 0 !important;
+    margin: 0px 0px !important;
+}
+
+#productContainer {
+    margin-top: 1em;
 }
 
 .new-order-buyer-container {
     margin: 0em 0.5em;
     padding: 0.5em 0.5em;
-
 }
+
 /** ngProgress loader css*/
 #ngProgress {
     margin: 0;
