@@ -97,7 +97,7 @@
                     var data = parseOrderData();
                     APIService.apiCall("POST", APIService.getAPIUrl('orders'), data)
                         .then(function(response) {
-                            ToastService.showActionToast("no products added or buyer selected", 3000)
+                            ToastService.showActionToast("no products added or buyer selected", 0)
                                 .then(function(response) {
                                     $location.url('/');
                                 });
