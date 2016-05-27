@@ -1,0 +1,19 @@
+<div layout="row" flex="100">
+    <div layout="column" flex="15" style="padding-top:1em">
+        <md-input-container>
+            <label>Product ID</label>
+            <input type="number" data-ng-model="product.ID" min=1 />
+        </md-input-container>
+        <md-button class="md-raised md-warn" data-ng-click="selectProduct()">
+            select
+        </md-button>
+    </div>
+    <md-divider></md-divider>
+
+    <div layout="row" data-ng-if="!product.item" layout-align="center center" flex="85">
+        <h2>No Product Selected</h2>
+    </div>
+
+    <div layout="row" data-ng-if="product.item" flex="85" data-ng-include="'views/partials/new-order-product.html'"></div>
+
+</div>

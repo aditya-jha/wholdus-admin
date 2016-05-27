@@ -1,0 +1,60 @@
+<div layout="row" flex="100" layout-align="center center">
+    <h2>Place New Order</h2>
+</div>
+
+<div layout="row" class="new-order-buyer-container" md-whiteframe="4dp" layout-wrap>
+    <div layout="row" flex="100" layout-align="center center">
+        <strong>select buyer</strong>
+    </div>
+    <div layout="row" flex="100">
+        <div layout="column" flex="15">
+            <md-input-container>
+                <label>Buyer ID</label>
+                <input type="number" data-ng-model="input.buyerID" min=1 />
+            </md-input-container>
+            <md-button class="md-raised md-warn" data-ng-click="selectBuyer()">
+                select
+            </md-button>
+        </div>
+        <md-divider></md-divider>
+
+        <div layout="row" data-ng-if="!selectedBuyer" layout-align="center center" flex="85">
+            <h2>No Buyer Selected</h2>
+        </div>
+
+        <div layout="row" data-ng-if="selectedBuyer" flex="85" data-ng-include="'views/partials/new-order-buyer.html'"></div>
+
+    </div>
+</div>
+
+<div id="productContainer" layout="row" layout-wrap>
+
+</div>
+
+<div layout="row" class="new-order-buyer-container">
+    <div flex="10">
+        <md-button class="md-raised md-warn" data-ng-click="addProduct()">Add Product</md-button>
+    </div>
+    <div flex="80" layout="row" flex-offset="10" style="font-size:1.2em">
+        <div flex>
+            <span class="small-font secondary-text-color">Sub-Total</span>
+            <span class="bold">{{costs.subTotal}}</span>
+        </div>
+        <div flex>
+            <span class="small-font secondary-text-color">Shipping Cost</span>
+            <span class="bold">{{costs.shippingCost}}</span>
+        </div>
+        <div flex>
+            <span class="small-font secondary-text-color">COD Cost</span>
+            <span class="bold">{{costs.COD}}</span>
+        </div>
+        <div flex>
+            <span class="small-font secondary-text-color">Total</span>
+            <span class="bold">{{costs.total}}</span>
+        </div>
+    </div>
+</div>
+
+<div layout="row" layout-margin layout-padding layout-align="center center">
+    <md-button class="md-raised md-primary" data-ng-click="placeOrder()">Place Order</md-button>
+</div>

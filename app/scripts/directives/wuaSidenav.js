@@ -17,7 +17,11 @@
                         },
                         {
                             name: 'Sellers',
-                            url: 'users/sellers'
+                            url: '/users/sellers'
+                        },
+                        {
+                            name: 'Create Order',
+                            url: '/new-order'
                         }
                     ];
                     function closeSidenav() {

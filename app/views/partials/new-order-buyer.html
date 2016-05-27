@@ -1,0 +1,36 @@
+<div layout="row" flex="25" layout-wrap layout-padding>
+    <div layout="row" flex="100" layout-wrap>
+        <span flex="100" class="small-font secondary-text-color">Name</span>
+        <span flex="100" class="bold">{{selectedBuyer.name}}</span>
+    </div>
+    <div layout="row" flex="100" layout-wrap>
+        <span flex="100" class="small-font secondary-text-color">Company Name</span>
+        <span flex="100" class="bold">{{selectedBuyer.company_name}}</span>
+    </div>
+</div>
+<div layout="row" flex="25" layout-wrap layout-padding>
+    <div layout="row" flex="100" layout-wrap>
+        <span flex="100" class="small-font secondary-text-color">Mobile No.</span>
+        <span flex="100" class="bold">{{selectedBuyer.mobile_number}}</span>
+    </div>
+    <div layout="row" flex="100" layout-wrap>
+        <span flex="100" class="small-font secondary-text-color">Email</span>
+        <span flex="100" class="bold">{{selectedBuyer.email}}</span>
+    </div>
+</div>
+<div layout="row" flex="25" layout-wrap layout-padding>
+    <div layout="row" flex="100" layout-wrap>
+        <span flex="100" class="small-font secondary-text-color">Address</span>
+        <span flex="100" class="bold">{{selectedBuyer.address[0].address}}, {{selectedBuyer.address[0].landmark}}</span>
+    </div>
+</div>
+<div layout="row" flex="25" layout-wrap layout-padding>
+    <div layout="row" flex="100" layout-wrap>
+        <span flex="100" class="small-font secondary-text-color">City</span>
+        <span flex="100" class="bold">{{selectedBuyer.address[0].city}}</span>
+    </div>
+    <div layout="row" flex="100" layout-wrap>
+        <span flex="100" class="small-font secondary-text-color">Pincode</span>
+        <span flex="100" class="bold">{{selectedBuyer.address[0].pincode}}</span>
+    </div>
+</div>

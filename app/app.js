@@ -25,6 +25,9 @@ adminapp.config([
         }).when('/users/sellers/:sellerID', {
             templateUrl: 'views/sellerDetail.html',
             controller: 'SellerController'
+        }).when('/new-order', {
+            templateUrl: 'views/newOrder.html',
+            controller: 'NewOrderController'
         });
 
         $locationProvider.html5Mode(true);
