@@ -22,6 +22,10 @@
                         {
                             name: 'Create Order',
                             url: '/new-order'
+                        },
+                        {
+                            name: 'Buyer Leads',
+                            url: '/buyer-leads'
                         }
                     ];
                     function closeSidenav() {

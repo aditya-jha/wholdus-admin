@@ -28,6 +28,12 @@ adminapp.config([
         }).when('/new-order', {
             templateUrl: 'views/newOrder.html',
             controller: 'NewOrderController'
+        }).when('/buyer-leads', {
+            templateUrl: 'views/buyerLeads.html',
+            controller: 'BuyerLeadsController'
+        }).when('/buyer-leads/:buyerleadID', {
+            templateUrl: 'views/buyerLeadsDetails.html',
+            controller: 'BuyerLeadsController'
         });
 
         $locationProvider.html5Mode(true);

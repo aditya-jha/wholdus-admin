@@ -16,7 +16,8 @@
                     payments: 'payments',
                     products: 'products',
                     sellerLogin: 'users/seller/login',
-                    internalUserLogin: 'users/internaluser/login'
+                    internalUserLogin: 'users/internaluser/login',
+                    buyerLeads:'leads/buyer',
                 },
                 accessTokenKey: 'randomData',
                 loggedInUserKey: 'loggedInUser',
