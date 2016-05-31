@@ -1,6 +1,6 @@
 (function() {
     "use strict";
-    adminapp.controller("BuyerLeadsController", [
+    adminapp.controller("ContactusLeadsController", [
         '$scope',
         '$log',
         'APIService',
@@ -12,31 +12,31 @@
         function($scope, $log, APIService, $routeParams, $rootScope, ngProgressBarService, ToastService, $location) {
 
             $scope.data = {
-                buyer_leads: [],
-                buyerleadID: null,
-                buyer_lead: {}
+                contactus_leads: [],
+                contactusleadID: null,
+                contactus_lead: {}
             };
 
-            function getBuyersLeads(params) {
+            function getContactusLeads(params) {
                 $rootScope.$broadcast('showProgressbar');
-                APIService.apiCall("GET", APIService.getAPIUrl('buyerLeads'), null, params)
+                APIService.apiCall("GET", APIService.getAPIUrl('contactusLeads'), null, params)
                     .then(function(response) {
                         $rootScope.$broadcast('endProgressbar');
-                        if(response.buyer_leads.length>0) {
-                            if($scope.data.buyerleadID) {
-                                for(var i=0;i<response.buyer_leads.length;i++)
+                        if(response.contactus_leads.length) {
+                            if($scope.data.contactusleadID) {
+                                for(var i=0;i<response.contactus_leads.length;i++)
                                 {
-                                    if(response.buyer_leads[i].buyerleadID==$scope.data.buyerleadID)
-                                        $scope.data.buyer_lead = response.buyer_leads[i];    
+                                    if(response.contactus_leads[i].contactusleadID==$scope.data.contactusleadID)
+                                        $scope.data.contactus_lead = response.contactus_leads[i];    
                                 }
                                 
                             } else {
-                                $scope.data.buyer_leads = response.buyer_leads;
+                                $scope.data.contactus_leads = response.contactus_leads;
                             }
-                        } else if($scope.data.buyerleadID) {
+                        } else if($scope.data.contactusleadID) {
                             ToastService.showActionToast("No such buyer lead exists! GO BACK", 0)
                                 .then(function(response) {
-                                    $location.url('/buyer-leads');
+                                    $location.url('/contactus-leads');
                                 });
                         }
                     }, function(error) {
@@ -45,13 +45,13 @@
             }
 
             function pageSetting() {
-                if($routeParams.buyerleadID) {
-                    $scope.data.buyerleadID = parseInt($routeParams.buyerleadID);
-                    getBuyersLeads({
-                        buyerleadID: $routeParams.buyerleadID
+                if($routeParams.contactusleadID) {
+                    $scope.data.contactusleadID = parseInt($routeParams.contactusleadID);
+                    getContactusLeads({
+                        contactusleadID: $routeParams.contactusleadID
                     });
                 } else {
-                    getBuyersLeads();
+                    getContactusLeads();
                 }
             }
 
@@ -61,15 +61,15 @@
                 pageSetting();
             };
 
-            $scope.changeBuyerLeads = function(event, type) {
+            $scope.changeContactusLeads = function(event, type) {
                 if(type=="DELETE" || type=="PUT") {
                     $rootScope.$broadcast('showProgressbar');
-                    APIService.apiCall(type, APIService.getAPIUrl("buyerLeads"), $scope.data.buyer_lead)
+                    APIService.apiCall(type, APIService.getAPIUrl("contactusLeads"), $scope.data.contactus_lead)
                         .then(function(response) {
                             $rootScope.$broadcast('endProgressbar');
                             ToastService.showActionToast("successful", 0).then(function(response) {
                                 if(type=="DELETE") {
-                                    $location.url('/buyer-leads');
+                                    $location.url('/contactus-leads');
                                 }
                             });
                         }, function(error) {

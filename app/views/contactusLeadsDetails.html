@@ -1,6 +1,6 @@
 <div layout="row">
 
-    <md-button class="md-fab md-mini" aria-label="go back" data-ng-href="/buyer-leads">
+    <md-button class="md-fab md-mini" aria-label="go back" data-ng-href="/contactus-leads">
         <md-icon>
             <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                 <path fill="#fff" d="M21,11H6.83L10.41,7.41L9,6L3,12L9,18L10.41,16.58L6.83,13H21V11Z" />
@@ -9,7 +9,7 @@
         <md-tooltip md-direction="right">back</md-tooltip>
     </md-button>
     <div flex></div>
-    <md-button class="md-raised md-primary" aria-label="save" data-ng-click="changeBuyerLeads($event, 'PUT')">
+    <md-button class="md-raised md-primary" aria-label="save" data-ng-click="changeContactusLeads($event, 'PUT')">
         <span>Save</span>
         <md-tooltip md-direction="right">save the changes</md-tooltip>
     </md-button>
@@ -19,7 +19,7 @@
         <md-tooltip md-direction="left">reset the changes</md-tooltip>
     </md-button>
     <div flex></div>
-    <md-button class="md-fab md-mini" aria-label="delete" data-ng-click="changeBuyerLeads($event, 'DELETE')">
+    <md-button class="md-fab md-mini" aria-label="delete" data-ng-click="changeContactusLeads($event, 'DELETE')">
         <md-icon>
             <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                 <path fill="#fff" d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z" />
@@ -31,34 +31,24 @@
 <div layout="row" layout-align="space-around">
     <div layout="column" ng-cloak flex="30">
         <h3>Details</h3>
-        
-        <md-input-container>
-            <label>Name</label>
-            <input type="text" data-ng-model="data.buyer_lead.name" ng-required="true" />
-        </md-input-container>
         <md-input-container>
             <label>Mobile Number</label>
-            <input type="text" data-ng-model="data.buyer_lead.mobile_number" ng-required="true" />
+            <input type="text" data-ng-model="data.contactus_lead.mobile_number" ng-required="true" />
         </md-input-container>
         <md-input-container>
             <label>Email</label>
-            <input type="email" data-ng-model="data.buyer_lead.email" ng-required="true" />
+            <input type="email" data-ng-model="data.contactus_lead.email" ng-required="true" />
         </md-input-container> 
-        <md-input-container>
-            <label>Product ID</label>
-            <input type="email" data-ng-model="data.buyer_lead.productID" ng-required="false" />
-        </md-input-container> 
-        <md-input-container>
-            <label>Category ID</label>
-            <input type="email" data-ng-model="data.buyer_lead.categoryID" ng-required="false" />
-        </md-input-container>
-
-        <md-switch data-ng-model="data.buyer_lead.status">Status : {{data.buyer_lead.status}}</md-switch>
+        <md-switch data-ng-model="data.contactus_lead.status">Status :{{data.contactus_lead.status}}</md-switch>
     </div>
     <div layout="column" ng-cloak flex="60" style="margin-top:60px;">
         <md-input-container>
+          <label>Remarks</label>
+          <textarea data-ng-model="data.contactus_lead.remarks" md-maxlength="500" rows="5" md-select-on-focus></textarea>
+        </md-input-container>
+        <md-input-container>
           <label>Comments</label>
-          <textarea data-ng-model="data.buyer_lead.comments" md-maxlength="500" rows="5" md-select-on-focus></textarea>
+          <textarea data-ng-model="data.contactus_lead.comments" md-maxlength="500" rows="5" md-select-on-focus></textarea>
         </md-input-container>
     </div>    
 </div>
