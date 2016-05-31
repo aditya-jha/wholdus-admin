@@ -18,6 +18,8 @@
                     sellerLogin: 'users/seller/login',
                     internalUserLogin: 'users/internaluser/login',
                     buyerLeads:'leads/buyer',
+                    contactusLeads:'leads/contactus', 
+                    sellerLeads:'leads/seller',
                 },
                 accessTokenKey: 'randomData',
                 loggedInUserKey: 'loggedInUser',

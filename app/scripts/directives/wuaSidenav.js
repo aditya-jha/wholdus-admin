@@ -26,6 +26,14 @@
                         {
                             name: 'Buyer Leads',
                             url: '/buyer-leads'
+                        },
+                         {
+                            name: 'Contact Us Leads',
+                            url: '/contactus-leads'
+                        },
+                        {
+                            name: 'Seller Leads',
+                            url: '/seller-leads'
                         }
                     ];
                     function closeSidenav() {

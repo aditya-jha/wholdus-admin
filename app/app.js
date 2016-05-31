@@ -34,6 +34,18 @@ adminapp.config([
         }).when('/buyer-leads/:buyerleadID', {
             templateUrl: 'views/buyerLeadsDetails.html',
             controller: 'BuyerLeadsController'
+        }).when('/seller-leads', {
+            templateUrl: 'views/sellerLeads.html',
+            controller: 'SellerLeadsController'
+        }).when('/seller-leads/:sellerleadID', {
+            templateUrl: 'views/sellerLeadsDetails.html',
+            controller: 'SellerLeadsController'
+        }).when('/contactus-leads', {
+            templateUrl: 'views/contactusLeads.html',
+                controller: 'ContactusLeadsController'
+            }).when('/contactus-leads/:contactusleadID', {
+            templateUrl: 'views/contactusLeadsDetails.html',
+            controller: 'ContactusLeadsController'
         });
 
         $locationProvider.html5Mode(true);
