@@ -7,10 +7,8 @@
 <div layout="row" layout-wrap layout-margin layout-align="space-around  start">
     <div  flex="45" md-whiteframe="4dp" data-ng-repeat="bl in data.buyer_leads" style="padding:8px">
         <div layout="row" layout-align="start center">
-           
-            Name:<span class="bold" flex="30">{{bl.name}}</span>
-            <span flex="5"></span>
-             Lead ID:<span class="bold">{{bl.buyerleadID}}</span>
+            <span style="margin-right:5px">{{bl.buyerleadID}}</span>
+            <span class="bold">{{bl.name}}</span>
             <span flex></span>
             <!-- <md-button class="md-warn" data-ng-href="users/sellers/{{s.sellerID}}">view</md-button> -->
             <a data-ng-href="buyer-leads/{{bl.buyerleadID}}">
