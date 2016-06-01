@@ -15,15 +15,19 @@
             $scope.input = {
                 buyerID: '',
             };
-            $scope.costs = {
-                COD: 50,
-                shippingCost: 0,
-                subTotal: 0,
-                total: 0
-            };
 
             $scope.selectedBuyer = null;
 
+            function initCosts() {
+                $scope.costs = {
+                    COD: 50,
+                    shippingCost: 0,
+                    subTotal: 0,
+                    total: 0
+                };
+            }
+            initCosts();
+            
             $scope.selectBuyer = function() {
                 if($scope.input.buyerID) {
                     $rootScope.$broadcast('showProgressbar');
@@ -54,12 +58,7 @@
 
             function setTotals() {
                 var weight = 0;
-                $scope.costs = {
-                    COD: 50,
-                    shippingCost: 0,
-                    subTotal: 0,
-                    total: 0
-                };
+                initCosts();
 
                 angular.forEach(products, function(value, key) {
                     $scope.costs.subTotal += (value.orderDetail.pieces*value.orderDetail.edited_price_per_piece);
@@ -72,6 +71,8 @@
                     }
                     $scope.costs.shippingCost = Math.ceil($scope.costs.shippingCost);
                     $scope.costs.total = Math.ceil($scope.costs.subTotal + $scope.costs.COD + $scope.costs.shippingCost);
+                } else {
+                    initCosts();
                 }
             }
 
