@@ -23,6 +23,8 @@
 
                     $scope.selectProduct = function() {
                         if($scope.product.ID > 0) {
+                            $scope.product.orderDetail.pieces = 0;
+                            $rootScope.$broadcast("addProductChanged", $scope.product);
                             var params = {
                                 productID: $scope.product.ID
                             };
