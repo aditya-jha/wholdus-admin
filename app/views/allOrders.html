@@ -4,10 +4,11 @@
 <div layout="row" layout-wrap layout-align="center start">
     <span><span class="bold small-font">Total Orders:</span> {{data.orders.length}}</span>
 </div>
-<div layout="row" layout-wrap layout-margin layout-align="start">
+<div layout="row" layout-wrap layout-margin layout-align="space-around start">
     <div  flex="45" md-whiteframe="4dp" data-ng-repeat="order in data.orders" style="padding:8px">
-        <div layout="row" layout-align="start center">
-            <span style="margin-right:5px">{{order.orderID}}</span>
+        <div layout="row" layout-align="start center" layout-padding>
+            <span >{{order.orderID}}</span>
+            <div flex></div>
             Name: <span class="bold" flex="30">{{order.buyer.name}}</span>
             Company: <span class="bold" flex="50">{{order.buyer.company_name}}</span>
             
