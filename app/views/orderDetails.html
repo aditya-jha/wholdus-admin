@@ -1,0 +1,185 @@
+<div layout="column" layout-align="center">
+<div layout="row" layout-align="center" flex="100" >
+<h2> ORDER:<span class="bold"> {{data.order.orderID}}</span></h2>
+</div>
+<div layout="row" style="padding:0px">
+	<div flex></div>
+	<h4 style="margin-right:10px">Date : {{date | date:'dd-MM-yyyy'}}</h4>
+</div>
+<div   layout-padding layout="column"  flex="100">
+
+<md-card flex>
+<div layout="row" layout-align="center center" class="md-title"><h3 >Buyer Details</h3></div>
+<div layout="row">
+
+<div layout="column" ng-cloak flex="30" layout-padding>
+
+
+       <!--  <md-input-container>
+            <label>Buyer ID</label>
+            <input type="text" data-ng-model="data.order.buyer.buyerID"  />
+        </md-input-container> -->
+        <md-input-container>
+            <label>Buyer Name</label>
+            <input type="text" data-ng-model="data.order.buyer.name"  />
+        </md-input-container>
+        <md-input-container>
+            <label>Buyer Company</label>
+            <input type="text" data-ng-model="data.order.buyer.company_name"  />
+        </md-input-container> 
+        <md-input-container>
+            <label>Mobile No</label>
+            <input type="text" data-ng-model="data.order.buyer.mobile_number"  />
+        </md-input-container> 
+</div>
+
+<div layout="column" ng-cloak flex="70" layout-padding>
+        <md-input-container>
+            <label>Delivery Address</label>
+            <input type="text" data-ng-model="data.order.buyer.address[0].address" />
+        </md-input-container>
+        <md-input-container>
+            <label>City</label>
+            <input type="text" data-ng-model="data.order.buyer.address[0].city"  />
+        </md-input-container>
+        <md-input-container>
+            <label>State</label>
+            <input type="text" data-ng-model="data.order.buyer.address[0].state"  />
+        </md-input-container>
+        <md-input-container>
+            <label>Pincode</label>
+            <input type="text" data-ng-model="data.order.buyer.address[0].pincode"  />
+        </md-input-container> 
+</div>
+</div>          
+</div>
+</md-card>
+
+
+<div layout="column" data-ng-repeat="sub_order in data.order.sub_orders">
+
+<div layout="column" layout-padding flex>
+<md-card>
+<div layout="row" layout-align="center" flex="100" class="md-title"><h3 >Sub Order:{{$index+1}}</h3></div>
+	<div layout="column">
+	<div layout="row" layout-align="center" class="md-title"><h3>Manufacturer</h3></div>
+	<div layout="row"  layout-padding flex="100" layout-align="center">
+			<div layout="column" flex="40">
+	        <md-input-container>
+	            <label>Company Name</label>
+	            <input type="text" data-ng-model="sub_order.seller.company_name"  />
+	        </md-input-container>
+	        <md-input-container>
+	            <label>Merchant Name</label>
+	            <input type="text" data-ng-model="sub_order.seller.name"  />
+	        </md-input-container>
+	        <md-input-container>
+	            <label>Mobile No</label>
+	            <input type="text" data-ng-model="sub_order.seller.mobile_number"  />
+	        </md-input-container> 
+	        <md-input-container>
+	            <label>Contact Person Name</label>
+	            <input type="text" data-ng-model="sub_order.seller.concerned_person"  />
+	        </md-input-container> 
+	         <md-input-container>
+	            <label>Contact Person No</label>
+	            <input type="text" data-ng-model="sub_order.seller.concerned_person_number"  />
+	        </md-input-container>
+	        </div>
+	        <div layout="column" flex="60"> 
+	          <md-input-container>
+	            <label>Pick Up Address</label>
+	            <input type="text" data-ng-model="sub_order.seller.address[0].address"  rows="2" />
+	        </md-input-container> 
+	          <md-input-container>
+	            <label>City</label>
+	            <input type="text" data-ng-model="sub_order.seller.address[0].city"  />
+	        </md-input-container> 
+	         <md-input-container>
+	            <label>State</label>
+	            <input type="text" data-ng-model="sub_order.seller.address[0].state"  />
+	        </md-input-container> 
+	          <md-input-container>
+	            <label>Pincode</label>
+	            <input type="text" data-ng-model="sub_order.seller.address[0].pincode"  />
+	        </md-input-container>
+	      
+			</div>
+			  </div> 
+	        <div layout="row" layout-align="center center">
+			<md-button class="md-primary md-raised" ng-click="notifyMerchant(sub_order.suborderID)">Notify Merchant</md-button>
+			</div>
+			<md-divider></md-divider>
+	</div>  
+	<div layout="row" layout-align="center" class="md-title"><h3>Order Items</h3></div>
+		<div layout="column" data-ng-repeat="order_item in sub_order.order_items" layuot-margin layout-padding="2">
+		<div layout="row">
+			<div layout="column" layout-padding class="bold" style="font-size:2em">{{$index+1}}.</div>
+			<div layout="column"  flex="60" layout-padding layout-margin>
+
+		        <md-input-container>
+		            <label>Product ID</label>
+		            <input type="text" data-ng-model="order_item.product.productID"  />
+		        </md-input-container>
+		        <md-input-container>
+		            <label>Product Name</label>
+		            <input type="text" data-ng-model="order_item.product.name"  />
+		        </md-input-container>
+		        <md-input-container>
+		            <label>Catalog No</label>
+		            <input type="text" data-ng-model="order_item.product.details.seller_catalog_number"  />
+		        </md-input-container> 
+		        <md-input-container>
+		            <label>Remarks</label>
+		            <input type="text" data-ng-model="order_item.remarks"  />
+		        </md-input-container> 
+			</div>  
+			<div layout="column" flex="40" layout-padding layout-margin>
+		        <md-input-container>
+		            <label>Pcs Sold</label>
+		            <input type="text" data-ng-model="order_item.pieces"  />
+		        </md-input-container>
+		        <md-input-container>
+		            <label>Negotiated Price Per Piece</label>
+		            <input type="text" data-ng-model="order_item.edited_price_per_piece"  />
+		        </md-input-container>
+		        <md-input-container>
+		            <label>Sub - Amount</label>
+		            <input type="text" data-ng-model="order_item.final_price"  />
+		        </md-input-container>
+		        <div layout="row" layout-align="center center">
+
+
+		   		 <md-checkbox  aria-label="Checkbox 1" data-ng-model="order_item.addForDelivery" class="md-primary">
+            	Add to Cart
+          		</md-checkbox>
+          		<div flex="30"></div>
+
+		        <md-button class="md-fab md-mini" aria-label="delete" ng-click="showPrompt($event,order_item.orderitemID)" style="padding:0px">
+		        <md-icon>
+		            <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+		                <path fill="#fff" d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z" />
+		            </svg>
+		        </md-icon>
+		        <md-tooltip md-direction="left">Delete this product</md-tooltip>
+		   		</md-button>
+          		</div>
+		   	</div>
+
+		</div>
+		<md-divider md-inset ng-if="!$last"></md-divider>
+	</div>	
+	<div layout="row">
+		<md-button class="md-primary md-raised" ng-click="conformDelivery($event,$index)">Send For Delivery</md-button>
+		<div flex></div>
+		<div flex="35">
+	        <md-input-container>
+	            <label>Amount</label>
+	            <input type="text" data-ng-model="calcAmount($index)" ng-disabled />
+	        </md-input-container>
+	    </div>    
+	</div>	
+</div>
+</md-card>
+</div>
+</div>

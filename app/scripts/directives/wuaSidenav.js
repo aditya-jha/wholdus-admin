@@ -34,6 +34,10 @@
                         {
                             name: 'Seller Leads',
                             url: '/seller-leads'
+                        },  
+                        {
+                            name: 'All Orders',
+                            url: '/allorders'
                         }
                     ];
                     function closeSidenav() {
