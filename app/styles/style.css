@@ -95,3 +95,18 @@ md-input-container {
     transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
     /* Set our own color */
     color: grey; }
+
+.card-item-row {
+    max-height: 3.5em;
+}
+
+.card-item {
+    padding: 0.5em 0px 0.5em 0px;
+    max-height: 3.5em;
+}
+
+.card-item-title {
+    font-size: 0.9em;
+    padding: 0px 0px 0.2em 0px;
+    color: #808080;
+}    

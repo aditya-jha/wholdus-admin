@@ -24,6 +24,7 @@
                     orderitem:'orderitem',
                     ordershipment:'ordershipment',
                     suborder:'suborder',
+                    sellerpayment:'sellerpayment',
                 },
                 accessTokenKey: 'randomData',
                 loggedInUserKey: 'loggedInUser',
