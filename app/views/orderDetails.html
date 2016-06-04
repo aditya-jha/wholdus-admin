@@ -34,7 +34,7 @@
 	<md-divider style="margin:1em; color:black;"></md-divider>
 		<div layout="column" ng-cloak flex="40" layout-padding>
 			 <div layout="column" class="card-item" flex>
-	                <span class="card-item-title" flex>Delivery Address</span>
+	                <span class="card-item-title" id="address" flex>Delivery Address</span>
 	                <span>{{ data.order.buyer.address[0].address }}</span>
 	        </div>
 	        <div layout="column" class="card-item" flex>
@@ -90,7 +90,7 @@
         	<md-divider style="margin:1em; color:black;"></md-divider>
 	        <div layout="column" flex="40"> 
 	        <div layout="column" class="card-item" flex>
-                <span class="card-item-title" flex>Pick Up Address</span>
+                <span class="card-item-title" id="address" flex>Pick Up Address</span>
                 <span>{{ sub_order.seller.address[0].address }}</span>
         	</div>
         	<div layout="column" class="card-item" flex>
@@ -123,7 +123,7 @@
 		       		 </div>
 		        	<div layout="column" class="card-item" flex>
 		                <span class="card-item-title" flex>Product Name</span>
-		                <span>{{ order_item.product.name }}</span>
+		                <span id="product-name">{{ order_item.product.name }}</span>
 		        	</div>
 		        	<div layout="column" class="card-item" flex>
 		                <span class="card-item-title" flex>Catalog No</span>

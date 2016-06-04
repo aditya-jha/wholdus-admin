@@ -109,4 +109,16 @@ md-input-container {
     font-size: 0.9em;
     padding: 0px 0px 0.2em 0px;
     color: #808080;
-}    
+}   
+#product-name{
+    white-space: nowrap; 
+    width:40em;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+} 
+#address{
+    white-space: nowrap; 
+    width:35em;
+    overflow: hidden;
+    text-overflow: ellipsis;  
+}
