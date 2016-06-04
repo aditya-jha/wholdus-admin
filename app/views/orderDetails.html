@@ -60,7 +60,7 @@
 
 <div layout="column" layout-padding flex>
 <md-card>
-<div layout="row" layout-align="center" flex class="md-title"><h3 >Sub Order:{{$index+1}}</h3></div>
+	<div layout="row" layout-align="center" flex class="md-title"><h3 >Sub Order:{{$index+1}}</h3></div>
 	<div layout="column">
 	<div layout="row" layout-align="center" class="md-title"><h3>Manufacturer</h3></div>
 	<div layout="row"  layout-padding flex layout-align="center" layout-margin>
@@ -176,10 +176,18 @@
 				<div layout="column" class="card-item" flex>
 		                <span class="card-item-title bold" flex>Amount</span>
 		                <span>{{ calcAmount($index)}}</span>
-		        	</div>
+		        </div>
 	    </div>    
 	</div>	
-</div>
+	</div>
 </md-card>
 </div>
+</div>
+<div layout="row" ng-cloak layout-align="right" layout-padding>
+<div flex></div>
+			<div layout="column" class="card-item" flex="40">
+	                <span class="card-item-title" flex>Sub-Total</span>
+	                <span ng-cloak>{{calcSubTotal()}}</span>
+	        </div>
+
 </div>

@@ -101,12 +101,24 @@
                             ToastService.showActionToast("something went wrong! please reload", 0);
                         });
                 }; 
-
+            $scope.sub_total=0;    
             $scope.calcAmount=function(index){
                 var amount=0;
                 for (var i = 0; i < $scope.data.order.sub_orders[index].order_items.length; i++) {
                     amount=(parseFloat(amount)+parseFloat($scope.data.order.sub_orders[index].order_items[i].final_price)).toFixed(2);
+                    
                     }
+                    return amount;
+            };
+
+            $scope.calcSubTotal=function(){
+                var amount=0;
+                for (var j = 0; j < $scope.data.order.sub_orders.length; j++)
+                {
+                    for (var i = 0; i < $scope.data.order.sub_orders[j].order_items.length; i++) {
+                    amount=(parseFloat(amount)+parseFloat($scope.data.order.sub_orders[j].order_items[i].final_price)).toFixed(2);
+                    }
+                }    
                     return amount;
             };
             $scope.showPrompt = function(ev,orderitemID) {
