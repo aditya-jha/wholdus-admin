@@ -27,7 +27,7 @@
                 };
             }
             initCosts();
-            
+
             $scope.selectBuyer = function() {
                 if($scope.input.buyerID) {
                     $rootScope.$broadcast('showProgressbar');
@@ -98,7 +98,7 @@
                     var data = parseOrderData();
                     APIService.apiCall("POST", APIService.getAPIUrl('orders'), data)
                         .then(function(response) {
-                            ToastService.showActionToast("no products added or buyer selected", 0)
+                            ToastService.showActionToast("Order Successfully placed!", 0)
                                 .then(function(response) {
                                     $location.url('/');
                                 });
