@@ -1,19 +1,19 @@
-<md-dialog aria-label="Buy Now" ng-cloak onLoad="hideLoader()">
-    <form name="conformDeliveryForm" novalidate>
+<md-dialog  ng-cloak onLoad="hideLoader()">
+    <form name="confirmDeliveryForm" novalidate>
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2 flex class="popup-title">Send for delivery</h2>
 
                 <md-button class="md-icon-button" ng-click="cancel()">
-                <svg fill="#fff" height="36" viewBox="0 0 24 24" width="30" >
-                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-                <path d="M0 0h24v24H0z" fill="none"/>
-                </svg>
+                    <svg fill="#fff" height="36" viewBox="0 0 24 24" width="30" >
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                    </svg>
                 </md-button>
             </div>
         </md-toolbar>
         <md-dialog-content>
-        <div layout="row" layout-padding>
+            <div layout="row" layout-padding>
                 <div layout="column"  flex>
                     <md-input-container>
                         <label>Airway Bill No</label>
@@ -57,39 +57,38 @@
                         <label>Shipping charge</label>
                         <input type="number" data-ng-model="ordershipment.shipping_charge" ng-required="true" />
                     </md-input-container> 
-                
+
                 </div>
                 <div layout="column"  flex>
-                <md-input-container>
+                    <md-input-container>
                         <label>Tracking URL</label>
                         <input type="text" data-ng-model="ordershipment.tracking_url"/>
-                </md-input-container>   
-                      <md-input-container>
+                    </md-input-container>   
+                    <md-input-container>
                         <label>Remarks</label>
                         <input type="text" data-ng-model="ordershipment.remarks" />
-                </md-input-container>
-                <md-input-container>
+                    </md-input-container>
+                    <md-input-container>
                         <label>RTO Remarks</label>
                         <input type="text" data-ng-model="ordershipment.rto_remarks" />
-                </md-input-container> 
-                 <md-input-container>
+                    </md-input-container> 
+                    <md-input-container>
                         <label>Logistics Partner</label>
                         <input type="text" data-ng-model="ordershipment.logistics_partner" />
-                </md-input-container> 
+                    </md-input-container> 
                 </div>
-        </div>     
+            </div>     
         </md-dialog-content>
         <md-dialog-actions layout="row">
           <div flex></div>
-            <md-button  class="md-raised md-warn" ng-click="cancel()" style="margin-right:20px;">
-                Cancel
-            </md-button>
-          
-            <md-button type="submit" class="md-raised md-primary" ng-click="sendDelivery(   )" style="margin-right:20px;">
-                Done
-            </md-button>
-            <div flex></div>
-        </md-dialog-actions>
-    </form>
+          <md-button  class="md-raised md-warn" ng-click="cancel()" style="margin-right:20px;">
+            Cancel
+        </md-button>
 
+        <md-button type="submit" class="md-raised md-primary" ng-click="sendDelivery(   )" style="margin-right:20px;">
+            Done
+        </md-button>
+        <div flex></div>
+    </md-dialog-actions>
+    </form>
 </md-dialog>

@@ -24,11 +24,7 @@
                         $rootScope.$broadcast('endProgressbar');
                         if(response.buyer_leads.length>0) {
                             if($scope.data.buyerleadID) {
-                                for(var i=0;i<response.buyer_leads.length;i++)
-                                {
-                                    if(response.buyer_leads[i].buyerleadID==$scope.data.buyerleadID)
-                                        $scope.data.buyer_lead = response.buyer_leads[i];    
-                                }
+                                $scope.data.buyer_lead = response.buyer_leads[0];    
                                 
                             } else {
                                 $scope.data.buyer_leads = response.buyer_leads;
