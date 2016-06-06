@@ -29,8 +29,8 @@
     </md-button> -->
 </div>
 <div layout="row" layout-align="space-around">
-    <div layout="column" ng-cloak flex="30">
-        <h3>Details</h3>
+    <div layout="column" ng-cloak flex="40" layout-margin>
+        <div class="md-title" ><h3>Details</h3></div>
         
         <md-input-container>
             <label>Name</label>
@@ -44,22 +44,60 @@
             <label>Email</label>
             <input type="email" data-ng-model="data.buyer_lead.email" ng-required="true" />
         </md-input-container> 
-        <md-input-container>
-            <label>Product ID</label>
-            <input type="email" data-ng-model="data.buyer_lead.productID" ng-required="false" />
-        </md-input-container> 
-        <md-input-container>
-            <label>Category ID</label>
-            <input type="email" data-ng-model="data.buyer_lead.categoryID" ng-required="false" />
-        </md-input-container>
-
-        <md-switch data-ng-model="data.buyer_lead.status">Status : {{data.buyer_lead.status}}</md-switch>
-    </div>
-    <div layout="column" ng-cloak flex="60" style="margin-top:60px;">
-        <md-input-container>
+         <md-input-container>
           <label>Comments</label>
           <textarea data-ng-model="data.buyer_lead.comments" md-maxlength="500" rows="5" md-select-on-focus></textarea>
         </md-input-container>
-    </div>    
-</div>
-</div>
+        <div  ng-if="data.buyer_lead.product.category!=null">
+             <div class="md-title" ><h3>Category Details</h3></div>
+            
+            <md-input-container>
+                <label>Name</label>
+                <input type="text" data-ng-model="data.buyer_lead.product.category.display_name" ng-required="true" />
+            </md-input-container>
+            <md-input-container>
+                <label>Category ID</label>
+                <input type="text" data-ng-model="data.buyer_lead.product.category.categoryID" ng-required="true" />
+            </md-input-container>
+           
+        </div>
+         <md-switch data-ng-model="data.buyer_lead.status">Status : {{data.buyer_lead.status}}</md-switch>
+    </div>
+    <div layout="column" ng-cloak flex="40" layout-margin ng-if="data.buyer_lead.product!=null">
+            
+             <div class="md-title" ><h3>Product Details</h3></div>
+            
+            <md-input-container>
+                <label>Name</label>
+                <input type="text" data-ng-model="data.buyer_lead.product.display_name" ng-required="true" />
+            </md-input-container>
+            <md-input-container>
+                <label>Product ID</label>
+                <input type="text" data-ng-model="data.buyer_lead.product.productID" ng-required="true" />
+            </md-input-container>
+            <md-input-container>
+                <label>Price per unit</label>
+                <input type="text" data-ng-model="data.buyer_lead.product.price_per_unit" ng-required="true" />
+            </md-input-container>    
+            <md-input-container>
+                <label>Minimum price per unit</label>
+                <input type="text" data-ng-model="data.buyer_lead.product.price_per_unit" ng-required="true" />
+            </md-input-container>    
+            <md-input-container>
+                <label>Price per unit</label>
+                <input type="text" data-ng-model="data.buyer_lead.product.min_price_per_unit" ng-required="true" />
+            </md-input-container>    
+            <md-input-container>
+                <label>Lot size</label>
+                <input type="text" data-ng-model="data.buyer_lead.product.lot_size" ng-required="true" />
+            </md-input-container>     
+             <md-input-container>
+                <label>Lot size</label>
+                <input type="text" data-ng-model="data.buyer_lead.product.price_per_lot" ng-required="true" />
+            </md-input-container>
+        
+    </div>
+  
+</div>    
+
+

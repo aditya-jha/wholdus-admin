@@ -1,17 +1,20 @@
 <div layout="row" layout-align="center start" flex="100">
-    <h2>Contact Us Leads</h2>
+    <h2>Orders</h2>
 </div>
 <div layout="row" layout-wrap layout-align="center start">
-    <span><span class="bold small-font">Total Contact Us Leads:</span> {{data.contactus_leads.length}}</span>
+    <span><span class="bold small-font">Total Orders:</span> {{data.orders.length}}</span>
 </div>
 <div layout="row" layout-wrap layout-margin layout-align="space-around start">
-    <div  flex="45" md-whiteframe="4dp" data-ng-repeat="cul in data.contactus_leads" style="padding:8px">
+    <div  flex="45" md-whiteframe="4dp" data-ng-repeat="order in data.orders" style="padding:8px">
         <div layout="row" layout-align="start center" layout-padding>
-           
-             Lead ID:<span class="bold">{{cul.contactusleadID}}</span>
+            <span >{{order.orderID}}</span>
+            <div flex></div>
+            Name: <span class="bold" flex="30">{{order.buyer.name}}</span>
+            Company: <span class="bold" flex="50">{{order.buyer.company_name}}</span>
+            
             <span flex></span>
             <!-- <md-button class="md-warn" data-ng-href="users/sellers/{{s.sellerID}}">view</md-button> -->
-            <a data-ng-href="contactus-leads/{{cul.contactusleadID}}">
+            <a data-ng-href="orders/{{order.orderID}}">
                 <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                     <path fill="#FF5722" d="M4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H16L12,22L8,18H4A2,2 0 0,1 2,16V4A2,2 0 0,1 4,2M18,14V12H12.5L10.5,14H18M6,14H8.5L15.35,7.12C15.55,6.93 15.55,6.61 15.35,6.41L13.59,4.65C13.39,4.45 13.07,4.45 12.88,4.65L6,11.53V14Z" />
                 </svg>
@@ -19,14 +22,15 @@
             </a>
         </div>
         <div layout="row" layout-align="start center" class="small-font">
-            Email:<span class="word-wrap bold" flex="40">{{cul.email}}</span>
+            Total Products: <span class="bold" flex="5">{{order.product_count}}</span>
+            Final Price:<span class="word-wrap bold" flex="20">{{order.final_price}}</span>
             
-            Mobile No.:<span class="bold">{{cul.mobile_number}}</span>
+            Retail Price.:<span class="bold">{{order.retail_price}}</span>
             <span flex></span>
 
-        
-                Status : <span class="bold">{{cul.status}}</span>
-      
+            
+                Order Status : <span class="bold">{{order.order_status}}</span>
+          
         </div>
     </div>
 </div>
