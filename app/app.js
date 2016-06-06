@@ -42,14 +42,17 @@ adminapp.config([
             controller: 'SellerLeadsController'
         }).when('/contactus-leads', {
             templateUrl: 'views/contactusLeads.html',
-                controller: 'ContactusLeadsController'
-            }).when('/contactus-leads/:contactusleadID', {
+            controller: 'ContactusLeadsController'
+        }).when('/contactus-leads/:contactusleadID', {
             templateUrl: 'views/contactusLeadsDetails.html',
             controller: 'ContactusLeadsController'
+        }).when('/payments-done',{
+            templateUrl: 'views/paymentsDone.html',
+            controller: 'PaymentController'
         }).when('/orders', {
             templateUrl: 'views/orders.html',
-                controller: 'OrderController'
-            }).when('/orders/:orderID', {
+            controller: 'OrderController'
+        }).when('/orders/:orderID', {
             templateUrl: 'views/orderDetails.html',
             controller: 'OrderController'
         });
