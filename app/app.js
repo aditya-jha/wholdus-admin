@@ -49,6 +49,12 @@ adminapp.config([
         }).when('/payments-done',{
             templateUrl: 'views/paymentsDone.html',
             controller: 'PaymentController'
+        }).when('/orders', {
+            templateUrl: 'views/orders.html',
+            controller: 'OrderController'
+        }).when('/orders/:orderID', {
+            templateUrl: 'views/orderDetails.html',
+            controller: 'OrderController'
         });
 
         $locationProvider.html5Mode(true);

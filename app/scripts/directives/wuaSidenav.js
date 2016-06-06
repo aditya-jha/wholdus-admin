@@ -38,6 +38,10 @@
                         {
                             name: 'Payments Done',
                             url: '/payments-done'
+                        },  
+                        {
+                            name: 'Orders',
+                            url: '/orders'
                         }
                     ];
                     function closeSidenav() {
