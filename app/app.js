@@ -42,10 +42,13 @@ adminapp.config([
             controller: 'SellerLeadsController'
         }).when('/contactus-leads', {
             templateUrl: 'views/contactusLeads.html',
-                controller: 'ContactusLeadsController'
-            }).when('/contactus-leads/:contactusleadID', {
+            controller: 'ContactusLeadsController'
+        }).when('/contactus-leads/:contactusleadID', {
             templateUrl: 'views/contactusLeadsDetails.html',
             controller: 'ContactusLeadsController'
+        }).when('/payments-done',{
+            templateUrl: 'views/paymentsDone.html',
+            controller: 'PaymentController'
         });
 
         $locationProvider.html5Mode(true);

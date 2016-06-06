@@ -48,7 +48,13 @@ md-input-container {
 #productContainer {
     margin-top: 1em;
 }
+.sub-color{
+    color:grey;
+}
+.payment label{
+    color:grey;
 
+}
 .new-order-buyer-container {
     margin: 0em 0.5em;
     padding: 0.5em 0.5em;
