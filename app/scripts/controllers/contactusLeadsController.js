@@ -24,17 +24,12 @@
                         $rootScope.$broadcast('endProgressbar');
                         if(response.contactus_leads.length) {
                             if($scope.data.contactusleadID) {
-                                for(var i=0;i<response.contactus_leads.length;i++)
-                                {
-                                    if(response.contactus_leads[i].contactusleadID==$scope.data.contactusleadID)
-                                        $scope.data.contactus_lead = response.contactus_leads[i];    
-                                }
-                                
-                            } else {
+                                    $scope.data.contactus_lead = response.contactus_leads[0];    
+                                } else {
                                 $scope.data.contactus_leads = response.contactus_leads;
                             }
                         } else if($scope.data.contactusleadID) {
-                            ToastService.showActionToast("No such buyer lead exists! GO BACK", 0)
+                            ToastService.showActionToast("No such contactus lead exists! GO BACK", 0)
                                 .then(function(response) {
                                     $location.url('/contactus-leads');
                                 });

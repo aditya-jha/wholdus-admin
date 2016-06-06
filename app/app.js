@@ -46,6 +46,12 @@ adminapp.config([
             }).when('/contactus-leads/:contactusleadID', {
             templateUrl: 'views/contactusLeadsDetails.html',
             controller: 'ContactusLeadsController'
+        }).when('/orders', {
+            templateUrl: 'views/orders.html',
+                controller: 'OrderController'
+            }).when('/orders/:orderID', {
+            templateUrl: 'views/orderDetails.html',
+            controller: 'OrderController'
         });
 
         $locationProvider.html5Mode(true);
