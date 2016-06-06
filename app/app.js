@@ -46,10 +46,10 @@ adminapp.config([
             }).when('/contactus-leads/:contactusleadID', {
             templateUrl: 'views/contactusLeadsDetails.html',
             controller: 'ContactusLeadsController'
-        }).when('/allorders', {
-            templateUrl: 'views/allOrders.html',
+        }).when('/orders', {
+            templateUrl: 'views/orders.html',
                 controller: 'OrderController'
-            }).when('/allorders/:orderID', {
+            }).when('/orders/:orderID', {
             templateUrl: 'views/orderDetails.html',
             controller: 'OrderController'
         });

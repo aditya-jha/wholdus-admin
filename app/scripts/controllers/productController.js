@@ -1,6 +1,6 @@
 (function() {
     "use strict";
-    adminapp.controller("OrderController", [
+    adminapp.controller("ProductController", [
         '$scope',
         '$log',
         'APIService',
@@ -8,43 +8,35 @@
         '$rootScope',
         'ngProgressBarService',
         'ToastService',
-        '$location',
-        '$mdMedia',
-        '$mdDialog',
-        'DeliveryService',
-        'DialogService',
-        function($scope, $log, APIService, $routeParams, $rootScope, ngProgressBarService, 
-            ToastService, $location, $mdMedia, $mdDialog, DeliveryService, DialogService) {
+        function($scope, $log, APIService, $routeParams, $rootScope, ngProgressBarService, ToastService) {
             $scope.data = {
-                orders: [],
-                orderID: null,
-                order: {},
-                orderitem:{},
-                suborder:{},
+                products: [],
+                productID: null,
+                product: {},
             };
 
-            $scope.ordershipment= {
-                suborderID:0,
-                order_items:[],
+            $scope.productshipment= {
+                subproductID:0,
+                product_items:[],
             };
             $scope.date = new Date();
 
-            function getOrders(params) {
+            function getproducts(params) {
                 $rootScope.$broadcast('showProgressbar');
-                APIService.apiCall("GET", APIService.getAPIUrl('orders'), null, params)
+                APIService.apiCall("GET", APIService.getAPIUrl('products'), null, params)
                 .then(function(response) {
                     $rootScope.$broadcast('endProgressbar');
-                    if(response.orders.length) {
-                        if($scope.data.orderID) {
-                            $scope.data.order = response.orders[0];
+                    if(response.products.length) {
+                        if($scope.data.productID) {
+                            $scope.data.product = response.products[0];
                         } else {
-                            $scope.data.orders = response.orders;
+                            $scope.data.products = response.products;
                         }
                     } 
-                    else if($scope.data.orderID) {
-                        ToastService.showActionToast("No such order exists! GO BACK", 0)
+                    else if($scope.data.productID) {
+                        ToastService.showActionToast("No such product exists! GO BACK", 0)
                         .then(function(response) {
-                            $location.url('/orders');
+                            $location.url('/allproducts');
                         });
                     }
                 }, function(error) {
@@ -53,13 +45,13 @@
             }
 
             function pageSetting() {
-                if($routeParams.orderID) {
-                    $scope.data.orderID = parseInt($routeParams.orderID);
-                    getOrders({
-                        orderID: $routeParams.orderID
+                if($routeParams.productID) {
+                    $scope.data.productID = parseInt($routeParams.productID);
+                    getproducts({
+                        productID: $routeParams.productID
                     });
                 } else {
-                    getOrders();
+                    getproducts();
                 }
             }
 
@@ -70,9 +62,9 @@
             };
 
 
-            $scope.deleteOrderItem=function(){
+            $scope.deleteproductItem=function(){
              $rootScope.$broadcast('showProgressbar');
-             APIService.apiCall("DELETE", APIService.getAPIUrl("orderitem"), $scope.data.orderitem)
+             APIService.apiCall("DELETE", APIService.getAPIUrl("productitem"), $scope.data.productitem)
              .then(function(response) {
                 $rootScope.$broadcast('endProgressbar');
                 ToastService.showActionToast("successful", 0).then(function(response) {
@@ -84,11 +76,11 @@
             });
          }; 
 
-         $scope.notifyMerchant=function(suborderID){
+         $scope.notifyMerchant=function(subproductID){
              $rootScope.$broadcast('showProgressbar');
-             $scope.data.suborder.status=2;
-             $scope.data.suborder.suborderID=suborderID;
-             APIService.apiCall("PUT", APIService.getAPIUrl("suborder"), $scope.data.suborder)
+             $scope.data.subproduct.status=2;
+             $scope.data.subproduct.subproductID=subproductID;
+             APIService.apiCall("PUT", APIService.getAPIUrl("subproduct"), $scope.data.subproduct)
              .then(function(response) {
                 $rootScope.$broadcast('endProgressbar');
                 ToastService.showActionToast("successful", 0).then(function(response) {
@@ -102,8 +94,8 @@
          $scope.sub_total=0;    
          $scope.calcAmount=function(index){
             var amount=0;
-            for (var i = 0; i < $scope.data.order.sub_orders[index].order_items.length; i++) {
-                amount=(parseFloat(amount)+parseFloat($scope.data.order.sub_orders[index].order_items[i].final_price)).toFixed(2);
+            for (var i = 0; i < $scope.data.product.sub_products[index].product_items.length; i++) {
+                amount=(parseFloat(amount)+parseFloat($scope.data.product.sub_products[index].product_items[i].final_price)).toFixed(2);
 
             }
             return amount;
@@ -111,15 +103,15 @@
 
         $scope.calcSubTotal=function(){
             var amount=0;
-            for (var j = 0; j < $scope.data.order.sub_orders.length; j++)
+            for (var j = 0; j < $scope.data.product.sub_products.length; j++)
             {
-                for (var i = 0; i < $scope.data.order.sub_orders[j].order_items.length; i++) {
-                    amount=(parseFloat(amount)+parseFloat($scope.data.order.sub_orders[j].order_items[i].final_price)).toFixed(2);
+                for (var i = 0; i < $scope.data.product.sub_products[j].product_items.length; i++) {
+                    amount=(parseFloat(amount)+parseFloat($scope.data.product.sub_products[j].product_items[i].final_price)).toFixed(2);
                 }
             }    
             return amount;
         };
-        $scope.showPrompt = function(ev,orderitemID) {
+        $scope.showPrompt = function(ev,productitemID) {
                 // Appending dialog to document.body to cover sidenav in docs app
                 var confirm = $mdDialog.prompt()
                 .title('Are you sure to delete this product?')
@@ -130,22 +122,22 @@
                 .ok('Conform')
                 .cancel('Cancel');
                 $mdDialog.show(confirm).then(function(result) {
-                    $scope.data.orderitem.cancellation_remarks=result;
-                    $scope.data.orderitem.orderitemID=orderitemID;
-                    $scope.deleteOrderItem();
+                    $scope.data.productitem.cancellation_remarks=result;
+                    $scope.data.productitem.productitemID=productitemID;
+                    $scope.deleteproductItem();
                 }, function() {
                     $mdDialog.cancel();
                 });
             };
 
             $scope.confirmDelivery = function(ev, index) {
-             $scope.ordershipment.suborderID=$scope.data.order.sub_orders[index].suborderID;
-             $scope.ordershipment.order_items=[];
-             for(var i=0;i<$scope.data.order.sub_orders[index].order_items.length;i++)
+             $scope.productshipment.subproductID=$scope.data.product.sub_products[index].subproductID;
+             $scope.productshipment.product_items=[];
+             for(var i=0;i<$scope.data.product.sub_products[index].product_items.length;i++)
              {
-                var order_item=$scope.data.order.sub_orders[index].order_items[i];
-                if(order_item.addForDelivery){   
-                    $scope.ordershipment.order_items.push({orderitemID : order_item.orderitemID});    
+                var product_item=$scope.data.product.sub_products[index].product_items[i];
+                if(product_item.addForDelivery){   
+                    $scope.productshipment.product_items.push({productitemID : product_item.productitemID});    
                 }
 
             }
@@ -158,9 +150,9 @@
                 //   clickOutsideToClose:true,
                 //   fullscreen: useFullScreen
                 // });
-                if($scope.ordershipment.order_items.length>0)
+                if($scope.productshipment.product_items.length>0)
                 {
-                    DeliveryService.setProp($scope.ordershipment);
+                    DeliveryService.setProp($scope.productshipment);
                     DialogService.viewDialog(ev,'DeliveryController','views/partials/confirmDelivery.html');    
                 }
                 else{
