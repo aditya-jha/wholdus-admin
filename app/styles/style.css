@@ -18,13 +18,20 @@ input[type=number]::-webkit-outer-spin-button {
     appearance: none;
     margin: 0;
 }
-
+.link{
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+}
+.link:hover{
+    text-decoration: underline;
+}
 /** header realted css **/
 .header {
     color: white;
 }
 
-.curosr-pointer {
+.cursor-pointer {
     cursor: pointer;
 }
 
@@ -47,7 +54,13 @@ md-input-container {
 #productContainer {
     margin-top: 1em;
 }
+.sub-color{
+    color:grey;
+}
+.payment label{
+    color:grey;
 
+}
 .new-order-buyer-container {
     margin: 0em 0.5em;
     padding: 0.5em 0.5em;

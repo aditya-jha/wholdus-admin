@@ -13,7 +13,7 @@
                     sellers: 'users/seller',
                     orders: 'orders',
                     shipments: 'shipments',
-                    payments: 'payments',
+                    sellerpayment: 'sellerpayment',
                     products: 'products',
                     sellerLogin: 'users/seller/login',
                     internalUserLogin: 'users/internaluser/login',
