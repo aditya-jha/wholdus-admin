@@ -2,23 +2,26 @@
     <h3>Payments Done</h3>
 </div>
 
-<div layout="row" layout-wrap layout-align="start">
+<div layout="row" layout-wrap layout-align="space-around start">
     <div layout="column" flex="45" md-whiteframe="4dp" data-ng-repeat="p in payment" layout-margin>
-        <div layout="row" layout-align="center center" flex>
-            <div layout= "column" flex="60" layout-padding>
+        <div layout="row" layout-wrap layout-align="center center" flex>
+            <div layout= "column" flex="50" layout-padding>
             <div layout="row">
-                <label>Order No. :</label><span>{{p.suborderID}}</span>
+                <a data-ng-href="orders/{{p.suborderID}}">
+                    <md-button class="md-raised md-warn">Order No.&nbsp;: <span>{{p.suborderID}}</span></md-button>
+                </a>
             </div>  
                 
             <div layout="row">
-                <label>Order Date :&nbsp;</label><span>{{p.created_at | date}}</span>
+                <label>Order Date&nbsp;:&nbsp;</label>
+                <span>{{p.created_at | date}}</span>
             </div>
          </div> 
-         <hr flex/>  
-            <div layout="column" flex="40">
+         
+            <div layout="column" flex="50" layout-align="center end">
                 <div layout="row">
-                <label><u>Amount Paid</u>&nbsp;</label>
-                <span class="sub-color">{{p.payment_value}}</span>&nbsp;<svg style="width:20px; height:20px;" viewBox="0 0 551.998 451.998">
+                <label><u>Amount Paid</u> : </label>
+                <span class="sub-color">{{p.payment_value}}</span><span><svg style="width:20px; height:20px;" viewBox="0 0 551.998 501.998">
     <path fill="grey" d="M326.62,91.076c-1.711-1.713-3.901-2.568-6.563-2.568h-48.82c-3.238-15.793-9.329-29.502-18.274-41.112h66.52
         c2.669,0,4.853-0.856,6.57-2.565c1.704-1.712,2.56-3.903,2.56-6.567V9.136c0-2.666-0.855-4.853-2.56-6.567
         C324.334,0.859,322.15,0,319.481,0H81.941c-2.666,0-4.853,0.859-6.567,2.568c-1.709,1.714-2.568,3.901-2.568,6.567v37.972
@@ -30,7 +33,7 @@
         c4.001,0,6.763-1.708,8.281-5.141c1.903-3.426,1.53-6.662-1.143-9.708c-55.572-68.143-99.258-119.153-131.045-153.032
         c32.358-3.806,58.625-14.277,78.802-31.404c20.174-17.129,32.449-39.403,36.83-66.811h47.965c2.662,0,4.853-0.854,6.563-2.568
         c1.715-1.709,2.573-3.899,2.573-6.563V97.646C329.193,94.977,328.335,92.79,326.62,91.076z"/>
-</svg>
+</svg></span>
             </div>
             </div>
            </div> 
@@ -39,8 +42,9 @@
         
             <div layout="column" layout-align="center center" flex="25">
                 <label>Merchant Name</label>
-                <span>{{d.product.seller.name}}</span>
-                <span>({{d.product.seller.company_name}})</span>
+                <a href="users/sellers/{{d.product.seller.sellerID}}"><span>{{d.product.seller.name}}</span></a>
+                <a href="users/sellers/{{d.product.seller.sellerID}}"><span>({{d.product.seller.company_name}})</span></a>
+               
             </div>
            
             <div layout="column" layout-align="center center" flex="25">
@@ -60,7 +64,7 @@
            
           </div>  
         <div layout="row" layout-margin flex data-ng-repeat="d in p.order_items" class="small-font payment">
-            <label>Remark :&nbsp;</label>
+            <label>Remark :</label>
             <span>{{d.remarks}}</span>
         </div>
     </div>

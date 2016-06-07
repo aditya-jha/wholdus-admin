@@ -18,7 +18,14 @@ input[type=number]::-webkit-outer-spin-button {
     appearance: none;
     margin: 0;
 }
-
+a{
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+}
+a:hover{
+    text-decoration: underline;
+}
 /** header realted css **/
 .header {
     color: white;
