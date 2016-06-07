@@ -20,10 +20,6 @@
                             url: '/users/sellers'
                         },
                         {
-                            name: 'Create Order',
-                            url: '/new-order'
-                        },
-                        {
                             name: 'Buyer Leads',
                             url: '/buyer-leads'
                         },
@@ -38,11 +34,15 @@
                         {
                             name: 'Payments Done',
                             url: '/payments-done'
-                        },  
+                        },
                         {
                             name: 'Orders',
                             url: '/orders'
-                        }
+                        },
+                        {
+                            name: 'Create Order',
+                            url: '/new-order'
+                        },
                     ];
                     function closeSidenav() {
                         $mdSidenav('sidenav').close();
