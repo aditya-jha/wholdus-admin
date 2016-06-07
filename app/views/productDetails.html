@@ -1,0 +1,184 @@
+
+<div layout="column" layout-align="center" style="">
+	<div layout="row" layout-align="center" flex="100" >
+		<h3> Product ID<span class="bold"> {{data.product.productID}}</span></h3>
+	</div>
+	<div layout="row">
+	<div flex></div>
+		<h3 layout-align="end" > Updated At<span class="md-subhead"> {{data.product.updated_at | date}}</span></h3>
+	<div flex="5"></div>
+	</div>
+
+</div>
+<div layout="row"  layout-margin layout-padding	>
+	<div layout="column" flex >
+		<md-input-container>
+			<label>Product Name</label>
+			<input type="text" data-ng-model="data.product.name" ng-required="true" />
+		</md-input-container>
+
+		<md-input-container>
+			<label>Brand</label>
+			<input type="text" data-ng-model="data.product.details.brand" ng-required="true" />
+		</md-input-container>
+		<div layout="row">
+			<md-input-container>	
+				<label>Category</label>
+				<input type="text" data-ng-model="data.product.category.name" ng-required="true" />
+			</md-input-container>
+			<div flex="20"></div>
+			<md-input-container>
+				<label>Catalog Number</label>
+				<input type="text" data-ng-model="data.product.details.seller_catalog_number" ng-required="true" />
+			</md-input-container>
+		</div>
+
+		<span class="md-title"><h4>Features</h4></span>
+		
+		<md-input-container>
+			<label>Fabric</label>
+			<input type="text" data-ng-model="data.product.details.fabric_gsm" ng-required="true" />
+		</md-input-container>
+
+		<div layout="row" layout-align="space-between">
+			<md-input-container>
+				<label>Gender</label>
+				<md-select data-ng-model="data.product.details.gender">
+					<md-option ng-repeat="gender in genders" value="{{gender}}">{{gender}}</md-option>
+				</md-select>
+			</md-input-container>
+			<md-input-container>
+				<label>Pattern</label>
+				<input type="text" data-ng-model="data.product.details.pattern" ng-required="true" />
+			</md-input-container>
+			<md-input-container>
+				<label>Work/Decoration</label>
+				<input type="text" data-ng-model="data.product.details.work_decoration_type" ng-required="true" />
+			</md-input-container>
+			
+
+		</div>
+		<div layout="row"  layout-align="space-between">   
+			<md-input-container>
+				<label>Neck/Collar Type</label>
+				<input type="text" data-ng-model="data.product.details.neck_collar_type" ng-required="true" />
+			</md-input-container>
+			<md-input-container>
+				<label>Sleeve</label>
+				<input type="text" data-ng-model="data.product.details.sleeve" ng-required="true" />
+			</md-input-container>
+		</div>
+
+		<md-input-container>
+			<label>Sizes</label>
+			<input type="text" data-ng-model="data.product.details.sizes	" ng-required="true" />
+		</md-input-container>
+		<md-input-container>
+			<label>Colours</label>
+			<input type="text" data-ng-model="data.product.details.colours" ng-required="true" />
+		</md-input-container>
+		
+		<md-input-container>
+			<label>Lenght</label>
+			<input type="text" data-ng-model="data.product.details.length" ng-required="true" />
+		</md-input-container>
+
+		<md-input-container>
+			<label>Extra Features</label>
+			<input type="text" data-ng-model="data.product.details.special_feature" ng-required="true" />
+		</md-input-container>
+		<md-input-container>
+			<label>Lot Description</label>
+			<input type="text" data-ng-model="data.product.details.lot_description" />
+		</md-input-container>
+		<md-input-container>
+			<label>Packaging Details</label>
+			<input type="text" data-ng-model="data.product.details.lot_description" />
+		</md-input-container>
+		
+		
+	</div>
+	<div layout="column" flex="50">
+
+		<div layout="row" layout-align="center center">
+			<img src="{{allImages[0]}}" />
+		</div>
+
+		<span class="md-title"><h4>Pricing</h4></span>
+		<div layout="row">
+			<md-input-container>
+				<label>Retails Price Per Unit</label>
+				<input type="text" data-ng-model="data.product.price_per_unit" ng-required="true" />
+			</md-input-container>
+			<div flex="20"></div>	
+			<md-input-container>
+				<label>Lot Size</label>
+				<input type="text" data-ng-model="data.product.lot_size" ng-required="true" />
+			</md-input-container>	
+		</div>
+		<span class="md-title"><h4>Lot Pricing</h4></span>
+		<div layout="column" data-ng-repeat="lot in data.product.product_lot">
+			<div layout="row">
+				<md-input-container>
+					<label>Lot Size From</label>
+					<input type="text" data-ng-model="lot.lot_size_from" ng-required="true" />
+				</md-input-container>
+				<md-input-container>
+					<label>Lot Size To</label>
+					<input type="text" data-ng-model="lot.lot_size_to" ng-required="true" />
+				</md-input-container>		
+				<md-input-container>
+					<label>Price Per Unit</label>
+					<input type="text" data-ng-model="lot.price_per_unit" ng-required="true" />
+				</md-input-container>
+			</div>
+		</div>
+	</div>
+
+</div>
+<div layout="row" layout-align="space-around start" layout-margin>
+	<md-button class="md-raised md-warn" aria-label="reset" data-ng-click="reset()">
+		Reset
+		<md-tooltip md-direction="right">Reset the changes</md-tooltip>
+	</md-button>
+	<md-button class="md-raised md-warn" aria-label="delete" data-ng-click="changeProduct('DELETE',false)">
+		Delete
+		<md-tooltip md-direction="right">Delete the product</md-tooltip>
+	</md-button>
+	<md-button class="md-raised md-primary" aria-label="hide" data-ng-click="changeProduct('PUT',true)">
+		Hide
+		<md-tooltip md-direction="right">Hide the product</md-tooltip>
+	</md-button>
+	<md-button class="md-raised md-primary" aria-label="approve" data-ng-click="changeProduct('PUT',false)">
+		Approve
+		<md-tooltip md-direction="right">Approve the product</md-tooltip>
+	</md-button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

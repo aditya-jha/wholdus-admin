@@ -1,0 +1,65 @@
+<div layout="row" layout-align="center start" flex="100">
+	<h2>Products</h2>
+</div>
+<div layout="row" layout-wrap layout-align="center start">
+	<span><span class="bold small-font">Total products:</span> {{data.products.length}}</span>
+</div>
+<div layout="row" layout-wrap layout-margin layout-align="space-around start">
+	<div  flex="80" md-whiteframe="4dp" data-ng-repeat="product in data.products" style="padding:8px">
+	<div layout="column"  layout-padding>
+			<div layout="row" flex>
+				<span style="margin-right:2em">{{product.productID}}</span>
+				Name: <span class="bold" flex="80">{{product.display_name}}</span>
+				<span flex></span>
+				<!-- <md-button class="md-warn" data-ng-href="users/sellers/{{s.sellerID}}">view</md-button> -->
+				<a data-ng-href="products/{{product.productID}}">
+					<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+						<path fill="#FF5722" d="M4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H16L12,22L8,18H4A2,2 0 0,1 2,16V4A2,2 0 0,1 4,2M18,14V12H12.5L10.5,14H18M6,14H8.5L15.35,7.12C15.55,6.93 15.55,6.61 15.35,6.41L13.59,4.65C13.39,4.45 13.07,4.45 12.88,4.65L6,11.53V14Z" />
+					</svg>
+					<md-tooltip md-direction="top">view more</md-tooltip>
+				</a>
+			</div>
+			<div layout="row" flex>
+				Merchant Name: <span class="bold" flex>{{product.seller.name}}</span>
+				Category: <span class="bold" flex>{{product.category.display_name}}</span>
+			</div>
+			<div layout="row" layout-align="start center" class="small-font">
+				Catalog No.: <span class="bold" >{{product.details.seller_catalog_number}}</span>
+				<div flex></div>
+				Availability: <span class="bold">{{product.details.availability}}</span>
+				<div flex></div>
+				Price Per Unit: <span class="bold">&#8377; {{product.price_per_unit}}</span>
+
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

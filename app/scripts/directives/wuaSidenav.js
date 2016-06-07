@@ -38,6 +38,10 @@
                         {
                             name: 'Orders',
                             url: '/orders'
+                        },  
+                        {
+                            name: 'Products',
+                            url: '/products'
                         }
                     ];
                     function closeSidenav() {

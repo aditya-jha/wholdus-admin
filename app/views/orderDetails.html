@@ -79,11 +79,11 @@
 							</div>
 							<div layout="column" class="card-item" flex>
 								<span class="card-item-title" flex>Contact Person Name</span>
-								<span>{{ sub_order.seller.concerned_person}}</span>
+								<span>{{sub_order.seller.concerned_person == ''? none:sub_order.seller.concerned_person}}</span>
 							</div>
 							<div layout="column" class="card-item" flex>
 								<span class="card-item-title" flex>Contact Person No</span>
-								<span>{{ sub_order.seller.concerned_person_number}}</span>
+								<span>{{sub_order.seller.concerned_person_number == ''? none:sub_order.seller.concerned_person_number}}</span>
 							</div>
 
 						</div>
