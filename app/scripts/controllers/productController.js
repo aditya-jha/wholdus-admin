@@ -12,7 +12,7 @@
         'UtilService',
         'ConstantKeyValueService',
         function($scope, $log, APIService, $routeParams, $rootScope,$location, ngProgressBarService,
-         ToastService, UtilService, ConstantKeyValueService) {
+           ToastService, UtilService, ConstantKeyValueService) {
             $scope.data = {
                 products: [],
                 productID: null,
@@ -21,8 +21,15 @@
             $scope.data.images=[];
             $scope.allImages =[];
             function praseProductDetails(p) {
-                for(var i=0; i<$scope.data.images.length && i<10; i++) {
-                    $scope.allImages.push(UtilService.getImageUrl($scope.data.images[i], '400x400'));
+                if($scope.data.images.length>0)
+                {
+                    for(var i=0; i<$scope.data.images.length && i<10; i++) {
+                        $scope.allImages.push(UtilService.getImageUrl($scope.data.images[i], '400x400'));
+                    }
+                }
+                else
+                {
+                    $scope.allImages[0]='images/400.png';
                 }
             }
 
@@ -70,24 +77,24 @@
             };
 
             $scope.changeProduct = function(type,hide) {
-                 $rootScope.$broadcast('showProgressbar');
-                 if(hide){
-                    $scope.data.product.show_online=false;}
-                    APIService.apiCall(type, APIService.getAPIUrl("products"), $scope.data.product)
-                        .then(function(response) {
-                            $rootScope.$broadcast('endProgressbar');
-                            ToastService.showActionToast("successful", 0).then(function(response) {
-                             if(type=="DELETE"){   
-                                    $location.url('/products');
-                                }
-                            });
-                        }, function(error) {
-                            $rootScope.$broadcast('endProgressbar');
-                            ToastService.showActionToast("something went wrong! please reload", 0);
-                        });
+               $rootScope.$broadcast('showProgressbar');
+               if(hide){
+                $scope.data.product.show_online=false;}
+                APIService.apiCall(type, APIService.getAPIUrl("products"), $scope.data.product)
+                .then(function(response) {
+                    $rootScope.$broadcast('endProgressbar');
+                    ToastService.showActionToast("successful", 0).then(function(response) {
+                       if(type=="DELETE"){   
+                        $location.url('/products');
+                    }
+                });
+                }, function(error) {
+                    $rootScope.$broadcast('endProgressbar');
+                    ToastService.showActionToast("something went wrong! please reload", 0);
+                });
             };
 
-           
-       }
-       ]);
+
+        }
+        ]);
 })();

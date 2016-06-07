@@ -1,12 +1,11 @@
 
 <div layout="column" layout-align="center" style="">
-	<div layout="row" layout-align="center" flex="100" >
-		<h3> Product ID<span class="bold"> {{data.product.productID}}</span></h3>
+	<div layout="row" layout-align="center center" layout-margin flex="100" class="md-title">
+		Product ID :<span class="bold"> {{data.product.productID}}</span>
 	</div>
-	<div layout="row">
-	<div flex></div>
-		<h3 layout-align="end" > Updated At<span class="md-subhead"> {{data.product.updated_at | date}}</span></h3>
-	<div flex="5"></div>
+	<div layout="row" layout-align="end center" layout-margin flex="100" class="md-subhead">
+
+	 Updated At :<span class="bold"> {{data.product.updated_at | date}}</span>
 	</div>
 
 </div>
@@ -79,7 +78,7 @@
 		</md-input-container>
 		
 		<md-input-container>
-			<label>Lenght</label>
+			<label>Length</label>
 			<input type="text" data-ng-model="data.product.details.length" ng-required="true" />
 		</md-input-container>
 
@@ -93,7 +92,7 @@
 		</md-input-container>
 		<md-input-container>
 			<label>Packaging Details</label>
-			<input type="text" data-ng-model="data.product.details.lot_description" />
+			<input type="text" data-ng-model="data.product.details.packaging_details" />
 		</md-input-container>
 		
 		

@@ -5,11 +5,11 @@
 	<span><span class="bold small-font">Total products:</span> {{data.products.length}}</span>
 </div>
 <div layout="row" layout-wrap layout-margin layout-align="space-around start">
-	<div  flex="80" md-whiteframe="4dp" data-ng-repeat="product in data.products" style="padding:8px">
-	<div layout="column"  layout-padding>
+	<div  flex="45" md-whiteframe="4dp" data-ng-repeat="product in data.products" style="padding:8px">
+		<div layout="column"  >
 			<div layout="row" flex>
-				<span style="margin-right:2em">{{product.productID}}</span>
-				Name: <span class="bold" flex="80">{{product.display_name}}</span>
+				<span style="margin-right:1em">{{product.productID}}</span>
+				Name: &nbsp;<span class="bold" flex="75">{{product.display_name}}</span>
 				<span flex></span>
 				<!-- <md-button class="md-warn" data-ng-href="users/sellers/{{s.sellerID}}">view</md-button> -->
 				<a data-ng-href="products/{{product.productID}}">
@@ -19,17 +19,28 @@
 					<md-tooltip md-direction="top">view more</md-tooltip>
 				</a>
 			</div>
-			<div layout="row" flex>
-				Merchant Name: <span class="bold" flex>{{product.seller.name}}</span>
-				Category: <span class="bold" flex>{{product.category.display_name}}</span>
-			</div>
-			<div layout="row" layout-align="start center" class="small-font">
-				Catalog No.: <span class="bold" >{{product.details.seller_catalog_number}}</span>
-				<div flex></div>
-				Availability: <span class="bold">{{product.details.availability}}</span>
-				<div flex></div>
-				Price Per Unit: <span class="bold">&#8377; {{product.price_per_unit}}</span>
-
+			<div>
+				<div layout="row">
+					<div layout="column" class="card-item" flex>
+						<span class="card-item-title" flex>Merchant Name</span>
+						<span>{{product.seller.name}}</span>
+					</div>
+					<div layout="column" class="card-item" flex>
+						<span class="card-item-title" flex>Category </span>
+						<span>{{product.category.display_name}}</span>
+					</div>
+					
+				</div>
+				<div layout="row">
+					<div class="card-item" flex>
+						<span class="card-item-title" flex>	Catalog No.</span> 
+						<span>{{product.details.seller_catalog_number}}</span>
+					</div>
+					<div class="card-item" flex>
+						<span class="card-item-title" flex>Price Per Unit </span>
+						<span>&#8377; {{product.price_per_unit}}</span>
+					</div>
+				</div>
 			</div>
 		</div>
 
