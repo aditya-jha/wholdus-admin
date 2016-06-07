@@ -7,7 +7,7 @@
         <div layout="row" layout-wrap layout-align="center center" flex>
             <div layout= "column" flex="50" layout-padding>
             <div layout="row">
-                <a data-ng-href="orders/{{p.suborderID}}">
+                <a data-ng-href="orders/{{p.suborderID}}" target="_blank">
                     <md-button class="md-raised md-warn">Order No.&nbsp;: <span>{{p.suborderID}}</span></md-button>
                 </a>
             </div>  
@@ -42,8 +42,8 @@
         
             <div layout="column" layout-align="center center" flex="25">
                 <label>Merchant Name</label>
-                <a href="users/sellers/{{d.product.seller.sellerID}}"><span>{{d.product.seller.name}}</span></a>
-                <a href="users/sellers/{{d.product.seller.sellerID}}"><span>({{d.product.seller.company_name}})</span></a>
+                <a class="link" href="users/sellers/{{d.product.seller.sellerID}}" target="_blank"><span>{{d.product.seller.name}}</span></a>
+                <a class="link" href="users/sellers/{{d.product.seller.sellerID}}" target="_blank"><span>({{d.product.seller.company_name}})</span></a>
                
             </div>
            
