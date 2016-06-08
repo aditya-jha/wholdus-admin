@@ -1,12 +1,24 @@
 <div layout="row" layout-align="center start" flex="100">
 	<h2>Products</h2>
 </div>
-<div layout="row" layout-wrap layout-align="center start">
+<!-- <div layout="row" layout-wrap layout-align="center start">
 	<span><span class="bold small-font">Total products:</span> {{data.products.length}}</span>
+</div> -->
+<div layout="row" layout-align="center center">
+
+<md-input-container flex="30">
+	<label>Category</label>
+	<md-select data-ng-model="categoryID">
+		<md-option ng-repeat="category in categories" value="{{category.categoryID}}">{{category.display_name}}</md-option>
+	</md-select>
+</md-input-container>
+<md-button class="md-raised md-primary" data-ng-click="categoryChanged()">
+	Submit
+</md-button>
 </div>
 <div layout="row" layout-wrap layout-margin layout-align="space-around start">
 	<div  flex="45" md-whiteframe="4dp" data-ng-repeat="product in data.products" style="padding:8px">
-		<div layout="column"  >
+		<div layout="column">
 			<div layout="row" flex>
 				<span style="margin-right:1em">{{product.productID}}</span>
 				Name: &nbsp;<span class="bold" flex="75">{{product.display_name}}</span>
@@ -45,7 +57,10 @@
 		</div>
 
 	</div>
+
 </div>
+<div layout="row"  data-ng-show="settings.enablePagination" wu-pagination></div>
+
 
 
 

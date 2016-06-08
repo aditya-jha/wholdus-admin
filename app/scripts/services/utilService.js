@@ -121,9 +121,25 @@
                 return [];
             };
 
-            
+            factory.getPageNumber = function() {
+                var search = $location.search();
+                if(search.page) {
+                    return search.page;
+                } else {
+                    return 1;
+                }
+            };
+
+            factory.setPaginationParams = function(obj, page, items) {
+                obj.page_number = page;
+                obj.items_per_page = items;
+            };
+
+            factory.setCategory = function(categoryID) {
+                factory.categoryID=categoryID;
+            };
 
             return factory;
         }
-    ]);
+        ]);
 })();

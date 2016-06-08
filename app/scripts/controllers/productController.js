@@ -12,7 +12,7 @@
         'UtilService',
         'ConstantKeyValueService',
         function($scope, $log, APIService, $routeParams, $rootScope,$location, ngProgressBarService,
-           ToastService, UtilService, ConstantKeyValueService) {
+         ToastService, UtilService, ConstantKeyValueService) {
             $scope.data = {
                 products: [],
                 productID: null,
@@ -20,6 +20,16 @@
             };
             $scope.data.images=[];
             $scope.allImages =[];
+            $scope.settings = {
+                enablePagination: false,
+                page: UtilService.getPageNumber(),
+                noProduct: false,
+            };
+
+            $scope.settings.itemsPerPage = 40;
+            $scope.categoryID=UtilService.categoryID==null?1:UtilService.categoryID;
+            $scope.genders=["male", "female"];
+
             function praseProductDetails(p) {
                 if($scope.data.images.length>0)
                 {
@@ -33,7 +43,17 @@
                 }
             }
 
-            $scope.genders=["male", "female"];
+            function getCategory(params) {
+                APIService.apiCall("GET", APIService.getAPIUrl("category"))
+                .then(function(response) {
+                    $scope.categories = response.categories;
+                }, function(error) {
+                    $scope.categories = [];
+                });
+            }
+
+            getCategory();
+
             function getproducts(params) {
                 $rootScope.$broadcast('showProgressbar');
                 APIService.apiCall("GET", APIService.getAPIUrl('products'), null, params)
@@ -46,45 +66,69 @@
                             praseProductDetails(response.products[0]);
                         } else {
                             $scope.data.products = response.products;
-                        }
-                    } 
-                    else if($scope.data.productID) {
-                        ToastService.showActionToast("No such product exists! GO BACK", 0)
-                        .then(function(response) {
-                            $location.url('/products');
-                        });
-                    }
-                }, function(error) {
-                    $rootScope.$broadcast('endProgressbar');
-                });
+                            if(response.total_pages > 1) {
+                               $scope.settings.enablePagination = true;
+                               $rootScope.$broadcast('setPage', {
+                                page: $scope.settings.page,
+                                totalPages: Math.ceil(response.total_products/$scope.settings.itemsPerPage)
+                            });
+                           }
+                       }
+                   } 
+                   else if($scope.data.productID) {
+                    ToastService.showActionToast("No such product exists! GO BACK", 0)
+                    .then(function(response) {
+                        $location.url('/products');
+                    });
+                }
+            }, function(error) {
+                $rootScope.$broadcast('endProgressbar');
+            });
             }
 
             function pageSetting() {
                 if($routeParams.productID) {
                     $scope.data.productID = parseInt($routeParams.productID);
                     getproducts({
-                        productID: $routeParams.productID
+                        productID: $routeParams.productID,
                     });
                 } else {
-                    getproducts();
+                    if(!UtilService.categoryID){
+                       UtilService.setCategory(1);
+                    }
+                    getproducts(
+                    {
+                        categoryID: UtilService.categoryID,
+                        items_per_page:$scope.settings.itemsPerPage,
+                        page_number:$scope.settings.page
+                    });
                 }
             }
+            
 
             pageSetting();
+
+
+            $scope.categoryChanged=function(){
+                 UtilService.setCategory($scope.categoryID);
+                 $scope.settings.page=1;
+                 $location.search('page', 1);
+                pageSetting();                
+            }
             
             $scope.reset = function() {
                 pageSetting();
             };
 
             $scope.changeProduct = function(type,hide) {
-               $rootScope.$broadcast('showProgressbar');
-               if(hide){
+             $rootScope.$broadcast('showProgressbar');
+             if(hide){
                 $scope.data.product.show_online=false;}
                 APIService.apiCall(type, APIService.getAPIUrl("products"), $scope.data.product)
                 .then(function(response) {
                     $rootScope.$broadcast('endProgressbar');
                     ToastService.showActionToast("successful", 0).then(function(response) {
-                       if(type=="DELETE"){   
+                     if(type=="DELETE"){   
                         $location.url('/products');
                     }
                 });
@@ -93,6 +137,7 @@
                     ToastService.showActionToast("something went wrong! please reload", 0);
                 });
             };
+
 
 
         }

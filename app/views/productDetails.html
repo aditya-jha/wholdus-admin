@@ -5,7 +5,7 @@
 	</div>
 	<div layout="row" layout-align="end center" layout-margin flex="100" class="md-subhead">
 
-	 Updated At :<span class="bold"> {{data.product.updated_at | date}}</span>
+		Updated At :<span class="bold"> {{data.product.updated_at | date}}</span>
 	</div>
 
 </div>
@@ -15,7 +15,6 @@
 			<label>Product Name</label>
 			<input type="text" data-ng-model="data.product.name" ng-required="true" />
 		</md-input-container>
-
 		<md-input-container>
 			<label>Brand</label>
 			<input type="text" data-ng-model="data.product.details.brand" ng-required="true" />
@@ -76,12 +75,10 @@
 			<label>Colours</label>
 			<input type="text" data-ng-model="data.product.details.colours" ng-required="true" />
 		</md-input-container>
-		
 		<md-input-container>
 			<label>Length</label>
 			<input type="text" data-ng-model="data.product.details.length" ng-required="true" />
 		</md-input-container>
-
 		<md-input-container>
 			<label>Extra Features</label>
 			<input type="text" data-ng-model="data.product.details.special_feature" ng-required="true" />
