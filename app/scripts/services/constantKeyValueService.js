@@ -4,7 +4,7 @@
         function() {
             var factory = {
                 token: '',
-                apiBaseUrl: 'http://api.wholdus.com/',
+                apiBaseUrl: 'http://api-test.wholdus.com/',
                 apiUrl: {
                     login: 'admin/login',
                     internalUsers: 'users/internal-users',
@@ -15,12 +15,14 @@
                     shipments: 'shipments',
                     sellerpayment: 'sellerpayment',
                     products: 'products',
+                    category: 'category',
                     sellerLogin: 'users/seller/login',
                     internalUserLogin: 'users/internaluser/login',
                     buyerLeads:'leads/buyer',
                     contactusLeads:'leads/contactus', 
                     sellerLeads:'leads/seller',
-                    orders:'orders',
+                    orders:'orders', 
+                    products:'products',
                     orderitem:'orderitem',
                     ordershipment:'ordershipment',
                     suborder:'suborder',

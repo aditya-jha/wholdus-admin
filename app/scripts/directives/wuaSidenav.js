@@ -42,10 +42,15 @@
                         {
                             name: 'Payments Done',
                             url: '/payments-done'
+                        }, 
+                        {
+                            name: 'Products',
+                            url: '/products'
                         },
                         {
                             name: 'Contact Us Leads',
                             url: '/contactus-leads'
+
                         }
                     ];
                     function closeSidenav() {
