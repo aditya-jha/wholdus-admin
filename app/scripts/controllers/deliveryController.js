@@ -20,6 +20,7 @@
         };
         $scope.ordershipment.suborderID=DeliveryService.suborderID; 
         $scope.ordershipment.order_items=DeliveryService.order_items;
+        $scope.invoice_date=new Date();
         $scope.cancel = function() {
                 $mdDialog.cancel();
             }
