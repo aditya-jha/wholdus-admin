@@ -42,16 +42,12 @@
                         {
                             name: 'Payments Done',
                             url: '/payments-done'
-                        },
-                        {
-
-                            name: 'Orders',
-                            url: '/orders'
-                        },  
+                        }, 
                         {
                             name: 'Products',
                             url: '/products'
-
+                        },
+                        {
                             name: 'Contact Us Leads',
                             url: '/contactus-leads'
 
