@@ -23,6 +23,7 @@
                     orderitem:'orderitem',
                     ordershipment:'ordershipment',
                     suborder:'suborder',
+                    category: 'category'
                 },
                 accessTokenKey: 'randomData',
                 loggedInUserKey: 'loggedInUser',

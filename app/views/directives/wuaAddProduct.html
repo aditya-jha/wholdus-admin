@@ -11,7 +11,12 @@
     <md-divider></md-divider>
 
     <div layout="row" data-ng-if="!product.item" layout-align="center center" flex="90">
-        <h2>No Product Selected</h2>
+        <div flex="50">
+            <h2>No Product Selected</h2>
+        </div>
+        <div flex="10">
+            <md-button class="md-raised md-warn" data-ng-click="editProduct(-1)">remove</md-button>
+        </div>
     </div>
 
     <div layout="row" data-ng-if="product.item" flex="90" data-ng-include="'views/partials/new-order-product.html'"></div>
