@@ -14,6 +14,7 @@
 
             $scope.input = {
                 buyerID: '',
+                disableBuyerID: false
             };
 
             $scope.selectedBuyer = null;
@@ -28,7 +29,7 @@
             }
             initCosts();
 
-            $scope.selectBuyer = function() {
+            $scope.searchBuyer = function() {
                 if($scope.input.buyerID) {
                     $rootScope.$broadcast('showProgressbar');
                     var params = {
@@ -47,6 +48,16 @@
                             $rootScope.$broadcast('endProgressbar');
                         });
                 }
+            };
+
+            $scope.selectBuyer = function() {
+                $scope.input.disableBuyerID = true;
+            };
+
+            $scope.cancelBuyer = function() {
+                $scope.input.disableBuyerID = false;
+                $scope.input.buyerID = '';
+                $scope.selectedBuyer = null;
             };
 
             $scope.addProduct = function() {

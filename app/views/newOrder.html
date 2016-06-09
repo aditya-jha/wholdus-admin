@@ -3,26 +3,23 @@
 </div>
 
 <div layout="row" class="new-order-buyer-container" md-whiteframe="4dp" layout-wrap>
-    <div layout="row" flex="100" layout-align="center center">
-        <strong>select buyer</strong>
-    </div>
-    <div layout="row" flex="100">
-        <div layout="column" flex="15">
+    <div layout="row" flex="100" style="margin-top:1em;">
+        <div layout="column" flex="10">
             <md-input-container>
                 <label>Buyer ID</label>
-                <input type="number" data-ng-model="input.buyerID" min=1 />
+                <input type="number" data-ng-model="input.buyerID" min=1 data-ng-disabled="input.disableBuyerID" />
             </md-input-container>
-            <md-button class="md-raised md-warn" data-ng-click="selectBuyer()">
+            <md-button class="md-raised md-warn" data-ng-click="searchBuyer()" data-ng-disabled="input.disableBuyerID">
                 select
             </md-button>
         </div>
         <md-divider></md-divider>
 
-        <div layout="row" data-ng-if="!selectedBuyer" layout-align="center center" flex="85">
-            <h2>No Buyer Selected</h2>
+        <div layout="row" data-ng-if="!selectedBuyer" layout-align="center center" flex="90">
+            <h3>No Buyer Selected</h3>
         </div>
 
-        <div layout="row" data-ng-if="selectedBuyer" flex="85" data-ng-include="'views/partials/new-order-buyer.html'"></div>
+        <div layout="row" data-ng-if="selectedBuyer" flex="90" data-ng-include="'views/partials/new-order-buyer.html'"></div>
 
     </div>
 </div>
