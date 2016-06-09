@@ -36,7 +36,7 @@
                     $rootScope.$broadcast('endProgressbar');
                     if(response.orders.length) {
                         if($scope.data.orderID) {
-                            $scope.data.order = response.orders[0];
+                            $scope.data.order = response.orders[11];
                         } else {
                             $scope.data.orders = response.orders;
                         }

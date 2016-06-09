@@ -160,3 +160,9 @@ height:32px;
 line-height: 1em;
 min-height: 25px;
 }
+
+.property-title{
+  background: #512DA8;
+  color: #fff;
+
+}
