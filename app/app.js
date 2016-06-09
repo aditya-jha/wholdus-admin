@@ -55,6 +55,18 @@ adminapp.config([
         }).when('/orders/:orderID', {
             templateUrl: 'views/orderDetails.html',
             controller: 'OrderController'
+        }).when('/products', {
+            templateUrl: 'views/products.html',
+                controller: 'ProductController'
+            }).when('/products/:productID', {
+            templateUrl: 'views/productDetails.html',
+            controller: 'ProductController'
+        }).when('/users/buyers',{
+            templateUrl: 'views/buyer.html',
+            controller: 'BuyerController'
+        }).when('/users/buyers/:buyerID',{
+            templateUrl: 'views/buyerDetail.html',
+            controller: 'BuyerController'
         });
 
         $locationProvider.html5Mode(true);

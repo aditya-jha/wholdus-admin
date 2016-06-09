@@ -23,10 +23,16 @@
         $scope.cancel = function() {
                 $mdDialog.cancel();
             }
+        var changeDateFormat=function(date){
+            var newDate=date.getFullYear()+'-'+date.getMonth()+'-'+date.getDay();
+            return newDate;
+                 
+        }    
         $scope.sendDelivery= function(){
                  $scope.ordershipment.suborderID=DeliveryService.suborderID; 
                  $scope.ordershipment.order_items=DeliveryService.order_items; 
-                 console.log($scope.ordershipment);
+                 $scope.ordershipment.invoice_date=changeDateFormat( $scope.invoice_date);
+                 
                  $rootScope.$broadcast('showProgressbar');
                   APIService.apiCall("POST", APIService.getAPIUrl("ordershipment"), $scope.ordershipment)
                   .then(function(response) {

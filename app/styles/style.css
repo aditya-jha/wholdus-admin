@@ -134,3 +134,25 @@ md-input-container {
     overflow: hidden;
     text-overflow: ellipsis;  
 }
+
+.pagination-directive {
+    padding-top: 1em;
+}
+
+.pagination-directive md-button span {
+    font-family: 'Comfortaa';
+}
+.md-button.tiny{
+  line-height: 0;
+  min-height: 20px;
+  height: 25px;
+  min-width: 25px;
+  font-size: 12px;
+}
+.md-button.small{
+    min-width: 35px;
+  padding: 1px;
+  height:32px;
+  line-height: 1em;
+  min-height: 25px;
+}

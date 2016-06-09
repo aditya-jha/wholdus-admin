@@ -16,16 +16,24 @@
                             url: "/"
                         },
                         {
-                            name: 'Sellers',
-                            url: '/users/sellers'
+                            name: 'Orders',
+                            url: '/orders'
+                        },
+                        {
+                            name: 'Create Order',
+                            url: '/new-order'
+                        },
+                        {
+                            name: "Buyer",
+                            url: "/users/buyers"
                         },
                         {
                             name: 'Buyer Leads',
                             url: '/buyer-leads'
                         },
-                         {
-                            name: 'Contact Us Leads',
-                            url: '/contactus-leads'
+                        {
+                            name: 'Sellers',
+                            url: '/users/sellers'
                         },
                         {
                             name: 'Seller Leads',
@@ -40,9 +48,14 @@
                             url: '/orders'
                         },
                         {
-                            name: 'Create Order',
-                            url: '/new-order'
+                            name: 'Products',
+                            url: '/products'
                         },
+                        {
+                            name: 'Contact Us Leads',
+                            url: '/contactus-leads'
+
+                        }
                     ];
                     function closeSidenav() {
                         $mdSidenav('sidenav').close();

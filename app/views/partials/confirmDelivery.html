@@ -43,12 +43,10 @@
                         <label>Invoice No</label>
                         <input type="text" data-ng-model="ordershipment.invoice_number" ng-required="true" />
                     </md-input-container>
-                    <md-input-container>
-                        <label>Invoice Date</label>
-
-                        <input type="text" data-ng-model="ordershipment.invoice_date" ng-required="true" />
-                        <div class="hint">yyyy-mm-dd</div>
-                    </md-input-container> 
+                    
+                    <label class="md-small card-item-title">Invoice Date</label>
+                     <md-datepicker data-ng-model="invoice_date" md-placeholder="Invoice Date"  layout-margin ng-required="true"></md-datepicker>
+                     </md-input-container>
                     <md-input-container>
                         <label>COD charge</label>
                         <input type="number" data-ng-model="ordershipment.cod_charge" ng-required="true" />
