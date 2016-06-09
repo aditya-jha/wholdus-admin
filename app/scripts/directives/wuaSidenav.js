@@ -28,6 +28,10 @@
                             url: "/users/buyers"
                         },
                         {
+                            name: 'Products',
+                            url: '/products'
+                        },
+                        {
                             name: 'Buyer Leads',
                             url: '/buyer-leads'
                         },
@@ -42,14 +46,6 @@
                         {
                             name: 'Payments Done',
                             url: '/payments-done'
-                        },
-                        {
-                            name: 'Orders',
-                            url: '/orders'
-                        },
-                        {
-                            name: 'Products',
-                            url: '/products'
                         },
                         {
                             name: 'Contact Us Leads',
