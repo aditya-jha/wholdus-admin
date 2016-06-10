@@ -1,4 +1,4 @@
-<div layout="row">
+<div layout="row" layout-margin>
 
     <md-button class="md-fab md-mini" aria-label="go back" data-ng-href="/users/buyers">
         <md-icon>
@@ -19,7 +19,7 @@
         <md-tooltip md-direction="left">reset the changes</md-tooltip>
     </md-button>
     <div flex></div>
-    <md-button class="md-fab md-mini" aria-label="delete" data-ng-click="changebuyer($event, 'DELETE')">
+    <md-button class="md-fab md-mini" aria-label="delete" data-ng-click="changedetails($event, 'DELETE')">
         <md-icon>
             <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                 <path fill="#fff" d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z" />
@@ -27,6 +27,12 @@
         </md-icon>
         <md-tooltip md-direction="left">delete this buyer</md-tooltip>
     </md-button>
+</div>
+<div layout = "row" flex layout-align="end" layout-margin>
+    <div>
+        <Strong>Updated-at&nbsp;:</strong>
+        <span>{{data.buyer.updated_at | date:'MMM dd,yyyy h:mma':'+0530'}}</span>
+    </div>
 </div>
 <div layout="row" layout-align="space-around start">
     <div layout="column" ng-cloak>
