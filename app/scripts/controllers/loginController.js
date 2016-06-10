@@ -11,9 +11,9 @@
             $scope.login = function() {
                 if($scope.email && $scope.password) {
                     LoginService.login($scope.email, $scope.password)
-                    .then(function() {
+                    .then(function(response) {
                         $location.url('/');
-                        ToastService.showSimpleToast($scope.email,2000);
+                        ToastService.showSimpleToast('Welcome! ' + response.internaluser.name,2000);
                     }, function() {
                         ToastService.showSimpleToast("invalid credentials",2000);
                     });

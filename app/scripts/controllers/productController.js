@@ -27,7 +27,7 @@
             };
 
             $scope.settings.itemsPerPage = 40;
-            $scope.categoryID=UtilService.categoryID==null?1:UtilService.categoryID;
+            $scope.categoryID = UtilService.categoryID ? UtilService.categoryID : 1;
             $scope.genders=["male", "female"];
 
             function praseProductDetails(p) {
@@ -74,7 +74,7 @@
                             });
                            }
                        }
-                   } 
+                   }
                    else if($scope.data.productID) {
                     ToastService.showActionToast("No such product exists! GO BACK", 0)
                     .then(function(response) {
@@ -104,7 +104,7 @@
                     });
                 }
             }
-            
+
 
             pageSetting();
 
@@ -113,9 +113,9 @@
                  UtilService.setCategory($scope.categoryID);
                  $scope.settings.page=1;
                  $location.search('page', 1);
-                pageSetting();                
+                pageSetting();
             }
-            
+
             $scope.reset = function() {
                 pageSetting();
             };
@@ -128,7 +128,7 @@
                 .then(function(response) {
                     $rootScope.$broadcast('endProgressbar');
                     ToastService.showActionToast("successful", 0).then(function(response) {
-                     if(type=="DELETE"){   
+                     if(type=="DELETE"){
                         $location.url('/products');
                     }
                 });

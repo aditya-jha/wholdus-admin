@@ -4,7 +4,7 @@
         function() {
             var factory = {
                 token: '',
-                apiBaseUrl: 'http://api-test.wholdus.com/',
+                apiBaseUrl: 'http://api.wholdus.com/',
                 apiUrl: {
                     login: 'admin/login',
                     internalUsers: 'users/internal-users',
@@ -15,26 +15,18 @@
                     shipments: 'shipments',
                     sellerpayment: 'sellerpayment',
                     products: 'products',
-                    category: 'category',
                     sellerLogin: 'users/seller/login',
                     internalUserLogin: 'users/internaluser/login',
                     buyerLeads:'leads/buyer',
-                    contactusLeads:'leads/contactus', 
+                    contactusLeads:'leads/contactus',
                     sellerLeads:'leads/seller',
-                    orders:'orders', 
-                    products:'products',
                     orderitem:'orderitem',
                     ordershipment:'ordershipment',
                     suborder:'suborder',
-                    sellerpayment:'sellerpayment',
+                    category: 'category'
                 },
                 accessTokenKey: 'randomData',
                 loggedInUserKey: 'loggedInUser',
-                sellerSuccessSignup: "Your application has been sent for approval. You will soon be contacted by our executive",
-                hideProductMessage: 'This product has now been hidden from the online store',
-                showProductMessage: 'The product will go live on the website once the changes have been verified',
-                noProductsMessage: 'Upload products and start distribution',
-                deleteProductMessage: 'This product has successfully been deleted',
                 sellerSignup: [
                     {
                         label: 'Personal Details',
