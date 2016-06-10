@@ -9,7 +9,7 @@
         <md-tooltip md-direction="right">back</md-tooltip>
     </md-button>
     <div flex></div>
-    <md-button class="md-raised md-primary" aria-label="save" data-ng-click="changeBuyerLeads($event, 'PUT')">
+    <md-button class="md-raised md-primary" aria-label="save" data-ng-click="changeLeads($event, 'PUT','buyerLeads')">
         <span>Save</span>
         <md-tooltip md-direction="right">save the changes</md-tooltip>
     </md-button>
@@ -29,7 +29,7 @@
     </md-button> -->
 </div>
  <div layout="row" layout-align="end center" layout-margin flex="100" class="md-subhead">
-        <span class="bold">Updated At :</span> {{data.buyer_lead.updated_at | date:'MMM dd,yyyy h:mma':'+0530'}}
+        <span class="bold">Updated At :</span> {{data.lead.updated_at | date:'MMM dd,yyyy h:mma':'+0530'}}
     </div>
 <div layout="row" layout-align="space-around">
     <div layout="column" ng-cloak flex="40" layout-margin>
@@ -37,65 +37,65 @@
         
         <md-input-container>
             <label>Name</label>
-            <input type="text" data-ng-model="data.buyer_lead.name" ng-required="true" />
+            <input type="text" data-ng-model="data.lead.name" ng-required="true" />
         </md-input-container>
         <md-input-container>
             <label>Mobile Number</label>
-            <input type="text" data-ng-model="data.buyer_lead.mobile_number" ng-required="true" />
+            <input type="text" data-ng-model="data.lead.mobile_number" ng-required="true" />
         </md-input-container>
         <md-input-container>
             <label>Email</label>
-            <input type="email" data-ng-model="data.buyer_lead.email" ng-required="true" />
+            <input type="email" data-ng-model="data.lead.email" ng-required="true" />
         </md-input-container> 
          <md-input-container>
           <label>Comments</label>
-          <textarea data-ng-model="data.buyer_lead.comments" md-maxlength="500" rows="5" md-select-on-focus></textarea>
+          <textarea data-ng-model="data.lead.comments" md-maxlength="500" rows="5" md-select-on-focus></textarea>
         </md-input-container>
-        <div  ng-if="data.buyer_lead.product.category!=null">
+        <div  ng-if="data.lead.product.category!=null">
              <div class="md-title" ><h3>Category Details</h3></div>
             
             <md-input-container>
                 <label>Name</label>
-                <input type="text" data-ng-model="data.buyer_lead.product.category.display_name" ng-required="true" />
+                <input type="text" data-ng-model="data.lead.product.category.display_name" ng-required="true" />
             </md-input-container>
             <md-input-container>
                 <label>Category ID</label>
-                <input type="text" data-ng-model="data.buyer_lead.product.category.categoryID" ng-required="true" />
+                <input type="text" data-ng-model="data.lead.product.category.categoryID" ng-required="true" />
             </md-input-container>
            
         </div>
-         <md-switch data-ng-model="data.buyer_lead.status">Status : {{data.buyer_lead.status}}</md-switch>
+         <md-switch data-ng-model="data.lead.status">Status : {{data.lead.status}}</md-switch>
     </div>
-    <div layout="column" ng-cloak flex="40" layout-margin ng-if="data.buyer_lead.product!=null">
+    <div layout="column" ng-cloak flex="40" layout-margin ng-if="data.lead.product!=null">
             
              <div class="md-title" ><h3>Product Details</h3></div>
             
             <md-input-container>
                 <label>Name</label>
-                <input type="text" data-ng-model="data.buyer_lead.product.name" ng-required="true" />
+                <input type="text" data-ng-model="data.lead.product.name" ng-required="true" />
             </md-input-container>
             <md-input-container>
                 <label>Product ID</label>
-                <input type="text" data-ng-model="data.buyer_lead.product.productID" ng-required="true" />
+                <input type="text" data-ng-model="data.lead.product.productID" ng-required="true" />
             </md-input-container>
             <md-input-container>
                 <label>Price per unit</label>
-                <input type="text" data-ng-model="data.buyer_lead.product.price_per_unit" ng-required="true" />
+                <input type="text" data-ng-model="data.lead.product.price_per_unit" ng-required="true" />
             </md-input-container>       
             <md-input-container>
                 <label>Minimum price per unit</label>
-                <input type="text" data-ng-model="data.buyer_lead.product.min_price_per_unit" ng-required="true" />
+                <input type="text" data-ng-model="data.lead.product.min_price_per_unit" ng-required="true" />
             </md-input-container>    
             <md-input-container>
                 <label>Lot size</label>
-                <input type="text" data-ng-model="data.buyer_lead.product.lot_size" ng-required="true" />
+                <input type="text" data-ng-model="data.lead.product.lot_size" ng-required="true" />
             </md-input-container>     
              <md-input-container>
                 <label>Price per lot</label>
-                <input type="text" data-ng-model="data.buyer_lead.product.price_per_lot" ng-required="true" />
+                <input type="text" data-ng-model="data.lead.product.price_per_lot" ng-required="true" />
             </md-input-container>
             <div layout="row" layout-align="center">
-            <a data-ng-href="products/{{data.buyer_lead.product.productID}}">
+            <a data-ng-href="products/{{data.lead.product.productID}}">
             <md-button class="md-primary md-raised">Edit Product</md-button></a>
             </div>
         

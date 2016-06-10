@@ -9,7 +9,7 @@
             <md-tooltip md-direction="right">back</md-tooltip>
         </md-button>
         <div flex></div>
-        <md-button class="md-raised md-primary" aria-label="save" data-ng-click="changesellerLeads($event, 'PUT')">
+        <md-button class="md-raised md-primary" aria-label="save" data-ng-click="changeLeads($event, 'PUT')">
             <span>Save</span>
             <md-tooltip md-direction="right">save the changes</md-tooltip>
         </md-button>
@@ -21,7 +21,7 @@
         <div flex></div>
     </div>
     <div layout="row" layout-align="end center" layout-margin flex="100" class="md-subhead">
-        <span class="bold">Updated At :</span> {{data.seller_lead.updated_at | date:'MMM dd,yyyy h:mma':'+0530'}}
+        <span class="bold">Updated At :</span> {{data.lead.updated_at | date:'MMM dd,yyyy h:mma':'+0530'}}
     </div>
     <div layout="row" layout-align="space-around">
         <div layout="column" ng-cloak flex="30">
@@ -29,22 +29,22 @@
             
             <md-input-container>
                 <label>Company Name</label>
-                <input type="text" data-ng-model="data.seller_lead.company_name" ng-required="true" />
+                <input type="text" data-ng-model="data.lead.company_name" ng-required="true" />
             </md-input-container>
             <md-input-container>
                 <label>Mobile Number</label>
-                <input type="text" data-ng-model="data.seller_lead.mobile_number" ng-required="true" />
+                <input type="text" data-ng-model="data.lead.mobile_number" ng-required="true" />
             </md-input-container>
             <md-input-container>
                 <label>Email</label>
-                <input type="email" data-ng-model="data.seller_lead.email" ng-required="true" />
+                <input type="email" data-ng-model="data.lead.email" ng-required="true" />
             </md-input-container> 
-            <md-switch data-ng-model="data.seller_lead.status">Status : {{data.seller_lead.status}}</md-switch>
+            <md-switch data-ng-model="data.lead.status">Status : {{data.lead.status}}</md-switch>
         </div>
         <div layout="column" ng-cloak flex="60" style="margin-top:60px;">
             <md-input-container>
               <label>Comments</label>
-              <textarea data-ng-model="data.seller_lead.comments" md-maxlength="500" rows="5" md-select-on-focus></textarea>
+              <textarea data-ng-model="data.lead.comments" md-maxlength="500" rows="5" md-select-on-focus></textarea>
           </md-input-container>
       </div>    
   </div>
