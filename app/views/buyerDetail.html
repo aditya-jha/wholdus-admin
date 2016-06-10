@@ -1,4 +1,4 @@
-<div layout="row">
+<div layout="row" layout-margin>
 
     <md-button class="md-fab md-mini" aria-label="go back" data-ng-href="/users/buyers">
         <md-icon>
@@ -27,6 +27,12 @@
         </md-icon>
         <md-tooltip md-direction="left">delete this buyer</md-tooltip>
     </md-button>
+</div>
+<div layout="row" layout-align="end" layout-margin>
+    <div>
+        <strong>Updated-at&nbsp;:&nbsp;</strong>
+        <span>{{data.buyer.updated_at | date:'MMM dd,yyyy h:mma':'+0530'}}</span>
+    </div>
 </div>
 <div layout="row" layout-align="space-around start">
     <div layout="column" ng-cloak>
