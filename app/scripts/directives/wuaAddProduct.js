@@ -11,7 +11,9 @@
                 'ngProgressBarService',
                 '$rootScope',
                 '$element',
-                function($scope, $log, APIService, ngProgressBarService, $rootScope, $element) {
+                'UtilService',
+                'ToastService',
+                function($scope, $log, APIService, ngProgressBarService, $rootScope, $element, UtilService, ToastService) {
 
                     function initProductData(id) {
                         $scope.product = {
@@ -58,7 +60,6 @@
                                 $scope.product.price_to_show = $scope.product.item.price_per_unit;
                             }
                         }
-                        $scope.product.orderDetail.edited_price_per_piece = $scope.product.price_to_show;
                     }
 
                     $scope.searchProduct = function() {
@@ -72,9 +73,15 @@
                             APIService.apiCall("GET", APIService.getAPIUrl('products'), null, params)
                                 .then(function(response) {
                                     if(response.products.length) {
-                                        $scope.product.item = response.products[0];
-                                        $scope.product.item.details.weight_per_unit = parseFloat($scope.product.item.details.weight_per_unit);
-                                        calculatePriceFromLot();
+                                        if(response.products[0].show_online && response.products[0].verification) {
+                                            $scope.product.item = response.products[0];
+                                            $scope.product.item.details.weight_per_unit = parseFloat($scope.product.item.details.weight_per_unit);
+                                            $scope.product.orderDetail.edited_price_per_piece = $scope.product.item.min_price_per_unit;
+                                            $scope.product.item.imageUrl = UtilService.getImageUrl(UtilService.getImages($scope.product.item)[0], '200x200');
+                                            calculatePriceFromLot();
+                                        } else {
+                                            ToastService.showActionToast("Product hidden or unverfied!", 3000);
+                                        }
                                     }
                                     $rootScope.$broadcast("endProgressbar");
                                 }, function(error) {
@@ -84,8 +91,13 @@
                     };
 
                     $scope.selectProduct = function() {
-                        $scope.product.disable = true;
-                        $rootScope.$broadcast("addProductChanged", $scope.product);
+                        var pieces = parseInt($scope.product.orderDetail.pieces);
+                        if(isNaN(pieces) || pieces <= 0) {
+                            ToastService.showActionToast("Number of Pieces cannot be 0", 0);
+                        } else {
+                            $scope.product.disable = true;
+                            $rootScope.$broadcast("addProductChanged", $scope.product);
+                        }
                     };
 
                     $scope.editProduct = function(index) {
@@ -99,7 +111,10 @@
                         }
                     };
 
-                    $scope.$watch('product.orderDetail.pieces', function() {
+                    $scope.$watch('product.orderDetail.pieces', function(newVal, oldVal) {
+                        if(newVal === '' || !newVal) {
+                            $scope.product.orderDetail.pieces = 0;
+                        }
                         calculatePriceFromLot();
                     });
                 }

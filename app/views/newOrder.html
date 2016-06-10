@@ -28,30 +28,51 @@
 
 </div>
 
-<div layout="row" class="new-order-buyer-container">
-    <div flex="10">
-        <md-button class="md-raised md-warn" data-ng-click="addProduct()">Add Product</md-button>
+<div layout="row" layout-align="center center" flex="100">
+    <md-button class="md-raised md-warn" data-ng-click="addProduct()">Add Product</md-button>
+</div>
+
+<div layout="row" flex="100" layout-wrap layout-margin>
+    <div layout="row" flex="100" layout-align="center center">
+        <span class="bold large-font">Summary</span>
     </div>
-    <div flex="80" layout="row" flex-offset="10" style="font-size:1.2em">
-        <div flex>
-            <span class="small-font secondary-text-color">Sub-Total</span>
-            <span class="bold">{{costs.subTotal}}</span>
+    <div layout="row" layout-align="center center" flex="100">
+        <div layout="row" layout-padding layout-wrap flex="25" md-whiteframe="2dp" layout-margin class="large-font">
+            <div layout="row" flex="100">
+                <span flex="50" class="small-font secondary-text-color">Total Merchants</span>
+                <span flex="50" class="bold">{{totals.merchants}}</span>
+            </div>
+            <div layout="row" flex="100">
+                <span flex="50" class="small-font secondary-text-color">Total Products</span>
+                <span flex="50" class="bold">{{totals.products}}</span>
+            </div>
+            <div layout="row" flex="100">
+                <span flex="50" class="small-font secondary-text-color">Total Pieces</span>
+                <span flex="50" class="bold">{{totals.pieces}}</span>
+            </div>
         </div>
-        <div flex>
-            <span class="small-font secondary-text-color">Shipping Cost</span>
-            <span class="bold">{{costs.shippingCost}}</span>
-        </div>
-        <div flex>
-            <span class="small-font secondary-text-color">COD Cost</span>
-            <span class="bold">{{costs.COD}}</span>
-        </div>
-        <div flex>
-            <span class="small-font secondary-text-color">Total</span>
-            <span class="bold">{{costs.total}}</span>
+
+        <div flex="25" layout="row" layout-padding layout-margin layout-wrap md-whiteframe="2dp" class="large-font">
+            <div layout="row" flex="100">
+                <span flex="50" class="small-font secondary-text-color">Sub-Total</span>
+                <span flex="50" class="bold">{{costs.subTotal}}</span>
+            </div>
+            <div layout="row" flex="100">
+                <span flex="50" class="small-font secondary-text-color">Shipping Cost</span>
+                <span flex="50" class="bold">{{costs.shippingCost}}</span>
+            </div>
+            <div layout="row" flex="100">
+                <span flex="50" class="small-font secondary-text-color">COD Cost</span>
+                <span flex="50" class="bold">{{costs.COD}}</span>
+            </div>
+            <div layout="row" flex="100">
+                <span flex="50" class="small-font secondary-text-color">Total</span>
+                <span flex="50" class="bold">{{costs.total}}</span>
+            </div>
         </div>
     </div>
 </div>
 
-<div layout="row" layout-margin layout-padding layout-align="center center">
+<div layout="row" layout-margin layout-align="center center" flex="100">
     <md-button class="md-raised md-primary" data-ng-click="placeOrder()">Place Order</md-button>
 </div>

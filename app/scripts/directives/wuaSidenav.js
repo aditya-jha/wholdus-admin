@@ -24,7 +24,7 @@
                             url: '/new-order'
                         },
                         {
-                            name: "Buyer",
+                            name: "Buyers",
                             url: "/users/buyers"
                         },
                         {

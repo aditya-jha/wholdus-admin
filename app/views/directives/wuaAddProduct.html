@@ -19,6 +19,29 @@
         </div>
     </div>
 
-    <div layout="row" data-ng-if="product.item" flex="90" data-ng-include="'views/partials/new-order-product.html'"></div>
+    <div layout="row" layout-wrap data-ng-if="product.item" flex="90">
+        <div layout="row" flex="100" data-ng-include="'views/partials/new-order-product.html'"></div>
+        <div layout="row" flex="100">
+            <hr flex style="margin-left: 0.5em;" />
+        </div>
+        <div layout="row" flex="100" style="margin-left: 1em;">
+            <div layout="row" layout-wrap flex="25">
+                <span flex="100" class="small-font secondary-text-color">Seller Company</span>
+                <span flex="100" class="bold">{{product.item.seller.company_name}}</span>
+            </div>
+            <div layout="row" layout-wrap flex="25">
+                <span flex="100" class="small-font secondary-text-color">Seller Mobile</span>
+                <span flex="100" class="bold">{{product.item.seller.mobile_number}}</span>
+            </div>
+            <div layout="row" layout-wrap flex="25">
+                <span flex="100" class="small-font secondary-text-color">Seller Email</span>
+                <span flex="100" class="bold">{{product.item.seller.email}}</span>
+            </div>
+            <div layout="row" layout-wrap flex="25">
+                <span flex="100" class="small-font secondary-text-color">Seller Contact Person</span>
+                <span flex="100" class="bold">{{product.item.seller.name}}</span>
+            </div>
+        </div>
+    </div>
 
 </div>

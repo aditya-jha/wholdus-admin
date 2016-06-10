@@ -1,7 +1,11 @@
+<div layout="row" flex="20" style="max-width: 105px;max-height: 140px;">
+    <img data-ng-src="{{product.item.imageUrl}}" width="100" />
+</div>
+
 <div layout="row" flex="30" layout-wrap layout-padding>
     <div flex="100" layout="row" layout-wrap>
         <span flex="100" class="small-font secondary-text-color">Name</span>
-        <span flex="100" class="bold">{{product.item.name}}</span>
+        <a data-ng-href="http://www.wholdus.com/{{product.item.url}}" target="_blank" flex="100" class="bold link">{{product.item.name}}</a>
     </div>
     <div flex="100" layout="row" layout-wrap>
         <div layout="row" layout-wrap flex="75">
@@ -17,7 +21,7 @@
 
 <md-divider></md-divider>
 
-<div flex="20" layout="row" layout-wrap layout-padding>
+<div flex="15" layout="row" layout-wrap layout-padding>
     <div layout="row" layout-wrap flex="100">
         <md-input-container>
             <label>Pcs To Sell</label>
@@ -35,7 +39,7 @@
 <div flex="20" layout="row" layout-wrap layout-padding>
     <div layout="row" layout-wrap flex="100">
         <md-input-container>
-            <label>Negotiated Price</label>
+            <label>Negotiated Price / Pcs</label>
             <input type="text" data-ng-model="product.orderDetail.edited_price_per_piece" required data-ng-disabled="product.disable" />
         </md-input-container>
     </div>
@@ -47,7 +51,7 @@
 
 <md-divider></md-divider>
 
-<div flex="20" layout="row" layout-wrap layout-padding>
+<div flex="15" layout="row" layout-wrap layout-padding>
     <div layout="row" layout-wrap flex="100">
         <md-input-container>
             <label>Remarks</label>
@@ -60,7 +64,7 @@
     </div>
 </div>
 
-<div layout="row" flex="10" layout-wrap layout-padding layout-align="left center">
+<div layout="row" flex="5" layout-wrap layout-padding layout-align="left center">
     <div layout="row" flex="100" layout-align="left center">
         <md-icon data-ng-click="selectProduct()" class="cursor-pointer">
             <svg style="width:35px;height:35px" viewBox="0 0 35 35">
