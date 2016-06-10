@@ -127,10 +127,12 @@
                 APIService.apiCall(type, APIService.getAPIUrl("products"), $scope.data.product)
                 .then(function(response) {
                     $rootScope.$broadcast('endProgressbar');
+                    pageSetting();
                     ToastService.showActionToast("successful", 0).then(function(response) {
                      if(type=="DELETE"){
                         $location.url('/products');
                     }
+
                 });
                 }, function(error) {
                     $rootScope.$broadcast('endProgressbar');

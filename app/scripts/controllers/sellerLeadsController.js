@@ -63,6 +63,7 @@
                     APIService.apiCall(type, APIService.getAPIUrl("sellerLeads"), $scope.data.seller_lead)
                         .then(function(response) {
                             $rootScope.$broadcast('endProgressbar');
+                            pageSetting();
                             ToastService.showActionToast("successful", 0).then(function(response) {
                                 if(type=="DELETE") {
                                     $location.url('/seller-leads');

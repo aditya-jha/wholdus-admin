@@ -1,4 +1,4 @@
-<div layout="row">
+<div layout="row" layout-margin>
 
     <md-button class="md-fab md-mini" aria-label="go back" data-ng-href="/contactus-leads">
         <md-icon>
@@ -27,6 +27,9 @@
         </md-icon>
         <md-tooltip md-direction="left">delete this buyer lead</md-tooltip>
     </md-button> -->
+</div>
+ <div layout="row" layout-align="end center" layout-margin flex="100" class="md-subhead">
+        <span class="bold">Updated At :</span> {{data.contactus_lead.updated_at | date:'MMM dd,yyyy h:mma':'+0530'}}
 </div>
 <div layout="row" layout-align="space-around">
     <div layout="column" ng-cloak flex="30">

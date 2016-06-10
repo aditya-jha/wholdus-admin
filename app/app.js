@@ -58,7 +58,7 @@ adminapp.config([
         }).when('/products', {
             templateUrl: 'views/products.html',
                 controller: 'ProductController'
-            }).when('/products/:productID', {
+        }).when('/products/:productID', {
             templateUrl: 'views/productDetails.html',
             controller: 'ProductController'
         }).when('/users/buyers',{

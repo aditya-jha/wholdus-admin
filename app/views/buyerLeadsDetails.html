@@ -1,4 +1,4 @@
-<div layout="row">
+<div layout="row"  layout-margin>
 
     <md-button class="md-fab md-mini" aria-label="go back" data-ng-href="/buyer-leads">
         <md-icon>
@@ -28,6 +28,9 @@
         <md-tooltip md-direction="left">delete this buyer lead</md-tooltip>
     </md-button> -->
 </div>
+ <div layout="row" layout-align="end center" layout-margin flex="100" class="md-subhead">
+        <span class="bold">Updated At :</span> {{data.buyer_lead.updated_at | date:'MMM dd,yyyy h:mma':'+0530'}}
+    </div>
 <div layout="row" layout-align="space-around">
     <div layout="column" ng-cloak flex="40" layout-margin>
         <div class="md-title" ><h3>Details</h3></div>
@@ -69,7 +72,7 @@
             
             <md-input-container>
                 <label>Name</label>
-                <input type="text" data-ng-model="data.buyer_lead.product.display_name" ng-required="true" />
+                <input type="text" data-ng-model="data.buyer_lead.product.name" ng-required="true" />
             </md-input-container>
             <md-input-container>
                 <label>Product ID</label>
@@ -78,13 +81,9 @@
             <md-input-container>
                 <label>Price per unit</label>
                 <input type="text" data-ng-model="data.buyer_lead.product.price_per_unit" ng-required="true" />
-            </md-input-container>    
+            </md-input-container>       
             <md-input-container>
                 <label>Minimum price per unit</label>
-                <input type="text" data-ng-model="data.buyer_lead.product.price_per_unit" ng-required="true" />
-            </md-input-container>    
-            <md-input-container>
-                <label>Price per unit</label>
                 <input type="text" data-ng-model="data.buyer_lead.product.min_price_per_unit" ng-required="true" />
             </md-input-container>    
             <md-input-container>
@@ -92,9 +91,13 @@
                 <input type="text" data-ng-model="data.buyer_lead.product.lot_size" ng-required="true" />
             </md-input-container>     
              <md-input-container>
-                <label>Lot size</label>
+                <label>Price per lot</label>
                 <input type="text" data-ng-model="data.buyer_lead.product.price_per_lot" ng-required="true" />
             </md-input-container>
+            <div layout="row" layout-align="center">
+            <a data-ng-href="products/{{data.buyer_lead.product.productID}}">
+            <md-button class="md-primary md-raised">Edit Product</md-button></a>
+            </div>
         
     </div>
   
