@@ -67,6 +67,8 @@ adminapp.config([
         }).when('/users/buyers/:buyerID',{
             templateUrl: 'views/buyerDetail.html',
             controller: 'BuyerController'
+        }).otherwise({
+            redirectTo: "/"
         });
 
         $locationProvider.html5Mode(true);

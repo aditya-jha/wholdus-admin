@@ -1,19 +1,47 @@
 <div layout="row" flex="100">
-    <div layout="column" flex="15" style="padding-top:1em">
+    <div layout="column" flex="10" style="padding-top:1em">
         <md-input-container>
             <label>Product ID</label>
-            <input type="number" data-ng-model="product.ID" min=1 />
+            <input type="number" data-ng-model="product.ID" min=1 data-ng-disabled="product.disable" />
         </md-input-container>
-        <md-button class="md-raised md-warn" data-ng-click="selectProduct()">
+        <md-button class="md-raised md-warn" data-ng-click="searchProduct()" data-ng-disabled="product.disable">
             select
         </md-button>
     </div>
     <md-divider></md-divider>
 
-    <div layout="row" data-ng-if="!product.item" layout-align="center center" flex="85">
-        <h2>No Product Selected</h2>
+    <div layout="row" data-ng-if="!product.item" layout-align="center center" flex="90">
+        <div flex="50">
+            <h2>No Product Selected</h2>
+        </div>
+        <div flex="10">
+            <md-button class="md-raised md-warn" data-ng-click="editProduct(-1)">remove</md-button>
+        </div>
     </div>
 
-    <div layout="row" data-ng-if="product.item" flex="85" data-ng-include="'views/partials/new-order-product.html'"></div>
+    <div layout="row" layout-wrap data-ng-if="product.item" flex="90">
+        <div layout="row" flex="100" data-ng-include="'views/partials/new-order-product.html'"></div>
+        <div layout="row" flex="100">
+            <hr flex style="margin-left: 0.5em;" />
+        </div>
+        <div layout="row" flex="100" style="margin-left: 1em;">
+            <div layout="row" layout-wrap flex="25">
+                <span flex="100" class="small-font secondary-text-color">Seller Company</span>
+                <span flex="100" class="bold">{{product.item.seller.company_name}}</span>
+            </div>
+            <div layout="row" layout-wrap flex="25">
+                <span flex="100" class="small-font secondary-text-color">Seller Mobile</span>
+                <span flex="100" class="bold">{{product.item.seller.mobile_number}}</span>
+            </div>
+            <div layout="row" layout-wrap flex="25">
+                <span flex="100" class="small-font secondary-text-color">Seller Email</span>
+                <span flex="100" class="bold">{{product.item.seller.email}}</span>
+            </div>
+            <div layout="row" layout-wrap flex="25">
+                <span flex="100" class="small-font secondary-text-color">Seller Contact Person</span>
+                <span flex="100" class="bold">{{product.item.seller.name}}</span>
+            </div>
+        </div>
+    </div>
 
 </div>

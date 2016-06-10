@@ -18,6 +18,25 @@ input[type=number]::-webkit-outer-spin-button {
 appearance: none;
 margin: 0;
 }
+
+a {
+    text-decoration: none;
+    color: inherit;
+    outline: 0;
+}
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .link{
 text-decoration: none;
 cursor: pointer;
@@ -45,6 +64,10 @@ word-wrap: break-word;
 
 .small-font {
 font-size: 0.8em;
+}
+
+.large-font {
+    font-size: 1.2em;
 }
 
 md-input-container {
@@ -121,22 +144,24 @@ color: grey; }
     font-size: 0.9em;
     padding: 0px 0px 0.2em 0px;
     color: #808080;
+
 } 
 .item-title{
     font-size: 0.9em;
     color: #808080;  
 }  
+
 #product-name{
-    white-space: nowrap; 
+    white-space: nowrap;
     width:40em;
     overflow: hidden;
-    text-overflow: ellipsis; 
-} 
+    text-overflow: ellipsis;
+}
 #address{
-    white-space: nowrap; 
+    white-space: nowrap;
     width:35em;
     overflow: hidden;
-    text-overflow: ellipsis;  
+    text-overflow: ellipsis;
 }
 
 .pagination-directive {
@@ -154,6 +179,7 @@ color: grey; }
   font-size: 12px;
 }
 .md-button.small{
+<<<<<<< HEAD
 min-width: 35px;
 padding: 1px;
 height:32px;
@@ -166,3 +192,11 @@ min-height: 25px;
   color: #fff;
 
 }
+=======
+    min-width: 35px;
+  padding: 1px;
+  height:32px;
+  line-height: 1em;
+  min-height: 25px;
+}
+>>>>>>> 772bdae741d2511b12719291a18a9acd4b1d66d9
