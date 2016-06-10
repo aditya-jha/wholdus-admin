@@ -1,0 +1,132 @@
+<div layout="row" layout-align = "center">
+    <h2>Enter Buyer Details</h2>
+</div>
+<form name="buyerdetails">
+<div layout="row" layout-align="space-around start">
+    <div layout="column" ng-cloak>
+        <h3>Personal Details</h3>
+        <md-input-container>
+            <label>Name</label>
+            <input type="text" data-ng-model="data.buyer.name" ng-required="true" />
+        </md-input-container>
+         <md-input-container>
+            <label>Company-name</label>
+            <input type="text" data-ng-model="data.buyer.company_name" ng-required="true" />
+        </md-input-container>
+        <md-input-container>
+            <label>Mobile Number</label>
+            <input type="text" data-ng-model="data.buyer.mobile_number" ng-required="true" />
+        </md-input-container>
+        <md-input-container>
+            <label>Alt. Phone Number</label>
+            <input type="text" data-ng-model="data.buyer.alternate_phone_number" ng-required="false" />
+        </md-input-container>
+        <md-input-container>
+            <label>Email</label>
+            <input type="email" data-ng-model="data.buyer.email" ng-required="true" />
+        </md-input-container>
+        <md-switch data-ng-model="data.buyer.mobile_verification">Mobile Verification</md-switch>
+        <md-switch data-ng-model="data.buyer.email_verification">Email Verification</md-switch>
+        
+    </div>
+    <div layout="column" ng-cloak>
+        <h3>Buying Details</h3>
+       
+        <md-input-container>
+            <label>Interest</label>
+            <textarea data-ng-model="data.buyer.details.buyer_interest" ng-required="false"></textarea>
+        </md-input-container>
+        <md-input-container>
+            <label>Capacity</label>
+            <input type="text" data-ng-model="data.buyer.details.buying_capacity" ng-required="false"></textarea>
+        </md-input-container>
+        <md-input-container>
+            <label>Customer-type</label>
+            <input type="text" data-ng-model="data.buyer.details.customer_type" ng-required="false"></textarea>
+        </md-input-container>
+        <md-input-container>
+            <label>Buys from</label>
+            <input type="text" data-ng-model="data.buyer.details.buys_from" ng-required="false"></textarea>
+        </md-input-container>
+        <md-input-container>
+            <label>Purchasing-states</label>
+            <input type="text" data-ng-model="data.buyer.details.purchasing_states" ng-required="false"></textarea>
+        </md-input-container>
+        <md-input-container>
+            <label>VAT / TIN</label>
+            <input type="text" data-ng-model="data.buyer.details.vat_tin" ng-required="false"></textarea>
+        </md-input-container>
+        <md-input-container>
+            <label>CST</label>
+            <input type="text" data-ng-model="data.buyer.details.cst" ng-required="false"></textarea>
+        </md-input-container>
+        <!-- <md-switch data-ng-model="">PAN Verification</md-switch> -->
+        <!-- <md-switch data-ng-model="">TIN Verification</md-switch> -->
+    </div>
+    <div layout="column" ng-cloak>
+        <h3>Address</h3>
+        <md-input-container>
+            <label>Address</label>
+            <input type="text" data-ng-model="data.buyer.address[0].address" ng-required="true" />
+        </md-input-container>
+        <md-input-container>
+            <label>Landmark</label>
+            <input type="text" data-ng-model="data.buyer.address[0].landmark" ng-required="true" />
+        </md-input-container>
+        <md-input-container>
+            <label>Contact No.</label>
+            <input type="text" data-ng-model="data.buyer.address[0].contact_number" ng-required="true" />
+        </md-input-container>
+        <md-input-container>
+            <label>City</label>
+            <input type="text" data-ng-model="data.buyer.address[0].city" ng-required="true" />
+        </md-input-container>
+        <md-input-container>
+            <label>State</label>
+            <input type="text" data-ng-model="data.buyer.address[0].state" ng-required="true" />
+        </md-input-container>
+        <md-input-container>
+            <label>Pincode</label>
+            <input type="text" data-ng-model="data.buyer.address[0].pincode" ng-required="true" />
+        </md-input-container>
+    </div>
+    <!-- <div layout="column" ng-cloak>
+        <h3>Bank Details</h3>
+        <md-input-container>
+            <label>Bank Name</label>
+            <input type="text" data-ng-model="data.seller.bank_details[0].bank_name" ng-required="false" />
+        </md-input-container>
+        <md-input-container>
+            <label>Account Number</label>
+            <input type="text" data-ng-model="data.seller.bank_details[0].account_number" ng-required="false" />
+        </md-input-container>
+        <md-input-container>
+            <label>Account Holders Name</label>
+            <input type="text" data-ng-model="data.seller.bank_details[0].account_holders_name" ng-required="false" />
+        </md-input-container>
+        <md-input-container>
+            <label>IFSC</label>
+            <input type="text" data-ng-model="data.seller.bank_details[0].ifsc" ng-required="false" />
+        </md-input-container>
+        <md-input-container>
+            <label>Branch</label>
+            <input type="text" data-ng-model="data.seller.bank_details[0].branch" ng-required="false" />
+        </md-input-container>
+        <md-input-container>
+            <label>Branch Pincode</label>
+            <input type="text" data-ng-model="data.seller.bank_details[0].branch_pincode" ng-required="false" />
+        </md-input-container>
+        <md-input-container>
+            <label>Branch City</label>
+            <input type="text" data-ng-model="data.seller.bank_details[0].branch_city" ng-required="false" />
+        </md-input-container>
+    </div> -->
+</div>
+<div flex layout="row">
+    <div layout="row" flex="95" layout-align="end">
+        <md-button type="reset" class="md-raised md-warn">Reset</md-button>
+        <md-button type="submit" data-ng-click="create()" ng-disabled="!buyerdetails.$valid" class="md-raised md-warn">Create Buyer</md-button>
+    </div>
+
+</div>
+</form>

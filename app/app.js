@@ -67,6 +67,9 @@ adminapp.config([
         }).when('/users/buyers/:buyerID',{
             templateUrl: 'views/buyerDetail.html',
             controller: 'BuyerController'
+        }).when('/users/new-buyer',{
+            templateUrl: 'views/newBuyer.html',
+            controller: 'BuyerController'
         }).otherwise({
             redirectTo: "/"
         });

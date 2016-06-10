@@ -17,9 +17,10 @@
                 buyer: {}
             };
 
-            function getbuyers(params) {
+            function getbuyers(type, params) {
                 $rootScope.$broadcast('showProgressbar');
-                APIService.apiCall("GET", APIService.getAPIUrl('buyers'), null, params)
+                if(type=="GET"){
+                APIService.apiCall(type, APIService.getAPIUrl('buyers'), null, params)
                     .then(function(response) {
                         $rootScope.$broadcast('endProgressbar');
                         if(response.buyers.length) {
@@ -30,24 +31,35 @@
                             }
                         }
                          else if($scope.data.buyerID) {
-                            ToastService.showActionToast("No such buyer exist! GO BACK", 0)
-                                .then(function(response) {
-                                    $location.url('/users/buyers');
-                                });
+                            $location.url('/users/buyers');
+                            ToastService.showActionToast("No such buyer exist!", 0)
                         }
                     }, function(error) {
                         $rootScope.$broadcast('endProgressbar');
                     });
+                }
+                else if(type == "POST"){
+                    $scope.data.buyer.address = $scope.data.buyer.address[0];
+                    APIService.apiCall(type, APIService.getAPIUrl("buyers"), $scope.data.buyer)
+                    .then(function(response){
+                        $location.url('/users/buyers');
+                        $rootScope.$broadcast('endProgressbar');
+                        ToastService.showActionToast("New Buyer Created", 0);
+                    },function(error){
+                        $rootScope.$broadcast('endProgressbar');
+                            ToastService.showActionToast("something went wrong! please reload", 0);
+                    });
+                }
             }
 
             function pageSetting() {
-                if($routeParams.buyerID) {
-                    $scope.data.buyerID = parseInt($routeParams.buyerID);
-                    getbuyers({
-                        buyerID: $routeParams.buyerID
-                    });
-                } else {
-                    getbuyers();
+                    if($routeParams.buyerID) {
+                        $scope.data.buyerID = parseInt($routeParams.buyerID);
+                        getbuyers('GET',{
+                            buyerID: $routeParams.buyerID
+                        });
+                    } else {
+                    getbuyers('GET');
                 }
             }
 
@@ -57,6 +69,10 @@
                 pageSetting();
             };
 
+            $scope.create = function(){
+                getbuyers('POST');
+            }
+
             $scope.changebuyer = function(event, type) {
                 if(type=="DELETE" || type=="PUT") {
                     $rootScope.$broadcast('showProgressbar');
@@ -64,11 +80,13 @@
                     APIService.apiCall(type, APIService.getAPIUrl("buyers"), $scope.data.buyer)
                         .then(function(response) {
                             $rootScope.$broadcast('endProgressbar');
-                            ToastService.showActionToast("successful", 0).then(function(response) {
-                                if(type=="DELETE") {
+                            if(type=="DELETE") {
                                     $location.url('/users/buyers');
                                 }
-                            });
+                             else{
+                                pageSetting();
+                             }   
+                            ToastService.showActionToast("successful", 0);
                         }, function(error) {
                             $rootScope.$broadcast('endProgressbar');
                             ToastService.showActionToast("something went wrong! please reload", 0);
