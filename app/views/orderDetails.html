@@ -1,162 +1,180 @@
 <div layout="column" layout-align="center" style="">
-	<div layout="row" layout-align="center center" layout-margin flex="100" class="md-title">
-		Order ID :<span class="bold"> {{data.order.orderID}}</span>
-	</div>
-	<div layout="row" layout-align="end center" layout-margin flex="100" class="md-subhead">
-		<span class="bold">Updated At :</span> {{data.order.updated_at | date:'MMM dd,yyyy h:mma':'+0530'}}
-	</div>
-	
+<div layout="row" layout-align="center center" layout-margin flex="100" class="md-title">
+	Order ID :<span class="bold"> {{data.order.orderID}}</span>
+</div>
+<div layout="row" layout-align="end center" layout-margin flex="100" class="md-subhead">
+	<span class="bold">Updated At :</span> {{data.order.updated_at | date:'MMM dd,yyyy h:mma':'+0530'}}
+</div>
 
-	<div layout="row" flex="100" layout-align="center center">	
-		<div  layout="column" md-whiteframe="2" flex="80">
-			<div layout="column" flex >
-				<div layout="row" layout-align="center center" class="md-title property-title" layout-padding flex>Buyer Details</div>
-				<md-divider></md-divider>
-				<div layout="row" layout-align="center" flex>
-
-					<div layout="column" ng-cloak flex="50" layout-padding>
-						<div layout="column">
-							<span class="card-item-title">Buyer ID</span>
-							<span>{{ data.order.buyer.buyerID }}</span>
-						</div>
-						<div layout="column">
-							<span class="card-item-title">Buyer Name</span>
-							<span>{{ data.order.buyer.name }}</span>
-						</div>
-						<div layout="column">
-							<span class="card-item-title">Buyer Company</span>
-							<span>{{ data.order.buyer.company_name}}</span>
-						</div>
-						<div layout="column">
-							<span class="card-item-title">Mobile No</span>
-							<span>{{ data.order.buyer.mobile_number}}</span>
-						</div>
-					</div>
-					<md-divider style="margin:1em; color:black;"></md-divider>
-					<div layout="column" ng-cloak flex="50" layout-padding>
-						<div layout="column">
-							<span class="card-item-title">Delivery Address</span>
-							<span>{{ data.order.buyer.address[0].address }}</span>
-						</div>
-						<div layout="column">
-							<span class="card-item-title">City</span>
-							<span>{{ data.order.buyer.address[0].city }}</span>
-						</div>
-						<div layout="column">
-							<span class="card-item-title">State</span>
-							<span>{{ data.order.buyer.address[0].state}}</span>
-						</div>
-						<div layout="column">
-							<span class="card-item-title">Pincode</span>
-							<span>{{ data.order.buyer.address[0].pincode}}</span>
-						</div>
-					</div>
-				</div>          
-			</div>
-		</div>
-	</div>	
-
-	<div layout="column" data-ng-repeat="sub_order in data.order.sub_orders" layout-margin>
-		<div  md-whiteframe="2"> 
-		<div layout="row" layout-align="center" flex class="md-title property-title" layout-padding>Sub Order:{{$index+1}}</div>
-		<div layout="column" flex>
-			<div layout="row" flex="100" layout-align="center center">
-			<div layout="column" flex="80">
-			<div layout="row" layout-align="center" class="md-title" layout-padding>Manufacturer</div>
-				<div layout="row"  layout-padding flex layout-align="center" layout-margin>
-					<div layout="column" flex="50" layout-padding>
-						<div layout="column">
-							<span class="card-item-title">Company Name</span>
-							<span>{{ sub_order.seller.company_name }}</span>
-						</div>
-						<div layout="column">
-							<span class="card-item-title">Merchant Name</span>
-							<span>{{ sub_order.seller.name }}</span>
-						</div>
-						<div layout="column" >
-							<span class="card-item-title">Mobile No</span>
-							<span>{{ sub_order.seller.mobile_number}}</span>
-						</div>
-						<div layout="column">
-							<span class="card-item-title">Contact Person Name</span>
-							<span>{{sub_order.seller.concerned_person == ''? none:sub_order.seller.concerned_person}}</span>
-						</div>
-						<div layout="column">
-							<span class="card-item-title">Contact Person No</span>
-							<span>{{sub_order.seller.concerned_person_number == ''? none:sub_order.seller.concerned_person_number}}</span>
-						</div>
-
-					</div>
-					<md-divider style="margin:1em; color:black;"></md-divider>
-					<div layout="column" flex="50" layout-padding> 
-						<div layout="column">
-							<span class="card-item-title">Pick Up Address</span>
-							<span>{{ sub_order.seller.address[0].address }}</span>
-						</div>
-						<div layout="column">
-							<span class="card-item-title">City</span>
-							<span>{{ sub_order.seller.address[0].city }}</span>
-						</div>
-						<div layout="column">
-							<span class="card-item-title">State</span>
-							<span>{{ sub_order.seller.address[0].state}}</span>
-						</div>
-						<div layout="column">
-							<span class="card-item-title">Pincode</span>
-							<span>{{ sub_order.seller.address[0].pincode}}</span>
-						</div>
-					</div>
-				</div> 
-				<div layout="row" layout-align="center center">
-					<md-button class="md-primary md-raised" ng-click="notifyMerchant(sub_order.suborderID)">Notify Merchant</md-button>
-				</div>
-
-			</div> 
-			</div> 
+<!-- buyer details starts -->
+<div layout="row"  layout-align="center center" flex="100" layout-margin>	
+	<div  layout="column" md-whiteframe="2" flex="90">
+		<div layout="column" flex >
+			<div layout="row" layout-align="center center" class="md-title property-title" layout-padding flex>Buyer Details</div>
 			<md-divider></md-divider>
-			<div layout="row" layout-align="center" class="md-title" layout-padding>Order Items</div>
-			<div layout="column" data-ng-repeat="order_item in sub_order.order_items" layuot-margin layout-padding="2">
-				<div layout="row">
-					<div layout="column" layout-padding class="bold" style="font-size:2em">{{$index+1}}.</div>
-					<div layout="column"  flex="60" >
-						<div layout="column" class="card-item" flex>
-							<span class="card-item-title" flex>Product ID</span>
-							<span>{{ order_item.product.productID }}</span>
-						</div>
-						<div layout="column" class="card-item" flex>
-							<span class="card-item-title" flex>Product Name</span>
-							<span id="product-name">{{ order_item.product.name }}</span>
-						</div>
-						<div layout="column" class="card-item" flex>
-							<span class="card-item-title" flex>Catalog No</span>
-							<span>{{ order_item.product.details.seller_catalog_number}}</span>
-						</div>
-						<div layout="column" class="card-item" flex>
-							<span class="card-item-title" flex>Remarks</span>
-							<span>{{ order_item.remarks}}</span>
-						</div>
-					</div>  
-					<div layout="column" flex="40" >
-						<div layout="column" class="card-item" flex>
-							<span class="card-item-title" flex>Pcs Sold</span>
-							<span>{{ order_item.pieces }}</span>
-						</div>
-						<div layout="column" class="card-item" flex>
-							<span class="card-item-title" flex>Negotiated Price Per Piece</span>
-							<span>{{ order_item.edited_price_per_piece }}</span>
-						</div>
-						<div layout="column" class="card-item" flex>
-							<span class="card-item-title" flex>Sub - Amount</span>
-							<span>{{ order_item.final_price}}</span>
-						</div>
-						<div layout="row" layout-align="left center">
+			<div layout="row" layout-align="center" flex layout-padding>
+					<div layout="column" flex>
+				<div layout="column"  class="card-item">
+						<span class="card-item-title">Buyer ID</span>
+						<span>{{ data.order.buyer.buyerID }}</span>
+					</div>
+					<div layout="column" class="card-item">
+						<span class="card-item-title">Buyer Name</span>
+						<span>{{ data.order.buyer.name }}</span>
+					</div>
+				</div>
+				<div layout="column" flex>	
+					<div layout="column" class="card-item">
+						<span class="card-item-title">Buyer Company</span>
+						<span>{{ data.order.buyer.company_name}}</span>
+					</div>
+					<div layout="column" class="card-item">
+						<span class="card-item-title">Mobile No</span>
+						<span>{{ data.order.buyer.mobile_number}}</span>
+					</div>
+				</div>
+				
+				<div layout="column" flex="35	">
+					<div layout="column" class="card-item">
+						<span class="card-item-title">Delivery Address</span>
+						<span>{{ data.order.buyer.address[0].address }}</span>
+					</div>
+					<div layout="column" class="card-item">
+						<span class="card-item-title">City</span>
+						<span>{{ data.order.buyer.address[0].city }}</span>
+					</div>
+				</div>
+				<div layout="column" flex>	
+					<div layout="column" class="card-item">
+						<span class="card-item-title">State</span>
+						<span>{{ data.order.buyer.address[0].state}}</span>
+					</div>
+					<div layout="column" class="card-item">
+						<span class="card-item-title">Pincode</span>
+						<span>{{ data.order.buyer.address[0].pincode}}</span>
+					</div>
+				</div>
+			</div>          
+		</div>
+	</div>
+</div>
+<!-- buyer details ends -->	
 
+<div layout="row" data-ng-repeat="sub_order in data.order.sub_orders" flex="100" layout-align="center center" layout-margin>
+	<!-- $index suborder starts-->
+	<div  lauout="column" md-whiteframe="2" flex="90"> 
+		<div layout="row" layout-align="center" flex class="md-title property-title" layout-padding>Sub Order: {{$index+1}}</div>
+		<div layout="column" flex>
+			<!-- manufacturer details start -->
+			<div layout="row" layout-align="center center" flex> 
+				<div layout="column" flex>
+					<div layout="row" layout-align="center" class="md-title bold" layout-padding>Manufacturer</div>
+					<div layout="row"  layout-padding flex layout-align="center">
+						<div layout="column" flex>
+							<div layout="column" class="card-item">
+								<span class="card-item-title">Company Name</span>
+								<span>{{ sub_order.seller.company_name }}</span>
+							</div>
+							<div layout="column" class="card-item">
+								<span class="card-item-title">Merchant Name</span>
+								<span>{{ sub_order.seller.name }}</span>
+							</div>
+							<div layout="column" class="card-item">
+								<span class="card-item-title">Mobile No</span>
+								<span>{{ sub_order.seller.mobile_number}}</span>
+							</div>
+						</div>
+						
+						<div layout="column" flex>
+							<div layout="column" class="card-item">
+								<span class="card-item-title">Contact Person Name</span>
+								<span>{{sub_order.seller.concerned_person == ''? none:sub_order.seller.concerned_person}}</span>
+							</div>
+							<div layout="column" class="card-item">
+								<span class="card-item-title">Contact Person No</span>
+								<span>{{sub_order.seller.concerned_person_number == ''? none:sub_order.seller.concerned_person_number}}</span>
+							</div>
 
+						</div>
+						<div layout="column" flex="35"> 
+							<div layout="column" class="card-item">
+								<span class="card-item-title">Pick Up Address</span>
+								<span>{{ sub_order.seller.address[0].address }}</span>
+							</div>
+							<div layout="column" class="card-item">
+								<span class="card-item-title">City</span>
+								<span>{{ sub_order.seller.address[0].city }}</span>
+							</div>
+						</div>
+						<div layout="column" flex>	
+							<div layout="column" class="card-item">
+								<span class="card-item-title">State</span>
+								<span>{{ sub_order.seller.address[0].state}}</span>
+							</div>
+							<div layout="column" class="card-item">
+								<span class="card-item-title">Pincode</span>
+								<span>{{ sub_order.seller.address[0].pincode}}</span>
+							</div>
+						</div>
+						
+					</div> 
+					<div layout="row" layout-align="center center">
+						<md-button class="md-warn md-raised" ng-click="notifyMerchant(sub_order.suborderID)">Notify Merchant</md-button>
+					</div>
+
+				</div> 
+			</div> 
+			<!-- manufacturer details ends -->
+			<md-divider></md-divider>
+			<div layout="column">
+				<div layout="row" layout-align="center" class="md-title bold" layout-padding>Order Items</div>
+
+				<div layout="column" data-ng-repeat="order_item in sub_order.order_items">
+					<!-- suborder order item details starts -->
+					<div layout="row" layout-align="space-around start" layout-padding>
+						<div layout="column" layout-padding class="bold" style="font-size:2em">{{$index+1}}.</div>
+						<div layout="column"  flex="30">
+							<div layout="column" class="card-item">
+								<span class="card-item-title">Product ID</span>
+								<span>{{ order_item.product.productID }}</span>
+							</div>
+							<div layout="column" class="card-item">
+								<span class="card-item-title">Product Name</span>
+								<span>{{ order_item.product.name }}</span>
+							</div>
+						</div>
+						<div layout="column"  flex >	
+							<div layout="column" class="card-item">
+								<span class="card-item-title">Catalog No</span>
+								<span>{{ order_item.product.details.seller_catalog_number}}</span>
+							</div>
+							<div layout="column" class="card-item">
+								<span class="card-item-title">Pcs Sold</span>
+								<span>{{ order_item.pieces }}</span>
+							</div>
+							<div layout="column" class="card-item">
+								<span class="card-item-title">Remarks</span>
+								<span>{{ order_item.remarks}}</span>
+							</div>
+						</div>  
+						<div layout="column" flex >
+
+							<div layout="column" class="card-item">
+								<span class="card-item-title">Negotiated Price Per Piece</span>
+								<span>&#8377; {{ order_item.edited_price_per_piece }}</span>
+							</div>
+							<div layout="column" class="card-item">
+								<span class="card-item-title">Sub - Amount</span>
+								<span>&#8377; {{ order_item.final_price}}</span>
+							</div>
+						</div>
+						<div layout="column"  flex layout-align="center center" layout-padding	>	
+
+							<!-- <div layout="row" layout-align="left center"> -->
 							<md-checkbox  aria-label="Checkbox 1" data-ng-model="order_item.addForDelivery" class="md-primary">
 								Add to Cart
 							</md-checkbox>
-							<div flex="30"></div>
-
+							<div></div>
 							<md-button class="md-fab md-mini" aria-label="delete" ng-click="showPrompt($event,order_item.orderitemID)" style="padding:0px">
 								<md-icon>
 									<svg style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -165,32 +183,37 @@
 								</md-icon>
 								<md-tooltip md-direction="left">Cancel the product</md-tooltip>
 							</md-button>
+							<!-- </div> -->
 						</div>
+
+					</div>
+					<md-divider md-inset ng-if="!$last"></md-divider>
+					<md-divider  ng-if="$last"></md-divider>
+					<!-- suborder order item details ends -->
+				</div>	
+				<div layout="row" layout-align="space-between" ng-cloak flex="100" layout-padding>
+					<div layout="row">
+						<md-button class="md-primary md-raised" ng-click="confirmDelivery($event,$index)">Send For Delivery</md-button>
 					</div>
 
-				</div>
-				<md-divider md-inset ng-if="!$last"></md-divider>
-			</div>	
-			<div layout="row">
-				<div flex="60">
-					<md-button class="md-primary md-raised" ng-click="confirmDelivery($event,$index)">Send For Delivery</md-button>
-				</div>
-				<div flex>
-					<div layout="column" class="card-item" flex>
-						<span class="card-item-title bold" flex>Amount</span>
-						<span>{{ calcAmount($index)}}</span>
-					</div>
-				</div>    
-			</div>	
-		</div>
+					<div >
+						<div layout="column" class="card-item">
+							<span class="bold md-title" flex>Amount</span>
+							<span>&#8377; {{ calcAmount($index)}}</span>
+						</div>
+					</div>    
+				</div>	
+			</div>
 		</div>
 	</div>
+	<!-- $index suborder ends-->
+</div>
 
-<div layout="row" ng-cloak layout-align="right" layout-padding>
+<div layout="row" layout-align="right" layout-padding flex="100">
 	<div flex></div>
-	<div layout="column" class="card-item" flex="40">
-		<span class="md-title bold" flex>Sub-Total</span>
-		<span ng-cloak>{{calcSubTotal()}}</span>
+	<div layout="column" flex="15">
+		<span class="md-title bold">Sub-Total</span>
+		<span>&#8377; {{calcSubTotal()}}</span>
 	</div>
 
 </div>
