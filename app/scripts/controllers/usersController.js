@@ -14,10 +14,13 @@
             $scope.data = {
                 buyers: [],
                 buyerID: null,
-                buyer: {}
+                buyer: {},
+                sellers: [],
+                sellerID: null,
+                seller: {}
             };
-
             $scope.person;
+            
             if($location.path().substr(0,13) == '/users/buyers'){
                     $scope.person= 'buyers';   
                 }
@@ -39,10 +42,8 @@
                                 }
                             }
                              else if($scope.data.buyerID) {
-                                ToastService.showActionToast("No such buyer exist! GO BACK", 0)
-                                    .then(function(response) {
-                                        $location.url('/users/buyers');
-                                    });
+                                $location.url('/users/buyers');
+                                ToastService.showActionToast("No such buyer exist!", 0)
                             }
                         }
                         else if ($scope.person == 'sellers') {
@@ -54,10 +55,8 @@
                                 }
                             } 
                             else if($scope.data.sellerID) {
-                                ToastService.showActionToast("No such seller exists! GO BACK", 0)
-                                .then(function(response) {
-                                    $location.url('/users/sellers');
-                                });
+                                $location.url('/users/sellers');
+                                ToastService.showActionToast("No such seller exists!", 0)
                         }
                         }
                     }, function(error) {
