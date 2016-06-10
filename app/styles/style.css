@@ -179,7 +179,7 @@ color: grey; }
   font-size: 12px;
 }
 .md-button.small{
-<<<<<<< HEAD
+
 min-width: 35px;
 padding: 1px;
 height:32px;
@@ -192,11 +192,4 @@ min-height: 25px;
   color: #fff;
 
 }
-=======
-    min-width: 35px;
-  padding: 1px;
-  height:32px;
-  line-height: 1em;
-  min-height: 25px;
-}
->>>>>>> 772bdae741d2511b12719291a18a9acd4b1d66d9
+
