@@ -30,22 +30,22 @@ adminapp.config([
             controller: 'NewOrderController'
         }).when('/buyer-leads', {
             templateUrl: 'views/buyerLeads.html',
-            controller: 'BuyerLeadsController'
+            controller: 'LeadsController'
         }).when('/buyer-leads/:buyerleadID', {
             templateUrl: 'views/buyerLeadsDetails.html',
-            controller: 'BuyerLeadsController'
+            controller: 'LeadsController'
         }).when('/seller-leads', {
             templateUrl: 'views/sellerLeads.html',
-            controller: 'SellerLeadsController'
+            controller: 'LeadsController'
         }).when('/seller-leads/:sellerleadID', {
             templateUrl: 'views/sellerLeadsDetails.html',
-            controller: 'SellerLeadsController'
+            controller: 'LeadsController'
         }).when('/contactus-leads', {
             templateUrl: 'views/contactusLeads.html',
-            controller: 'ContactusLeadsController'
+            controller: 'LeadsController'
         }).when('/contactus-leads/:contactusleadID', {
             templateUrl: 'views/contactusLeadsDetails.html',
-            controller: 'ContactusLeadsController'
+            controller: 'LeadsController'
         }).when('/payments-done',{
             templateUrl: 'views/paymentsDone.html',
             controller: 'PaymentController'
@@ -58,7 +58,7 @@ adminapp.config([
         }).when('/products', {
             templateUrl: 'views/products.html',
                 controller: 'ProductController'
-            }).when('/products/:productID', {
+        }).when('/products/:productID', {
             templateUrl: 'views/productDetails.html',
             controller: 'ProductController'
         }).when('/users/buyers',{
