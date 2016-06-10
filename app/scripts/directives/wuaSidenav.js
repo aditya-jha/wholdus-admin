@@ -24,8 +24,12 @@
                             url: '/new-order'
                         },
                         {
-                            name: "Buyer",
+                            name: "Buyers",
                             url: "/users/buyers"
+                        },
+                        {
+                            name: 'Products',
+                            url: '/products'
                         },
                         {
                             name: 'Buyer Leads',
@@ -46,6 +50,7 @@
                         {
                             name: 'Contact Us Leads',
                             url: '/contactus-leads'
+
                         }
                     ];
                     function closeSidenav() {

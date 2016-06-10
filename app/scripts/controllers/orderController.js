@@ -22,7 +22,7 @@
                 orderitem:{},
                 suborder:{},
             };
-
+            $scope.none='None';
             $scope.ordershipment= {
                 suborderID:0,
                 order_items:[],
@@ -127,7 +127,7 @@
                 .placeholder('Reason')
                 .ariaLabel('Reason')
                 .targetEvent(ev)
-                .ok('Conform')
+                .ok('Confirm')
                 .cancel('Cancel');
                 $mdDialog.show(confirm).then(function(result) {
                     $scope.data.orderitem.cancellation_remarks=result;

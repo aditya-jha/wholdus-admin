@@ -18,13 +18,13 @@
         <span flex="100" class="bold">{{selectedBuyer.email}}</span>
     </div>
 </div>
-<div layout="row" flex="25" layout-wrap layout-padding>
+<div layout="row" flex="20" layout-wrap layout-padding>
     <div layout="row" flex="100" layout-wrap>
         <span flex="100" class="small-font secondary-text-color">Address</span>
         <span flex="100" class="bold">{{selectedBuyer.address[0].address}}, {{selectedBuyer.address[0].landmark}}</span>
     </div>
 </div>
-<div layout="row" flex="25" layout-wrap layout-padding>
+<div layout="row" flex="20" layout-wrap layout-padding>
     <div layout="row" flex="100" layout-wrap>
         <span flex="100" class="small-font secondary-text-color">City</span>
         <span flex="100" class="bold">{{selectedBuyer.address[0].city}}</span>
@@ -32,5 +32,23 @@
     <div layout="row" flex="100" layout-wrap>
         <span flex="100" class="small-font secondary-text-color">Pincode</span>
         <span flex="100" class="bold">{{selectedBuyer.address[0].pincode}}</span>
+    </div>
+</div>
+<div layout="row" flex="10" layout-wrap layout-padding layout-align="left center">
+    <div layout="row" flex="100" layout-align="left center">
+        <md-icon data-ng-click="selectBuyer()" class="cursor-pointer">
+            <svg style="width:35px;height:35px" viewBox="0 0 35 35">
+                <path fill="#FF5722" d="M10,17L5,12L6.41,10.58L10,14.17L17.59,6.58L19,8M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+            </svg>
+            <md-tooltip>Select this buyer</md-tooltip>
+        </md-icon>
+    </div>
+    <div layout="row" flex="100" layout-align="left center">
+        <md-icon data-ng-click="cancelBuyer()" class="cursor-pointer">
+            <svg style="width:35px;height:35px" viewBox="0 0 35 35">
+                <path fill="#FF5722" d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z" />
+            </svg>
+            <md-tooltip>Remove this buyer</md-tooltip>
+        </md-icon>
     </div>
 </div>

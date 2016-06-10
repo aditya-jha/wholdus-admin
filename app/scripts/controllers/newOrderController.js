@@ -14,21 +14,28 @@
 
             $scope.input = {
                 buyerID: '',
+                disableBuyerID: false
             };
 
             $scope.selectedBuyer = null;
 
             function initCosts() {
                 $scope.costs = {
-                    COD: 50,
+                    COD: 0,
                     shippingCost: 0,
                     subTotal: 0,
                     total: 0
                 };
             }
             initCosts();
-            
-            $scope.selectBuyer = function() {
+
+            $scope.totals = {
+                merchants: 0,
+                products: 0,
+                pieces: 0,
+            };
+
+            $scope.searchBuyer = function() {
                 if($scope.input.buyerID) {
                     $rootScope.$broadcast('showProgressbar');
                     var params = {
@@ -49,27 +56,56 @@
                 }
             };
 
+            $scope.selectBuyer = function() {
+                $scope.input.disableBuyerID = true;
+            };
+
+            $scope.cancelBuyer = function() {
+                $scope.input.disableBuyerID = false;
+                $scope.input.buyerID = '';
+                $scope.selectedBuyer = null;
+            };
+
             $scope.addProduct = function() {
-                var el = $compile("<div layout='row' flex='100' wua-add-product class='new-order-buyer-container' md-whiteframe='4dp' style='margin-top:1em'></div>")($scope);
+                var el = $compile("<div layout='row' flex='100' wua-add-product class='new-order-buyer-container' md-whiteframe='4dp' style='margin-top:1em' layout-wrap></div>")($scope);
                 angular.element(document.querySelector("#productContainer")).append(el);
             };
 
             var products = {};
 
+            function setSummaryTotals(obj) {
+                var merchants = {}, pieces = 0;
+
+                $scope.totals.products = Object.keys(obj).length;
+
+                angular.forEach(obj, function(value, key) {
+                    if(!merchants[value.item.seller.sellerID]) {
+                        merchants[value.item.seller.sellerID] = 1;
+                    }
+                    pieces += parseInt(value.orderDetail.pieces);
+                });
+
+                $scope.totals.merchants =  Object.keys(merchants).length;
+                $scope.totals.pieces = pieces;
+            }
+
             function setTotals() {
                 var weight = 0;
+
                 initCosts();
+                setSummaryTotals(products);
 
                 angular.forEach(products, function(value, key) {
                     $scope.costs.subTotal += (value.orderDetail.pieces*value.orderDetail.edited_price_per_piece);
-                    weight += value.orderDetail.pieces*0.3;
+                    weight += parseInt(value.orderDetail.pieces)*(parseInt(value.item.details.weight_per_unit)+50);
                 });
-                $scope.costs.shippingCost += (weight*38);
+                $scope.costs.shippingCost += (weight*38)/1000;
                 if(Object.keys(products).length > 0) {
                     if($scope.costs.shippingCost < 55) {
                         $scope.costs.shippingCost = 55;
                     }
                     $scope.costs.shippingCost = Math.ceil($scope.costs.shippingCost);
+                    $scope.costs.COD = 50*$scope.totals.merchants;
                     $scope.costs.total = Math.ceil($scope.costs.subTotal + $scope.costs.COD + $scope.costs.shippingCost);
                 } else {
                     initCosts();
@@ -88,7 +124,7 @@
                         edited_price_per_piece: value.orderDetail.edited_price_per_piece,
                         remarks: value.orderDetail.remarks
                     });
-            });
+                });
                 return data;
             }
 
@@ -98,7 +134,7 @@
                     var data = parseOrderData();
                     APIService.apiCall("POST", APIService.getAPIUrl('orders'), data)
                         .then(function(response) {
-                            ToastService.showActionToast("no products added or buyer selected", 0)
+                            ToastService.showActionToast("Order Successfully placed!", 0)
                                 .then(function(response) {
                                     $location.url('/');
                                 });

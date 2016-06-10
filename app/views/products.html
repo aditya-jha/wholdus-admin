@@ -1,0 +1,91 @@
+<div layout="row" layout-align="center start" flex="100">
+	<h2>Products</h2>
+</div>
+<!-- <div layout="row" layout-wrap layout-align="center start">
+	<span><span class="bold small-font">Total products:</span> {{data.products.length}}</span>
+</div> -->
+<div layout="row" layout-align="center center">
+
+<md-input-container flex="30">
+	<label>Category</label>
+	<md-select data-ng-model="categoryID">
+		<md-option ng-repeat="category in categories" value="{{category.categoryID}}">{{category.display_name}}</md-option>
+	</md-select>
+</md-input-container>
+<md-button class="md-raised md-primary" data-ng-click="categoryChanged()">
+	Submit
+</md-button>
+</div>
+<div layout="row" layout-wrap layout-margin layout-align="space-around start">
+	<div  flex="45" md-whiteframe="4dp" data-ng-repeat="product in data.products" style="padding:8px">
+		<div layout="column">
+			<div layout="row" flex>
+				<span style="margin-right:1em">{{product.productID}}</span>
+				Name: &nbsp;<span class="bold" flex="75">{{product.display_name}}</span>
+				<span flex></span>
+				<!-- <md-button class="md-warn" data-ng-href="users/sellers/{{s.sellerID}}">view</md-button> -->
+				<a data-ng-href="products/{{product.productID}}">
+					<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+						<path fill="#FF5722" d="M4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H16L12,22L8,18H4A2,2 0 0,1 2,16V4A2,2 0 0,1 4,2M18,14V12H12.5L10.5,14H18M6,14H8.5L15.35,7.12C15.55,6.93 15.55,6.61 15.35,6.41L13.59,4.65C13.39,4.45 13.07,4.45 12.88,4.65L6,11.53V14Z" />
+					</svg>
+					<md-tooltip md-direction="top">view more</md-tooltip>
+				</a>
+			</div>
+			<div>
+				<div layout="row">
+					<div layout="column" class="card-item" flex>
+						<span class="card-item-title" flex>Merchant Name</span>
+						<span>{{product.seller.name}}</span>
+					</div>
+					<div layout="column" class="card-item" flex>
+						<span class="card-item-title" flex>Category </span>
+						<span>{{product.category.display_name}}</span>
+					</div>
+					
+				</div>
+				<div layout="row">
+					<div class="card-item" flex>
+						<span class="card-item-title" flex>	Catalog No.</span> 
+						<span>{{product.details.seller_catalog_number}}</span>
+					</div>
+					<div class="card-item" flex>
+						<span class="card-item-title" flex>Price Per Unit </span>
+						<span>&#8377; {{product.price_per_unit}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+<div layout="row"  data-ng-show="settings.enablePagination" wu-pagination></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
