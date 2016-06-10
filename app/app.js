@@ -21,10 +21,10 @@ adminapp.config([
             controller: 'LoginController'
         }).when('/users/sellers', {
             templateUrl: 'views/seller.html',
-            controller: 'SellerController'
+            controller: 'UsersController'
         }).when('/users/sellers/:sellerID', {
             templateUrl: 'views/sellerDetail.html',
-            controller: 'SellerController'
+            controller: 'UsersController'
         }).when('/new-order', {
             templateUrl: 'views/newOrder.html',
             controller: 'NewOrderController'
@@ -63,10 +63,10 @@ adminapp.config([
             controller: 'ProductController'
         }).when('/users/buyers',{
             templateUrl: 'views/buyer.html',
-            controller: 'BuyerController'
+            controller: 'UsersController'
         }).when('/users/buyers/:buyerID',{
             templateUrl: 'views/buyerDetail.html',
-            controller: 'BuyerController'
+            controller: 'UsersController'
         }).otherwise({
             redirectTo: "/"
         });
