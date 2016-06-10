@@ -72,7 +72,7 @@
             
             <md-input-container>
                 <label>Name</label>
-                <input type="text" data-ng-model="data.buyer_lead.product.display_name" ng-required="true" />
+                <input type="text" data-ng-model="data.buyer_lead.product.name" ng-required="true" />
             </md-input-container>
             <md-input-container>
                 <label>Product ID</label>
@@ -81,13 +81,9 @@
             <md-input-container>
                 <label>Price per unit</label>
                 <input type="text" data-ng-model="data.buyer_lead.product.price_per_unit" ng-required="true" />
-            </md-input-container>    
+            </md-input-container>       
             <md-input-container>
                 <label>Minimum price per unit</label>
-                <input type="text" data-ng-model="data.buyer_lead.product.price_per_unit" ng-required="true" />
-            </md-input-container>    
-            <md-input-container>
-                <label>Price per unit</label>
                 <input type="text" data-ng-model="data.buyer_lead.product.min_price_per_unit" ng-required="true" />
             </md-input-container>    
             <md-input-container>
@@ -95,9 +91,13 @@
                 <input type="text" data-ng-model="data.buyer_lead.product.lot_size" ng-required="true" />
             </md-input-container>     
              <md-input-container>
-                <label>Lot size</label>
+                <label>Price per lot</label>
                 <input type="text" data-ng-model="data.buyer_lead.product.price_per_lot" ng-required="true" />
             </md-input-container>
+            <div layout="row" layout-align="center">
+            <a data-ng-href="products/{{data.buyer_lead.product.productID}}">
+            <md-button class="md-primary md-raised">Edit Product</md-button></a>
+            </div>
         
     </div>
   
