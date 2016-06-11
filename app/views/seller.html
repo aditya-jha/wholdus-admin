@@ -1,8 +1,13 @@
 <div layout="row" layout-align="center start" flex="100">
     <h2>Sellers</h2>
 </div>
-<div layout="row" layout-wrap layout-align="center start">
-    <span><span class="bold small-font">Total Sellers:</span> {{data.sellers.length}}</span>
+<div layout="row" flex layout-wrap layout-align="start center">
+    <div layout="row" layout-align="end" flex="55">
+        <span><span class="bold small-font">Total Sellers:</span> {{data.sellers.length}}</span>
+    </div>
+    <div layout="row" layout-align="end" flex="40">
+        <md-button data-ng-href = "/users/new-seller" class="md-warn md-raised">Create Seller</md-button>
+    </div>
 </div>
 <div layout="row" layout-wrap layout-margin layout-align="space-around start">
     <div flex="45" md-whiteframe="4dp" data-ng-repeat="s in data.sellers" layout-padding>

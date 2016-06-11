@@ -31,8 +31,8 @@
                             }
                         }
                          else if($scope.data.buyerID) {
+                            ToastService.showActionToast("No such buyer exist!", 0);
                             $location.url('/users/buyers');
-                            ToastService.showActionToast("No such buyer exist!", 0)
                         }
                     }, function(error) {
                         $rootScope.$broadcast('endProgressbar');
@@ -42,12 +42,12 @@
                     $scope.data.buyer.address = $scope.data.buyer.address[0];
                     APIService.apiCall(type, APIService.getAPIUrl("buyers"), $scope.data.buyer)
                     .then(function(response){
-                        $location.url('/users/buyers');
                         $rootScope.$broadcast('endProgressbar');
+                        $location.url('/users/buyers');
                         ToastService.showActionToast("New Buyer Created", 0);
                     },function(error){
                         $rootScope.$broadcast('endProgressbar');
-                            ToastService.showActionToast("something went wrong! please reload", 0);
+                            ToastService.showActionToast("something went wrong! Reload and try again", 0);
                     });
                 }
             }
@@ -82,11 +82,12 @@
                             $rootScope.$broadcast('endProgressbar');
                             if(type=="DELETE") {
                                     $location.url('/users/buyers');
+                                    ToastService.showActionToast("Buyer Deleted Successfully", 0);
                                 }
                              else{
                                 pageSetting();
-                             }   
-                            ToastService.showActionToast("successful", 0);
+                                ToastService.showActionToast("Changes Saved", 0);
+                             }
                         }, function(error) {
                             $rootScope.$broadcast('endProgressbar');
                             ToastService.showActionToast("something went wrong! please reload", 0);
