@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html data-ng-app="adminapp">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/">
+  <title>Wholdus Admin</title>
+  <link rel='shortcut icon' href='images/wholdus-favicon.ico' type='image/x-icon' />
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css" />
+  <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+
+  <!-- inject:css -->
+  <link rel="stylesheet" href="/build/css/styles.min.64fc94de.css">
+  <!-- endinject -->
+</head>
+<body layout="column">
+  <div id="progressBar"></div>
+
+  <div wua-header></div>
+
+  <div  wua-sidenav></div>
+  <md-content flex>
+    <div data-ng-view flex></div>
+  </md-content>
+  
+  <!-- inject:js -->
+  <script src="/build/js/custom.min.d8f994d3.js"></script>
+  <script src="/build/js/vendor/vendor.min.15046275.js"></script>
+  <!-- endinject -->
+</body>
+</html>
