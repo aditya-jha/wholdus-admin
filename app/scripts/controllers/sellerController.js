@@ -17,9 +17,10 @@
                 seller: {}
             };
 
-            function getSellers(params) {
+            function getSellers(type, params) {
                 $rootScope.$broadcast('showProgressbar');
-                APIService.apiCall("GET", APIService.getAPIUrl('sellers'), null, params)
+                if(type == "GET"){
+                APIService.apiCall(type, APIService.getAPIUrl('sellers'), null, params)
                     .then(function(response) {
                         $rootScope.$broadcast('endProgressbar');
                         if(response.sellers.length) {
@@ -29,24 +30,36 @@
                                 $scope.data.sellers = response.sellers;
                             }
                         } else if($scope.data.sellerID) {
-                            ToastService.showActionToast("No such seller exists! GO BACK", 0)
-                                .then(function(response) {
-                                    $location.url('/users/sellers');
-                                });
+                            ToastService.showActionToast("No such seller exist!", 0)
+                            $location.url('/users/sellers');
                         }
                     }, function(error) {
                         $rootScope.$broadcast('endProgressbar');
                     });
+                }
+                else if(type == "POST"){
+                    $scope.data.seller.address = $scope.data.seller.address[0];
+                    $scope.data.seller.bank_details = $scope.data.seller.bank_details[0];
+                    APIService.apiCall(type, APIService.getAPIUrl("sellers"), $scope.data.seller)
+                    .then(function(response){
+                        $rootScope.$broadcast('endProgressbar');
+                        $location.url('/users/sellers');
+                        ToastService.showActionToast("New Seller Created", 0);
+                    },function(error){
+                        $rootScope.$broadcast('endProgressbar');
+                        ToastService.showActionToast("something went wrong! Reload and try again", 0);
+                    });
+                }
             }
 
             function pageSetting() {
                 if($routeParams.sellerID) {
                     $scope.data.sellerID = parseInt($routeParams.sellerID);
-                    getSellers({
+                    getSellers('GET', {
                         sellerID: $routeParams.sellerID
                     });
                 } else {
-                    getSellers();
+                    getSellers('GET');
                 }
             }
 
@@ -56,6 +69,10 @@
                 pageSetting();
             };
 
+            $scope.create = function(){
+                getSellers('POST');
+            }
+
             $scope.changeSeller = function(event, type) {
                 if(type=="DELETE" || type=="PUT") {
                     $rootScope.$broadcast('showProgressbar');
@@ -64,11 +81,15 @@
                     APIService.apiCall(type, APIService.getAPIUrl("sellers"), $scope.data.seller)
                         .then(function(response) {
                             $rootScope.$broadcast('endProgressbar');
-                            ToastService.showActionToast("successful", 0).then(function(response) {
                                 if(type=="DELETE") {
                                     $location.url('/users/sellers');
+                                    ToastService.showActionToast("Seller Deleted Successfully", 0);
                                 }
-                            });
+                                else{
+                                    pageSetting();
+                                    ToastService.showActionToast("Changes Saved", 0);
+                                }
+                             
                         }, function(error) {
                             $rootScope.$broadcast('endProgressbar');
                             ToastService.showActionToast("something went wrong! please reload", 0);
