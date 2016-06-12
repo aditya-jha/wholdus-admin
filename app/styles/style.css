@@ -74,6 +74,14 @@ md-input-container {
 margin: 0px 0px !important;
 }
 
+.dash-card>div:hover{
+background-color: rgba(158, 158, 158, 0.2);
+
+}
+.dash-card>div{
+border-radius: 5px;
+
+}
 #productContainer {
 margin-top: 1em;
 }
