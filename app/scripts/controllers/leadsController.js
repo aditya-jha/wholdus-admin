@@ -121,14 +121,7 @@
                 $rootScope.$broadcast('endProgressbar');
                 pageSetting();
                 ToastService.showActionToast("successful", 0).then(function(response) {
-                    if(type=="DELETE") {
-                        if($scope.leadType=='buyerLeads')
-                            $location.url('/buyer-leads');
-                        else if($scope.leadType=='sellerLeads')        
-                            $location.url('/seller-leads');
-                        else if($scope.leadType=='contactusLeads')
-                            $location.url('/contactus-leads');
-                    }
+                 
                 });
             }, function(error) {
                 $rootScope.$broadcast('endProgressbar');
