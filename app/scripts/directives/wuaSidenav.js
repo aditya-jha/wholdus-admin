@@ -33,7 +33,7 @@
                         },
                         {
                             name: 'Buyer Leads',
-                            url: '/buyer-leads'
+                            url: '/leads/buyerLeads'
                         },
                         {
                             name: 'Sellers',
@@ -41,7 +41,7 @@
                         },
                         {
                             name: 'Seller Leads',
-                            url: '/seller-leads'
+                            url: 'leads/sellerLeads'
                         },
                         {
                             name: 'Payments Done',
@@ -49,7 +49,7 @@
                         },
                         {
                             name: 'Contact Us Leads',
-                            url: '/contactus-leads'
+                            url: '/leads/contactusLeads'
 
                         }
                     ];

@@ -16,17 +16,8 @@
                 leadID: null,
                 lead: {}
             };
-            function getLeadType(){
-                if($location.url().substr(0,12)=='/buyer-leads')
-                    $scope.leadType='buyerLeads';
-                else if($location.url().substr(0,13)=='/seller-leads')
-                    $scope.leadType='sellerLeads';
-                else if($location.url().substr(0,16)=='/contactus-leads')
-                    $scope.leadType='contactusLeads';
-
-            }
-            getLeadType();
-
+            $scope.leadType= $routeParams.leadType;
+        
             function getLeads(params) {
                 $rootScope.$broadcast('showProgressbar');
                 APIService.apiCall("GET", APIService.getAPIUrl($scope.leadType), null, params)
@@ -55,11 +46,11 @@
                     ToastService.showActionToast("No such lead exists! GO BACK", 0)
                         .then(function(response) {
                             if($scope.leadType=='buyerLeads')
-                                $location.url('/buyer-leads');
+                                $location.url('/leads/buyerLeads');
                             else if($scope.leadType=='sellerLeads')        
-                                $location.url('/seller-leads');
+                                $location.url('/leads/sellerLeads');
                             else if($scope.leadType=='contactusLeads')
-                                $location.url('/contactus-leads');
+                                $location.url('/leads/contactusLeads');
 
                     });
                     }
@@ -78,30 +69,29 @@
             }
 
             function pageSetting() {
+                   $scope.data.leadID = parseInt($routeParams.leadID);
                 if($scope.leadType=='buyerLeads'){
-                    if($routeParams.buyerleadID) {
-                        $scope.data.leadID = parseInt($routeParams.buyerleadID);
+                 
+                    if($routeParams.leadID) {
                         getLeads({
-                            buyerleadID: $routeParams.buyerleadID
+                            buyerleadID: $routeParams.leadID
                         });
                     } else {
                             getLeads();
                     }
                 } 
                 else if($scope.leadType=='sellerLeads'){
-                    if($routeParams.sellerleadID) {
-                        $scope.data.leadID = parseInt($routeParams.sellerleadID);
+                    if($routeParams.leadID){
                         getLeads({
-                            sellerleadID: $routeParams.sellerleadID
+                            sellerleadID: $routeParams.leadID
                         });
                     } else {
                         getLeads();
                 }
             } if($scope.leadType=='contactusLeads'){
-                if($routeParams.contactusleadID) {
-                    $scope.data.leadID = parseInt($routeParams.contactusleadID);
+                if($routeParams.leadID) {
                     getLeads({
-                        contactusleadID: $routeParams.contactusleadID
+                        contactusleadID: $routeParams.leadID
                     });
                 } else {
                     getLeads();
