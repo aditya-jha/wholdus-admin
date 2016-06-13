@@ -1,33 +1,49 @@
-
+<md-tabs md-dynamic-height md-border-bottom md-center-tabs>
+    <md-tab label='all'  data-ng-click="reset()"></md-tab>
+    <md-tab label='new'  data-ng-click="newLeads()"></md-tab>
+    <md-tab label='resolved'  data-ng-click="resolvedLeads()"></md-tab>
+</md-tabs>  
 <div layout="row" layout-align="center start" flex="100">
     <h2>Contact Us Leads</h2>
 </div>
 <div layout="row" layout-wrap layout-align="center start">
-    <span><span class="bold small-font">Total Contact Us Leads:</span> {{data.leads.length}}</span>
+    <span><span class="bold">Count:</span> {{data.leads.length}}</span>
 </div>
 <div layout="row" layout-wrap layout-margin layout-align="space-around start">
     <div  flex="45" md-whiteframe="4dp" data-ng-repeat="cul in data.leads" style="padding:8px">
-        <div layout="row" layout-align="start center" layout-padding>
-           
-             Lead ID:<span class="bold">{{cul.contactusleadID}}</span>
-            <span flex></span>
-            <!-- <md-button class="md-warn" data-ng-href="users/sellers/{{s.sellerID}}">view</md-button> -->
-            <a data-ng-href="contactus-leads/{{cul.contactusleadID}}">
-                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                    <path fill="#FF5722" d="M4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H16L12,22L8,18H4A2,2 0 0,1 2,16V4A2,2 0 0,1 4,2M18,14V12H12.5L10.5,14H18M6,14H8.5L15.35,7.12C15.55,6.93 15.55,6.61 15.35,6.41L13.59,4.65C13.39,4.45 13.07,4.45 12.88,4.65L6,11.53V14Z" />
-                </svg>
-                <md-tooltip md-direction="top">view more</md-tooltip>
-            </a>
+        <div layout="row" layout-align="start center">
+            <div layout="column" class="card-item" flex="50">
+            <span class="card-item-title">Lead ID</span>
+            <span>{{cul.contactusleadID}}</span>
         </div>
-        <div layout="row" layout-align="start center" class="small-font">
-            Email:<span class="word-wrap bold" flex="40">{{cul.email}}</span>
-            
-            Mobile No.:<span class="bold">{{cul.mobile_number}}</span>
-            <span flex></span>
-
-        
-                Status : <span class="bold">{{cul.status}}</span>
-      
-        </div>
+             <div layout="column" class="card-item" flex>
+                    <span class="card-item-title" flex>Created at</span>
+                    <span>{{cul.created_at | date}}</span>
+                </div>
+          
+           <!-- <md-button class="md-warn" data-ng-href="users/sellers/{{s.sellerID}}">view</md-button> -->
+           <a data-ng-href="contactus-leads/{{cul.contactusleadID}}">
+            <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="#FF5722" d="M4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H16L12,22L8,18H4A2,2 0 0,1 2,16V4A2,2 0 0,1 4,2M18,14V12H12.5L10.5,14H18M6,14H8.5L15.35,7.12C15.55,6.93 15.55,6.61 15.35,6.41L13.59,4.65C13.39,4.45 13.07,4.45 12.88,4.65L6,11.53V14Z" />
+            </svg>
+            <md-tooltip md-direction="top">view more</md-tooltip>
+        </a>
     </div>
+    <div layout="row" layout-align="start center">
+        <div layout="column" class="card-item" flex="50">
+            <span class="card-item-title">Email</span>
+            <span>{{cul.email}}</span>
+        </div>
+        <div layout="column" class="card-item" flex="35">
+            <span class="card-item-title">Mobile No</span>
+            <span>{{cul.mobile_number}}</span>
+        </div>
+        <div layout="column" class="card-item" flex>
+            <span class="card-item-title">Status</span>
+            <span ng-if="!cul.status">New</span>
+        <span ng-if="cul.status">Resolved</span>
+        </div>
+
+    </div>
+</div>
 </div>
