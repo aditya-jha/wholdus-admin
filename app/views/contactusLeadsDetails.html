@@ -1,6 +1,6 @@
 <div layout="row" layout-margin>
 
-    <md-button class="md-fab md-mini" aria-label="go back" data-ng-href="/contactus-leads">
+    <md-button class="md-fab md-mini" aria-label="go back" data-ng-href="/leads/contactusLeads">
         <md-icon>
             <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                 <path fill="#fff" d="M21,11H6.83L10.41,7.41L9,6L3,12L9,18L10.41,16.58L6.83,13H21V11Z" />
@@ -21,11 +21,11 @@
     <div flex></div>
 </div>
  <div layout="row" layout-align="end center" layout-margin flex="100" class="md-subhead">
-        <span class="bold">Updated At :</span> {{data.lead.updated_at | date:'MMM dd,yyyy h:mma':'+0530'}}
+        <span class="bold">Created At :</span> {{data.lead.created_at | date:'MMM dd,yyyy h:mma':'+0530'}}
 </div>
 <div layout="row" layout-align="space-around">
-    <div layout="column" ng-cloak flex="30">
-        <h3>Details</h3>
+    <div layout="column" ng-cloak flex="60">
+        <span class="md-title"><h3>Details</h3></span>
         <md-input-container>
             <label>Mobile Number</label>
             <input type="text" data-ng-model="data.lead.mobile_number" ng-required="true" />
@@ -34,10 +34,7 @@
             <label>Email</label>
             <input type="email" data-ng-model="data.lead.email" ng-required="true" />
         </md-input-container> 
-        <md-switch data-ng-model="data.lead.status">Status :{{data.lead.status}}</md-switch>
-    </div>
-    <div layout="column" ng-cloak flex="60" style="margin-top:60px;">
-        <md-input-container>
+                <md-input-container>
           <label>Remarks</label>
           <textarea data-ng-model="data.lead.remarks" md-maxlength="500" rows="5" md-select-on-focus></textarea>
         </md-input-container>
@@ -45,6 +42,7 @@
           <label>Comments</label>
           <textarea data-ng-model="data.lead.comments" md-maxlength="500" rows="5" md-select-on-focus></textarea>
         </md-input-container>
-    </div>    
+        <md-switch data-ng-model="data.lead.status" ng-true-value="'Resolved'" ng-false-value="'New'">Status :{{data.lead.status}}</md-switch>
+    </div> 
 </div>
 </div>

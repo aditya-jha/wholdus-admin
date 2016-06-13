@@ -1,6 +1,6 @@
 <div layout="row"  layout-margin>
 
-    <md-button class="md-fab md-mini" aria-label="go back" data-ng-href="/buyer-leads">
+    <md-button class="md-fab md-mini" aria-label="go back" data-ng-href="/leads/buyerLeads">
         <md-icon>
             <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                 <path fill="#fff" d="M21,11H6.83L10.41,7.41L9,6L3,12L9,18L10.41,16.58L6.83,13H21V11Z" />
@@ -19,17 +19,9 @@
         <md-tooltip md-direction="left">reset the changes</md-tooltip>
     </md-button>
     <div flex></div>
-<!--     <md-button class="md-fab md-mini" aria-label="delete" data-ng-click="changeBuyerLeads($event, 'DELETE')">
-        <md-icon>
-            <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                <path fill="#fff" d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z" />
-            </svg>
-        </md-icon>
-        <md-tooltip md-direction="left">delete this buyer lead</md-tooltip>
-    </md-button> -->
 </div>
  <div layout="row" layout-align="end center" layout-margin flex="100" class="md-subhead">
-        <span class="bold">Updated At :</span> {{data.lead.updated_at | date:'MMM dd,yyyy h:mma':'+0530'}}
+        <span class="bold">Created At :</span> {{data.lead.created_at | date:'MMM dd,yyyy h:mma':'+0530'}}
     </div>
 <div layout="row" layout-align="space-around">
     <div layout="column" ng-cloak flex="40" layout-margin>
@@ -51,21 +43,25 @@
           <label>Comments</label>
           <textarea data-ng-model="data.lead.comments" md-maxlength="500" rows="5" md-select-on-focus></textarea>
         </md-input-container>
-        <div  ng-if="data.lead.product.category!=null">
+         <md-switch data-ng-model="data.lead.status"  ng-true-value="'Resolved'" ng-false-value="'New'">Status : {{data.lead.status}}</md-switch>
+         </div>
+         <div layout="column" ng-cloak flex="40" layout-margin ng-if="data.lead.category!=null">
              <div class="md-title" ><h3>Category Details</h3></div>
             
             <md-input-container>
                 <label>Name</label>
-                <input type="text" data-ng-model="data.lead.product.category.display_name" ng-required="true" />
+                <input type="text" data-ng-model="data.lead.category.name" ng-required="true" />
             </md-input-container>
             <md-input-container>
                 <label>Category ID</label>
-                <input type="text" data-ng-model="data.lead.product.category.categoryID" ng-required="true" />
+                <input type="text" data-ng-model="data.lead.category.categoryID" ng-required="true" />
             </md-input-container>
-           
+            <div layout="row" layout-align="center">
+            <a data-ng-href="http://www.wholdus.com/{{data.lead.category.url}}" target="_blank">
+            <md-button class="md-primary md-raised">View on Website</md-button></a>
+            </div>
         </div>
-         <md-switch data-ng-model="data.lead.status">Status : {{data.lead.status}}</md-switch>
-    </div>
+    
     <div layout="column" ng-cloak flex="40" layout-margin ng-if="data.lead.product!=null">
             
              <div class="md-title" ><h3>Product Details</h3></div>
@@ -74,10 +70,15 @@
                 <label>Name</label>
                 <input type="text" data-ng-model="data.lead.product.name" ng-required="true" />
             </md-input-container>
+             <md-input-container>
+                <label>Seller Name</label>
+                <input type="text" data-ng-model="data.lead.product.seller.name" ng-required="true" />
+            </md-input-container>
             <md-input-container>
                 <label>Product ID</label>
                 <input type="text" data-ng-model="data.lead.product.productID" ng-required="true" />
             </md-input-container>
+            <div layout="row">
             <md-input-container>
                 <label>Price per unit</label>
                 <input type="text" data-ng-model="data.lead.product.price_per_unit" ng-required="true" />
@@ -89,14 +90,14 @@
             <md-input-container>
                 <label>Lot size</label>
                 <input type="text" data-ng-model="data.lead.product.lot_size" ng-required="true" />
-            </md-input-container>     
-             <md-input-container>
-                <label>Price per lot</label>
-                <input type="text" data-ng-model="data.lead.product.price_per_lot" ng-required="true" />
             </md-input-container>
+            </div>     
             <div layout="row" layout-align="center">
-            <a data-ng-href="products/{{data.lead.product.productID}}">
-            <md-button class="md-primary md-raised">Edit Product</md-button></a>
+            <a data-ng-href="products/{{data.lead.product.productID}}" target="_blank">
+            <md-button class="md-primary md-raised">View on Admin</md-button></a>
+            <a data-ng-href="http://www.wholdus.com/{{data.lead.product.url}}" target="_blank">
+            <md-button class="md-primary md-raised">View on Website</md-button></a>
+
             </div>
         
     </div>
