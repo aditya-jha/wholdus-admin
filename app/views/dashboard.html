@@ -1,1 +1,82 @@
-<div layout="row" layout-align="center center"><h2>Dashboard</h2></div>
+
+<div layout="row" flex>
+	<div flex="25">
+		<div
+    class="md-sidenav-left"
+    md-component-id="sidenav"
+    md-whiteframe="4"
+    flex
+    >
+        <md-list-item data-ng-repeat="item in items" flex layout-margin>
+            <md-button data-ng-href="{{item.url}}" ng-click="sidenavClicked()" layout-margin flex>
+                {{item.name}}
+            </md-button>
+        </md-list-item>
+   
+</div>
+	</div>
+
+<div flex="75" class="container">
+	<div layout ="row" flex layout-margin layout-align ="start">
+		<md-toolbar style="min-height:30px; font-size:14px; letter-spacing:1px;" flex="100" layout-padding class ="md-warn md-whiteframe-2dp" layout="row" layout-align="start"><span>DASHBOARD</span></md-toolbar>
+	</div>
+	<div layout="column" layout-align="space-around" layout-margin>
+		<div layout="row" flex layout-padding layout-align="space-around center">
+			<div layout="column" layout-padding flex="45" md-whiteframe="2dp">
+				<div layout="row" layout-align="center"><img src="http://traffic.alexa.com/graph?&amp;w=400&amp;h=220&amp;o=f&amp;c=1&amp;y=t&amp;b=ffffff&amp;r=6m&amp;u=wholdus.com&amp;" /></div>
+				
+			<br>
+				<div layout="row" layout-align="center"><img src="http://traffic.alexa.com/graph?&amp;w=400&amp;h=220&amp;o=f&amp;c=1&amp;y=r&amp;b=ffffff&amp;r=6m&amp;u=wholdus.com&amp;" /></div>
+			</div>
+			<div layout="column" flex= "50" md-whiteframe="2dp" class="dash-card">
+				<h3>New Orders</h3>
+				<md-divider></md-divider>
+				<div layout="column" flex data-ng-repeat="o in data.orders" ng-if="$index < 5">
+					<a href="/orders/{{o.orderID}}"><div layout="row" layout-padding layout-align="start center">
+						<div style="padding:0">{{o.orderID}}</div>
+						<md-divider></md-divider>
+						<div flex="40">{{o.buyer.name}}</div>
+						<div flex="55">{{o.buyer.company_name}}</div>
+						
+					</div></a>
+					<md-divider></md-divider>
+				</div>
+			</div>
+		</div>
+		<div layout="row" flex layout-padding layout-align="space-around start">
+			<div layout="column" flex="45" md-whiteframe="2dp" class="dash-card">
+				<h3><svg style="width:18.5px;height:18.5px" viewBox="0 0 20 20">
+                        <path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                    </svg>&nbsp;&nbsp;New Buyers</h3>
+				<md-divider></md-divider>
+				<div layout="column" flex data-ng-repeat="b in data.buyers.slice().reverse()" ng-if="$index < 5">
+					<a href="/users/buyers/{{b.buyerID}}"><div layout="row" layout-padding layout-align="start center">
+						<div style="padding:0">{{b.buyerID}}</div>
+						<md-divider></md-divider>
+						<div flex="45">{{b.name}}</div>
+						<div flex="50">{{b.company_name}}</div>
+					</div></a>
+					<md-divider></md-divider>
+				</div>
+			</div>
+			<div layout="column" flex= "50" md-whiteframe="2dp" class="dash-card">
+				<h3><svg style="width:18.5px;height:18.5px" viewBox="0 0 20 20">
+                        <path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                    </svg>&nbsp;&nbsp;New Sellers</h3>
+				<md-divider></md-divider>
+				<div layout="column" flex data-ng-repeat="s in data.sellers.slice().reverse()" ng-if="$index < 5">
+					<a href="/users/sellers/{{s.sellerID}}"><div layout="row" layout-padding layout-align="start center">
+						<div style="padding:0">{{s.sellerID}}</div>
+						<md-divider></md-divider>
+						<div flex="45">{{s.name}}</div>
+						<div flex="50">{{s.company_name}}</div>
+						
+					</div></a>
+					<md-divider></md-divider>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
