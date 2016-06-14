@@ -27,7 +27,8 @@ adminapp.config([
             controller: 'SellerController'
         }).when('/new-order', {
             templateUrl: 'views/newOrder.html',
-            controller: 'NewOrderController'
+            controller: 'NewOrderController',
+            reloadOnSearch: false
         }).when('/buyer-leads', {
             templateUrl: 'views/buyerLeads.html',
             controller: 'LeadsController'

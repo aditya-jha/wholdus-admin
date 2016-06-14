@@ -13,7 +13,9 @@
                 '$element',
                 'UtilService',
                 'ToastService',
-                function($scope, $log, APIService, ngProgressBarService, $rootScope, $element, UtilService, ToastService) {
+                '$location',
+                '$routeParams',
+                function($scope, $log, APIService, ngProgressBarService, $rootScope, $element, UtilService, ToastService, $location, $routeParams) {
 
                     function initProductData(id) {
                         $scope.product = {
@@ -72,6 +74,7 @@
                             $rootScope.$broadcast("showProgressbar");
                             APIService.apiCall("GET", APIService.getAPIUrl('products'), null, params)
                                 .then(function(response) {
+                                    // $location.search("product", JSON.stringify($scope.product));
                                     if(response.products.length) {
                                         if(response.products[0].show_online && response.products[0].verification) {
                                             $scope.product.item = response.products[0];
@@ -83,15 +86,30 @@
                                             ToastService.showActionToast("Product hidden or unverfied!", 3000);
                                         }
                                     }
+                                    else{
+                                        ToastService.showActionToast("Invalid Product ID", 0)
+                                    }
                                     $rootScope.$broadcast("endProgressbar");
                                 }, function(error) {
                                     $rootScope.$broadcast("endProgressbar");
+                                    ToastService.showActionToast("Something went wrong", 0)
                                 });
                         }
                     };
+                    // $scope.json;
+                    // function productsOrder() {
+                    //         if($routeParams.buyerID){
+                    //            $scope.json = $routeParams.buyerID;
+                    //             // $scope.product = JSON.parse(json);
+                    //             // searchProduct();
+                                 
+                    //         };
+                    //     }; 
+                     // productsOrder();
 
                     $scope.selectProduct = function() {
                         var pieces = parseInt($scope.product.orderDetail.pieces);
+                        // $location.search("product", JSON.stringify($scope.product));
                         if(isNaN(pieces) || pieces <= 0) {
                             ToastService.showActionToast("Number of Pieces cannot be 0", 0);
                         } else {
