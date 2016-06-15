@@ -86,12 +86,18 @@
                 angular.element(document.querySelector("#productContainer")).append(el);
             };
 
+
+
         //     function productOrder() {
         //     if($routeParams.product){
-        //         $scope.addProduct()
+        //         // for(var i=0;i<pro.length;i++){
+        //             var prods = [];
+        //             prods = JSON.parse($routeParams.product);
+        //         $scope.addProduct('reload');
+        //         // };
         //     };
         // }; 
-        //     productOrder();
+        //     //productOrder();
 
             var products = {};
 

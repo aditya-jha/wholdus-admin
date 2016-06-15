@@ -44,6 +44,10 @@
                             url: '/seller-leads'
                         },
                         {
+                            name: 'Shipments',
+                            url: '/shipments'
+                        },
+                        {
                             name: 'Payments Done',
                             url: '/payments-done'
                         },

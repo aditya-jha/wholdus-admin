@@ -2,7 +2,9 @@
     adminapp.directive("wuaAddProduct", function() {
         return {
             restrict: 'AE',
-            scope: {},
+            scope: {
+               // state: '=state'
+            },
             templateUrl: "views/directives/wuaAddProduct.html",
             controller: [
                 '$scope',
@@ -64,6 +66,8 @@
                         }
                     }
 
+                    //var prods = [];
+
                     $scope.searchProduct = function() {
                         if($scope.product.ID > 0) {
                             $scope.product.orderDetail.pieces = 0;
@@ -74,7 +78,8 @@
                             $rootScope.$broadcast("showProgressbar");
                             APIService.apiCall("GET", APIService.getAPIUrl('products'), null, params)
                                 .then(function(response) {
-                                    // $location.search("product", JSON.stringify($scope.product));
+                                   // prods.push(response.products[0]);
+                                    //  $location.search("product", JSON.stringify(prods));
                                     if(response.products.length) {
                                         if(response.products[0].show_online && response.products[0].verification) {
                                             $scope.product.item = response.products[0];
@@ -96,20 +101,12 @@
                                 });
                         }
                     };
-                    // $scope.json;
-                    // function productsOrder() {
-                    //         if($routeParams.buyerID){
-                    //            $scope.json = $routeParams.buyerID;
-                    //             // $scope.product = JSON.parse(json);
-                    //             // searchProduct();
-                                 
-                    //         };
-                    //     }; 
-                     // productsOrder();
+
+                    //$scope.searchProduct();
 
                     $scope.selectProduct = function() {
                         var pieces = parseInt($scope.product.orderDetail.pieces);
-                        // $location.search("product", JSON.stringify($scope.product));
+                        //$location.search(JSON.stringify($scope.product.orderDetail));
                         if(isNaN(pieces) || pieces <= 0) {
                             ToastService.showActionToast("Number of Pieces cannot be 0", 0);
                         } else {
