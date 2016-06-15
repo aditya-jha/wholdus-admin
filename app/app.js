@@ -31,21 +31,12 @@ adminapp.config([
             reloadOnSearch: false
         }).when('/buyer-leads', {
             templateUrl: 'views/buyerLeads.html',
+            controller: 'NewOrderController'
+        }).when('/leads/:leadType', {
+            templateUrl: function(params){ return 'views/'+params.leadType +'.html'},
             controller: 'LeadsController'
-        }).when('/buyer-leads/:buyerleadID', {
-            templateUrl: 'views/buyerLeadsDetails.html',
-            controller: 'LeadsController'
-        }).when('/seller-leads', {
-            templateUrl: 'views/sellerLeads.html',
-            controller: 'LeadsController'
-        }).when('/seller-leads/:sellerleadID', {
-            templateUrl: 'views/sellerLeadsDetails.html',
-            controller: 'LeadsController'
-        }).when('/contactus-leads', {
-            templateUrl: 'views/contactusLeads.html',
-            controller: 'LeadsController'
-        }).when('/contactus-leads/:contactusleadID', {
-            templateUrl: 'views/contactusLeadsDetails.html',
+        }).when('/leads/:leadType/:leadID', {
+            templateUrl:  function(params){ return 'views/'+params.leadType +'Details.html'},
             controller: 'LeadsController'
         }).when('/payments-done',{
             templateUrl: 'views/paymentsDone.html',
