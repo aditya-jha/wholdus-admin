@@ -27,6 +27,10 @@ adminapp.config([
             controller: 'SellerController'
         }).when('/new-order', {
             templateUrl: 'views/newOrder.html',
+            controller: 'NewOrderController',
+            reloadOnSearch: false
+        }).when('/buyer-leads', {
+            templateUrl: 'views/buyerLeads.html',
             controller: 'NewOrderController'
         }).when('/leads/:leadType', {
             templateUrl: function(params){ return 'views/'+params.leadType +'.html'},
@@ -61,6 +65,12 @@ adminapp.config([
         }).when('/users/new-seller',{
             templateUrl: 'views/newSeller.html',
             controller: 'SellerController'
+        }).when('/shipments',{
+            templateUrl: 'views/shipments.html',
+            controller: 'ShipmentController'
+        }).when('/shipments/:shipmentID', {
+            templateUrl: 'views/shipmentDetails.html',
+            controller: 'ShipmentController'
         }).otherwise({
             redirectTo: "/"
         });

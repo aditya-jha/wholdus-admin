@@ -8,7 +8,8 @@
         '$compile',
         'ToastService',
         '$location',
-        function($scope, $log, APIService, $rootScope, ngProgressBarService, $compile, ToastService, $location) {
+        '$routeParams',
+        function($scope, $log, APIService, $rootScope, ngProgressBarService, $compile, ToastService, $location, $routeParams) {
 
             var listeners = [];
 
@@ -43,18 +44,31 @@
                     };
                     APIService.apiCall('GET', APIService.getAPIUrl('buyers'), null, params)
                         .then(function(response) {
+                            $rootScope.$broadcast('endProgressbar');
+                            $location.search("buyerID",$scope.input.buyerID);
                             if(response.buyers && response.buyers.length == 1) {
                                 $scope.selectedBuyer = response.buyers[0];
                             } else {
                                 $scope.selectedBuyer = null;
+                                ToastService.showActionToast("Invalid Buyer ID", 0);
                             }
-                            $rootScope.$broadcast('endProgressbar');
+                            
                         }, function(error) {
                             $scope.selectedBuyer = null;
                             $rootScope.$broadcast('endProgressbar');
                         });
                 }
             };
+
+            function buyerOrder() {
+            if($routeParams.buyerID){
+                $scope.input.buyerID = parseInt($routeParams.buyerID);
+                $scope.searchBuyer()
+            };
+        }; 
+            buyerOrder();
+
+            
 
             $scope.selectBuyer = function() {
                 $scope.input.disableBuyerID = true;
@@ -64,12 +78,26 @@
                 $scope.input.disableBuyerID = false;
                 $scope.input.buyerID = '';
                 $scope.selectedBuyer = null;
+                $location.search("buyerID", null);
             };
 
             $scope.addProduct = function() {
                 var el = $compile("<div layout='row' flex='100' wua-add-product class='new-order-buyer-container' md-whiteframe='4dp' style='margin-top:1em' layout-wrap></div>")($scope);
                 angular.element(document.querySelector("#productContainer")).append(el);
             };
+
+
+
+        //     function productOrder() {
+        //     if($routeParams.product){
+        //         // for(var i=0;i<pro.length;i++){
+        //             var prods = [];
+        //             prods = JSON.parse($routeParams.product);
+        //         $scope.addProduct('reload');
+        //         // };
+        //     };
+        // }; 
+        //     //productOrder();
 
             var products = {};
 
@@ -128,7 +156,10 @@
                 return data;
             }
 
+            $scope.place = false;
+
             $scope.placeOrder = function() {
+                $scope.place =true;
                 if(Object.keys(products).length > 0 && $scope.input.buyerID) {
                     $rootScope.$broadcast('showProgressbar');
                     var data = parseOrderData();
@@ -142,6 +173,7 @@
                         }, function(error) {
                             $location.url('/new-order');
                             $rootScope.$broadcast('endProgressbar');
+                            $scope.place = false
                         });
                 } else {
                     ToastService.showSimpleToast("no products added or buyer selected", 3000);

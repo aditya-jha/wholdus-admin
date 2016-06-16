@@ -2,7 +2,9 @@
     adminapp.directive("wuaAddProduct", function() {
         return {
             restrict: 'AE',
-            scope: {},
+            scope: {
+               // state: '=state'
+            },
             templateUrl: "views/directives/wuaAddProduct.html",
             controller: [
                 '$scope',
@@ -13,7 +15,9 @@
                 '$element',
                 'UtilService',
                 'ToastService',
-                function($scope, $log, APIService, ngProgressBarService, $rootScope, $element, UtilService, ToastService) {
+                '$location',
+                '$routeParams',
+                function($scope, $log, APIService, ngProgressBarService, $rootScope, $element, UtilService, ToastService, $location, $routeParams) {
 
                     function initProductData(id) {
                         $scope.product = {
@@ -62,6 +66,8 @@
                         }
                     }
 
+                    //var prods = [];
+
                     $scope.searchProduct = function() {
                         if($scope.product.ID > 0) {
                             $scope.product.orderDetail.pieces = 0;
@@ -72,6 +78,8 @@
                             $rootScope.$broadcast("showProgressbar");
                             APIService.apiCall("GET", APIService.getAPIUrl('products'), null, params)
                                 .then(function(response) {
+                                   // prods.push(response.products[0]);
+                                    //  $location.search("product", JSON.stringify(prods));
                                     if(response.products.length) {
                                         if(response.products[0].show_online && response.products[0].verification) {
                                             $scope.product.item = response.products[0];
@@ -83,15 +91,22 @@
                                             ToastService.showActionToast("Product hidden or unverfied!", 3000);
                                         }
                                     }
+                                    else{
+                                        ToastService.showActionToast("Invalid Product ID", 0)
+                                    }
                                     $rootScope.$broadcast("endProgressbar");
                                 }, function(error) {
                                     $rootScope.$broadcast("endProgressbar");
+                                    ToastService.showActionToast("Something went wrong", 0)
                                 });
                         }
                     };
 
+                    //$scope.searchProduct();
+
                     $scope.selectProduct = function() {
                         var pieces = parseInt($scope.product.orderDetail.pieces);
+                        //$location.search(JSON.stringify($scope.product.orderDetail));
                         if(isNaN(pieces) || pieces <= 0) {
                             ToastService.showActionToast("Number of Pieces cannot be 0", 0);
                         } else {
