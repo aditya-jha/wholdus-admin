@@ -62,6 +62,17 @@
                 ordershipmentID: null
             };
 
+            $scope.allImages = [];
+            function praseProductDetails(p) {
+                p.images = UtilService.getImages(p);
+                if(p.images.length) {
+                        $scope.allImages.push(UtilService.getImageUrl(p.images[0], '200x200'));
+                }
+                else{
+                    $scope.allImages.push('images/200.png');
+                }
+            }
+
             function getShipments(params){
                 $rootScope.$broadcast('showProgressbar');
                 APIService.apiCall("GET", APIService.getAPIUrl('ordershipment'), null, params)
@@ -73,6 +84,9 @@
                             $scope.change.status = $scope.data.shipment.status.value;
                             $scope.change.ordershipmentID = $scope.data.shipmentID;
                             statusAvailable();
+                            for(var i=0; i<$scope.data.shipment.order_items.length;i++){
+                                praseProductDetails($scope.data.shipment.order_items[i].product);
+                            }
                         }
                         else{
                             $scope.data.shipments = response.order_shipments;
