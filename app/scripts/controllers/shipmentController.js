@@ -162,7 +162,6 @@
                 },function(error){
                     $rootScope.$broadcast('endProgressbar');
                     ToastService.showSimpleToast("Something went wrong. Try again", 3000);
-                    $scope.data.shipment.status.display_value = temp;
                 })
 
              };
