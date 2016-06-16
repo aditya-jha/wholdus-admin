@@ -16,21 +16,21 @@
 							<div layout="column" flex="50">
 						<div layout="column"  class="card-item">
 								<span class="card-item-title">AWB No.</span>
-								<span>{{ data.shipment.waybill_number }}</span>
+								<span class="mid-font">{{ data.shipment.waybill_number }}</span>
 							</div>
 							<div layout="column" class="card-item">
 								<span class="card-item-title">Logistics Partner</span>
-								<span>{{ data.shipment.logistics_partner }}</span>
+								<span class="mid-font">{{ data.shipment.logistics_partner }}</span>
 							</div>
 						</div>
 						<div layout="column" flex="50">	
 							<div layout="column" class="card-item">
 								<span class="card-item-title">Invoice no.</span>
-								<span>{{ data.shipment.invoice_number}}</span>
+								<span class="mid-font">{{ data.shipment.invoice_number}}</span>
 							</div>
 							<div layout="column" class="card-item">
 								<span class="card-item-title">Invoice date</span>
-								<span>{{ data.shipment.invoice_date | date}}</span>
+								<span class="mid-font">{{ data.shipment.invoice_date | date}}</span>
 							</div>
 						</div>
 						
@@ -38,45 +38,45 @@
 						<div flex></div>
 						<div layout="row">
 							<span class="card-item-title">Remarks&nbsp;:&nbsp;</span>
-							<span>{{data.shipment.remarks}}</span>
+							<span class="mid-font">{{data.shipment.remarks}}</span>
 						</div>
 					</div>	
 				<div layout="column" flex="20">
 					<div layout="column" class="card-item">
 						<span class="card-item-title">COD Charge</span>
-						<span>{{ data.shipment.cod_charge }}</span>
+						<span class="mid-font">{{ data.shipment.cod_charge }}</span>
 					</div>
 					<div layout="column" class="card-item">
 						<span class="card-item-title">Shipping Charge</span>
-						<span>{{ data.shipment.shipping_charge }}</span>
+						<span class="mid-font">{{ data.shipment.shipping_charge }}</span>
 					</div>
 					<div layout="column" class="card-item">
 						<span class="card-item-title">Final Price</span>
-						<span>{{ data.shipment.final_price }}</span>
+						<span class="mid-font">{{ data.shipment.final_price }}</span>
 					</div>
 				</div>
 				<div layout="column" flex="20">	
 							<div layout="column" class="card-item">
 						<span class="card-item-title">Length(cms)</span>
-						<span>{{ data.shipment.packaged_length}}</span>
+						<span class="mid-font">{{ data.shipment.packaged_length}}</span>
 					</div>
 							<div layout="column" class="card-item">
 								<span class="card-item-title">Width&nbsp;(cms)</span>
-								<span>{{ data.shipment.packaged_breadth}}</span>
+								<span class="mid-font">{{ data.shipment.packaged_breadth}}</span>
 							</div>
 							<div layout="column" class="card-item">
 								<span class="card-item-title">Height&nbsp;(cms)</span>
-								<span>{{ data.shipment.packaged_height}}</span>
+								<span class="mid-font">{{ data.shipment.packaged_height}}</span>
 							</div>
 						</div>
 				<div layout="column" flex="20">	
 					<div layout="column" class="card-item">
 								<span class="card-item-title">Weight&nbsp;(gms)</span>
-								<span>{{ data.shipment.packaged_weight}}</span>
+								<span class="mid-font">{{ data.shipment.packaged_weight}}</span>
 							</div>
 					<div layout="column" class="card-item">
 						<span class="card-item-title">Status</span>
-						<span layout="row" layout-align="start center">{{ data.shipment.status.display_value}}<span><md-menu md-offset="0 -5">
+						<span layout="row" layout-align="start center" class="mid-font">{{ data.shipment.status.display_value}}<span><md-menu md-offset="0 -5">
           <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
             <svg fill="#FF5722" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
@@ -90,7 +90,7 @@
           </md-button>
           <md-menu-content width="3">
             <md-menu-item ng-repeat="i in state">
-              <md-button ng-click="changeStatus($event, $index)" ng-disabled = "i.active"> <span md-menu-align-target></span> {{i.display_value}} </md-button>
+              <md-button ng-click="changeStatus($event, $index)" data-ng-disabled = "i.active"> <span md-menu-align-target></span> {{i.display_value}} </md-button>
             </md-menu-item>
           </md-menu-content>
         </md-menu></span></span>
@@ -118,42 +118,42 @@
 					<div layout="column" flex>
 				<div layout="column"  class="card-item">
 						<span class="card-item-title">Buyer ID</span>
-						<span>{{ data.order.buyer.buyerID }}</span>
+						<span class="mid-font">{{ data.order.buyer.buyerID }}</span>
 					</div>
 					<div layout="column" class="card-item">
 						<span class="card-item-title">Buyer Name</span>
-						<span>{{ data.order.buyer.name }}</span>
+						<span class="mid-font">{{ data.order.buyer.name }}</span>
 					</div>
 				</div>
 				<div layout="column" flex>	
 					<div layout="column" class="card-item">
 						<span class="card-item-title">Buyer Company</span>
-						<span>{{ data.order.buyer.company_name}}</span>
+						<span class="mid-font">{{ data.order.buyer.company_name}}</span>
 					</div>
 					<div layout="column" class="card-item">
 						<span class="card-item-title">Mobile No</span>
-						<span>{{ data.order.buyer.mobile_number}}</span>
+						<span class="mid-font">{{ data.order.buyer.mobile_number}}</span>
 					</div>
 				</div>
 				
 				<div layout="column" flex="35	">
 					<div layout="column" class="card-item">
 						<span class="card-item-title">Delivery Address</span>
-						<span>{{ data.shipment.drop_address.address }}</span>
+						<span class="mid-font">{{ data.shipment.drop_address.address }}</span>
 					</div>
 					<div layout="column" class="card-item">
 						<span class="card-item-title">City</span>
-						<span>{{ data.shipment.drop_address.city }}</span>
+						<span class="mid-font">{{ data.shipment.drop_address.city }}</span>
 					</div>
 				</div>
 				<div layout="column" flex>	
 					<div layout="column" class="card-item">
 						<span class="card-item-title">State</span>
-						<span>{{ data.shipment.drop_address.state}}</span>
+						<span class="mid-font">{{ data.shipment.drop_address.state}}</span>
 					</div>
 					<div layout="column" class="card-item">
 						<span class="card-item-title">Pincode</span>
-						<span>{{ data.shipment.drop_address.pincode}}</span>
+						<span class="mid-font">{{ data.shipment.drop_address.pincode}}</span>
 					</div>
 				</div>
 			</div>          
@@ -174,47 +174,47 @@
 						<div layout="column" flex>
 							<div layout="column" class="card-item">
 								<span class="card-item-title">Company Name</span>
-								<span>{{ data.shipment.order_items[0].product.seller.company_name }}</span>
+								<span class="mid-font">{{ data.shipment.order_items[0].product.seller.company_name }}</span>
 							</div>
 							<div layout="column" class="card-item">
 								<span class="card-item-title">Merchant Name</span>
-								<span>{{ data.shipment.order_items[0].product.seller.name }}</span>
+								<span class="mid-font">{{ data.shipment.order_items[0].product.seller.name }}</span>
 							</div>
 							<div layout="column" class="card-item">
 								<span class="card-item-title">Mobile No</span>
-								<span>{{ data.shipment.order_items[0].product.seller.mobile_number}}</span>
+								<span class="mid-font">{{ data.shipment.order_items[0].product.seller.mobile_number}}</span>
 							</div>
 						</div>
 						
 						<div layout="column" flex>
 							<div layout="column" class="card-item">
 								<span class="card-item-title">Contact Person Name</span>
-								<span>{{data.shipment.order_items[0].product.seller.concerned_person == ''? none:data.shipment.order_items[0].product.seller.concerned_person}}</span>
+								<span class="mid-font">{{data.shipment.order_items[0].product.seller.concerned_person == ''? none:data.shipment.order_items[0].product.seller.concerned_person}}</span>
 							</div>
 							<div layout="column" class="card-item">
 								<span class="card-item-title">Contact Person No</span>
-								<span>{{data.shipment.order_items[0].product.seller.concerned_person_number == ''? none:data.shipment.order_items[0].product.seller.concerned_person_number}}</span>
+								<span class="mid-font">{{data.shipment.order_items[0].product.seller.concerned_person_number == ''? none:data.shipment.order_items[0].product.seller.concerned_person_number}}</span>
 							</div>
 
 						</div>
 						<div layout="column" flex="35"> 
 							<div layout="column" class="card-item">
 								<span class="card-item-title">Pick Up Address</span>
-								<span>{{ data.shipment.pickup_address.address }}</span>
+								<span class="mid-font">{{ data.shipment.pickup_address.address }}</span>
 							</div>
 							<div layout="column" class="card-item">
 								<span class="card-item-title">City</span>
-								<span>{{ data.shipment.pickup_address.city }}</span>
+								<span class="mid-font">{{ data.shipment.pickup_address.city }}</span>
 							</div>
 						</div>
 						<div layout="column" flex>	
 							<div layout="column" class="card-item">
 								<span class="card-item-title">State</span>
-								<span>{{ data.shipment.pickup_address.state}}</span>
+								<span class="mid-font">{{ data.shipment.pickup_address.state}}</span>
 							</div>
 							<div layout="column" class="card-item">
 								<span class="card-item-title">Pincode</span>
-								<span>{{ data.shipment.pickup_address.pincode}}</span>
+								<span class="mid-font">{{ data.shipment.pickup_address.pincode}}</span>
 							</div>
 						</div>
 						
@@ -232,43 +232,43 @@
 					<div layout="row" layout-align="space-around start" layout-padding>
 						<div layout="column" layout-padding class="bold" style="font-size:2em">{{$index+1}}.</div>
 						<div layout="row"  flex="50">
-							<div layout="column" flex="75">
+							<div layout="column" flex="70">
 								<div layout="column" class="card-item">
 									<span class="card-item-title">Product ID</span>
-									<span>{{ order_item.product.productID }}</span>
+									<span class="mid-font">{{ order_item.product.productID }}</span>
 								</div>
 								<div layout="column" class="card-item">
 									<span class="card-item-title">Product Name</span>
-									<span>{{ order_item.product.name }}</span>
+									<a href="http://www.wholdus.com/{{order_item.product.name}}/{{order_item.product.productID}}" target="blank"><span class="mid-font link">{{ order_item.product.name }}</span></a>
 								</div>
 							</div>
-							<div layout="column" flex="25">
-								
+							<div layout="column" flex="30">
+								<a href="http://www.wholdus.com/{{order_item.product.name}}/{{order_item.product.productID}}" target="blank"><img data-ng-src="{{allImages[$index]}}" height="150" width="120" /></a>
 							</div>	
 						</div>
 						<div layout="column"  flex="25" >	
 							<div layout="column" class="card-item">
 								<span class="card-item-title">Catalog No</span>
-								<span>{{ order_item.product.details.seller_catalog_number}}</span>
+								<span class="mid-font">{{ order_item.product.details.seller_catalog_number}}</span>
 							</div>
 							<div layout="column" class="card-item">
 								<span class="card-item-title">Pcs Sold</span>
-								<span>{{ order_item.pieces }}</span>
+								<span class="mid-font">{{ order_item.pieces }}</span>
 							</div>
 							<div layout="column" class="card-item">
 								<span class="card-item-title">Remarks</span>
-								<span>{{ order_item.remarks}}</span>
+								<span class="mid-font">{{ order_item.remarks}}</span>
 							</div>
 						</div>  
 						<div layout="column" flex="25" >
 
 							<div layout="column" class="card-item">
 								<span class="card-item-title">Negotiated Price Per Piece</span>
-								<span>&#8377; {{ order_item.edited_price_per_piece }}</span>
+								<span class="mid-font">&#8377; {{ order_item.edited_price_per_piece }}</span>
 							</div>
 							<div layout="column" class="card-item">
 								<span class="card-item-title">Sub - Amount</span>
-								<span>&#8377; {{ order_item.final_price}}</span>
+								<span class="mid-font">&#8377; {{ order_item.final_price}}</span>
 							</div>
 						</div>
 						

@@ -65,7 +65,9 @@ word-wrap: break-word;
 .small-font {
 font-size: 0.8em;
 }
-
+.mid-font{
+  font-size: 0.9em;
+}
 .large-font {
     font-size: 1.2em;
 }
