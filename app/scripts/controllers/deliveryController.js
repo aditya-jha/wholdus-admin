@@ -20,6 +20,7 @@
         };
         $scope.ordershipment.suborderID=DeliveryService.suborderID; 
         $scope.ordershipment.order_items=DeliveryService.order_items;
+         $scope.ordershipment.all_items=DeliveryService.all_items;
         $scope.invoice_date=new Date();
         $scope.cancel = function() {
                 $mdDialog.cancel();
@@ -31,7 +32,9 @@
         }    
         $scope.sendDelivery= function(){
                  $scope.ordershipment.suborderID=DeliveryService.suborderID; 
-                 $scope.ordershipment.order_items=DeliveryService.order_items; 
+                 $scope.ordershipment.all_items=DeliveryService.all_items;
+                 if(DeliveryService.all_items){
+                 $scope.ordershipment.order_items=DeliveryService.order_items; }
                  $scope.ordershipment.invoice_date=changeDateFormat( $scope.invoice_date);
                  
                  $rootScope.$broadcast('showProgressbar');

@@ -13,7 +13,7 @@
             factory.setProp=function(ordershipment){
             factory.suborderID=ordershipment.suborderID;
             factory.order_items=ordershipment.order_items;
-
+            factory.all_items=ordershipment.all_items;
             }
             return factory;
         }
