@@ -36,7 +36,7 @@
                 </div>
                 <div layout="column"  flex>
                     <md-input-container>
-                        <label>Weight(kg)</label>
+                        <label>Weight(grams)</label>
                         <input type="number" data-ng-model="ordershipment.packaged_weight" ng-required="true" />
                     </md-input-container> 
 
@@ -79,7 +79,7 @@
             Cancel
         </md-button>
 
-        <md-button type="submit" class="md-raised md-primary" ng-click="sendDelivery()" style="margin-right:20px;">
+        <md-button type="submit" class="md-raised md-primary" ng-click="confirmDeliveryForm.$valid && sendDelivery()" style="margin-right:20px;">
             Done
         </md-button>
         <div flex></div>

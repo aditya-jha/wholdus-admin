@@ -201,3 +201,8 @@ min-height: 25px;
 
 }
 
+img{
+    width: 100px;
+    height: auto;
+}
+

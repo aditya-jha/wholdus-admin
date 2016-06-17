@@ -17,6 +17,7 @@
 
         $scope.ordershipment={
             tracking_url:"",
+            logistics_partner:"Fedex"
         };
         $scope.ordershipment.suborderID=DeliveryService.suborderID; 
         $scope.ordershipment.order_items=DeliveryService.order_items;
@@ -33,7 +34,7 @@
         $scope.sendDelivery= function(){
                  $scope.ordershipment.suborderID=DeliveryService.suborderID; 
                  $scope.ordershipment.all_items=DeliveryService.all_items;
-                 if(DeliveryService.all_items){
+                 if(!DeliveryService.all_items){
                  $scope.ordershipment.order_items=DeliveryService.order_items; }
                  $scope.ordershipment.invoice_date=changeDateFormat( $scope.invoice_date);
                  
@@ -41,13 +42,16 @@
                   APIService.apiCall("POST", APIService.getAPIUrl("ordershipment"), $scope.ordershipment)
                   .then(function(response) {
                             $rootScope.$broadcast('endProgressbar');
-                             $mdDialog.cancel();
                             ToastService.showActionToast("successful", 0).then(function(response) {
                                
                             });
+                             $mdDialog.cancel();
+                            
                         }, function(error) {
                             $rootScope.$broadcast('endProgressbar');
-                            ToastService.showActionToast("something went wrong! please reload", 0);
+                            $mdDialog.cancel();
+                            // ToastService.showActionToast("something went wrong! please reload", 0);
+
                         });
 
             };  

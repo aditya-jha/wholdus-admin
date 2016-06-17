@@ -1,66 +1,62 @@
 <div layout="column" layout-align="center">
 	<div layout="row" layout-align="center center" layout-margin flex="100" class="md-title">
-		Order ID :<span class="bold"> {{data.order.orderID}}</span>
+		Order No:<span class="bold"> {{data.order.display_number}}</span>
 	</div>
 	<div layout="row" layout-align="end center" layout-margin flex="100" class="md-subhead">
-		<span class="bold">Updated At :</span> {{data.order.updated_at | date:'MMM dd,yyyy h:mma':'+0530'}}
+		<span class="bold">Created At :</span> {{data.order.created_at | date:'MMM dd,yyyy h:mma':'+0530'}}
 	</div>
 
 	<div layout="row"  layout-align="center center" flex="100" layout-margin>	
 		<div  layout="column" md-whiteframe="2" flex="90">
 			<div layout="column" flex >
 				<div layout="row" layout-align="center center" class="md-title property-title" layout-padding flex>Order Details</div>
-				<div layout="row" layout-padding>
-					<div layout="column" class="card-item" flex="20">
-						<span class="card-item-title">Order ID</span>
-						<span>{{data.order.orderID}}</span>
-					</div>
-					<div layout="column" class="card-item" flex="20">
-						<span class="card-item-title">Order No.</span>
-						<span>{{data.order.display_number}}</span>
-					</div>
-					<div layout="column" class="card-item" flex="20">
+				<div layout="row"  layout-align="center" flex layout-padding>
+				<div layout="column" layout-padding flex>
+					
+					<div layout="column" class="card-item">
 						<span class="card-item-title">Buyer Name</span>
 						<span>{{data.order.buyer.name}}</span>
 					</div>
-					<div layout="column" class="card-item" flex="20">
+					<div layout="column" class="card-item">
 						<span class="card-item-title">Company Name</span>
 						<span>{{data.order.buyer.company_name}}</span>
 					</div>
-					<div layout="column" class="card-item" flex="20">
-						<span class="card-item-title">Date</span>
-						<span>{{data.order.created_at | date}}</span>
-					</div>
+					
 				</div>
-				<div layout="row" layout-padding>
+				<div layout="column" layout-padding flex>
 
 
-					<div layout="column" class="card-item" flex="20">
+					<div layout="column" class="card-item">
 						<span class="card-item-title">Order Status</span>
 						<span>{{data.order.status.display_value}}</span>
 					</div>
-					<div layout="column" class="card-item" flex="20">
+					<div layout="column" class="card-item">
 						<span class="card-item-title">Total Products</span>
 						<span>{{data.order.product_count}}</span>
 					</div>
-					<div layout="column" class="card-item" flex="20">
+				</div>	
+				<div layout="column" layout-padding flex>
+					<div layout="column" class="card-item">
 						<span class="card-item-title">Final Price</span>
 						<span>&#8377; {{data.order.calculated_price}}</span>
 					</div>
-					<div layout="column" class="card-item" flex="20">
+					<div layout="column" class="card-item">
 						<span class="card-item-title">Remarks</span>
 						<span>{{data.order.remarks}}</span>
 					</div>
-					<div layout="column" class="card-item" ng-show="data.order.status.value >= 3" flex="20">
+				</div>
+				<div layout="column" layout-padding flex>	
+					<div layout="column" class="card-item" ng-show="data.order.status.value >= 3">
 						<span class="card-item-title">COD Charge</span>
 						<span>&#8377; {{data.order.cod_charge}}</span>
 					</div>
-					<div layout="column" class="card-item" ng-show="data.order.status.value >= 3" flex="20">
+					<div layout="column" class="card-item" ng-show="data.order.status.value >= 3">
 						<span class="card-item-title">Shipping Charge</span>
 						<span>&#8377; {{data.order.shipping_charge}}</span>
 					</div>
 
 
+				</div>
 				</div>        
 			</div>
 		</div>
@@ -126,11 +122,12 @@
 			<div layout="column" flex>
 				<div layout="row" flex>
 					<div layout="row" flex="40"> <!-- suborder details row --> 
-						<div layout="column" layout-padding flex layout-align="center center"> 
+						<div layout="column" layout-padding flex> 
 
-							<div layout="row" layout-align="center" class="md-title bold" layout-padding>Suborder Details</div>
-							<div layout="row"  flex layout-margin>
-								<div layout="column" flex>
+							<div layout="row"  layout-align="center" class="md-title bold" layout-padding>Suborder Details</div>
+							<div layout="row"  flex layout-align="space-around start" layout-padding>
+
+								<div layout="column" flex="50">
 									<div layout="column" class="card-item">
 										<span class="card-item-title">Suborder Number</span>
 										<span>{{ sub_order.display_number }}</span>
@@ -149,7 +146,7 @@
 										<span>{{ sub_order.remarks}}</span>
 									</div>
 								</div>	
-								<div layout="column" flex>
+								<div layout="column" flex="40">
 									<div layout="column" class="card-item">
 										<span class="card-item-title">Product Count</span>
 										<span flex>{{ sub_order.product_count }}</span>
@@ -165,19 +162,16 @@
 
 								</div>
 							</div> 
-
-
-
 						</div>
 						<md-divider></md-divider>
 					</div>
 					<!-- manufacturer details start -->
 					<div layout="row" flex="60">
-						<div layout="column" layout-align="center center" flex> 
-							<div layout="column" flex>
-								<div layout="row" layout-align="center" class="md-title bold" layout-padding>Manufacturer</div>
-								<div layout="row"  layout-padding flex layout-align="center">
-									<div layout="column" flex>
+						<div layout="column"  layout-padding flex> 
+							
+								<div layout="row" layout-align="center" class="md-title bold" layout-padding>Manufacturer Details</div>
+								<div layout="row" flex layout-align="space-around start">
+									<div layout="column" flex="30">
 										<div layout="column" class="card-item">
 											<span class="card-item-title">Company Name</span>
 											<span>{{ sub_order.seller.company_name }}</span>
@@ -192,7 +186,7 @@
 										</div>
 									</div>
 
-									<div layout="column" flex="35"> 
+									<div layout="column" flex="30"> 
 										<div layout="column" class="card-item">
 											<span class="card-item-title">Pick Up Address</span>
 											<span>{{ sub_order.seller.address[0].address }}</span>
@@ -203,7 +197,7 @@
 										</div>
 
 									</div>
-									<div layout="column" flex>	
+									<div layout="column" flex="20">	
 
 										<div layout="column" class="card-item">
 											<span class="card-item-title">Pincode</span>
@@ -222,7 +216,7 @@
 								</div> 
 
 
-							</div> 
+							
 						</div> 
 					</div>
 				</div>
@@ -233,28 +227,31 @@
 					<div layout="row" layout-align="space-around start" class="md-title bold" layout-padding>
 					<span>ORDER ITEM</span>
 					</div>
-					<div layout="row" layout-align="space-around start">
+					<div layout="row" layout-align="space-around start" ng-if="sub_order.isShipable" layout-padding>
 						<md-button class="md-primary md-raised" ng-click="confirmDelivery($event,$index)">
 							Send For Shipment
 						</md-button>
 						<md-checkbox  aria-label="Checkbox" data-ng-model="sub_order.allItems" class="md-primary"
-							ng-true-value="1" ng-false-value="0" ng-change="changeItemsSelected($index)">
+							ng-true-value="1" ng-false-value="0" ng-change="changeItemsSelected($index)" ng-if="sub_order.isShipable">
 							Add all items
 						</md-checkbox>
 					</div>
 					<div layout="row">	
 					<div layout="column" layout-align="space-between" ng-cloak flex="100">
-					<div  layout="column" data-ng-repeat="order_item in sub_order.order_items | orderBy:'current_status'" class="small-font">
+					<div  layout="column" data-ng-repeat="order_item in sub_order.order_items | orderBy:'current_status'" style="font-size:0.95em">
 						<div ng-style="order_item.status.value <= 2 && styles.toBeShippedItem  || order_item.status.value == 4 && styles.canceledItem || order_item.status.value >=5 
-							&& styles.shippedItem">
+							&& styles.shippedItem" style="margin:2px 0">
 							<!-- suborder order item details starts -->
 							<div layout="row" layout-align="space-around start" layout-padding>
 								<div layout="column" layout-padding class="bold" style="font-size:2em">{{$index+1}}.
 								</div>
-								<div layout="column"  flex="20">
-									<img ng-src="{{productImage(order_item.product.productID)}}"/>
+
+								<div layout="column" layout-align="center center" style="width:100px, height:100px;" flex="15">
+								
+									<img data-ng-src="{{order_item.product.imageUrl}}"/>
+								
 								</div>
-								<div layout="column"  flex="30">
+								<div layout="column"  flex="25">
 									<div layout="column" class="card-item">
 										<span class="card-item-title">Product ID</span>
 										<span>{{ order_item.product.productID }}</span>
