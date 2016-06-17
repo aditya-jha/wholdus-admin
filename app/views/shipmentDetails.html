@@ -78,7 +78,7 @@
 						<span class="card-item-title">Status</span>
 						<span layout="row" layout-align="start center" class="mid-font">{{ data.shipment.status.display_value}}<span><md-menu md-offset="0 -5">
           <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-            <svg fill="#FF5722" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <svg class= "rotateX" fill="#FF5722" height="28" viewBox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
         <path d="M0 0h24v24H0V0z" id="a"/>
     </defs>
@@ -239,11 +239,11 @@
 								</div>
 								<div layout="column" class="card-item">
 									<span class="card-item-title">Product Name</span>
-									<a href="http://www.wholdus.com/{{order_item.product.name}}/{{order_item.product.productID}}" target="blank"><span class="mid-font link">{{ order_item.product.name }}</span></a>
+									<a href="/products/{{order_item.product.productID}}" target="_blank"><span class="mid-font link">{{ order_item.product.name }}</span></a>
 								</div>
 							</div>
 							<div layout="column" flex="30">
-								<a href="http://www.wholdus.com/{{order_item.product.name}}/{{order_item.product.productID}}" target="blank"><img data-ng-src="{{allImages[$index]}}" height="150" width="120" /></a>
+								<a href="/products/{{order_item.product.productID}}" target="_blank"><img data-ng-src="{{allImages[$index]}}" height="150" width="120" /></a>
 							</div>	
 						</div>
 						<div layout="column"  flex="25" >	

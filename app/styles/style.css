@@ -90,6 +90,17 @@ margin-top: 1em;
 .sub-color{
 color:dimgrey;
 }
+
+.rotateX:hover{
+   transform: rotate(360deg);
+   transition: all 1s;
+   height: 35px;
+   width: 35px;
+}
+.rotateY:hover{
+   transform: rotateY(180deg);
+   transition: all 1s;
+}
 .payment label{
 color:grey;
 
