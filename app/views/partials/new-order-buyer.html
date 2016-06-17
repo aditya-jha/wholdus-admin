@@ -36,6 +36,14 @@
 </div>
 <div layout="row" flex="10" layout-wrap layout-padding layout-align="left center">
     <div layout="row" flex="100" layout-align="left center">
+        <md-icon class="cursor-pointer">
+            <a href="/users/buyers/{{selectedBuyer.buyerID}}"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                    <path fill="#FF5722" d="M4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H16L12,22L8,18H4A2,2 0 0,1 2,16V4A2,2 0 0,1 4,2M18,14V12H12.5L10.5,14H18M6,14H8.5L15.35,7.12C15.55,6.93 15.55,6.61 15.35,6.41L13.59,4.65C13.39,4.45 13.07,4.45 12.88,4.65L6,11.53V14Z" />
+                </svg></a>
+            <md-tooltip>View Buyer Details</md-tooltip>
+        </md-icon>
+    </div>
+    <div layout="row" flex="100" layout-align="left center">
         <md-icon data-ng-click="selectBuyer()" class="cursor-pointer">
             <svg style="width:35px;height:35px" viewBox="0 0 35 35">
                 <path fill="#FF5722" d="M10,17L5,12L6.41,10.58L10,14.17L17.59,6.58L19,8M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />

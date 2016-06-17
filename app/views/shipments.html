@@ -1,0 +1,37 @@
+<div layout="row" layout-align="center start" flex="100">
+    <h2>Order Shipments</h2>
+</div>
+<div layout="row" layout-wrap layout-align="center start">
+    <span><span class="bold small-font">Total Shipments:</span> {{data.shipments.length}}</span>
+</div>
+<div layout="row" layout-wrap layout-margin layout-align="space-around start">
+    <div  flex="45" md-whiteframe="4dp" data-ng-repeat="s in data.shipments" layout-padding>
+        <div layout="row" layout-align="start center">
+            <label>Suborder-no.&nbsp;:&nbsp;</label><span >{{s.suborder_display_number}}</span>
+            <div flex></div>
+            <a data-ng-href="shipments/{{s.ordershipmentID}}">
+                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                    <path fill="#FF5722" d="M4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H16L12,22L8,18H4A2,2 0 0,1 2,16V4A2,2 0 0,1 4,2M18,14V12H12.5L10.5,14H18M6,14H8.5L15.35,7.12C15.55,6.93 15.55,6.61 15.35,6.41L13.59,4.65C13.39,4.45 13.07,4.45 12.88,4.65L6,11.53V14Z" />
+                </svg>
+                <md-tooltip md-direction="bottom">view more</md-tooltip>
+            </a>
+        </div>
+        <div layout="row" flex layout-align="start center">
+            <div flex="30"><label class="sub-color small-font">AWB&nbsp;:&nbsp;</label><span class="small-font">{{s.waybill_number}}</span></div>
+            <div flex= "30"><label class="sub-color small-font">Date&nbsp;:&nbsp;</label><span class="small-font">{{s.created_at | date}}</span></div>
+        </div>
+        <div layout="row" flex layout-align="start center" class="small-font">
+            <div flex="30">
+                <label class="sub-color">Buyer&nbsp;:&nbsp;</label><span></span>
+            </div>
+            <div flex="30">
+                <label class="sub-color">Seller&nbsp;:&nbsp;</label><span class="word-wrap">{{s.order_items[0].product.seller.name}}</span>    
+            </div>
+            <div flex ="40" layout="row" layout-align="end center">
+                <label class="sub-color">Status&nbsp;:&nbsp;</label><label class="bold">{{s.status.display_value}}</label>&nbsp;&nbsp;<span><a href="{{s.tracking_url}}" target="_blank"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+    <path fill="#FF5722" d="M12,2C15.31,2 18,4.66 18,7.95C18,12.41 12,19 12,19C12,19 6,12.41 6,7.95C6,4.66 8.69,2 12,2M12,6A2,2 0 0,0 10,8A2,2 0 0,0 12,10A2,2 0 0,0 14,8A2,2 0 0,0 12,6M20,19C20,21.21 16.42,23 12,23C7.58,23 4,21.21 4,19C4,17.71 5.22,16.56 7.11,15.83L7.75,16.74C6.67,17.19 6,17.81 6,18.5C6,19.88 8.69,21 12,21C15.31,21 18,19.88 18,18.5C18,17.81 17.33,17.19 16.25,16.74L16.89,15.83C18.78,16.56 20,17.71 20,19Z" />
+</svg></a><md-tooltip md-direction="bottom">Track order</md-tooltip></span>
+            </div>
+        </div>
+    </div>
+</div>

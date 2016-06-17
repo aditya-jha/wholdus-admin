@@ -23,12 +23,15 @@
 		<div layout="row" flex layout-padding layout-align="space-around center">
 			<div layout="column" layout-padding flex="45" md-whiteframe="2dp">
 				<div layout="row" layout-align="center"><img src="http://traffic.alexa.com/graph?&amp;w=400&amp;h=220&amp;o=f&amp;c=1&amp;y=t&amp;b=ffffff&amp;r=6m&amp;u=wholdus.com&amp;" /></div>
-				
-			<br>
+				<div>
+					<a href="http://www.alexa.com/siteinfo/wholdus.com" rel="nofollow" target="_blank"><script src="http://xslt.alexa.com/site_stats/js/t/a?url=wholdus.com" type="text/javascript"></script></a>
+				</div>
 				<div layout="row" layout-align="center"><img src="http://traffic.alexa.com/graph?&amp;w=400&amp;h=220&amp;o=f&amp;c=1&amp;y=r&amp;b=ffffff&amp;r=6m&amp;u=wholdus.com&amp;" /></div>
 			</div>
 			<div layout="column" flex= "50" md-whiteframe="2dp" class="dash-card">
-				<h3>New Orders</h3>
+				<h3><svg style="width:20px;height:20px" viewBox="0 -3 24 24">
+    <path fill="#000000" d="M18,18.5A1.5,1.5 0 0,1 16.5,17A1.5,1.5 0 0,1 18,15.5A1.5,1.5 0 0,1 19.5,17A1.5,1.5 0 0,1 18,18.5M19.5,9.5L21.46,12H17V9.5M6,18.5A1.5,1.5 0 0,1 4.5,17A1.5,1.5 0 0,1 6,15.5A1.5,1.5 0 0,1 7.5,17A1.5,1.5 0 0,1 6,18.5M20,8H17V4H3C1.89,4 1,4.89 1,6V17H3A3,3 0 0,0 6,20A3,3 0 0,0 9,17H15A3,3 0 0,0 18,20A3,3 0 0,0 21,17H23V12L20,8Z" />
+</svg>&nbsp;New Orders</h3>
 				<md-divider></md-divider>
 				<div layout="column" flex data-ng-repeat="o in data.orders" ng-if="$index < 5">
 					<a href="/orders/{{o.orderID}}"><div layout="row" layout-padding layout-align="start center">
