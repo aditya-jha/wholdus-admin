@@ -226,3 +226,7 @@ min-height: 25px;
 .green{
   background-color: #009900;
 }
+.input-label{
+  font-size: 0.8em;
+  color:grey;
+}
