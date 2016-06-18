@@ -8,12 +8,18 @@
             // };
             // return ordershipment;
             var factory={};
-            factory.suborderID=0;
-            factory.order_items=[];
-            factory.setProp=function(ordershipment){
-            factory.suborderID=ordershipment.suborderID;
-            factory.order_items=ordershipment.order_items;
+            factory.suborderID=null;
 
+            factory.order_items=[];
+            factory.setProp=function(property){
+            factory.suborderID=property.suborderID;
+            factory.order_items=property.order_items;
+            if(property.all_items!=null){
+            factory.all_items=property.all_items;
+            }
+            if(property.fully_paid!=null){
+            factory.fully_paid=property.fully_paid;
+            }
             }
             return factory;
         }
