@@ -7,7 +7,7 @@
         function($mdMedia, $mdDialog) {
         	var factory = {};
 
-            factory.viewDialog = function(event,controller,templateUrl) {
+            factory.viewDialog = function(event,controller,templateUrl,va=null) {
                 var useFullScreen = $mdMedia('xs');
                 $mdDialog.show({
                     controller: controller,
@@ -18,8 +18,10 @@
                     fullscreen: useFullScreen,
                     locals: {
                         productID: null
-                    }
+                    },
+
                 });
+                factory.ID = va;
             };
 
             return factory;

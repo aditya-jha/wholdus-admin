@@ -41,15 +41,19 @@
                         },
                         {
                             name: 'Seller Leads',
-                            url: 'leads/sellerLeads'
+                            url: '/leads/sellerLeads'
                         },
                         {
                             name: 'Shipments',
                             url: '/shipments'
                         },
                         {
-                            name: 'Payments Done',
-                            url: '/payments-done'
+                            name: 'Buyer Payments',
+                            url: '/payments/buyer-payment'
+                        },
+                        {
+                            name: 'Seller Payments',
+                            url: '/payments/seller-payment'
                         },
                         {
                             name: 'Contact Us Leads',
@@ -57,6 +61,7 @@
 
                         }
                     ];
+
                     function closeSidenav() {
                         $mdSidenav('sidenav').close();
                     }

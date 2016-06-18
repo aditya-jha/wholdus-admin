@@ -18,7 +18,7 @@
                 orders: []
             };
 
-            $scope.items = [
+           $scope.items = [
                         {
                             name: "Dashboard",
                             url: "/"
@@ -41,7 +41,7 @@
                         },
                         {
                             name: 'Buyer Leads',
-                            url: '/buyer-leads'
+                            url: '/leads/buyerLeads'
                         },
                         {
                             name: 'Sellers',
@@ -49,23 +49,26 @@
                         },
                         {
                             name: 'Seller Leads',
-                            url: '/seller-leads'
+                            url: '/leads/sellerLeads'
                         },
                         {
                             name: 'Shipments',
                             url: '/shipments'
                         },
                         {
-                            name: 'Payments Done',
-                            url: '/payments-done'
+                            name: 'Buyer Payments',
+                            url: '/payments/buyer-payment'
+                        },
+                        {
+                            name: 'Seller Payments',
+                            url: '/payments/seller-payment'
                         },
                         {
                             name: 'Contact Us Leads',
-                            url: '/contactus-leads'
+                            url: '/leads/contactusLeads'
 
                         }
                     ];
-
             function getorders(params) {
                 $rootScope.$broadcast('showProgressbar');
                 APIService.apiCall('GET', APIService.getAPIUrl('orders'), null, params)

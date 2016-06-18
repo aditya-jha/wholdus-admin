@@ -81,7 +81,7 @@
                     if(response.order_shipments.length){
                         if($scope.data.shipmentID){
                             $scope.data.shipment = response.order_shipments[0];
-                            $scope.change.status = $scope.data.shipment.status.value;
+                            $scope.change.status = $scope.data.shipment.order_shipment_status.value;
                             $scope.change.ordershipmentID = $scope.data.shipmentID;
                             statusAvailable();
                             for(var i=0; i<$scope.data.shipment.order_items.length;i++){
@@ -124,7 +124,7 @@
                     $scope.state[i].active =true;
                     }
 
-                switch($scope.data.shipment.status.value){
+                switch($scope.data.shipment.order_shipment_status.value){
                     case 3:
                         $scope.state[1].active = false;
                         break;
@@ -163,13 +163,13 @@
             }
 
             $scope.changeStatus = function(event, index){
-                var temp = $scope.data.shipment.status.display_value;
+                var temp = $scope.data.shipment.order_shipment_status.display_value;
                 $scope.change.status = $scope.state[index].value;
                   $rootScope.$broadcast('showProgressbar');
                     APIService.apiCall("PUT", APIService.getAPIUrl("ordershipment"), $scope.change)
                         .then(function(response) {
-                            $scope.data.shipment.status.display_value = $scope.state[index].display_value;
-                            $scope.data.shipment.status.value = $scope.state[index].value;
+                            $scope.data.shipment.order_shipment_status.display_value = $scope.state[index].display_value;
+                            $scope.data.shipment.order_shipment_status.value = $scope.state[index].value;
                             $rootScope.$broadcast('endProgressbar');
                             ToastService.showSimpleToast("Status Changed", 2000);
                             statusAvailable();

@@ -69,11 +69,11 @@
                                            else{
                                             product.imageUrl = 'images/200.png';
                                         }
-                                        if(!sub_order.isShipable && sub_order.order_items[j].status.value<=2)
+                                        if(!sub_order.isShipable && sub_order.order_items[j].order_item_status.value<=2)
                                         {
                                            sub_order.isShipable=1;   
                                        }
-                                       if(!sub_order.isPayable && sub_order.order_items[j].status.value>=5)
+                                       if(!sub_order.isPayable && sub_order.order_items[j].order_item_status.value>=5)
                                        {
                                            sub_order.isPayable=1;   
                                        }
@@ -199,7 +199,7 @@
                      for(var i=0;i<$scope.data.order.sub_orders[index].order_items.length;i++)
                      {
                         var order_item=$scope.data.order.sub_orders[index].order_items[i];
-                        if(order_item.addForDelivery && order_item.status.value <= 2){   
+                        if(order_item.addForDelivery && order_item.order_item_status.value <= 2){   
                             $scope.ordershipment.order_items.push({orderitemID : order_item.orderitemID});    
                         }
 
@@ -224,7 +224,7 @@
                  for(var i=0;i<$scope.data.order.sub_orders[index].order_items.length;i++)
                  {
                     var order_item = $scope.data.order.sub_orders[index].order_items[i];
-                    if(order_item.addForPayment && order_item.status.value >=5){   
+                    if(order_item.addForPayment && order_item.order_item_status.value >=5){   
                         $scope.sellerpayment.order_items.push({orderitemID : order_item.orderitemID});    
                     }
 
@@ -251,7 +251,9 @@
    };
 
 
-
+   $scope.buyerPayment = function(event, va){
+    DialogService.viewDialog(event,'PaymentController','views/partials/create-buyer-payment.html', va);
+   }
 
 
 

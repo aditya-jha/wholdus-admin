@@ -19,16 +19,17 @@
         <div layout="row" flex layout-align="start center">
             <div flex="30"><label class="sub-color small-font">AWB&nbsp;:&nbsp;</label><span class="small-font">{{s.waybill_number}}</span></div>
             <div flex= "30"><label class="sub-color small-font">Date&nbsp;:&nbsp;</label><span class="small-font">{{s.created_at | date}}</span></div>
+            <div flex= "30"><label class="sub-color small-font">Shipment ID&nbsp;:&nbsp;</label><span class="small-font">{{s.ordershipmentID}}</span></div>
         </div>
         <div layout="row" flex layout-align="start center" class="small-font">
             <div flex="30">
-                <label class="sub-color">Buyer&nbsp;:&nbsp;</label><span></span>
+                <label class="sub-color">Buyer&nbsp;:&nbsp;</label><span class="word-wrap">{{s.buyer.name}}</span>
             </div>
             <div flex="30">
-                <label class="sub-color">Seller&nbsp;:&nbsp;</label><span class="word-wrap">{{s.order_items[0].product.seller.name}}</span>    
+                <label class="sub-color">Seller&nbsp;:&nbsp;</label><span class="word-wrap">{{s.seller.company_name}}</span>    
             </div>
             <div flex ="40" layout="row" layout-align="end center">
-                <label class="sub-color">Status&nbsp;:&nbsp;</label><label class="bold">{{s.status.display_value}}</label>&nbsp;&nbsp;<span><a href="{{s.tracking_url}}" target="_blank"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <label class="sub-color">Status&nbsp;:&nbsp;</label><label class="bold">{{s.order_shipment_status.display_value}}</label>&nbsp;&nbsp;<span><a href="{{s.tracking_url}}" target="_blank"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
     <path fill="#FF5722" d="M12,2C15.31,2 18,4.66 18,7.95C18,12.41 12,19 12,19C12,19 6,12.41 6,7.95C6,4.66 8.69,2 12,2M12,6A2,2 0 0,0 10,8A2,2 0 0,0 12,10A2,2 0 0,0 14,8A2,2 0 0,0 12,6M20,19C20,21.21 16.42,23 12,23C7.58,23 4,21.21 4,19C4,17.71 5.22,16.56 7.11,15.83L7.75,16.74C6.67,17.19 6,17.81 6,18.5C6,19.88 8.69,21 12,21C15.31,21 18,19.88 18,18.5C18,17.81 17.33,17.19 16.25,16.74L16.89,15.83C18.78,16.56 20,17.71 20,19Z" />
 </svg></a><md-tooltip md-direction="bottom">Track order</md-tooltip></span>
             </div>

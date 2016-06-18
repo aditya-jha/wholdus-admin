@@ -28,7 +28,7 @@
 
 						<div layout="column" class="card-item">
 							<span class="card-item-title">Order Status</span>
-							<span>{{data.order.status.display_value}}</span>
+							<span>{{data.order.order_status.display_value}}</span>
 						</div>
 						<div layout="column" class="card-item">
 							<span class="card-item-title">Total Products</span>
@@ -58,12 +58,21 @@
 
 
 					</div>
+					<div layout="column" layout-padding flex>
+						<div layout="column" class="card-item">
+							<span class="card-item-title">Payment Status</span>
+							<span>{{data.order.order_payment_status.display_value}}</span>
+						</div>		
+						
+
+
+					</div>
 					<div layout="column" layout-padding flex>	
-						<div layout="column" class="card-item" ng-show="data.order.status.value >= 3">
+						<div layout="column" class="card-item" ng-show="data.order.order_status.value >= 3">
 							<span class="card-item-title">COD Charge</span>
 							<span>&#8377; {{data.order.cod_charge}}</span>
 						</div>
-						<div layout="column" class="card-item" ng-show="data.order.status.value >= 3">
+						<div layout="column" class="card-item" ng-show="data.order.order_status.value >= 3">
 							<span class="card-item-title">Shipping Charge</span>
 							<span>&#8377; {{data.order.shipping_charge}}</span>
 						</div>
@@ -150,7 +159,7 @@
 									</div>
 									<div layout="column" class="card-item">
 										<span class="card-item-title">Status</span>
-										<span>{{ sub_order.status.display_value }}</span>
+										<span>{{ sub_order.sub_order_status.display_value }}</span>
 									</div>
 									
 								</div>	
@@ -164,8 +173,8 @@
 										<span>&#8377; {{ sub_order.calculated_price }}</span>
 									</div>
 									<div layout="column" class="card-item">
-										<span class="card-item-title">Remarks</span>
-										<span>{{ sub_order.remarks}}</span>
+										<span class="card-item-title">Payment Status</span>
+										<span>{{ sub_order.sub_order_payment_status.display_value}}</span>
 									</div>
 									
 
@@ -289,7 +298,7 @@
 			<div layout="row">	
 				<div layout="column" layout-align="space-between" ng-cloak flex="100">
 					<div  layout="column" data-ng-repeat="order_item in sub_order.order_items | orderBy:'current_status'" style="font-size:0.95em">
-						<div ng-style="order_item.status.value <= 2 && styles.toBeShippedItem  || order_item.status.value == 4 && styles.canceledItem || order_item.status.value >=5 
+						<div ng-style="order_item.order_item_status.value <= 2 && styles.toBeShippedItem  || order_item.order_item_status.value == 4 && styles.canceledItem || order_item.order_item_status.value >=5 
 							&& styles.shippedItem" style="margin:2px 0">
 							<!-- suborder order item details starts -->
 							<div layout="row" layout-align="space-around start" layout-padding>
@@ -325,7 +334,7 @@
 									</div>
 									<div layout="column" class="card-item">
 										<span class="card-item-title">Current Status</span>
-										<span>{{ order_item.status.display_value}}</span>
+										<span>{{ order_item.order_item_status.display_value}}</span>
 									</div>
 									<div layout="column" class="card-item">
 										<span class="card-item-title">Remarks</span>
@@ -347,7 +356,7 @@
 										<span>&#8377; {{ order_item.final_price}}</span>
 									</div>
 								</div>
-								<div layout="column"  flex layout-align="center center" layout-padding	ng-if="order_item.status.value<=2">	
+								<div layout="column"  flex layout-align="center center" layout-padding	ng-if="order_item.order_item_status.value<=2">	
 									<md-checkbox  aria-label="Checkbox 1" data-ng-model="order_item.addForDelivery" class="md-primary" ng-true-value="1" ng-false-value="0" ng-if="!sub_order.allItems">
 										Add for Shipment
 									</md-checkbox>
@@ -362,7 +371,7 @@
 									</md-button>
 
 								</div>
-								<div layout="column"  flex layout-align="center center" layout-padding ng-if="order_item.status.value>=5">
+								<div layout="column"  flex layout-align="center center" layout-padding ng-if="order_item.order_item_status.value>=5">
 									<md-checkbox  aria-label="Checkbox 1" data-ng-model="order_item.addForPayment" class="md-primary" ng-true-value="1" ng-false-value="0" ng-if="!sub_order.fullyPaid ">
 										Add for Payment
 									</md-checkbox>	
@@ -378,7 +387,7 @@
 										</md-button>
 									</a>
 								</div>
-								<div layout="column"  flex  layout-padding ng-if="order_item.status.value==4">
+								<div layout="column"  flex  layout-padding ng-if="order_item.order_item_status.value==4">
 									<div layout="column" class="card-item">
 										<span class="card-item-title">Cancellation Date and Time</span>
 										<span>{{ order_item.cancellation_time | date:'MMM dd,yyyy h:mma'}}</span>
