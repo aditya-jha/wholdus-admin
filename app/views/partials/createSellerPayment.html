@@ -37,23 +37,38 @@
                     </md-input-container> 
                 </div>
                 <div layout="column"  flex>
-
-                    <md-input-container>
-
-                        <label>Payment Date</label>
-                        <input type="date"  ng-required="true" data-ng-model="paymentDate"/>
-                    </md-input-container>
-                    <md-input-container>
-
-                        <label>Payment Time</label>
-                        <input type="time"  ng-required="true" data-ng-model="paymentTime"/>
-                    </md-input-container> 
-
+                    <span class="input-label">Payment Date</span>                
+                    <div layout="row">
                     
+                    <md-datepicker ng-model="paymentDate" md-placeholder="Payment Date">
+                        </md-datepicker>
+                        </div>
+                     <span class="input-label">Payment Time</span>
+                    <div layout="row" style="margin-top:20px;">
+
+                    <md-input-container>
+                        <label>Hours</label>
+                        <md-select data-ng-model="paymenttime.hours">
+                          <md-option ng-repeat="t in time.hours" value="{{t}}">
+                              {{t}}
+                          </md-option>
+                      </md-select>
+                    </md-input-container>
+                     <md-input-container >
+                        <label>Minutes</label>
+                        <md-select data-ng-model="paymenttime.minutes">
+                          <md-option ng-repeat="m in time.minutes" value="{{m}}">
+                              {{m}}
+                          </md-option>
+                        </md-select>
+                    </md-input-container> 
+                    </div>
+                    <div style="margin-top:20px;">
                     <md-input-container>
                         <label>Payment Value</label>
                         <input type="number" data-ng-model="sellerpayment.payment_value" ng-required="true" />
                     </md-input-container>
+                    </div>
 
 
                 </div>

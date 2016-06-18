@@ -211,7 +211,7 @@
                     DialogService.viewDialog(ev,'DeliveryController','views/partials/confirmDelivery.html');    
                 }
                 else{
-                 ToastService.showActionToast("Add items to the cart to send for delivery!", 0);
+                 ToastService.showActionToast("Add items to send for the Shipment", 0);
              }
 
          };
@@ -236,7 +236,7 @@
                 DialogService.viewDialog(ev,'CreateSellerPaymentController','views/partials/createSellerPayment.html');    
             }
             else{
-             ToastService.showActionToast("Add items to the cart for payment!", 0);
+             ToastService.showActionToast("Add items for the Payment", 0);
          }
 
      };
