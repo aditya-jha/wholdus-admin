@@ -203,8 +203,39 @@ min-height: 25px;
 
 }
 
-img{
+.small-image{
     width: 100px;
     height: auto;
 }
 
+.color-display{
+  width:20px;
+  height: 20px;
+  margin-right:4px;
+  border:1px solid black;
+}
+
+.red{
+  background-color: red;
+}
+
+.blue{
+  background-color: blue;
+}
+
+.green{
+  background-color: #009900;
+}
+
+.instructions{
+  position: fixed;
+  margin-left: 0px;
+  float: left;
+  top:80%;
+  background-color:rgba(255, 255, 255, 0.8);
+  
+  /*opacity: 0.5;*/
+  /*z-index: 10;*/
+  border-radius: 5px;
+  border: 1px solid grey;
+}

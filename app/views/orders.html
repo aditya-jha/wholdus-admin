@@ -45,7 +45,7 @@
 
                 <div layout="column" class="card-item" flex="20">
                     <span class="card-item-title">Order Status</span>
-                    <span>{{order.order_status}}</span>
+                    <span>{{order.status.display_value}}</span>
                 </div>
                 <div layout="column" class="card-item" flex="20">
                     <span class="card-item-title">Total Products</span>
@@ -55,11 +55,11 @@
                     <span class="card-item-title">Edited Price</span>
                     <span>&#8377; {{order.edited_price}}</span>
                 </div>
-                <div layout="column" class="card-item" ng-show="order.order_status >= 3" flex="20">
+                <div layout="column" class="card-item" ng-show="order.status.value >= 3" flex="20">
                     <span class="card-item-title">COD Charge</span>
                     <span>&#8377; {{order.cod_charge}}</span>
                 </div>
-                <div layout="column" class="card-item" ng-show="order.order_status >= 3" flex="20">
+                <div layout="column" class="card-item" ng-show="order.status.value >= 3" flex="20">
                     <span class="card-item-title">Shipping Charge</span>
                     <span>&#8377; {{order.shipping_charge}}</span>
                 </div>
@@ -92,7 +92,7 @@
                     </div>
                      <div layout="column" class="card-item" flex="10">
                         <span class="card-item-title">Status</span>
-                        <span>{{ sub_order.suborder_status }}</span>
+                        <span>{{ sub_order.status.display_value }}</span>
                     </div>
                 </div>
                    <md-divider  ng-if="!$last"></md-divider>

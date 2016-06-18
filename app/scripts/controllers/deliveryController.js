@@ -3,6 +3,7 @@
     adminapp.controller("DeliveryController", [
         '$scope',
         '$log',
+        '$route',
         'APIService',
         '$routeParams',
         '$rootScope',
@@ -12,16 +13,19 @@
         '$mdMedia',
         '$mdDialog',
         'DeliveryService',
-        function($scope, $log, APIService, $routeParams, $rootScope, ngProgressBarService,
+        function($scope, $log,$route, APIService, $routeParams, $rootScope, ngProgressBarService,
          ToastService, $location, $mdMedia, $mdDialog, DeliveryService){
 
         $scope.ordershipment={
-            tracking_url:"",
+            tracking_url:null,
             logistics_partner:"Fedex"
         };
         $scope.ordershipment.suborderID=DeliveryService.suborderID; 
-        $scope.ordershipment.order_items=DeliveryService.order_items;
+       
          $scope.ordershipment.all_items=DeliveryService.all_items;
+         if(!$scope.ordershipment.all_items){
+          $scope.ordershipment.order_items=DeliveryService.order_items;
+        }
         $scope.invoice_date=new Date();
         $scope.cancel = function() {
                 $mdDialog.cancel();
@@ -32,10 +36,7 @@
                  
         }    
         $scope.sendDelivery= function(){
-                 $scope.ordershipment.suborderID=DeliveryService.suborderID; 
-                 $scope.ordershipment.all_items=DeliveryService.all_items;
-                 if(!DeliveryService.all_items){
-                 $scope.ordershipment.order_items=DeliveryService.order_items; }
+                  
                  $scope.ordershipment.invoice_date=changeDateFormat( $scope.invoice_date);
                  
                  $rootScope.$broadcast('showProgressbar');
@@ -45,13 +46,13 @@
                             ToastService.showActionToast("successful", 0).then(function(response) {
                                
                             });
-                             $mdDialog.cancel();
+                             // $mdDialog.cancel();
                             
                         }, function(error) {
                             $rootScope.$broadcast('endProgressbar');
-                            $mdDialog.cancel();
-                            // ToastService.showActionToast("something went wrong! please reload", 0);
-
+                            $route.reload();
+                            alert(error);
+                            ToastService.showActionToast("something went wrong! please reload", 0);
                         });
 
             };  

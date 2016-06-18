@@ -2,8 +2,7 @@
     <form name="confirmDeliveryForm" novalidate>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2 flex class="popup-title">Send for delivery</h2>
-
+                <h2 flex class="md-title bold">Send for Shipment</h2>
                 <md-button class="md-icon-button" ng-click="cancel()">
                 <svg fill="#fff" height="36" viewBox="0 0 24 24" width="36" >
                         <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
@@ -13,6 +12,8 @@
             </div>
         </md-toolbar>
         <md-dialog-content>
+        <!-- <div layout="row" flex="50" style="width:500px">
+        {{ordershipment}}</div> -->
             <div layout="row" layout-padding>
                 <div layout="column"  flex>
                     <md-input-container>
@@ -79,7 +80,7 @@
             Cancel
         </md-button>
 
-        <md-button type="submit" class="md-raised md-primary" ng-click="confirmDeliveryForm.$valid && sendDelivery()" style="margin-right:20px;">
+        <md-button type="submit" class="md-raised md-primary" ng-disabled="!confirmDeliveryForm.$valid " ng-click="sendDelivery()" style="margin-right:20px;">
             Done
         </md-button>
         <div flex></div>
