@@ -144,6 +144,7 @@
 
                 $scope.calcSubTotal=function(){
                     var amount=0;
+                    if($scope.data.order.sub_orders!=null){
                     for (var j = 0; j < $scope.data.order.sub_orders.length; j++)
                     {
                         var sub_order=$scope.data.order.sub_orders[j];
@@ -151,7 +152,8 @@
                             if(sub_order.order_items[i].addForDelivery)    
                                 amount=(parseFloat(amount)+parseFloat(sub_order.order_items[i].final_price)).toFixed(2);
                         }
-                    }    
+                    } 
+                    }   
                     return amount;
                 };
                 $scope.showPrompt = function(ev,orderitemID) {

@@ -46,13 +46,15 @@
                             ToastService.showActionToast("successful", 0).then(function(response) {
                                
                             });
-                             // $mdDialog.cancel();
+                             $mdDialog.cancel();
+                              $route.reload();
                             
                         }, function(error) {
                             $rootScope.$broadcast('endProgressbar');
                             $route.reload();
-                            alert(error);
+                            // alert(error);
                             ToastService.showActionToast("something went wrong! please reload", 0);
+                             $mdDialog.cancel();
                         });
 
             };  
