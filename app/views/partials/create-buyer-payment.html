@@ -20,33 +20,64 @@
                         <input type="number" data-ng-model="paymentData.orderID" ng-required="true" />
                     </md-input-container>
                     
-                    <md-input-container>
-                        <label>Reference no.</label>
-                        <input type="number" data-ng-model="paymentData.reference_number" ng-required="true" />
-                    </md-input-container> 
+                    
                     <md-input-container>
                         <label>Payment Method</label>
-                        <input type="text" data-ng-model="paymentData.payment_method" ng-required="true" />
+                        <md-select style="margin-bottom:20px;" ng-model="paymentData.payment_method ">
+                         <md-option ng-repeat="m in paymentOptions" value="{{m.value}}">
+                             {{m.display_value}}
+                         </md-option>
+                       </md-select>
                     </md-input-container>
-                   
+                   <md-input-container data-ng-if="paymentData.payment_method == 0">
+                        <label>Order Shipment ID</label>
+                        <input type="text" data-ng-model="paymentData.orderShipmentID" ng-required="true" />
+                    </md-input-container>
                      <div ng-cloak>
-                        <label class="md-small card-item-title">Payment Time</label>
-                        <md-datepicker ng-model="" md-placeholder="Invoice Date">
+                        <label class="md-small card-item-title">Payment Date & Time</label>
+                        <md-datepicker ng-model="paymentDate" md-placeholder="Payment Date">
                         </md-datepicker>
                     </div> 
-                    
+
+                    <div layout="row" style="margin-top:15px">
+                    <md-input-container>
+
+                       <label>Hours</label>
+                       <md-select data-ng-model="paymenttime.hours">
+                         <md-option ng-repeat="t in time.hours" value="{{t}}">
+                             {{t}}
+                         </md-option>
+                     </md-select>
+                   </md-input-container>
+                    <md-input-container >
+                       <label>Minutes</label>
+                       <md-select data-ng-model="paymenttime.minutes">
+                         <md-option ng-repeat="m in time.minutes" value="{{m}}">
+                             {{m}}
+                         </md-option>
+                       </md-select>
+                   </md-input-container> 
+                   </div>
+                   
 
 
                 </div>
                 <div layout="column"  flex>
                     <md-input-container>
+                        <label>Reference no.</label>
+                        <input type="number" data-ng-model="paymentData.reference_number" ng-required="true" />
+                    </md-input-container> 
+                    <md-input-container>
                         <label>Payment Value</label>
                         <input type="number" data-ng-model="paymentData.payment_value" ng-required="true" />
-                    </md-input-container> 
+                    </md-input-container>
+
+                     
                     <md-input-container>
                         <label>Remarks</label>
                         <input type="text" data-ng-model="paymentData.details" ng-required="true" />
-                    </md-input-container> 
+                    </md-input-container>
+                     
                     <md-checkbox class="md-small card-item-title" ng-true-value = "1" ng-false-value = "0" data-ng-model="paymentData.fully_paid">Fully Paid</md-checkbox>
                 </div>
             </div>     

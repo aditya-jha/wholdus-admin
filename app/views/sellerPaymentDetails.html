@@ -40,7 +40,7 @@
                     </div>
                     <div layout="column" class="card-item">
                         <span class="card-item-title">Payment Method</span>
-                        <span class="mid-font">{{ payment.payment_method }}</span>
+                        <span class="mid-font">{{ payment.seller_payment_method.display_value }}</span>
                     </div>
                     
                 </div>
@@ -63,7 +63,7 @@
                     </div>
                             <div layout="column" class="card-item">
                                 <span class="card-item-title">Payment Status</span>
-                                <span class="mid-font">{{payment.payment_status}}</span>
+                                <span class="mid-font">{{payment.seller_payment_status.display_value}}</span>
                             </div>
                             
                         </div>

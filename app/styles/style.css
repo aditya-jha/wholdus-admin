@@ -214,3 +214,26 @@ min-height: 25px;
 
 }
 
+.small-image{
+    width: 100px;
+    height: auto;
+}
+
+.color-display{
+  width:20px;
+  height: 20px;
+  margin-right:4px;
+  border:1px solid black;
+}
+
+.red{
+  background-color: red;
+}
+
+.blue{
+  background-color: blue;
+}
+
+.green{
+  background-color: #009900;
+}

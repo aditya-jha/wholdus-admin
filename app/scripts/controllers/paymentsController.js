@@ -18,6 +18,33 @@
              $scope.paymentID =null;
              $scope.payment ={};
 
+
+              $scope.time={
+             minutes:['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15',
+             '16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33',
+             '34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52',
+             '53','54','55','56','57','58','59'],
+             hours:['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16',
+             '17','18','19','20','21','22','23']
+                };
+
+                $scope.paymentDate=new Date();
+               $scope.paymenttime={
+                   minutes:'00',
+                   hours:'00'
+               };  
+        function formatedDate(){
+              var d=new Date();
+               d.setDate($scope.paymentDate.getDate());
+               d.getMonth($scope.paymentDate.getMonth());
+               d.setFullYear($scope.paymentDate.getFullYear());
+               d.setMinutes($scope.paymenttime.minutes);
+               d.setHours($scope.paymenttime.hours);
+               var str=d.toISOString().substr(0,10)+' '+d.toISOString().substr(11,12)+'000';  
+                
+                 return str; 
+             }
+
              var person='';
 
              $scope.allImages = [];
@@ -82,19 +109,59 @@
             $scope.paymentData = {
                 orderID: DialogService.ID,
                 payment_method: null,
-                orderShipmentID: 26,
+                orderShipmentID: null,
                 reference_number: null,
-                // payment_time: null,
+                payment_time: null,
                 details: null,
                 payment_value: null,
                 fully_paid: 0
             }
+
+            $scope.paymentOptions = [
+            {
+                display_value: 'COD',
+                value: 0
+            },
+            {
+                display_value: 'NEFT',
+                value: 1
+            },
+            {
+                display_value: 'Demand Draft',
+                value: 2
+            },
+            {
+                display_value: 'Cash Deposit',
+                value: 3
+            },
+            {
+                display_value: 'Cheque',
+                value: 4
+            },
+            {
+                display_value: 'Debit Card',
+                value: 5
+            },
+            {
+                display_value: 'Credit Card',
+                value: 6
+            },
+            {
+                display_value: 'Net Banking',
+                value: 7
+            },
+            {
+                display_value: 'Wallet',
+                value: 8
+            }
+            ];
 
             $scope.cancel = function(){
                 $mdDialog.cancel();
             }
 
             $scope.postPayment = function(){
+                $scope.paymentData.payment_time = formatedDate();
                 $rootScope.$broadcast('showProgressbar');
                 APIService.apiCall("POST", APIService.getAPIUrl('buyerpayment'), $scope.paymentData)
                 .then(function(response){
@@ -103,7 +170,12 @@
                     ToastService.showActionToast("Payment Successful", 0);
                 },function(error){
                     $rootScope.$broadcast('endProgressbar');
+                    if($scope.paymentOptions.value=="0"){
+                        ToastService.showActionToast("Something went wrong! Please check the Order Shipment ID and try again", 0);
+                    }
+                    else{
                     ToastService.showActionToast("Something went wrong! Please try again", 0);
+                }
                 });
             };
 

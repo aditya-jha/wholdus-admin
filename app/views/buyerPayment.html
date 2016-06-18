@@ -1,83 +1,85 @@
 <div layout="row" layout-align="center start" flex="100">
-    <h3>Buyers Payments</h3>
+    <h3>Buyer Payments</h3>
 </div>
 
 <div layout="row" layout-wrap layout-align="space-around start">
-    <div layout="column" flex="45" md-whiteframe="4dp" data-ng-repeat="p in payments" layout-margin>
-        <div layout="row" layout-wrap layout-align="center center" flex>
-            <div layout= "column" flex="50" layout-padding>
-            <div layout="row">
+    <div layout="column" flex="45" md-whiteframe="4dp" data-ng-repeat="p in payments" layout-padding>
+        <div layout="row" layout-wrap flex>
+    
+            <div layout="row" flex="100"  layout-align="start center">
                 <a class="link" data-ng-href="orders/{{p.suborderID}}" target="_blank">
-                    <sub-header>Order ID.&nbsp;: </sub-header>
+                    <sub-header>Order ID&nbsp;: </sub-header>
                     <span>{{p.orderID}}</span>
                 </a>
             </div>  
-                
+            <!--     
             <div layout="row">
-                <label>Order Date&nbsp;:&nbsp;</label>
+                <label>Payment Date&nbsp;:&nbsp;</label>
                 <span>{{p.created_at | date}}</span>
-            </div>
-         </div> 
-         
-            <div layout="column" flex="50" layout-align="center end" layout-padding>
-
-                 <div layout="row">
-                    <a class="link" data-ng-href="orders/{{p.suborderID}}" target="_blank"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+            </div> -->
+              <!--   <div layout="row" flex="45"></div>
+                 <div layout="row" flex="5"  layout-align="start center">
+                    <a class="link" data-ng-href="payments/seller-payment/{{p.sellerpaymentID}}" target="_blank"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
                         <path fill="#FF5722" d="M4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H16L12,22L8,18H4A2,2 0 0,1 2,16V4A2,2 0 0,1 4,2M18,14V12H12.5L10.5,14H18M6,14H8.5L15.35,7.12C15.55,6.93 15.55,6.61 15.35,6.41L13.59,4.65C13.39,4.45 13.07,4.45 12.88,4.65L6,11.53V14Z" />
                     </svg><md-tooltip md-direction="top">view more</md-tooltip></a>
-            </div>
-                <div layout="row">
-                <label><u>Amount Paid</u>&nbsp;: </label>
-                <span class="sub-color">{{p.payment_value}}</span><span><svg style="width:20px; height:20px;" viewBox="0 0 551.998 501.998">
-    <path fill="grey" d="M326.62,91.076c-1.711-1.713-3.901-2.568-6.563-2.568h-48.82c-3.238-15.793-9.329-29.502-18.274-41.112h66.52
-        c2.669,0,4.853-0.856,6.57-2.565c1.704-1.712,2.56-3.903,2.56-6.567V9.136c0-2.666-0.855-4.853-2.56-6.567
-        C324.334,0.859,322.15,0,319.481,0H81.941c-2.666,0-4.853,0.859-6.567,2.568c-1.709,1.714-2.568,3.901-2.568,6.567v37.972
-        c0,2.474,0.904,4.615,2.712,6.423s3.949,2.712,6.423,2.712h41.399c40.159,0,65.665,10.751,76.513,32.261H81.941
-        c-2.666,0-4.856,0.855-6.567,2.568c-1.709,1.715-2.568,3.901-2.568,6.567v29.124c0,2.664,0.855,4.854,2.568,6.563
-        c1.714,1.715,3.905,2.568,6.567,2.568h121.915c-4.188,15.612-13.944,27.506-29.268,35.691
-        c-15.325,8.186-35.544,12.279-60.67,12.279H81.941c-2.474,0-4.615,0.905-6.423,2.712c-1.809,1.809-2.712,3.951-2.712,6.423v36.263
-        c0,2.478,0.855,4.571,2.568,6.282c36.543,38.828,83.939,93.165,142.182,163.025c1.715,2.286,4.093,3.426,7.139,3.426h55.672
-        c4.001,0,6.763-1.708,8.281-5.141c1.903-3.426,1.53-6.662-1.143-9.708c-55.572-68.143-99.258-119.153-131.045-153.032
-        c32.358-3.806,58.625-14.277,78.802-31.404c20.174-17.129,32.449-39.403,36.83-66.811h47.965c2.662,0,4.853-0.854,6.563-2.568
-        c1.715-1.709,2.573-3.899,2.573-6.563V97.646C329.193,94.977,328.335,92.79,326.62,91.076z"/>
-</svg></span>
-            </div>
+            </div> -->
            
-            </div>
+           
            </div> 
           
-        <div layout="row" class="small-font payment" flex data-ng-repeat="d in p.order_items" layout-align="start start">
+        <div layout="row" class="small-font payment" flex layout-align="start start">
         
-            <div layout="column" layout-align="center center" flex="25">
-                <label>Merchant Name</label>
-                <a class="link" href="users/sellers/{{d.product.seller.sellerID}}" target="_blank">
-                <svg style="width:13.5px;height:13.5px" viewBox="0 0 20 20">
-                        <path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
-                    </svg>
-                <span>{{d.product.seller.name}}</span></a>
-                <a class="link" href="users/sellers/{{d.product.seller.sellerID}}" target="_blank"><span>({{d.product.seller.company_name}})</span></a>
-               
+            <div layout="column" flex="25">
+                <div layout="column" layout-align="center center">    
+                    <label>Buyer Name</label>
+                    <a class="link" href="users/buyers/{{p.buyer.buyerID}}" target="_blank">
+                    <svg style="width:13.5px;height:13.5px" viewBox="0 0 20 20">
+                            <path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                        </svg>
+                    <span>{{p.buyer.name}}</span></a>
+                </div>
+                <div layout="column" layout-align="center center">
+                    <label>Buyer Payment ID</label>
+                    <span>{{p.buyerpaymentID}}</span>
+                </div>
             </div>
            
-            <div layout="column" layout-align="center center" flex="25">
-                <label>Suborder Value</label>
-                <span>Rs. {{d.final_price}}</span>
+            <div layout="column" flex="25">
+                <div layout="column" layout-align="center center">
+                    <label>Date of Payment</label>
+                    <span>{{p.payment_time | date}}</span>
+                </div>
+                 <div layout="column" layout-align="center center">
+                    <label>Created-at</label>
+                    <span>{{p.created_at | date}}</span>
+                </div>   
             </div>
-            <div layout="column" layout-align="center center" flex="25">
-                <label>Service Fee</label>
-                <span>Rs. {{d.final_price/10}}</span>
+             <div layout="column" flex="25">
+                <div layout="column" layout-align="center center">
+                     <label>Payment Value</label>
+                    <span>Rs. {{p.payment_value}}</span>
+                </div>
+                 <div layout="column" layout-align="center center">
+                    <label>Payment Method</label>
+                    <span>{{p.buyer_payment_method.display_value}}</span>
+                </div>   
             </div>
             
-            
-            <div layout="column" layout-align="center center" flex="25">
-                <label>Date of Payment</label>
-                <span>{{p.payment_time | date}}</span>
+            <div layout="column" flex="25">
+                <div layout="column" layout-align="center center">
+                     <label>Reference no.</label>
+                    <span>{{p.reference_number}}</span>
+                </div>
+                 <div layout="column" layout-align="center center">
+                    <label>Status</label>
+                    <span>{{p.buyer_payment_status.display_value}}</span>
+                </div>   
             </div>
            
           </div>  
-        <div layout="row" layout-margin flex data-ng-repeat="d in p.order_items" class="small-font payment">
-            <label>Remark :</label>
-            <span>{{d.remarks}}</span>
+        <div layout="row" flex class="small-font payment">
+            <label>Details :</label>
+            <span>{{p.details}}</span>
         </div>
     </div>
 </div>
