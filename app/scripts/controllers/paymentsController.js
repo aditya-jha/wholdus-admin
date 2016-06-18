@@ -10,7 +10,9 @@
         '$routeParams',
         'ToastService',
         'UtilService',
-        function($scope, $rootScope, $log, ngProgressBarService, APIService, ConstantKeyValueService, $routeParams, ToastService, UtilService) {
+        '$mdDialog',
+        'DialogService',
+        function($scope, $rootScope, $log, ngProgressBarService, APIService, ConstantKeyValueService, $routeParams, ToastService, UtilService, $mdDialog, DialogService) {
 
              $scope.payments = [];
              $scope.paymentID =null;
@@ -30,7 +32,7 @@
             }
 
 
-            function payment(params) {
+            function viewPayment(params) {
                 $rootScope.$broadcast('showProgressbar');
                 APIService.apiCall("GET", APIService.getAPIUrl(person), null, params)
                     .then(function(response) {
@@ -64,18 +66,46 @@
                 if($routeParams.paymentType == 'seller-payment'){
                     person = 'sellerpayment';
                     if($routeParams.paymentID){
-                        payment({sellerpaymentID: $routeParams.paymentID});
+                        viewPayment({sellerpaymentID: $routeParams.paymentID});
                     }
                     else{
-                    payment();
+                    viewPayment();
                     }
                 }
                 else if($routeParams.paymentType == 'buyer-payment'){
                     person = 'buyerpayment';
-                    payment();
+                    viewPayment();
                 }
             }
             identify();
+
+            $scope.paymentData = {
+                orderID: DialogService.ID,
+                payment_method: null,
+                orderShipmentID: 26,
+                reference_number: null,
+                // payment_time: null,
+                details: null,
+                payment_value: null,
+                fully_paid: 0
+            }
+
+            $scope.cancel = function(){
+                $mdDialog.cancel();
+            }
+
+            $scope.postPayment = function(){
+                $rootScope.$broadcast('showProgressbar');
+                APIService.apiCall("POST", APIService.getAPIUrl('buyerpayment'), $scope.paymentData)
+                .then(function(response){
+                    $rootScope.$broadcast('endProgressbar');
+                    $mdDialog.cancel();
+                    ToastService.showActionToast("Payment Successful", 0);
+                },function(error){
+                    $rootScope.$broadcast('endProgressbar');
+                    ToastService.showActionToast("Something went wrong! Please try again", 0);
+                });
+            };
 
         }
 
