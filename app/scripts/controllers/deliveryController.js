@@ -31,8 +31,10 @@
                 $mdDialog.cancel();
             }
         var changeDateFormat=function(date){
-            var newDate=date.getFullYear()+'-'+date.getMonth()+'-'+date.getDay();
-            return newDate;
+            // var newDate=date.getFullYear()+'-'+date.getMonth()+'-'+date.getDay();
+            var newDate=new Date(date);
+            var finalDate=newDate.toISOString().substr(0,10); 
+            return finalDate;
                  
         }    
         $scope.sendDelivery= function(){
