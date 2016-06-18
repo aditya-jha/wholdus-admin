@@ -25,7 +25,7 @@
     <div layout="row" layout-wrap flex="100">
         <md-input-container>
             <label>Pcs To Sell</label>
-            <input type="text" data-ng-model="product.orderDetail.pieces"  required data-ng-disabled="product.disable" />
+            <input type="text" data-ng-model="product.orderDetail.pieces" min=0 required data-ng-disabled="product.disable" />
         </md-input-container>
     </div>
     <div layout="row" layout-wrap flex="100">
