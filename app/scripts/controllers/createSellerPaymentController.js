@@ -49,9 +49,9 @@
         }  
 
          $scope.SellerPaymentMethod = [
-                         {'display_value':'NEFT','value':0},
-                         {'display_value':'IMPS','value':1},
-                         {'display_value':'RTGS','value':2}
+                         {display_value:'NEFT',value:0},
+                         {display_value:'IMPS',value:1},
+                         {display_value:'RTGS',value:2}
                      ];
         $scope.time={
               minutes:['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15',
@@ -69,16 +69,17 @@
                   APIService.apiCall("POST", APIService.getAPIUrl("sellerpayment"), $scope.sellerpayment)
                   .then(function(response) {
                             $rootScope.$broadcast('endProgressbar');
-                            ToastService.showActionToast("successful", 0).then(function(response) {
+                            ToastService.showActionToast("Payment Successful", 0).then(function(response) {
                                
                             });
-                             // $mdDialog.cancel();
+                             $mdDialog.cancel();
                             
                         }, function(error) {
                             $rootScope.$broadcast('endProgressbar');
                             $route.reload();
                             // alert(error);
                             ToastService.showActionToast("something went wrong! please reload", 0);
+                            $mdDialog.cancel();
                         });
 
             };  

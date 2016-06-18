@@ -240,7 +240,7 @@
 						<div layout="row" flex="50" layout-align="space-around center" ng-if="sub_order.isShipable">
 							<md-checkbox  aria-label="Checkbox" data-ng-model="sub_order.allItems" class="md-primary"
 							ng-true-value="1" ng-false-value="0" ng-change="changeItemsSelected($index)">
-							Add all items
+							Add all items for shipment
 							</md-checkbox>
 						<md-button class="md-primary md-raised" ng-click="confirmDelivery($event,$index)" >
 							<md-icon>
@@ -255,7 +255,7 @@
 					<div layout="row"  flex="50" layout-align="space-around center" ng-if="sub_order.isPayable">
 						<md-checkbox  aria-label="Checkbox" data-ng-model="sub_order.fullyPaid" class="md-primary"
 						ng-true-value="1" ng-false-value="0" ng-change="changeItemsSelected($index)">
-						Add all items
+						Add all items for payment
 					</md-checkbox>
 					<md-button class="md-primary md-raised" ng-click="paySeller($event,$index)" >
 						<md-icon>
