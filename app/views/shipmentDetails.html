@@ -78,7 +78,7 @@
 							</div>
 					<div layout="column" class="card-item">
 						<span class="card-item-title">Status</span>
-						<span layout="row" layout-align="start center" class="mid-font">{{ data.shipment.status.display_value}}<span><md-menu md-offset="0 -5">
+						<span layout="row" layout-align="start center" class="mid-font">{{ data.shipment.order_shipment_status.display_value}}<span><md-menu md-offset="0 -5">
           <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
             <svg class= "rotateX" fill="#FF5722" height="28" viewBox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
@@ -120,21 +120,21 @@
 					<div layout="column" flex>
 				<div layout="column"  class="card-item">
 						<span class="card-item-title">Buyer ID</span>
-						<span class="mid-font">{{ data.order.buyer.buyerID }}</span>
+						<span class="mid-font">{{ data.shipment.buyer.buyerID }}</span>
 					</div>
 					<div layout="column" class="card-item">
 						<span class="card-item-title">Buyer Name</span>
-						<span class="mid-font">{{ data.order.buyer.name }}</span>
+						<span class="mid-font">{{ data.shipment.buyer.name }}</span>
 					</div>
 				</div>
 				<div layout="column" flex>	
 					<div layout="column" class="card-item">
 						<span class="card-item-title">Buyer Company</span>
-						<span class="mid-font">{{ data.order.buyer.company_name}}</span>
+						<span class="mid-font">{{ data.shipment.buyer.company_name}}</span>
 					</div>
 					<div layout="column" class="card-item">
 						<span class="card-item-title">Mobile No</span>
-						<span class="mid-font">{{ data.order.buyer.mobile_number}}</span>
+						<span class="mid-font">{{ data.shipment.buyer.mobile_number}}</span>
 					</div>
 				</div>
 				
@@ -176,26 +176,26 @@
 						<div layout="column" flex>
 							<div layout="column" class="card-item">
 								<span class="card-item-title">Company Name</span>
-								<span class="mid-font">{{ data.shipment.order_items[0].product.seller.company_name }}</span>
+								<span class="mid-font">{{ data.shipment.seller.company_name }}</span>
 							</div>
 							<div layout="column" class="card-item">
 								<span class="card-item-title">Merchant Name</span>
-								<span class="mid-font">{{ data.shipment.order_items[0].product.seller.name }}</span>
+								<span class="mid-font">{{ data.shipment.seller.name }}</span>
 							</div>
 							<div layout="column" class="card-item">
 								<span class="card-item-title">Mobile No</span>
-								<span class="mid-font">{{ data.shipment.order_items[0].product.seller.mobile_number}}</span>
+								<span class="mid-font">{{ data.shipment.seller.mobile_number}}</span>
 							</div>
 						</div>
 						
 						<div layout="column" flex>
 							<div layout="column" class="card-item">
 								<span class="card-item-title">Contact Person Name</span>
-								<span class="mid-font">{{data.shipment.order_items[0].product.seller.concerned_person == ''? none:data.shipment.order_items[0].product.seller.concerned_person}}</span>
+								<span class="mid-font">{{data.shipment.seller.concerned_person == ''? none:data.shipment.order_items[0].product.seller.concerned_person}}</span>
 							</div>
 							<div layout="column" class="card-item">
 								<span class="card-item-title">Contact Person No</span>
-								<span class="mid-font">{{data.shipment.order_items[0].product.seller.concerned_person_number == ''? none:data.shipment.order_items[0].product.seller.concerned_person_number}}</span>
+								<span class="mid-font">{{data.shipment.order_items[0].product.seller.concerned_person_number == ''? none:data.shipment.seller.concerned_person_number}}</span>
 							</div>
 
 						</div>

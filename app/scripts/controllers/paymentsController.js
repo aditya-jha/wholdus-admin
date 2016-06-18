@@ -109,7 +109,7 @@
             $scope.paymentData = {
                 orderID: DialogService.ID,
                 payment_method: null,
-                orderShipmentID: null,
+                ordershipmentID: null,
                 reference_number: null,
                 payment_time: null,
                 details: null,
