@@ -114,7 +114,7 @@
                  $scope.settings.page=1;
                  $location.search('page', 1);
                 pageSetting();
-            }
+            };
 
             $scope.reset = function() {
                 pageSetting();

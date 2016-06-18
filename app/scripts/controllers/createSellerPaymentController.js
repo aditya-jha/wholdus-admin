@@ -18,7 +18,7 @@
 
         $scope.sellerpayment={
             details:null
-           
+
         };
         $scope.paymentDate=new Date();
         $scope.paymenttime={
@@ -27,15 +27,15 @@
         };
         // $scope.paymentDate=new Date();
         // $scope.paymentTime=new Date();
-        $scope.sellerpayment.suborderID=DeliveryService.suborderID; 
-       
+        $scope.sellerpayment.suborderID=DeliveryService.suborderID;
+
          $scope.sellerpayment.fully_paid=DeliveryService.fully_paid;
          if(!$scope.sellerpayment.fully_paid){
           $scope.sellerpayment.order_items=DeliveryService.order_items;
         }
         $scope.cancel = function() {
                 $mdDialog.cancel();
-            }
+            };
         function formatedDate(){
                var d=new Date();
                 d.setDate($scope.paymentDate.getDate());
@@ -43,10 +43,10 @@
                 d.setFullYear($scope.paymentDate.getFullYear());
                 d.setMinutes($scope.paymenttime.minutes);
                 d.setHours($scope.paymenttime.hours);
-                var str=d.toISOString().substr(0,10)+' '+d.toISOString().substr(11,12)+'000';  
-                 
-                  return str; 
-        }  
+                var str=d.toISOString().substr(0,10)+' '+d.toISOString().substr(11,12)+'000';
+
+                  return str;
+        }
 
          $scope.SellerPaymentMethod = [
                          {display_value:'NEFT',value:0},
@@ -60,9 +60,9 @@
               '53','54','55','56','57','58','59'],
               hours:['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16',
               '17','18','19','20','21','22','23']
-        };             
+        };
 
-       
+
         $scope.createPayment= function(){
                   $scope.sellerpayment.payment_time=formatedDate();
                   $rootScope.$broadcast('showProgressbar');
@@ -70,10 +70,10 @@
                   .then(function(response) {
                             $rootScope.$broadcast('endProgressbar');
                             ToastService.showActionToast("Payment Successful", 0).then(function(response) {
-                               
+
                             });
                              $mdDialog.cancel();
-                            
+
                         }, function(error) {
                             $rootScope.$broadcast('endProgressbar');
                             $route.reload();
@@ -82,9 +82,9 @@
                             $mdDialog.cancel();
                         });
 
-            };  
-      
-        
+            };
+
+
         }
     ]);
 })();

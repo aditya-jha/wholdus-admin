@@ -30,7 +30,7 @@
                                 $scope.data.sellers = response.sellers;
                             }
                         } else if($scope.data.sellerID) {
-                            ToastService.showActionToast("No such seller exist!", 0)
+                            ToastService.showActionToast("No such seller exist!", 0);
                             $location.url('/users/sellers');
                         }
                     }, function(error) {
@@ -71,7 +71,7 @@
 
             $scope.create = function(){
                 getSellers('POST');
-            }
+            };
 
             $scope.changeSeller = function(event, type) {
                 if(type=="DELETE" || type=="PUT") {
@@ -89,7 +89,7 @@
                                     pageSetting();
                                     ToastService.showActionToast("Changes Saved", 0);
                                 }
-                             
+
                         }, function(error) {
                             $rootScope.$broadcast('endProgressbar');
                             ToastService.showActionToast("something went wrong! please reload", 0);

@@ -14,7 +14,7 @@
         'DeliveryService',
         'DialogService',
         'UtilService',
-        function($scope, $log, APIService, $routeParams, $rootScope, ngProgressBarService, 
+        function($scope, $log, APIService, $routeParams, $rootScope, ngProgressBarService,
             ToastService, $location, $mdMedia, $mdDialog, DeliveryService, DialogService, UtilService) {
             $scope.none='None';
             $scope.ordershipment= {
@@ -40,7 +40,7 @@
                             'border-left':'10px solid #009900' }
                         };
 
-           
+
 
                      function getOrders(params) {
                         $rootScope.$broadcast('showProgressbar');
@@ -71,11 +71,11 @@
                                         }
                                         if(!sub_order.isShipable && sub_order.order_items[j].order_item_status.value<=2)
                                         {
-                                           sub_order.isShipable=1;   
+                                           sub_order.isShipable=1;
                                        }
                                        if(!sub_order.isPayable && sub_order.order_items[j].order_item_status.value>=5)
                                        {
-                                           sub_order.isPayable=1;   
+                                           sub_order.isPayable=1;
                                        }
                                    }
                                }
@@ -85,7 +85,7 @@
                            } else {
                             $scope.data.orders = response.orders;
                         }
-                    } 
+                    }
                     else if($scope.data.orderID) {
                         ToastService.showActionToast("No such order exists! GO BACK", 0)
                         .then(function(response) {
@@ -128,9 +128,9 @@
                         $rootScope.$broadcast('endProgressbar');
                         ToastService.showActionToast("something went wrong! please reload", 0);
                     });
-                 }; 
+                 };
 
-                 $scope.sub_total=0;    
+                 $scope.sub_total=0;
                  $scope.calcAmount=function(index){
                     var amount=0;
                     var sub_order=$scope.data.order.sub_orders[index];
@@ -144,16 +144,16 @@
 
                 $scope.calcSubTotal=function(){
                     var amount=0;
-                    if($scope.data.order.sub_orders!=null){
+                    if(!$scope.data.order.sub_orders){
                     for (var j = 0; j < $scope.data.order.sub_orders.length; j++)
                     {
                         var sub_order=$scope.data.order.sub_orders[j];
                         for (var i = 0; i < sub_order.order_items.length; i++) {
-                            if(sub_order.order_items[i].addForDelivery)    
+                            if(sub_order.order_items[i].addForDelivery)
                                 amount=(parseFloat(amount)+parseFloat(sub_order.order_items[i].final_price)).toFixed(2);
                         }
-                    } 
-                    }   
+                    }
+                    }
                     return amount;
                 };
                 $scope.showPrompt = function(ev,orderitemID) {
@@ -199,8 +199,8 @@
                      for(var i=0;i<$scope.data.order.sub_orders[index].order_items.length;i++)
                      {
                         var order_item=$scope.data.order.sub_orders[index].order_items[i];
-                        if(order_item.addForDelivery && order_item.order_item_status.value <= 2){   
-                            $scope.ordershipment.order_items.push({orderitemID : order_item.orderitemID});    
+                        if(order_item.addForDelivery && order_item.order_item_status.value <= 2){
+                            $scope.ordershipment.order_items.push({orderitemID : order_item.orderitemID});
                         }
 
                     }
@@ -208,7 +208,7 @@
                 if($scope.ordershipment.order_items.length>0 || $scope.ordershipment.all_items)
                 {
                     DeliveryService.setProp($scope.ordershipment);
-                    DialogService.viewDialog(ev,'DeliveryController','views/partials/confirmDelivery.html');    
+                    DialogService.viewDialog(ev,'DeliveryController','views/partials/confirmDelivery.html');
                 }
                 else{
                  ToastService.showActionToast("Add items to send for the Shipment", 0);
@@ -224,8 +224,8 @@
                  for(var i=0;i<$scope.data.order.sub_orders[index].order_items.length;i++)
                  {
                     var order_item = $scope.data.order.sub_orders[index].order_items[i];
-                    if(order_item.addForPayment && order_item.order_item_status.value >=5){   
-                        $scope.sellerpayment.order_items.push({orderitemID : order_item.orderitemID});    
+                    if(order_item.addForPayment && order_item.order_item_status.value >=5){
+                        $scope.sellerpayment.order_items.push({orderitemID : order_item.orderitemID});
                     }
 
                 }
@@ -233,7 +233,7 @@
             if($scope.sellerpayment.order_items.length>0 || $scope.sellerpayment.fully_paid)
             {
                 DeliveryService.setProp($scope.sellerpayment);
-                DialogService.viewDialog(ev,'CreateSellerPaymentController','views/partials/createSellerPayment.html');    
+                DialogService.viewDialog(ev,'CreateSellerPaymentController','views/partials/createSellerPayment.html');
             }
             else{
              ToastService.showActionToast("Add items for the Payment", 0);
@@ -251,9 +251,9 @@
    };
 
 
-   $scope.buyerPayment = function(event, va){
-    DialogService.viewDialog(event,'PaymentController','views/partials/create-buyer-payment.html', va);
-   }
+    $scope.buyerPayment = function(event, va){
+       DialogService.viewDialog(event,'PaymentController','views/partials/create-buyer-payment.html', va);
+    };
 
 
 
@@ -263,5 +263,3 @@
 
 
 })();
-
-

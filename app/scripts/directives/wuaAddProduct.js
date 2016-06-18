@@ -92,12 +92,12 @@
                                         }
                                     }
                                     else{
-                                        ToastService.showActionToast("Invalid Product ID", 0)
+                                        ToastService.showActionToast("Invalid Product ID", 0);
                                     }
                                     $rootScope.$broadcast("endProgressbar");
                                 }, function(error) {
                                     $rootScope.$broadcast("endProgressbar");
-                                    ToastService.showActionToast("Something went wrong", 0)
+                                    ToastService.showActionToast("Something went wrong", 0);
                                 });
                         }
                     };
