@@ -14,6 +14,7 @@
                     orders: 'orders',
                     shipments: 'shipments',
                     sellerpayment: 'sellerpayment',
+                    buyerpayment: 'buyerpayment',
                     products: 'products',
                     sellerLogin: 'users/seller/login',
                     internalUserLogin: 'users/internaluser/login',

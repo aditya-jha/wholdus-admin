@@ -1,0 +1,147 @@
+<div layout="column" layout-align="center" style="">
+<div layout="row" layout-align="center center" layout-margin flex="100" class="md-title">
+    SubOrder No. :<span class="bold"> {{payment.suborder_display_number}}</span>
+</div>
+
+
+<!-- shipments details start here  -->
+<div layout="row"  layout-align="center center" flex="100" layout-margin>   
+    <div  layout="column" md-whiteframe="2" flex="90">
+        <div layout="column" flex >
+            <div layout="row" layout-align="center center" class="md-title property-title" layout-padding flex>Payment Details</div>
+            <md-divider></md-divider>
+            <div layout="column" layout-padding>
+                    <div layout="row" layout-align="center" flex>
+                            <div layout="column" flex="25">
+                        <div layout="column"  class="card-item">
+                                <span class="card-item-title">Reference No.</span>
+                                <span class="mid-font">{{ payment.reference_number }}</span>
+                            </div>
+                            <div layout="column" class="card-item">
+                                <span class="card-item-title">Created-at</span>
+                                <span class="mid-font">{{ payment.created_at | date }}</span>
+                            </div>
+                        </div>
+                        <div layout="column" flex="25"> 
+                            <div layout="column" class="card-item">
+                                <span class="card-item-title">Seller Payment ID</span>
+                                <span class="mid-font">{{payment.sellerpaymentID}}</span>
+                            </div>
+                            <div layout="column" class="card-item">
+                                <span class="card-item-title">Suborder ID</span>
+                                <span class="mid-font">{{payment.suborderID}}</span>
+                            </div>
+                        </div>
+                          
+                <div layout="column" flex="25">
+                    <div layout="column" class="card-item">
+                        <span class="card-item-title">Payment Date & Time</span>
+                        <span class="mid-font">{{ payment.payment_time | date:'MMM dd,yyyy h:mma':'+0530'}}</span>
+                    </div>
+                    <div layout="column" class="card-item">
+                        <span class="card-item-title">Payment Method</span>
+                        <span class="mid-font">{{ payment.payment_method }}</span>
+                    </div>
+                    
+                </div>
+                <div layout="column" flex="25"> 
+                            <div layout="column" class="card-item">
+                        <span class="card-item-title">Payment Value</span>
+                        <span class="mid-font" layout = "row" layout-align="start center">{{payment.payment_value}}&nbsp;<span><svg style="width:18px; height:18px;" viewBox="0 0 500.998 500.998">
+    <path fill="grey" d="M326.62,91.076c-1.711-1.713-3.901-2.568-6.563-2.568h-48.82c-3.238-15.793-9.329-29.502-18.274-41.112h66.52
+        c2.669,0,4.853-0.856,6.57-2.565c1.704-1.712,2.56-3.903,2.56-6.567V9.136c0-2.666-0.855-4.853-2.56-6.567
+        C324.334,0.859,322.15,0,319.481,0H81.941c-2.666,0-4.853,0.859-6.567,2.568c-1.709,1.714-2.568,3.901-2.568,6.567v37.972
+        c0,2.474,0.904,4.615,2.712,6.423s3.949,2.712,6.423,2.712h41.399c40.159,0,65.665,10.751,76.513,32.261H81.941
+        c-2.666,0-4.856,0.855-6.567,2.568c-1.709,1.715-2.568,3.901-2.568,6.567v29.124c0,2.664,0.855,4.854,2.568,6.563
+        c1.714,1.715,3.905,2.568,6.567,2.568h121.915c-4.188,15.612-13.944,27.506-29.268,35.691
+        c-15.325,8.186-35.544,12.279-60.67,12.279H81.941c-2.474,0-4.615,0.905-6.423,2.712c-1.809,1.809-2.712,3.951-2.712,6.423v36.263
+        c0,2.478,0.855,4.571,2.568,6.282c36.543,38.828,83.939,93.165,142.182,163.025c1.715,2.286,4.093,3.426,7.139,3.426h55.672
+        c4.001,0,6.763-1.708,8.281-5.141c1.903-3.426,1.53-6.662-1.143-9.708c-55.572-68.143-99.258-119.153-131.045-153.032
+        c32.358-3.806,58.625-14.277,78.802-31.404c20.174-17.129,32.449-39.403,36.83-66.811h47.965c2.662,0,4.853-0.854,6.563-2.568
+        c1.715-1.709,2.573-3.899,2.573-6.563V97.646C329.193,94.977,328.335,92.79,326.62,91.076z"/>
+</svg></span></span>
+                    </div>
+                            <div layout="column" class="card-item">
+                                <span class="card-item-title">Payment Status</span>
+                                <span class="mid-font">{{payment.payment_status}}</span>
+                            </div>
+                            
+                        </div>
+
+            </div> 
+            <div layout="row" class="card-item">
+                &nbsp;&nbsp;<span class="card-item-title">Details&nbsp;:&nbsp;</span>
+                <span class="mid-font">{{ payment.details}}</span>
+            </div>
+            </div>         
+        </div>
+    </div>
+</div>
+    <!-- shipment details ens here -->
+
+<div layout="row" flex="100" layout-align="center center" layout-margin>
+    <!-- $index suborder starts-->
+    <div  lauout="column" md-whiteframe="2" flex="90"> 
+        <div layout="column" flex>
+            
+            <div layout="column">
+                <div layout="row" layout-align="center" class="md-title bold" layout-margin layout-padding>Order Items</div>
+                <md-divider></md-divider>
+                <div layout="column" data-ng-repeat="order_item in payment.order_items">
+                    <!-- suborder order item details starts -->
+                    <div layout="row" layout-align="space-around start" layout-padding>
+                        <div layout="column" layout-padding class="bold" style="font-size:2em">{{$index+1}}.</div>
+                        <div layout="row"  flex="50">
+                            <div layout="column" flex="70">
+                                <div layout="column" class="card-item">
+                                    <span class="card-item-title">Product ID</span>
+                                    <span class="mid-font">{{ order_item.product.productID }}</span>
+                                </div>
+                                <div layout="column" class="card-item">
+                                    <span class="card-item-title">Product Name</span>
+                                    <a href="/products/{{order_item.product.productID}}" target="_blank"><span class="mid-font link">{{ order_item.product.name }}</span></a>
+                                </div>
+                            </div>
+                            <div layout="column" flex="30">
+                                <a href="/products/{{order_item.product.productID}}" target="_blank"><img data-ng-src="{{allImages[$index]}}" height="150" width="120" /></a>
+                            </div>  
+                        </div>
+                        <div layout="column"  flex="25" >   
+                            <div layout="column" class="card-item">
+                                <span class="card-item-title">Catalog No</span>
+                                <span class="mid-font">{{ order_item.product.details.seller_catalog_number}}</span>
+                            </div>
+                            <div layout="column" class="card-item">
+                                <span class="card-item-title">Pcs Sold</span>
+                                <span class="mid-font">{{ order_item.pieces }}</span>
+                            </div>
+                            <div layout="column" class="card-item">
+                                <span class="card-item-title">Remarks</span>
+                                <span class="mid-font">{{ order_item.remarks}}</span>
+                            </div>
+                        </div>  
+                        <div layout="column" flex="25" >
+
+                            <div layout="column" class="card-item">
+                                <span class="card-item-title">Negotiated Price Per Piece</span>
+                                <span class="mid-font">&#8377; {{ order_item.edited_price_per_piece }}</span>
+                            </div>
+                            <div layout="column" class="card-item">
+                                <span class="card-item-title">Sub - Amount</span>
+                                <span class="mid-font">&#8377; {{ order_item.final_price}}</span>
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                    <md-divider md-inset ng-if="!$last"></md-divider>
+                    <md-divider  ng-if="$last"></md-divider>
+                    <!-- suborder order item details ends -->
+                </div>  
+                 
+            </div>
+        </div>
+    </div>
+    <!-- $index suborder ends-->
+</div>
+</div>

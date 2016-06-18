@@ -38,8 +38,11 @@ adminapp.config([
         }).when('/leads/:leadType/:leadID', {
             templateUrl:  function(params){ return 'views/'+params.leadType +'Details.html'},
             controller: 'LeadsController'
-        }).when('/payments-done',{
-            templateUrl: 'views/paymentsDone.html',
+        }).when('/payments/:paymentType',{
+            templateUrl: function(params){if(params.paymentType == 'seller-payment'){return 'views/sellerPayment.html'} else if(params.paymentType == 'buyer-payment') {return 'views/buyerPayment.html'}},
+            controller: 'PaymentController'
+        }).when('/payments/:paymentType/:paymentID',{
+            templateUrl: function(params){if(params.paymentType == 'seller-payment'){return 'views/sellerPaymentDetails.html'}},
             controller: 'PaymentController'
         }).when('/orders', {
             templateUrl: 'views/orders.html',

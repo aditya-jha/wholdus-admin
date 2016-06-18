@@ -1,15 +1,15 @@
 <div layout="row" layout-align="center start" flex="100">
-    <h3>Payments Done</h3>
+    <h3>Buyers Payments</h3>
 </div>
 
 <div layout="row" layout-wrap layout-align="space-around start">
-    <div layout="column" flex="45" md-whiteframe="4dp" data-ng-repeat="p in payment" layout-margin>
+    <div layout="column" flex="45" md-whiteframe="4dp" data-ng-repeat="p in payments" layout-margin>
         <div layout="row" layout-wrap layout-align="center center" flex>
             <div layout= "column" flex="50" layout-padding>
             <div layout="row">
                 <a class="link" data-ng-href="orders/{{p.suborderID}}" target="_blank">
-                    <sub-header>Sub-Order No.&nbsp;: </sub-header>
-                    <span>{{p.suborderID}}</span>
+                    <sub-header>Order ID.&nbsp;: </sub-header>
+                    <span>{{p.orderID}}</span>
                 </a>
             </div>  
                 
