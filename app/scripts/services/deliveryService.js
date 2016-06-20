@@ -15,10 +15,9 @@
             factory.setProp = function(property) {
                 factory.suborderID=property.suborderID;
                 factory.order_items=property.order_items;
-                if(!property.all_items){
-                    factory.all_items=property.all_items;
-                }
-                if(!property.fully_paid){
+                factory.all_items=property.all_items;
+                
+                if(property.fully_paid!=null){
                     factory.fully_paid=property.fully_paid;
                 }
             };
