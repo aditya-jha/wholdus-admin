@@ -21,8 +21,11 @@
                     <span>{{order.display_number}}</span>
                 </div>
                 <div layout="column" class="card-item" flex="20">
+                   
                     <span class="card-item-title">Buyer Name</span>
-                    <span>{{order.buyer.name}}</span>
+                  
+                     <a class="link" data-ng-href="users/buyers/{{order.buyer.buyerID}}" target="_blank">
+                    <span>{{order.buyer.name}}</span>  </a>
                 </div>
                 <div layout="column" class="card-item" flex="20">
                     <span class="card-item-title">Company Name</span>
@@ -47,7 +50,7 @@
                 </div>
                 <div layout="column" class="card-item" flex="20">
                     <span class="card-item-title">Total Products</span>
-                   <span style="padding-right:0px">{{order.product_count}}</span>
+                   <span >{{order.product_count}}</span>
                 </div>
                 <div layout="column" class="card-item" flex="20">
                     <span class="card-item-title">Edited Price</span>
@@ -94,8 +97,10 @@
                         <span>{{ sub_order.display_number }}</span>
                     </div>
                     <div layout="column" class="card-item" flex>
+                    
                         <span class="card-item-title">Merchant Name</span>
-                        <span>{{ sub_order.seller.name }}</span>
+                        <a class="link" data-ng-href="users/sellers/{{sub_order.seller.sellerID}}" target="_blank">
+                        <span>{{ sub_order.seller.name }}</span></a>
                     </div>
                     <div layout="column" class="card-item" flex>
                         <span class="card-item-title">Company Name</span>
@@ -103,7 +108,7 @@
                     </div>
                     <div layout="column" class="card-item" flex>
                         <span class="card-item-title">Product Count</span>
-                        <span >{{ sub_order.product_count }}</span>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ sub_order.product_count }}</span>
                     </div>
                     <div layout="column" class="card-item" flex="10">
                         <span class="card-item-title">Edited Price</span>
