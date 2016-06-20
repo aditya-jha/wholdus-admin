@@ -25,7 +25,7 @@
                     <span class="card-item-title">Buyer Name</span>
                   
                      <a class="link" data-ng-href="users/buyers/{{order.buyer.buyerID}}" target="_blank">
-                    <span>{{order.buyer.name}}</span>  </a>
+                    <span>{{order.buyer.name}}</span> <md-tooltip md-direction="top">view buyer details</md-tooltip>    </a>
                 </div>
                 <div layout="column" class="card-item" flex="20">
                     <span class="card-item-title">Company Name</span>
@@ -100,7 +100,8 @@
                     
                         <span class="card-item-title">Merchant Name</span>
                         <a class="link" data-ng-href="users/sellers/{{sub_order.seller.sellerID}}" target="_blank">
-                        <span>{{ sub_order.seller.name }}</span></a>
+                        <span>{{ sub_order.seller.name }}</span>
+                        <md-tooltip md-direction="top">view seller details</md-tooltip> </a>
                     </div>
                     <div layout="column" class="card-item" flex>
                         <span class="card-item-title">Company Name</span>
@@ -108,7 +109,7 @@
                     </div>
                     <div layout="column" class="card-item" flex>
                         <span class="card-item-title">Product Count</span>
-                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ sub_order.product_count }}</span>
+                        <span>{{ sub_order.product_count }}</span>
                     </div>
                     <div layout="column" class="card-item" flex="10">
                         <span class="card-item-title">Edited Price</span>
