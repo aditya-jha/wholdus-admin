@@ -43,8 +43,9 @@
               <label>Comments</label>
               <textarea data-ng-model="data.lead.comments" md-maxlength="500" rows="5" md-select-on-focus></textarea>
           </md-input-container>
-            <md-switch data-ng-model="data.lead.status.value" ng-true-value="1" ng-false-value="0" ng-change="onChange()">
-            Status: {{data.lead.status.display_value}}
+            <md-switch data-ng-model="data.lead.status.value" ng-true-value="1" ng-false-value="0">
+            Status: <span ng-if="data.lead.status.value">Resolved</span>
+            <span ng-if="!data.lead.status.value">New</span>
         </md-switch>
         </div>
   </div>

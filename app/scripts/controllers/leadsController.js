@@ -141,14 +141,18 @@
 
         };
 
-        $scope.onChange=function(){
-            if($scope.data.lead.status.value==1)
+        $scope.statusChange=function(status){
+           
+            if(status==1)
             {
                 $scope.data.lead.status.dispaly_value="Resolved";
             }
             else{
-                $scope.data.lead.status.dispaly_value="New";   
+                $scope.data.lead.status.dispaly_value="New"; 
+
             }
+            // alert($scope.data.lead.status.dispaly_value);  
+           
         };
 
     }
