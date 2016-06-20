@@ -40,8 +40,7 @@
         </div>
         <div layout="column" class="card-item" flex>
             <span class="card-item-title">Status</span>
-            <span ng-if="!cul.status">New</span>
-        <span ng-if="cul.status">Resolved</span>
+         <span>{{cul.status.display_value}}</span>
         </div>
 
     </div>
