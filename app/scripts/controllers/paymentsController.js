@@ -32,7 +32,7 @@
                $scope.paymenttime={
                    minutes:'00',
                    hours:'00'
-               };  
+               };
         function formatedDate(){
               var d=new Date();
                d.setDate($scope.paymentDate.getDate());
@@ -40,9 +40,9 @@
                d.setFullYear($scope.paymentDate.getFullYear());
                d.setMinutes($scope.paymenttime.minutes);
                d.setHours($scope.paymenttime.hours);
-               var str=d.toISOString().substr(0,10)+' '+d.toISOString().substr(11,12)+'000';  
-                
-                 return str; 
+               var str=d.toISOString().substr(0,10)+' '+d.toISOString().substr(11,12)+'000';
+
+                 return str;
              }
 
              var person='';
@@ -115,7 +115,7 @@
                 details: null,
                 payment_value: null,
                 fully_paid: 0
-            }
+            };
 
             $scope.paymentOptions = [
             {
@@ -158,7 +158,7 @@
 
             $scope.cancel = function(){
                 $mdDialog.cancel();
-            }
+            };
 
             $scope.postPayment = function(){
                 $scope.paymentData.payment_time = formatedDate();
@@ -183,5 +183,3 @@
 
     ]);
 })();
-
-

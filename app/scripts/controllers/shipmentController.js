@@ -90,20 +90,20 @@
                         }
                         else{
                             $scope.data.shipments = response.order_shipments;
-                        }    
+                        }
                         }
                     else if($scope.data.shipmentID){
                         $location.url('/shipments');
                         ToastService.showSimpleToast("No such Shipment exist", 3000);
-                    
+
                     }
                 },function(error){
                     $rootScope.$broadcast('endProgressbar');
                     ToastService.showSimpleToast("Something went wrong. Try again", 3000);
-                })
+                });
 
-                
-            };
+
+            }
 
             function pagesetting(){
                 if($routeParams.shipmentID){
@@ -150,7 +150,7 @@
                     case 8:
                         break;
                     case 9:
-                        break;                        
+                        break;
                 }
             }
 
@@ -160,7 +160,7 @@
                     total += parseInt($scope.data.shipment.order_items[i].final_price);
                 }
                 return total;
-            }
+            };
 
             $scope.changeStatus = function(event, index){
                 var temp = $scope.data.shipment.order_shipment_status.display_value;
@@ -176,7 +176,7 @@
                 },function(error){
                     $rootScope.$broadcast('endProgressbar');
                     ToastService.showSimpleToast("Something went wrong. Try again", 3000);
-                })
+                });
 
              };
 

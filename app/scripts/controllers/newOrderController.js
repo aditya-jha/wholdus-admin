@@ -52,7 +52,7 @@
                                 $scope.selectedBuyer = null;
                                 ToastService.showActionToast("Invalid Buyer ID", 0);
                             }
-                            
+
                         }, function(error) {
                             $scope.selectedBuyer = null;
                             $rootScope.$broadcast('endProgressbar');
@@ -61,14 +61,14 @@
             };
 
             function buyerOrder() {
-            if($routeParams.buyerID){
-                $scope.input.buyerID = parseInt($routeParams.buyerID);
-                $scope.searchBuyer()
-            };
-        }; 
+                if($routeParams.buyerID){
+                    $scope.input.buyerID = parseInt($routeParams.buyerID);
+                    $scope.searchBuyer();
+                }
+            }
             buyerOrder();
 
-            
+
 
             $scope.selectBuyer = function() {
                 $scope.input.disableBuyerID = true;
@@ -87,7 +87,6 @@
             };
 
 
-
             function productOrder() {
             if($routeParams.product){
                 var prods = JSON.parse($routeParams.product);
@@ -98,6 +97,7 @@
             };
         }; 
             productOrder();
+
 
             var products = {};
 
@@ -173,7 +173,7 @@
                         }, function(error) {
                             $location.url('/new-order');
                             $rootScope.$broadcast('endProgressbar');
-                            $scope.place = false
+                            $scope.place = false;
                         });
                 } else {
                     ToastService.showSimpleToast("no products added or buyer selected", 3000);

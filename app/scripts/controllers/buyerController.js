@@ -71,7 +71,7 @@
 
             $scope.create = function(){
                 getbuyers('POST');
-            }
+            };
 
             $scope.changebuyer = function(event, type) {
                 if(type=="DELETE" || type=="PUT") {

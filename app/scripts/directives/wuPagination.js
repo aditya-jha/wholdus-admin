@@ -30,7 +30,7 @@
                             if(($scope.page.current === 1 && step == -1) || ($scope.page.current === $scope.page.total && step == 1)) {
                                 return;
                             }
-                            
+
                                 $scope.page.current += step;
 
                             $location.search('page', $scope.page.current);
@@ -42,7 +42,7 @@
                             $scope.page.next +=val;
                             $scope.page.previous +=val;
                             }
-                        }
+                        };
 
                         $scope.$on('$destroy', function() {
                             angular.forEach(listeners, function(value, key) {

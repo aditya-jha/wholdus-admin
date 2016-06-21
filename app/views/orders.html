@@ -7,7 +7,7 @@
 <div layout="row" layout-wrap layout-margin layout-align="space-around start">
 
 
-    <div   flex="60" md-whiteframe="4dp" data-ng-repeat="order in data.orders"  style="padding:8px"  layout-margin>
+    <div   flex="65" md-whiteframe="4dp" data-ng-repeat="order in data.orders"  style="padding:8px"  layout-margin>
         <div layout="column">
             <div layout="row" flex>
             <div layout="column" flex="95">
@@ -21,8 +21,11 @@
                     <span>{{order.display_number}}</span>
                 </div>
                 <div layout="column" class="card-item" flex="20">
+                   
                     <span class="card-item-title">Buyer Name</span>
-                    <span>{{order.buyer.name}}</span>
+                  
+                     <a class="link" data-ng-href="users/buyers/{{order.buyer.buyerID}}" target="_blank">
+                    <span>{{order.buyer.name}}</span> <md-tooltip md-direction="top">view buyer details</md-tooltip>    </a>
                 </div>
                 <div layout="column" class="card-item" flex="20">
                     <span class="card-item-title">Company Name</span>
@@ -42,8 +45,12 @@
                     <span>{{order.order_status.display_value}}</span>
                 </div>
                 <div layout="column" class="card-item" flex="20">
+                    <span class="card-item-title">Payment Status</span>
+                    <span>{{order.order_payment_status.display_value}}</span>
+                </div>
+                <div layout="column" class="card-item" flex="20">
                     <span class="card-item-title">Total Products</span>
-                    <span>{{order.product_count}}</span>
+                   <span >{{order.product_count}}</span>
                 </div>
                 <div layout="column" class="card-item" flex="20">
                     <span class="card-item-title">Edited Price</span>
@@ -83,15 +90,18 @@
             </div>
             <md-divider></md-divider>
             <div layout="column"  ng-repeat="sub_order in order.sub_orders" class="small-font">
-                <div layout="row" layout-align="space-between start" flex>
+                <div layout="row" layout-align="space-between start" flex >
                     <div layout="column" class="card-item bold" flex="5"><span>{{$index+1}}. </span></div>
                      <div layout="column" class="card-item" flex>
                         <span class="card-item-title">Suborder Number</span>
                         <span>{{ sub_order.display_number }}</span>
                     </div>
-                    <div layout="column" class="card-item" flex="20">
+                    <div layout="column" class="card-item" flex>
+                    
                         <span class="card-item-title">Merchant Name</span>
+                        <a class="link" data-ng-href="users/sellers/{{sub_order.seller.sellerID}}" target="_blank">
                         <span>{{ sub_order.seller.name }}</span>
+                        <md-tooltip md-direction="top">view seller details</md-tooltip> </a>
                     </div>
                     <div layout="column" class="card-item" flex>
                         <span class="card-item-title">Company Name</span>
@@ -101,13 +111,17 @@
                         <span class="card-item-title">Product Count</span>
                         <span>{{ sub_order.product_count }}</span>
                     </div>
-                    <div layout="column" class="card-item" flex>
+                    <div layout="column" class="card-item" flex="10">
                         <span class="card-item-title">Edited Price</span>
                         <span>&#8377; {{ sub_order.edited_price }}</span>
                     </div>
-                     <div layout="column" class="card-item" flex="10">
-                        <span class="card-item-title">Status</span>
+                     <div layout="column" class="card-item" flex>
+                        <span class="card-item-title">Suborder Status</span>
                         <span>{{ sub_order.sub_order_status.display_value }}</span>
+                    </div>
+                    <div layout="column" class="card-item" flex>
+                        <span class="card-item-title">Payment Status</span>
+                        <span>{{ sub_order.sub_order_payment_status.display_value }}</span>
                     </div>
                 </div>
                    <md-divider  ng-if="!$last"></md-divider>
