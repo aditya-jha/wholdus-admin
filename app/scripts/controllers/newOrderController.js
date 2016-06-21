@@ -81,23 +81,23 @@
                 $location.search("buyerID", null);
             };
 
-            $scope.addProduct = function() {
-                var el = $compile("<div layout='row' flex='100' wua-add-product class='new-order-buyer-container' md-whiteframe='4dp' style='margin-top:1em' layout-wrap></div>")($scope);
+            $scope.addProduct = function(con, i) {
+                var el = $compile("<div layout='row' flex='100' wua-add-product cond="+con+" ind="+i+" class='new-order-buyer-container' md-whiteframe='4dp' style='margin-top:1em' layout-wrap></div>")($scope);
                 angular.element(document.querySelector("#productContainer")).append(el);
             };
 
 
 
-        //     function productOrder() {
-        //     if($routeParams.product){
-        //         // for(var i=0;i<pro.length;i++){
-        //             var prods = [];
-        //             prods = JSON.parse($routeParams.product);
-        //         $scope.addProduct('reload');
-        //         // };
-        //     };
-        // }; 
-        //     //productOrder();
+            function productOrder() {
+            if($routeParams.product){
+                var prods = JSON.parse($routeParams.product);
+                for(var i=0;i<prods.length;i++){
+
+                $scope.addProduct('reload', i);
+                };
+            };
+        }; 
+            productOrder();
 
             var products = {};
 
