@@ -1,49 +1,49 @@
 <div layout="column" layout-align="center" style="">
-<div layout="row" layout-align="center center" layout-margin flex="100" class="md-title">
+	<div layout="row" layout-align="center center" layout-margin flex="100" class="md-title">
 		<md-button class="md-fab md-mini" aria-label="go back" data-ng-href="/shipments">
-            <md-icon>
-                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                    <path fill="#fff" d="M21,11H6.83L10.41,7.41L9,6L3,12L9,18L10.41,16.58L6.83,13H21V11Z" />
-                </svg>
-            </md-icon>
-            <md-tooltip md-direction="right">back</md-tooltip>
-        </md-button>
-        <div flex></div>
-	SubOrder No. :<span class="bold"> {{data.shipment.suborder_display_number}}</span>
-	<div flex></div>
-</div>
+			<md-icon>
+				<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+					<path fill="#fff" d="M21,11H6.83L10.41,7.41L9,6L3,12L9,18L10.41,16.58L6.83,13H21V11Z" />
+				</svg>
+			</md-icon>
+			<md-tooltip md-direction="right">back</md-tooltip>
+		</md-button>
+		<div flex></div>
+		SubOrder No. :<span class="bold"> {{data.shipment.suborder_display_number}}</span>
+		<div flex></div>
+	</div>
 
 
-<!-- shipments details start here  -->
-<div layout="row"  layout-align="center center" flex="100" layout-margin>	
-	<div  layout="column" md-whiteframe="2" flex="90">
-		<div layout="column" flex >
-			<div layout="row" layout-align="center center" class="md-title property-title" layout-padding flex>Shipment Details</div>
-			<md-divider></md-divider>
-			<div layout="row" layout-align="center" flex layout-padding>
+	<!-- shipments details start here  -->
+	<div layout="row"  layout-align="center center" flex="100" layout-margin>	
+		<div  layout="column" md-whiteframe="2" flex="90">
+			<div layout="column" flex >
+				<div layout="row" layout-align="center center" class="md-title property-title" layout-padding flex>Shipment Details</div>
+				<md-divider></md-divider>
+				<div layout="row" layout-align="center" flex layout-padding>
 					<div layout="column" flex="40">
 						<div layout="row" layout-align="start">
 							<div layout="column" flex="50">
-						<div layout="column"  class="card-item">
-								<span class="card-item-title">AWB No.</span>
-								<span class="mid-font">{{ data.shipment.waybill_number }}</span>
+								<div layout="column"  class="card-item">
+									<span class="card-item-title">AWB No.</span>
+									<span class="mid-font">{{ data.shipment.waybill_number }}</span>
+								</div>
+								<div layout="column" class="card-item">
+									<span class="card-item-title">Logistics Partner</span>
+									<span class="mid-font">{{ data.shipment.logistics_partner }}</span>
+								</div>
 							</div>
-							<div layout="column" class="card-item">
-								<span class="card-item-title">Logistics Partner</span>
-								<span class="mid-font">{{ data.shipment.logistics_partner }}</span>
+							<div layout="column" flex="50">	
+								<div layout="column" class="card-item">
+									<span class="card-item-title">Invoice no.</span>
+									<span class="mid-font">{{ data.shipment.invoice_number}}</span>
+								</div>
+								<div layout="column" class="card-item">
+									<span class="card-item-title">Invoice date</span>
+									<span class="mid-font">{{ data.shipment.invoice_date | date}}</span>
+								</div>
 							</div>
-						</div>
-						<div layout="column" flex="50">	
-							<div layout="column" class="card-item">
-								<span class="card-item-title">Invoice no.</span>
-								<span class="mid-font">{{ data.shipment.invoice_number}}</span>
-							</div>
-							<div layout="column" class="card-item">
-								<span class="card-item-title">Invoice date</span>
-								<span class="mid-font">{{ data.shipment.invoice_date | date}}</span>
-							</div>
-						</div>
-						
+
 						</div>
 						
 						<md-divider layout-margin layout-margin></md-divider>
@@ -53,255 +53,256 @@
 							<span class="mid-font">{{data.shipment.remarks}}</span>
 						</div>
 					</div>	
-				<div layout="column" flex="20">
-					<div layout="column" class="card-item">
-						<span class="card-item-title">COD Charge</span>
-						<span class="mid-font">{{ data.shipment.cod_charge }}</span>
+					<div layout="column" flex="20">
+						<div layout="column" class="card-item">
+							<span class="card-item-title">COD Charge</span>
+							<span class="mid-font">{{ data.shipment.cod_charge }}</span>
+						</div>
+						<div layout="column" class="card-item">
+							<span class="card-item-title">Shipping Charge</span>
+							<span class="mid-font">{{ data.shipment.shipping_charge }}</span>
+						</div>
+						<div layout="column" class="card-item">
+							<span class="card-item-title">Final Price</span>
+							<span class="mid-font">{{ data.shipment.final_price }}</span>
+						</div>
 					</div>
-					<div layout="column" class="card-item">
-						<span class="card-item-title">Shipping Charge</span>
-						<span class="mid-font">{{ data.shipment.shipping_charge }}</span>
+					<div layout="column" flex="20">	
+						<div layout="column" class="card-item">
+							<span class="card-item-title">Length(cms)</span>
+							<span class="mid-font">{{ data.shipment.packaged_length}}</span>
+						</div>
+						<div layout="column" class="card-item">
+							<span class="card-item-title">Width&nbsp;(cms)</span>
+							<span class="mid-font">{{ data.shipment.packaged_breadth}}</span>
+						</div>
+						<div layout="column" class="card-item">
+							<span class="card-item-title">Height&nbsp;(cms)</span>
+							<span class="mid-font">{{ data.shipment.packaged_height}}</span>
+						</div>
 					</div>
-					<div layout="column" class="card-item">
-						<span class="card-item-title">Final Price</span>
-						<span class="mid-font">{{ data.shipment.final_price }}</span>
-					</div>
-				</div>
-				<div layout="column" flex="20">	
-							<div layout="column" class="card-item">
-						<span class="card-item-title">Length(cms)</span>
-						<span class="mid-font">{{ data.shipment.packaged_length}}</span>
-					</div>
-							<div layout="column" class="card-item">
-								<span class="card-item-title">Width&nbsp;(cms)</span>
-								<span class="mid-font">{{ data.shipment.packaged_breadth}}</span>
+					<div layout="column" flex="20">	
+						<div layout="column" class="card-item">
+							<span class="card-item-title">Weight&nbsp;(gms)</span>
+							<span class="mid-font">{{ data.shipment.packaged_weight}}</span>
+						</div>
+						<div layout="column" class="card-item">
+							<span class="card-item-title">Status</span>
+							<span layout="row" layout-align="start center" class="mid-font">{{ data.shipment.order_shipment_status.display_value}}<span>
+								<md-menu md-offset="0 -5">
+									<md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+										<svg class= "rotateX" fill="#FF5722" height="28" viewBox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+											<defs>
+												<path d="M0 0h24v24H0V0z" id="a"/>
+											</defs>
+											<clipPath id="b">
+												<use overflow="visible" xlink:href="#a"/>
+											</clipPath>
+											<path clip-path="url(#b)" d="M21 10.12h-6.78l2.74-2.82c-2.73-2.7-7.15-2.8-9.88-.1-2.73 2.71-2.73 7.08 0 9.79 2.73 2.71 7.15 2.71 9.88 0C18.32 15.65 19 14.08 19 12.1h2c0 1.98-.88 4.55-2.64 6.29-3.51 3.48-9.21 3.48-12.72 0-3.5-3.47-3.53-9.11-.02-12.58 3.51-3.47 9.14-3.47 12.65 0L21 3v7.12zM12.5 8v4.25l3.5 2.08-.72 1.21L11 13V8h1.5z"/>
+										</svg>
+									</md-button>
+									<md-menu-content width="3">
+										<md-menu-item ng-repeat="i in data.shipment.state">
+										<md-button ng-click="changeStatus($event, $index,data.shipment)" data-ng-disabled = "i.active"> <span md-menu-align-target></span> {{i.display_value}} </md-button>
+										</md-menu-item>
+									</md-menu-content>
+								</md-menu></span></span>
 							</div>
-							<div layout="column" class="card-item">
-								<span class="card-item-title">Height&nbsp;(cms)</span>
-								<span class="mid-font">{{ data.shipment.packaged_height}}</span>
+							<div flex></div>
+							<div layout="column">
+								<div layout="row" layout-align="start"><md-button layout="row" layout-align="start center" data-ng-href="{{data.shipment.tracking_url}}" target="_blank" class="md-warn md-raised"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+									<path fill="#FFFFFF" d="M12,2C15.31,2 18,4.66 18,7.95C18,12.41 12,19 12,19C12,19 6,12.41 6,7.95C6,4.66 8.69,2 12,2M12,6A2,2 0 0,0 10,8A2,2 0 0,0 12,10A2,2 0 0,0 14,8A2,2 0 0,0 12,6M20,19C20,21.21 16.42,23 12,23C7.58,23 4,21.21 4,19C4,17.71 5.22,16.56 7.11,15.83L7.75,16.74C6.67,17.19 6,17.81 6,18.5C6,19.88 8.69,21 12,21C15.31,21 18,19.88 18,18.5C18,17.81 17.33,17.19 16.25,16.74L16.89,15.83C18.78,16.56 20,17.71 20,19Z" />
+								</svg><span>Track order</span></md-button></div>
 							</div>
 						</div>
-				<div layout="column" flex="20">	
-					<div layout="column" class="card-item">
-								<span class="card-item-title">Weight&nbsp;(gms)</span>
-								<span class="mid-font">{{ data.shipment.packaged_weight}}</span>
-							</div>
-					<div layout="column" class="card-item">
-						<span class="card-item-title">Status</span>
-						<span layout="row" layout-align="start center" class="mid-font">{{ data.shipment.order_shipment_status.display_value}}<span><md-menu md-offset="0 -5">
-          <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-            <svg class= "rotateX" fill="#FF5722" height="28" viewBox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <defs>
-        <path d="M0 0h24v24H0V0z" id="a"/>
-    </defs>
-    <clipPath id="b">
-        <use overflow="visible" xlink:href="#a"/>
-    </clipPath>
-    <path clip-path="url(#b)" d="M21 10.12h-6.78l2.74-2.82c-2.73-2.7-7.15-2.8-9.88-.1-2.73 2.71-2.73 7.08 0 9.79 2.73 2.71 7.15 2.71 9.88 0C18.32 15.65 19 14.08 19 12.1h2c0 1.98-.88 4.55-2.64 6.29-3.51 3.48-9.21 3.48-12.72 0-3.5-3.47-3.53-9.11-.02-12.58 3.51-3.47 9.14-3.47 12.65 0L21 3v7.12zM12.5 8v4.25l3.5 2.08-.72 1.21L11 13V8h1.5z"/>
-</svg>
-          </md-button>
-          <md-menu-content width="3">
-            <md-menu-item ng-repeat="i in state">
-              <md-button ng-click="changeStatus($event, $index)" data-ng-disabled = "i.active"> <span md-menu-align-target></span> {{i.display_value}} </md-button>
-            </md-menu-item>
-          </md-menu-content>
-        </md-menu></span></span>
-					</div>
-					<div flex></div>
-					<div layout="column">
-						<div layout="row" layout-align="start"><md-button layout="row" layout-align="start center" data-ng-href="{{data.shipment.tracking_url}}" target="_blank" class="md-warn md-raised"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
-    <path fill="#FFFFFF" d="M12,2C15.31,2 18,4.66 18,7.95C18,12.41 12,19 12,19C12,19 6,12.41 6,7.95C6,4.66 8.69,2 12,2M12,6A2,2 0 0,0 10,8A2,2 0 0,0 12,10A2,2 0 0,0 14,8A2,2 0 0,0 12,6M20,19C20,21.21 16.42,23 12,23C7.58,23 4,21.21 4,19C4,17.71 5.22,16.56 7.11,15.83L7.75,16.74C6.67,17.19 6,17.81 6,18.5C6,19.88 8.69,21 12,21C15.31,21 18,19.88 18,18.5C18,17.81 17.33,17.19 16.25,16.74L16.89,15.83C18.78,16.56 20,17.71 20,19Z" />
-</svg><span>Track order</span></md-button></div>
-					</div>
-				</div>
 
-			</div>          
+					</div>          
+				</div>
+			</div>
 		</div>
-	</div>
-</div>
-	<!-- shipment details ens here -->
-<!-- buyer details starts -->
-<div layout="row"  layout-align="center center" flex="100" layout-margin>	
-	<div  layout="column" md-whiteframe="2" flex="90">
-		<div layout="column" flex >
-			<div layout="row" layout-align="center center" class="md-title property-title" layout-padding flex>Buyer Details</div>
-			<md-divider></md-divider>
-			<div layout="row" layout-align="center" flex layout-padding>
-					<div layout="column" flex>
-				<div layout="column"  class="card-item">
-						<span class="card-item-title">Buyer ID</span>
-						<span class="mid-font">{{ data.shipment.buyer.buyerID }}</span>
-					</div>
-					<div layout="column" class="card-item">
-						<span class="card-item-title">Buyer Name</span>
-						<span class="mid-font">{{ data.shipment.buyer.name }}</span>
-					</div>
-				</div>
-				<div layout="column" flex>	
-					<div layout="column" class="card-item">
-						<span class="card-item-title">Buyer Company</span>
-						<span class="mid-font">{{ data.shipment.buyer.company_name}}</span>
-					</div>
-					<div layout="column" class="card-item">
-						<span class="card-item-title">Mobile No</span>
-						<span class="mid-font">{{ data.shipment.buyer.mobile_number}}</span>
-					</div>
-				</div>
-				
-				<div layout="column" flex="35	">
-					<div layout="column" class="card-item">
-						<span class="card-item-title">Delivery Address</span>
-						<span class="mid-font">{{ data.shipment.drop_address.address }}</span>
-					</div>
-					<div layout="column" class="card-item">
-						<span class="card-item-title">City</span>
-						<span class="mid-font">{{ data.shipment.drop_address.city }}</span>
-					</div>
-				</div>
-				<div layout="column" flex>	
-					<div layout="column" class="card-item">
-						<span class="card-item-title">State</span>
-						<span class="mid-font">{{ data.shipment.drop_address.state}}</span>
-					</div>
-					<div layout="column" class="card-item">
-						<span class="card-item-title">Pincode</span>
-						<span class="mid-font">{{ data.shipment.drop_address.pincode}}</span>
-					</div>
-				</div>
-			</div>          
-		</div>
-	</div>
-</div>
-<!-- buyer details ends -->	
-
-<div layout="row" flex="100" layout-align="center center" layout-margin>
-	<!-- $index suborder starts-->
-	<div  lauout="column" md-whiteframe="2" flex="90"> 
-		<div layout="row" layout-align="center" flex class="md-title property-title" layout-padding>Manufacturer details</div>
-		<div layout="column" flex>
-			<!-- manufacturer details start -->
-			<div layout="row" layout-align="center center" flex> 
-				<div layout="column" flex>
-					<div layout="row"  layout-padding flex layout-align="center">
+		<!-- shipment details ens here -->
+		<!-- buyer details starts -->
+		<div layout="row"  layout-align="center center" flex="100" layout-margin>	
+			<div  layout="column" md-whiteframe="2" flex="90">
+				<div layout="column" flex >
+					<div layout="row" layout-align="center center" class="md-title property-title" layout-padding flex>Buyer Details</div>
+					<md-divider></md-divider>
+					<div layout="row" layout-align="center" flex layout-padding>
 						<div layout="column" flex>
-							<div layout="column" class="card-item">
-								<span class="card-item-title">Company Name</span>
-								<span class="mid-font">{{ data.shipment.seller.company_name }}</span>
+							<div layout="column"  class="card-item">
+								<span class="card-item-title">Buyer ID</span>
+								<span class="mid-font">{{ data.shipment.buyer.buyerID }}</span>
 							</div>
 							<div layout="column" class="card-item">
-								<span class="card-item-title">Merchant Name</span>
-								<span class="mid-font">{{ data.shipment.seller.name }}</span>
+								<span class="card-item-title">Buyer Name</span>
+								<span class="mid-font">{{ data.shipment.buyer.name }}</span>
+							</div>
+						</div>
+						<div layout="column" flex>	
+							<div layout="column" class="card-item">
+								<span class="card-item-title">Buyer Company</span>
+								<span class="mid-font">{{ data.shipment.buyer.company_name}}</span>
 							</div>
 							<div layout="column" class="card-item">
 								<span class="card-item-title">Mobile No</span>
-								<span class="mid-font">{{ data.shipment.seller.mobile_number}}</span>
+								<span class="mid-font">{{ data.shipment.buyer.mobile_number}}</span>
 							</div>
 						</div>
-						
-						<div layout="column" flex>
-							<div layout="column" class="card-item">
-								<span class="card-item-title">Contact Person Name</span>
-								<span class="mid-font">{{data.shipment.seller.concerned_person == ''? none:data.shipment.order_items[0].product.seller.concerned_person}}</span>
-							</div>
-							<div layout="column" class="card-item">
-								<span class="card-item-title">Contact Person No</span>
-								<span class="mid-font">{{data.shipment.order_items[0].product.seller.concerned_person_number == ''? none:data.shipment.seller.concerned_person_number}}</span>
-							</div>
 
-						</div>
-						<div layout="column" flex="35"> 
+						<div layout="column" flex="35	">
 							<div layout="column" class="card-item">
-								<span class="card-item-title">Pick Up Address</span>
-								<span class="mid-font">{{ data.shipment.pickup_address.address }}</span>
+								<span class="card-item-title">Delivery Address</span>
+								<span class="mid-font">{{ data.shipment.drop_address.address }}</span>
 							</div>
 							<div layout="column" class="card-item">
 								<span class="card-item-title">City</span>
-								<span class="mid-font">{{ data.shipment.pickup_address.city }}</span>
+								<span class="mid-font">{{ data.shipment.drop_address.city }}</span>
 							</div>
 						</div>
 						<div layout="column" flex>	
 							<div layout="column" class="card-item">
 								<span class="card-item-title">State</span>
-								<span class="mid-font">{{ data.shipment.pickup_address.state}}</span>
+								<span class="mid-font">{{ data.shipment.drop_address.state}}</span>
 							</div>
 							<div layout="column" class="card-item">
 								<span class="card-item-title">Pincode</span>
-								<span class="mid-font">{{ data.shipment.pickup_address.pincode}}</span>
+								<span class="mid-font">{{ data.shipment.drop_address.pincode}}</span>
 							</div>
 						</div>
-						
-					</div>
-
-				</div> 
-			</div> 
-			<!-- manufacturer details ends -->
-			<md-divider></md-divider>
-			<div layout="column">
-				<div layout="row" layout-align="center" class="md-title bold" layout-padding>Order Items</div>
-
-				<div layout="column" data-ng-repeat="order_item in data.shipment.order_items">
-					<!-- suborder order item details starts -->
-					<div layout="row" layout-align="space-around start" layout-padding>
-						<div layout="column" layout-padding class="bold" style="font-size:2em">{{$index+1}}.</div>
-						<div layout="row"  flex="50">
-							<div layout="column" flex="70">
-								<div layout="column" class="card-item">
-									<span class="card-item-title">Product ID</span>
-									<span class="mid-font">{{ order_item.product.productID }}</span>
-								</div>
-								<div layout="column" class="card-item">
-									<span class="card-item-title">Product Name</span>
-									<a href="/products/{{order_item.product.productID}}" target="_blank"><span class="mid-font link">{{ order_item.product.name }}</span></a>
-								</div>
-							</div>
-							<div layout="column" flex="30">
-								<a href="/products/{{order_item.product.productID}}" target="_blank"><img data-ng-src="{{allImages[$index]}}" height="150" width="120" /></a>
-							</div>	
-						</div>
-						<div layout="column"  flex="25" >	
-							<div layout="column" class="card-item">
-								<span class="card-item-title">Catalog No</span>
-								<span class="mid-font">{{ order_item.product.details.seller_catalog_number}}</span>
-							</div>
-							<div layout="column" class="card-item">
-								<span class="card-item-title">Pcs Sold</span>
-								<span class="mid-font">{{ order_item.pieces }}</span>
-							</div>
-							<div layout="column" class="card-item">
-								<span class="card-item-title">Remarks</span>
-								<span class="mid-font">{{ order_item.remarks}}</span>
-							</div>
-						</div>  
-						<div layout="column" flex="25" >
-
-							<div layout="column" class="card-item">
-								<span class="card-item-title">Negotiated Price Per Piece</span>
-								<span class="mid-font">&#8377; {{ order_item.edited_price_per_piece }}</span>
-							</div>
-							<div layout="column" class="card-item">
-								<span class="card-item-title">Sub - Amount</span>
-								<span class="mid-font">&#8377; {{ order_item.final_price}}</span>
-							</div>
-						</div>
-						
-
-					</div>
-					<md-divider md-inset ng-if="!$last"></md-divider>
-					<md-divider  ng-if="$last"></md-divider>
-					<!-- suborder order item details ends -->
-				</div>	
-				<div layout="row" layout-align="space-between" ng-cloak flex="100" layout-padding>
-
-					<div flex="75"></div>
-						<div layout="column" class="card-item" flex="25">
-							<span class="bold md-title" flex>Total Amount</span>
-							<span>&#8377; {{ totalAmount()}}</span>
-						</div>
-					   
-				</div>	
+					</div>          
+				</div>
 			</div>
 		</div>
+		<!-- buyer details ends -->	
+
+		<div layout="row" flex="100" layout-align="center center" layout-margin>
+			<!-- $index suborder starts-->
+			<div  lauout="column" md-whiteframe="2" flex="90"> 
+				<div layout="row" layout-align="center" flex class="md-title property-title" layout-padding>Manufacturer details</div>
+				<div layout="column" flex>
+					<!-- manufacturer details start -->
+					<div layout="row" layout-align="center center" flex> 
+						<div layout="column" flex>
+							<div layout="row"  layout-padding flex layout-align="center">
+								<div layout="column" flex>
+									<div layout="column" class="card-item">
+										<span class="card-item-title">Company Name</span>
+										<span class="mid-font">{{ data.shipment.seller.company_name }}</span>
+									</div>
+									<div layout="column" class="card-item">
+										<span class="card-item-title">Merchant Name</span>
+										<span class="mid-font">{{ data.shipment.seller.name }}</span>
+									</div>
+									<div layout="column" class="card-item">
+										<span class="card-item-title">Mobile No</span>
+										<span class="mid-font">{{ data.shipment.seller.mobile_number}}</span>
+									</div>
+								</div>
+
+								<div layout="column" flex>
+									<div layout="column" class="card-item">
+										<span class="card-item-title">Contact Person Name</span>
+										<span class="mid-font">{{data.shipment.seller.concerned_person == ''? none:data.shipment.order_items[0].product.seller.concerned_person}}</span>
+									</div>
+									<div layout="column" class="card-item">
+										<span class="card-item-title">Contact Person No</span>
+										<span class="mid-font">{{data.shipment.order_items[0].product.seller.concerned_person_number == ''? none:data.shipment.seller.concerned_person_number}}</span>
+									</div>
+
+								</div>
+								<div layout="column" flex="35"> 
+									<div layout="column" class="card-item">
+										<span class="card-item-title">Pick Up Address</span>
+										<span class="mid-font">{{ data.shipment.pickup_address.address }}</span>
+									</div>
+									<div layout="column" class="card-item">
+										<span class="card-item-title">City</span>
+										<span class="mid-font">{{ data.shipment.pickup_address.city }}</span>
+									</div>
+								</div>
+								<div layout="column" flex>	
+									<div layout="column" class="card-item">
+										<span class="card-item-title">State</span>
+										<span class="mid-font">{{ data.shipment.pickup_address.state}}</span>
+									</div>
+									<div layout="column" class="card-item">
+										<span class="card-item-title">Pincode</span>
+										<span class="mid-font">{{ data.shipment.pickup_address.pincode}}</span>
+									</div>
+								</div>
+
+							</div>
+
+						</div> 
+					</div> 
+					<!-- manufacturer details ends -->
+					<md-divider></md-divider>
+					<div layout="column">
+						<div layout="row" layout-align="center" class="md-title bold" layout-padding>Order Items</div>
+
+						<div layout="column" data-ng-repeat="order_item in data.shipment.order_items">
+							<!-- suborder order item details starts -->
+							<div layout="row" layout-align="space-around start" layout-padding>
+								<div layout="column" layout-padding class="bold" style="font-size:2em">{{$index+1}}.</div>
+								<div layout="row"  flex="50">
+									<div layout="column" flex="70">
+										<div layout="column" class="card-item">
+											<span class="card-item-title">Product ID</span>
+											<span class="mid-font">{{ order_item.product.productID }}</span>
+										</div>
+										<div layout="column" class="card-item">
+											<span class="card-item-title">Product Name</span>
+											<a href="/products/{{order_item.product.productID}}" target="_blank"><span class="mid-font link">{{ order_item.product.name }}</span></a>
+										</div>
+									</div>
+									<div layout="column" flex="30">
+										<a href="/products/{{order_item.product.productID}}" target="_blank"><img data-ng-src="{{allImages[$index]}}" height="150" width="120" /></a>
+									</div>	
+								</div>
+								<div layout="column"  flex="25" >	
+									<div layout="column" class="card-item">
+										<span class="card-item-title">Catalog No</span>
+										<span class="mid-font">{{ order_item.product.details.seller_catalog_number}}</span>
+									</div>
+									<div layout="column" class="card-item">
+										<span class="card-item-title">Pcs Sold</span>
+										<span class="mid-font">{{ order_item.pieces }}</span>
+									</div>
+									<div layout="column" class="card-item">
+										<span class="card-item-title">Remarks</span>
+										<span class="mid-font">{{ order_item.remarks}}</span>
+									</div>
+								</div>  
+								<div layout="column" flex="25" >
+
+									<div layout="column" class="card-item">
+										<span class="card-item-title">Negotiated Price Per Piece</span>
+										<span class="mid-font">&#8377; {{ order_item.edited_price_per_piece }}</span>
+									</div>
+									<div layout="column" class="card-item">
+										<span class="card-item-title">Sub - Amount</span>
+										<span class="mid-font">&#8377; {{ order_item.final_price}}</span>
+									</div>
+								</div>
+
+
+							</div>
+							<md-divider md-inset ng-if="!$last"></md-divider>
+							<md-divider  ng-if="$last"></md-divider>
+							<!-- suborder order item details ends -->
+						</div>	
+						<div layout="row" layout-align="space-between" ng-cloak flex="100" layout-padding>
+
+							<div flex="75"></div>
+							<div layout="column" class="card-item" flex="25">
+								<span class="bold md-title" flex>Total Amount</span>
+								<span>&#8377; {{ totalAmount()}}</span>
+							</div>
+
+						</div>	
+					</div>
+				</div>
+			</div>
+			<!-- $index suborder ends-->
+		</div>
 	</div>
-	<!-- $index suborder ends-->
-</div>
-</div>

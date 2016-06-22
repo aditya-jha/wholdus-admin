@@ -216,7 +216,7 @@ min-height: 25px;
 
 .small-image{
     width: 100px;
-    height: auto;
+    max-height: 150px;
 }
 
 .color-display{

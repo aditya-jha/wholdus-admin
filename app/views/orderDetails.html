@@ -1,15 +1,15 @@
     
 <div layout="column" layout-align="center">
 	<div layout="row" layout-align="center center" layout-margin flex="100" class="md-title">
-		 <md-button class="md-fab md-mini" aria-label="go back" data-ng-href="/orders">
-            <md-icon>
-                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                    <path fill="#fff" d="M21,11H6.83L10.41,7.41L9,6L3,12L9,18L10.41,16.58L6.83,13H21V11Z" />
-                </svg>
-            </md-icon>
-            <md-tooltip md-direction="right">back</md-tooltip>
-        </md-button>
-        <div flex></div>
+		<md-button class="md-fab md-mini" aria-label="go back" data-ng-href="/orders">
+			<md-icon>
+				<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+					<path fill="#fff" d="M21,11H6.83L10.41,7.41L9,6L3,12L9,18L10.41,16.58L6.83,13H21V11Z" />
+				</svg>
+			</md-icon>
+			<md-tooltip md-direction="right">back</md-tooltip>
+		</md-button>
+		<div flex></div>
 		Order No:<span class="bold"> {{data.order.display_number}}</span>
 		<div flex></div>
 	</div>
@@ -49,7 +49,7 @@
 					<div layout="column" layout-padding flex>
 						<div layout="column" class="card-item">
 							<span class="card-item-title">Final Price</span>
-							<span>&#8377; {{data.order.calculated_price}}</span>
+							<span>&#8377; {{data.order.final_price}}</span>
 						</div>
 						<div layout="column" class="card-item">
 							<span class="card-item-title">Edited Price</span>
@@ -89,7 +89,12 @@
 						</div>
 					</div>
 
-				</div>        
+				</div> 
+				<div layout="row" layout-align="center">
+					<md-button class="md-raised md-warn" data-ng-click="buyerPayment($event, order.orderID)"  aria-label="create-buyer-payment">Create Buyer Payment
+					</md-button>
+
+				</div>       
 			</div>
 		</div>
 	</div>
@@ -153,13 +158,13 @@
 			<div layout="row" layout-align="center" flex class="md-title property-title" layout-padding>Sub Order: {{$index+1}}</div>
 			<div layout="column" flex>
 				<div layout="row" flex>
-					<div layout="row" flex="40"> <!-- suborder details row --> 
+					<div layout="row" flex="45"> <!-- suborder details row --> 
 						<div layout="column" layout-padding flex> 
 
 							<div layout="row"  layout-align="center" class="md-title bold" layout-padding>Suborder Details</div>
 							<div layout="row"  flex layout-align="space-around start" layout-padding>
 
-								<div layout="column" flex="50">
+								<div layout="column" flex>
 									<div layout="column" class="card-item">
 										<span class="card-item-title">Suborder Number</span>
 										<span>{{ sub_order.display_number }}</span>
@@ -173,29 +178,48 @@
 										<span>{{ sub_order.sub_order_status.display_value }}</span>
 									</div>
 									
+									
+									
 								</div>	
-								<div layout="column" flex="40">
+								<div layout="column" flex>
 									<div layout="column" class="card-item">
 										<span class="card-item-title">Product Count</span>
 										<span flex>{{ sub_order.product_count }}</span>
 									</div>
 									<div layout="column" class="card-item">
-										<span class="card-item-title">Calculated Price</span>
-										<span>&#8377; {{ sub_order.calculated_price }}</span>
+										<span class="card-item-title">Edited Price</span>
+										<span>&#8377; {{ sub_order.edited_price }}</span>
 									</div>
-									<div layout="column" class="card-item">
-										<span class="card-item-title">Payment Status</span>
-										<span>{{ sub_order.sub_order_payment_status.display_value}}</span>
+									
+									<div layout="column" class="card-item" ng-if="sub_order.sub_order_status.value>=4">
+										<span class="card-item-title">COD Charge</span>
+										<span>&#8377; {{ sub_order.cod_charge }}</span>
 									</div>
 									
 
+								</div>
+
+								
+								<div layout="column" flex>
+									<div layout="column" class="card-item">
+									<span class="card-item-title">Payment Status</span>
+									<span>{{ sub_order.sub_order_payment_status.display_value}}</span>
+								</div>
+									<div layout="column" class="card-item">
+										<span class="card-item-title">Final Price</span>
+										<span>&#8377; {{ sub_order.final_price }}</span>
+									</div>
+									<div layout="column" class="card-item" ng-if="sub_order.sub_order_status.value>=4">
+										<span class="card-item-title">Shipping Charge</span>
+										<span>&#8377; {{ sub_order.shipping_charge }}</span>
+									</div>
 								</div>
 							</div> 
 						</div>
 						<md-divider></md-divider>
 					</div>
 					<!-- manufacturer details start -->
-					<div layout="row" flex="60">
+					<div layout="row" flex="55">
 						<div layout="column"  layout-padding flex> 
 							
 							<div layout="row" layout-align="center" class="md-title bold" layout-padding>Manufacturer Details</div>
@@ -261,7 +285,7 @@
 							<md-checkbox  aria-label="Checkbox" data-ng-model="sub_order.allItems" class="md-primary"
 							ng-true-value="1" ng-false-value="0" ng-change="changeItemsSelected($index)">
 							Add all items for shipment
-							</md-checkbox>
+						</md-checkbox>
 						<md-button class="md-primary md-raised" ng-click="confirmDelivery($event,$index)" >
 							<md-icon>
 								<svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
@@ -318,7 +342,7 @@
 
 								<div layout="column" layout-align="center center" style="width:100px, height:100px;" flex="15">
 									<a class="link" data-ng-href="products/{{order_item.product.productID}}" target="_blank">
-									<img class="small-image" data-ng-src="{{order_item.product.imageUrl}}"/>
+										<img class="small-image" data-ng-src="{{order_item.product.imageUrl}}"/>
 									</a>
 								</div>
 								<div layout="column"  flex="25">
@@ -418,11 +442,11 @@
 					</div>
 				</div>
 			</div>
-			<div layout="row" layout-align="space-between" ng-cloak  layout-padding>
+			<div layout="row"  ng-cloak  layout-padding>
 				<div flex></div>
-				<div layout="column" class="card-item" flex="15">
-					<span class="bold md-title" flex>Amount</span>
-					<span>&#8377; {{ calcAmount($index)}}</span>
+				<div layout="column" class="card-item">
+					<span class="md-title" flex>Shipment Amount</span>
+					<span class="bold md-title">&#8377; {{ calcAmount($index)}}</span>
 				</div>
 
 			</div>	
@@ -432,18 +456,5 @@
 <!-- $index suborder ends-->
 </div>
 
-<div layout="row" layout-align="right" layout-padding flex="100">
-	<div flex></div>
-	<div layout="column" flex="15">
-		<span class="md-title bold">Sub-Total</span>
-		<span>&#8377; {{calcSubTotal()}}</span>
-	</div>
-
-</div>
-</div>
-
-<div ng-repeat="playerPerTeam in playersToFilter() | filter:filterTeams">
-	<b>{{playerPerTeam.team}}</b>
-	<li ng-repeat="player in players | filter:{team: playerPerTeam.team}">{{player.name}}</li>        
 </div>
 
