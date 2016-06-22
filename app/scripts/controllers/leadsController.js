@@ -30,22 +30,22 @@
 
                         }
                         else
-                         $scope.data.leads = response.buyer_leads;
-                 }
-                 else if($scope.leadType=='sellerLeads' && response.seller_leads.length>0) {
+                           $scope.data.leads = response.buyer_leads;
+                   }
+                   else if($scope.leadType=='sellerLeads' && response.seller_leads.length>0) {
                     if($scope.data.leadID)
                         $scope.data.lead = response.seller_leads[0];
                     else
-                     $scope.data.leads = response.seller_leads;
-             }
-             else if($scope.leadType=='contactusLeads' && response.contactus_leads.length>0) {
+                       $scope.data.leads = response.seller_leads;
+               }
+               else if($scope.leadType=='contactusLeads' && response.contactus_leads.length>0) {
                 if($scope.data.leadID)
                     $scope.data.lead = response.contactus_leads[0];
                 else
-                 $scope.data.leads = response.contactus_leads;
-         }
+                   $scope.data.leads = response.contactus_leads;
+           }
 
-         else if($scope.data.leadID) {
+           else if($scope.data.leadID) {
             ToastService.showActionToast("No such lead exists! GO BACK", 0)
             .then(function(response) {
                 if($scope.leadType=='buyerLeads')
@@ -59,9 +59,9 @@
         }
         else{
 
-           if($scope.leadType=='buyerLeads')
-               $scope.data.leads = response.buyer_leads;
-           else if($scope.leadType=='sellerLeads')
+         if($scope.leadType=='buyerLeads')
+             $scope.data.leads = response.buyer_leads;
+         else if($scope.leadType=='sellerLeads')
             $scope.data.leads = response.seller_leads;
         else if($scope.leadType=='contactusLeads')
             $scope.data.leads = response.contactus_leads;
@@ -70,41 +70,7 @@
     $rootScope.$broadcast('endProgressbar');
 });
             }
-
-            function pageSetting() {
-             $scope.data.leadID = parseInt($routeParams.leadID);
-             if($scope.leadType=='buyerLeads'){
-
-                if($routeParams.leadID) {
-                    getLeads({
-                        buyerleadID: $routeParams.leadID
-                    });
-                } else {
-                    getLeads();
-                }
-            }
-            else if($scope.leadType=='sellerLeads'){
-                if($routeParams.leadID){
-                    getLeads({
-                        sellerleadID: $routeParams.leadID
-                    });
-                } else {
-                    getLeads();
-                }
-            } if($scope.leadType=='contactusLeads'){
-                if($routeParams.leadID) {
-                    getLeads({
-                        contactusleadID: $routeParams.leadID
-                    });
-                } else {
-                    getLeads();
-                }
-            }
-        }
-
-        pageSetting();
-
-        $scope.resolvedLeads=function(){
+              $scope.resolvedLeads=function(){
             getLeads({status: 1});
 
         };
@@ -113,8 +79,45 @@
 
         };
         $scope.reset = function() {
-            pageSetting();
+            getLeads();
         };
+
+            function pageSetting() {
+               $scope.data.leadID = parseInt($routeParams.leadID);
+               if($scope.leadType=='buyerLeads'){
+
+                if($routeParams.leadID) {
+                    getLeads({
+                        buyerleadID: $routeParams.leadID
+                    });
+                } else {
+                     $scope.newLeads();
+                }
+                }
+                else if($scope.leadType=='sellerLeads'){
+                if($routeParams.leadID){
+                    getLeads({
+                        sellerleadID: $routeParams.leadID
+                    });
+                } else {
+                    $scope.newLeads();
+                }
+                } if($scope.leadType=='contactusLeads'){
+                if($routeParams.leadID) {
+                    getLeads({
+                        contactusleadID: $routeParams.leadID
+                    });
+                } else {
+                    $scope.newLeads();
+                }
+            }
+        }
+
+ 
+
+        pageSetting();
+
+      
 
         $scope.changeLeads = function(event, type) {
             $scope.putdata.comments=$scope.data.lead.comments;
@@ -142,7 +145,7 @@
         };
 
         $scope.statusChange=function(status){
-           
+
             if(status==1)
             {
                 $scope.data.lead.status.dispaly_value="Resolved";
@@ -152,7 +155,7 @@
 
             }
             // alert($scope.data.lead.status.dispaly_value);  
-           
+
         };
 
     }

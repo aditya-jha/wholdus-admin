@@ -1,8 +1,7 @@
-<div ng-cloak=""> 
- <md-tabs md-dynamic-height md-border-bottom md-center-tabs class="md-hue-2">
-    <md-tab label='all'  data-ng-click="reset()"></md-tab>
+<md-tabs md-dynamic-height md-border-bottom md-center-tabs>
     <md-tab label='new'  data-ng-click="newLeads()"></md-tab>
     <md-tab label='resolved'  data-ng-click="resolvedLeads()"></md-tab>
+    <md-tab label='all'  data-ng-click="reset()"></md-tab>
 </md-tabs>  
 <div layout="row" layout-align="center start" flex="100">
     <h2>Buyer Leads</h2>
@@ -62,7 +61,6 @@
         <span>{{bl.status.display_value}}</span>
     </div>
 
-</div>
 </div>
 </div>
 </div>

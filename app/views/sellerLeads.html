@@ -1,8 +1,8 @@
 <md-tabs md-dynamic-height md-border-bottom md-center-tabs>
-        <md-tab label='all'  data-ng-click="reset()"></md-tab>
-        <md-tab label='new'  data-ng-click="newLeads()"></md-tab>
-        <md-tab label='resolved'  data-ng-click="resolvedLeads()"></md-tab>
-</md-tabs>  
+    <md-tab label='new'  data-ng-click="newLeads()"></md-tab>
+    <md-tab label='resolved'  data-ng-click="resolvedLeads()"></md-tab>
+    <md-tab label='all'  data-ng-click="reset()"></md-tab>
+ </md-tabs>  
 <div layout="row" layout-align="center start" flex="100">
     <h2>Seller Leads</h2>
 </div>
@@ -11,20 +11,20 @@
 </div>
 <div layout="row" layout-wrap layout-margin layout-align="space-around start">
     <div  flex="45" md-whiteframe="4dp" data-ng-repeat="sl in data.leads" style="padding:8px">
-     <div layout="row" layout-align="space-between center">
-            <div layout="column" class="card-item">
-                <span class="card-item-title" flex>Seller Lead ID</span>
-                <span>{{sl.sellerleadID}}</span>
-            </div>  
-              <div layout="column" class="card-item">
-                <span class="card-item-title" flex>Company Name</span>
-                <span>{{sl.company_name}}</span>
-            </div>
-             <div layout="column" class="card-item">
-                <span class="card-item-title" flex>Created at</span>
-                <span> {{sl.created_at | date}}</span>
-            </div>    
-      
+       <div layout="row" layout-align="space-between center">
+        <div layout="column" class="card-item">
+            <span class="card-item-title" flex>Seller Lead ID</span>
+            <span>{{sl.sellerleadID}}</span>
+        </div>  
+        <div layout="column" class="card-item">
+            <span class="card-item-title" flex>Company Name</span>
+            <span>{{sl.company_name}}</span>
+        </div>
+        <div layout="column" class="card-item">
+            <span class="card-item-title" flex>Created at</span>
+            <span> {{sl.created_at | date}}</span>
+        </div>    
+
         <!-- <md-button class="md-warn" data-ng-href="users/sellers/{{s.sellerID}}">view</md-button> -->
         <a data-ng-href="leads/sellerLeads/{{sl.sellerleadID}}">
             <svg style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -34,18 +34,18 @@
         </a>
     </div>
     <div layout="row" layout-align="start center">
-    <div layout="column" class="card-item" flex="50">
-                <span class="card-item-title" flex="50">Email</span>
-                <span>{{sl.email}}</span>
-            </div>    
-            <div layout="column" class="card-item" flex="35">
-                <span class="card-item-title" flex>Mobile No</span>
-                <span>{{sl.mobile_number}}</span>
-            </div>    
-            <div layout="column" class="card-item" flex>
-                <span class="card-item-title" flex>Status</span>
-                <span>{{sl.status.display_value}}</span>
-            </div>
+        <div layout="column" class="card-item" flex="50">
+            <span class="card-item-title" flex="50">Email</span>
+            <span>{{sl.email}}</span>
+        </div>    
+        <div layout="column" class="card-item" flex="35">
+            <span class="card-item-title" flex>Mobile No</span>
+            <span>{{sl.mobile_number}}</span>
+        </div>    
+        <div layout="column" class="card-item" flex>
+            <span class="card-item-title" flex>Status</span>
+            <span>{{sl.status.display_value}}</span>
+        </div>
     </div>
 </div>
 </div>
