@@ -135,24 +135,10 @@
                     var amount=0;
                     var sub_order=$scope.data.order.sub_orders[index];
                     for (var i = 0; i < sub_order.order_items.length; i++) {
-                        if(sub_order.order_items[i].addForDelivery){
+                        var order_item=sub_order.order_items[i];
+                        if((order_item.addForDelivery | sub_order.allItems) && order_item.order_item_status.value<=2){
                             amount=(parseFloat(amount)+parseFloat(sub_order.order_items[i].final_price)).toFixed(2);
                         }
-                    }
-                    return amount;
-                };
-
-                $scope.calcSubTotal=function(){
-                    var amount=0;
-                    if($scope.data.order.sub_orders){
-                    for (var j = 0; j < $scope.data.order.sub_orders.length; j++)
-                    {
-                        var sub_order=$scope.data.order.sub_orders[j];
-                        for (var i = 0; i < sub_order.order_items.length; i++) {
-                            if(sub_order.order_items[i].addForDelivery)
-                                amount=(parseFloat(amount)+parseFloat(sub_order.order_items[i].final_price)).toFixed(2);
-                        }
-                    }
                     }
                     return amount;
                 };
