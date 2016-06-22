@@ -19,7 +19,6 @@
 
             function getbuyers(type, params) {
                 $rootScope.$broadcast('showProgressbar');
-                if(type=="GET"){
                 APIService.apiCall(type, APIService.getAPIUrl('buyers'), null, params)
                     .then(function(response) {
                         $rootScope.$broadcast('endProgressbar');
@@ -37,19 +36,6 @@
                     }, function(error) {
                         $rootScope.$broadcast('endProgressbar');
                     });
-                }
-                else if(type == "POST"){
-                    $scope.data.buyer.address = $scope.data.buyer.address[0];
-                    APIService.apiCall(type, APIService.getAPIUrl("buyers"), $scope.data.buyer)
-                    .then(function(response){
-                        $rootScope.$broadcast('endProgressbar');
-                        $location.url('/users/buyers');
-                        ToastService.showActionToast("New Buyer Created", 0);
-                    },function(error){
-                        $rootScope.$broadcast('endProgressbar');
-                            ToastService.showActionToast("something went wrong! Reload and try again", 0);
-                    });
-                }
             }
 
             function pageSetting() {
@@ -70,29 +56,40 @@
             };
 
             $scope.create = function(){
-                getbuyers('POST');
+                $scope.changebuyer(null,'POST');
             };
 
             $scope.changebuyer = function(event, type) {
-                if(type=="DELETE" || type=="PUT") {
+            
                     $rootScope.$broadcast('showProgressbar');
-                    $scope.data.buyer.address = $scope.data.buyer.address[0];
+                    if(type=="POST"){
+                        $scope.data.buyer.address  = $scope.data.buyer.temp.address[0];
+                    }
+                    else{
+                        $scope.data.buyer.address = $scope.data.buyer.address[0];
+                    }
                     APIService.apiCall(type, APIService.getAPIUrl("buyers"), $scope.data.buyer)
                         .then(function(response) {
                             $rootScope.$broadcast('endProgressbar');
-                            if(type=="DELETE") {
+                            if(type=="DELETE" || type=="POST") {
                                     $location.url('/users/buyers');
-                                    ToastService.showActionToast("Buyer Deleted Successfully", 0);
+                                    switch(type){
+                                        case "DELETE" :
+                                            ToastService.showActionToast("Buyer Deleted Successfully", 0);
+                                            break;
+                                        case "POST":
+                                             ToastService.showActionToast("New Buyer Created", 0);   
+                                    }
                                 }
-                             else{
+                             else if(type=="PUT"){
                                 pageSetting();
                                 ToastService.showActionToast("Changes Saved", 0);
                              }
                         }, function(error) {
                             $rootScope.$broadcast('endProgressbar');
-                            ToastService.showActionToast("something went wrong! please reload", 0);
+                            ToastService.showActionToast("something went wrong! Please reload and try again", 0);
                         });
-                }
+                
             };
 
         }

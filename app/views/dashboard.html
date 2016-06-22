@@ -7,12 +7,14 @@
     md-whiteframe="4"
     flex
     >
+
+    <md-list>
         <md-list-item data-ng-repeat="item in items" flex>
-            <md-button data-ng-href="{{item.url}}" ng-click="sidenavClicked()" layout-margin flex>
+            <md-button data-ng-href="{{item.url}}" ng-click="sidenavClicked()" flex>
                 {{item.name}}
             </md-button>
         </md-list-item>
-   
+    </md-list>
 </div>
 	</div>
 

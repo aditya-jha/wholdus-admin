@@ -23,7 +23,7 @@
         </md-input-container>
         <md-input-container>
             <label>Email</label>
-            <input type="email" data-ng-model="data.buyer.email" ng-required="true" />
+            <input type="email" data-ng-model="data.buyer.email" ng-required="false" />
         </md-input-container>
         <md-switch data-ng-model="data.buyer.mobile_verification">Mobile Verification</md-switch>
         <md-switch data-ng-model="data.buyer.email_verification">Email Verification</md-switch>
@@ -68,31 +68,31 @@
         
         <md-input-container>
             <label>Address</label>
-            <input type="text" data-ng-model="data.buyer.address[0].address" ng-required="true" />
+            <input type="text" data-ng-model="data.buyer.temp.address[0].address" ng-required="true" />
         </md-input-container>
         <md-input-container>
             <label>Landmark</label>
-            <input type="text" data-ng-model="data.buyer.address[0].landmark" ng-required="false" />
+            <input type="text" data-ng-model="data.buyer.temp.address[0].landmark" ng-required="false" />
         </md-input-container>
         <md-input-container>
             <label>Contact No.</label>
-            <input type="text" data-ng-model="data.buyer.address[0].contact_number" ng-required="true" />
+            <input type="text" data-ng-model="data.buyer.temp.address[0].contact_number" ng-required="true" />
         </md-input-container>
         <md-input-container>
             <label>City</label>
-            <input type="text" data-ng-model="data.buyer.address[0].city" ng-required="true" />
+            <input type="text" data-ng-model="data.buyer.temp.address[0].city" ng-required="true" />
         </md-input-container>
         <md-input-container>
             <label>State</label>
-            <input type="text" data-ng-model="data.buyer.address[0].state" ng-required="true" />
+            <input type="text" data-ng-model="data.buyer.temp.address[0].state" ng-required="true" />
         </md-input-container>
         <md-input-container>
             <label>Country</label>
-            <input type="text" data-ng-model="data.buyer.address[0].country" ng-required="true" />
+            <input type="text" data-ng-model="data.buyer.temp.address[0].country" ng-required="true" />
         </md-input-container>
         <md-input-container>
             <label>Pincode</label>
-            <input type="text" data-ng-model="data.buyer.address[0].pincode" ng-required="true" />
+            <input type="text" data-ng-model="data.buyer.temp.address[0].pincode" ng-required="true" />
         </md-input-container>
     </div>
     <!-- <div layout="column" ng-cloak>
