@@ -38,6 +38,8 @@
 
                     var prods = [];
 
+                    var watchCount= 0;
+
                     initProductData();
 
                     function calculatePriceFromLot() {
@@ -69,6 +71,10 @@
                                 $scope.product.price_to_show = $scope.product.item.price_per_unit;
                             }
                         }
+                        if(watchCount>0){
+                            $scope.product.orderDetail.edited_price_per_piece = $scope.product.price_to_show;
+                        }
+                        watchCount++;
                     }
 
                 
@@ -89,9 +95,6 @@
                                         if(response.products[0].show_online && response.products[0].verification) {
                                             $scope.product.item = response.products[0];
                                             $scope.product.item.details.weight_per_unit = parseFloat($scope.product.item.details.weight_per_unit);
-                                            if($scope.state =='add'){
-                                            $scope.product.orderDetail.edited_price_per_piece = $scope.product.item.min_price_per_unit;
-                                            }
                                             $scope.product.item.imageUrl = UtilService.getImageUrl(UtilService.getImages($scope.product.item)[0], '200x200');
                                             calculatePriceFromLot();
                                         } else {
