@@ -10,7 +10,11 @@
         'ToastService',
         '$location',
         'UtilService',
-        function($scope, $log, APIService, $routeParams, $rootScope, ngProgressBarService, ToastService, $location, UtilService){
+        '$mdDialog',
+        'DialogService',
+        'DeliveryService',
+        function($scope, $log, APIService, $routeParams, $rootScope, ngProgressBarService, ToastService, 
+            $location, UtilService,$mdDialog,DialogService,DeliveryService){
 
             $scope.data = {
                 shipments: [],
@@ -18,46 +22,46 @@
                 shipment: {}
             };
 
-         function statusAvailable(shipment){
+            function statusAvailable(shipment){
                 shipment.state = [
-            {
-                display_value: "3PL manifested",
-                value: 3,
-                active : false
-            },
-            {
-                display_value: "3PL In Transit",
-                value: 4,
-                active : false
-            },
-            {
-                display_value: "3PL Stuck In Transit",
-                value: 5,
-                active : false
-            },
-            {
-                display_value: "Delivered",
-                value: 6,
-                active : false
-            },
-            {
-                display_value: "RTO In Transit",
-                value: 7,
-                active : false
-            },
-            {
-                display_value: "RTO Delivered",
-                value: 8,
-                active : false
-            },
-            {
-                display_value: "Lost",
-                value: 9,
-                active : false
+                {
+                    display_value: "3PL manifested",
+                    value: 3,
+                    active : false
+                },
+                {
+                    display_value: "3PL In Transit",
+                    value: 4,
+                    active : false
+                },
+                {
+                    display_value: "3PL Stuck In Transit",
+                    value: 5,
+                    active : false
+                },
+                {
+                    display_value: "Delivered",
+                    value: 6,
+                    active : false
+                },
+                {
+                    display_value: "RTO In Transit",
+                    value: 7,
+                    active : false
+                },
+                {
+                    display_value: "RTO Delivered",
+                    value: 8,
+                    active : false
+                },
+                {
+                    display_value: "Lost",
+                    value: 9,
+                    active : false
 
-            }
-            ];
-        
+                }
+                ];
+
                 for (var i = 0; i <7 ; i++) {
                     shipment.state[i].active =true;
                 }
@@ -91,6 +95,7 @@
                     break;
                 }
             }
+
 
             $scope.allImages = [];
             function praseProductDetails(p) {
@@ -160,36 +165,45 @@
 
             pagesetting();
 
-          
+
 
             $scope.totalAmount=function(){
                 var total = 0;
                 if($scope.data.shipment.order_items!=null){
-                for(var i = 0 ;i < $scope.data.shipment.order_items.length; i++){
-                    total += parseInt($scope.data.shipment.order_items[i].final_price);
-                }
+                    for(var i = 0 ;i < $scope.data.shipment.order_items.length; i++){
+                        total += parseInt($scope.data.shipment.order_items[i].final_price);
+                    }
                 }
                 return total;
             };
 
-             $scope.changeStatus= function(event, index, shipment){
-             
+            $scope.changeStatus= function(event, index, shipment){
+
                 shipment.change.status= shipment.state[index].value;
-                $rootScope.$broadcast('showProgressbar');
+               
+                if(index==3){
+                    DeliveryService.setShipment(shipment);
+                    DialogService.viewDialog(event,'ShipmentDeliveredController','views/partials/shipmentDelivered.html');
+
+               }
+               else{
+                 $rootScope.$broadcast('showProgressbar');
                 APIService.apiCall("PUT", APIService.getAPIUrl("ordershipment"), shipment.change)
                 .then(function(response) {
-                   shipment.order_shipment_status.display_value = shipment.state[index].display_value;
-                   shipment.order_shipment_status.value = shipment.state[index].value;
-                    $rootScope.$broadcast('endProgressbar');
-                    ToastService.showSimpleToast("Status Changed", 2000);
-                    statusAvailable(shipment);
-                },function(error){
-                    $rootScope.$broadcast('endProgressbar');
-                    ToastService.showSimpleToast("Something went wrong. Try again", 3000);
-                });
+                 shipment.order_shipment_status.display_value = shipment.state[index].display_value;
+                 shipment.order_shipment_status.value = shipment.state[index].value;
+                 $rootScope.$broadcast('endProgressbar');
+                 ToastService.showSimpleToast("Status Changed", 2000);
+                 statusAvailable(shipment);
+             },function(error){
+                $rootScope.$broadcast('endProgressbar');
+                ToastService.showSimpleToast("Something went wrong. Try again", 3000);
+            });
+            }
 
-            };
+        };
 
-        }
-        ]);
+
+    }
+    ]);
 })();
