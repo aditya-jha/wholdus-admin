@@ -1,0 +1,184 @@
+<div layout="row" layout-align="center center" layout-margin flex="100" class="md-title">
+
+	<div flex></div>
+	Buyer Interest:<span class="bold"> {{data.buyer_interest.buyerinterestID}}</span>
+	<div flex></div>
+</div>
+<div layout="row" layout-align="end center" layout-margin flex="100" class="md-subhead">
+	<span class="bold">Created At :</span> {{data.buyer_interest.created_at | date:'MMM dd,yyyy h:mma':'+0530'}}
+</div>
+<div layout="row" layout-align="space-around start" flex>
+<div layout="row"  layout-align="center center" flex="45" layout-margin>	
+	<div  layout="column" md-whiteframe="2" flex>
+		<div layout="column" flex >
+			<div layout="row" layout-align="center center" class="md-title property-title" layout-padding flex>Buyer Details</div>
+			<md-divider></md-divider>
+			<div layout="row" layout-align="center" flex layout-padding>
+				<div layout="column" flex>
+					<div layout="column"  class="card-item">
+						<span class="card-item-title">Buyer ID</span>
+						<span>{{ data.buyer.buyerID }}</span>
+					</div>
+					<div layout="column" class="card-item">
+						<span class="card-item-title">Buyer Name</span>
+						<span>{{ data.buyer.name }}</span>
+					</div>
+				</div>
+				<div layout="column" flex>	
+					<div layout="column" class="card-item">
+						<span class="card-item-title">Buyer Company</span>
+						<span>{{ data.buyer.company_name}}</span>
+					</div>
+					<div layout="column" class="card-item">
+						<span class="card-item-title">Mobile No</span>
+						<span>{{ data.buyer.mobile_number}}</span>
+					</div>
+				</div>
+			</div>          
+		</div>
+	</div>
+</div>    
+
+	
+	<div layout="row"  layout-align="center center" flex="45" layout-margin>	
+		<div  layout="column" md-whiteframe="2" flex >
+			<div layout="column" flex >
+				<div layout="row" layout-align="center center" class="md-title property-title" layout-padding flex>Filter Details</div>
+				<div layout="row"  layout-align="center" flex layout-padding>
+					<div layout="column" layout-padding flex>
+
+						<div layout="column" class="card-item">
+							<span class="card-item-title">Category</span>
+							<span>{{data.buyer_interest.category.display_name}}</span>
+						</div>
+						<div layout="column" class="card-item">
+							<span class="card-item-title">Scale</span>
+							<span>{{data.buyer_interest.scale}}</span>
+						</div>
+						
+
+					</div>
+					<div layout="column" layout-padding flex ng-if="data.buyer_interest.price_filter_applied">
+						<div layout="column" class="card-item" >
+							<span class="card-item-title">Minimum Price Per Unit</span>
+							<span>&#8377;{{data.buyer_interest.min_price_per_unit}}</span>
+						</div>
+
+						<div layout="column" class="card-item" >
+							<span class="card-item-title">Maximum Price Per Unit</span>
+							<span>&#8377;{{data.buyer_interest.max_price_per_unit}}</span>
+						</div>
+						
+					</div>	
+					<div layout="column" layout-padding flex>
+						<div layout="column" class="card-item">
+							<span class="card-item-title">Fabric Filter</span>
+							<span>{{data.buyer_interest.fabric_filter_text}}</span>
+						</div>
+						<div layout="column" class="card-item">
+							<span class="card-item-title">Product ID Filter</span>
+							<span>{{data.buyer_interest.productid_filter_text}}</span>
+						</div>
+						
+
+					</div>
+
+
+
+				</div> 
+
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div layout="row" layout-wrap layout-margin layout-align="space-around start">
+	<div  layout="row" flex="45" md-whiteframe="4dp" data-ng-repeat="product in data.products" style="padding:8px">
+		<div layout="column" flex="20" style="width: 100px;max-height: 140px;" layout-align="center center">
+			<div layout="row" layout-align="center center">
+				<img data-ng-src="{{product.imageUrl}}" class="small-image">
+			</div>
+		</div>
+
+		<div layout="column" flex="75">
+			<div layout="row" flex>
+				<!-- <span style="margin-right:1em">{{product.productID}}</span> -->
+				<span class="bold">{{product.display_name}}</span>
+
+				<!-- <md-button class="md-warn" data-ng-href="users/sellers/{{s.sellerID}}">view</md-button> -->
+				
+			</div>
+			<div layout="row" layout-align="space-around start">
+
+
+				<div layout="column" flex>
+					<div class="card-item"  layout="column" flex>
+						<span class="card-item-title" flex>Product ID</span>
+						<span>{{product.productID}}</span>
+					</div>
+					<div layout="column" class="card-item" flex="45">
+
+						<span class="card-item-title" flex>Merchant Name</span>
+						<a class="link" data-ng-href="users/sellers/{{product.seller.sellerID}}" target="_blank"><span>{{product.seller.name}}</span>
+							<md-tooltip md-direction="top">view seller details</md-tooltip>	
+						</a>
+					</div>
+					
+					
+				</div>
+				<div layout="column" flex="25">
+					<div class="card-item" layout="column" flex>
+						<span class="card-item-title" flex>	Catalog No.</span> 
+						<span>{{product.details.seller_catalog_number}}</span>
+					</div>
+					<div class="card-item"  layout="column" flex>
+						<span class="card-item-title" flex>Price Per Unit </span>
+						<span>&#8377; {{product.price_per_unit}}</span>
+					</div>
+
+				</div>
+				<div layout="column" flex layout-align="space-around center">
+					<div class="card-item"  layout="column" flex>
+						<span class="card-item-title" flex>Fabric </span>
+						<span>{{product.details.fabric_gsm}}</span>
+					</div>
+					<div style="margin-top:20px;">	
+						<md-checkbox  aria-label="Checkbox" data-ng-model="product.isShow" class="md-primary"
+						ng-true-value="1" ng-false-value="0" ng-change="changeItemsSelected($index)">
+						Show
+					</md-checkbox>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div layout="column" flex="5">
+		<div layout="row" layout-align="center">
+			<a data-ng-href="products/{{product.productID}}">
+				<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+					<path fill="#FF5722" d="M4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H16L12,22L8,18H4A2,2 0 0,1 2,16V4A2,2 0 0,1 4,2M18,14V12H12.5L10.5,14H18M6,14H8.5L15.35,7.12C15.55,6.93 15.55,6.61 15.35,6.41L13.59,4.65C13.39,4.45 13.07,4.45 12.88,4.65L6,11.53V14Z" />
+				</svg>
+				<md-tooltip md-direction="top">view more</md-tooltip>
+			</a>
+		</div>
+		<md-divider></md-divider>
+		<div layout="row" layout-align="center">	
+			<a data-ng-href="http://www.wholdus.com/{{product.url}}" target="_blank">
+				<svg fill="#FF5722" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+					<path d="M7 19h10V4H7v15zm-5-2h4V6H2v11zM18 6v11h4V6h-4z"/>
+					<path d="M0 0h24v24H0z" fill="none"/>
+				</svg>
+				<md-tooltip md-direction="top">view on website</md-tooltip>
+			</a>
+		</div>
+
+	</div>
+
+</div>
+
+</div>
+<div layout="row"  data-ng-show="settings.enablePagination" wu-pagination></div>
+
+

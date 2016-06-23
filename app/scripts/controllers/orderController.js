@@ -35,8 +35,7 @@
             $scope.settings = {
                 enablePagination: false,
                 page: UtilService.getPageNumber(),
-                noProduct: false,
-                itemsPerPage:20
+                itemsPerPage:10
             };
             $scope.styles={
                 toBeShippedItem:{

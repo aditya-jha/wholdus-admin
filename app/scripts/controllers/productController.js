@@ -12,7 +12,7 @@
         'UtilService',
         'ConstantKeyValueService',
         function($scope, $log, APIService, $routeParams, $rootScope,$location, ngProgressBarService,
-           ToastService, UtilService, ConstantKeyValueService) {
+         ToastService, UtilService, ConstantKeyValueService) {
             $scope.data = {
                 products: [],
                 productID: null,
@@ -77,15 +77,15 @@
                             });
                             $scope.data.products = response.products;
                             if(response.total_pages > 1) {
-                             $scope.settings.enablePagination = true;
-                             $rootScope.$broadcast('setPage', {
+                               $scope.settings.enablePagination = true;
+                               $rootScope.$broadcast('setPage', {
                                 page: $scope.settings.page,
                                 totalPages: Math.ceil(response.total_products/$scope.settings.itemsPerPage)
                             }); 
-                         }
-                     }
-                 }
-                 else if($scope.data.productID) {
+                           }
+                       }
+                   }
+                   else if($scope.data.productID) {
                     ToastService.showActionToast("No such product exists! GO BACK", 0)
                     .then(function(response) {
                         $location.url('/products');
@@ -104,54 +104,54 @@
                     });
                 } else {
                     if(!UtilService.categoryID){
-                     UtilService.setCategory(1);
-                 }
-                 getproducts(
-                 {
+                       UtilService.setCategory(1);
+                   }
+                   getproducts(
+                   {
                     categoryID: UtilService.categoryID,
                     items_per_page:$scope.settings.itemsPerPage,
                     page_number:$scope.settings.page
                 });
-             }
-         }
+               }
+           }
 
 
-         pageSetting();
-
-
-         $scope.categoryChanged=function(){
-           UtilService.setCategory($scope.categoryID);
-           $scope.settings.page=1;
-           $location.search('page', 1);
            pageSetting();
-       };
 
-       $scope.reset = function() {
-        pageSetting();
-    };
 
-    $scope.changeProduct = function(type,hide) {
-       $rootScope.$broadcast('showProgressbar');
-       if(hide){
-        $scope.data.product.show_online=false;}
-        APIService.apiCall(type, APIService.getAPIUrl("products"), $scope.data.product)
-        .then(function(response) {
-            $rootScope.$broadcast('endProgressbar');
+           $scope.categoryChanged=function(){
+             UtilService.setCategory($scope.categoryID);
+             $scope.settings.page=1;
+             $location.search('page', 1);
+             pageSetting();
+         };
+
+         $scope.reset = function() {
             pageSetting();
-            ToastService.showActionToast("successful", 0).then(function(response) {
-               if(type=="DELETE"){
-                $location.url('/products');
-            }
+        };
 
-        });
-        }, function(error) {
-            $rootScope.$broadcast('endProgressbar');
-            ToastService.showActionToast("something went wrong! please reload", 0);
-        });
-    };
+        $scope.changeProduct = function(type,hide) {
+         $rootScope.$broadcast('showProgressbar');
+         if(hide){
+            $scope.data.product.show_online=false;}
+            APIService.apiCall(type, APIService.getAPIUrl("products"), $scope.data.product)
+            .then(function(response) {
+                $rootScope.$broadcast('endProgressbar');
+                pageSetting();
+                ToastService.showActionToast("successful", 0).then(function(response) {
+                 if(type=="DELETE"){
+                    $location.url('/products');
+                }
+
+            });
+            }, function(error) {
+                $rootScope.$broadcast('endProgressbar');
+                ToastService.showActionToast("something went wrong! please reload", 0);
+            });
+        };
 
 
 
-}
-]);
+    }
+    ]);
 })();

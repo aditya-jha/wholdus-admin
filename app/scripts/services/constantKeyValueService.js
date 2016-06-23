@@ -10,6 +10,7 @@
                     internalUsers: 'users/internal-users',
                     users: 'users',
                     buyers: 'users/buyer',
+                    buyerInterest: 'users/buyer/buyerinterest',
                     sellers: 'users/seller',
                     orders: 'orders',
                     shipments: 'shipments',
