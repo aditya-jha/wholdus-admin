@@ -11,7 +11,8 @@
         '$location',
         '$timeout',
         '$compile',
-        function($scope, $log, APIService, $routeParams, $rootScope, ngProgressBarService, ToastService, $location, $timeout, $compile) {
+        '$route',
+        function($scope, $log, APIService, $routeParams, $rootScope, ngProgressBarService, ToastService, $location, $timeout, $compile, $route) {
 
             $scope.data = {
                 buyers: [],
@@ -122,12 +123,19 @@
                 angular.element(document.querySelector("#interestContainer")).append(el);
             };
 
-            $scope.editInterest = function(interestID,index){
+            $scope.editInterest = function(type,interestID,index){
                 $rootScope.$broadcast('showProgressbar');
-                APIService.apiCall('PUT', APIService.getAPIUrl("buyerinterest"), $scope.data.buyer.buyer_interests[index])
+                APIService.apiCall(type, APIService.getAPIUrl("buyerinterest"), $scope.data.buyer.buyer_interests[index])
                 .then(function(response){
                     $rootScope.$broadcast('endProgressbar');
+                    if(type=="DELETE"){
+                        $route.reload();
+                        ToastService.showSimpleToast('Interest Removed Successfully',3000);
+                        
+                    }
+                    else{
                     ToastService.showSimpleToast('Changes Saved',3000);
+                    }
                 },function(error){
                     $rootScope.$broadcast('endProgressbar');
                     ToastService.showActionToast("Something went wrong! Please try again");

@@ -16,7 +16,8 @@
                 'UtilService',
                 'ToastService',
                 '$timeout',
-                function($scope, $log, APIService, ngProgressBarService, $rootScope, $element, UtilService, ToastService, $timeout) {
+                '$route',
+                function($scope, $log, APIService, ngProgressBarService, $rootScope, $element, UtilService, ToastService, $timeout, $route) {
 
                     $scope.interest = {
                         buyerID: $scope.ID,
@@ -45,7 +46,10 @@
                         APIService.apiCall("POST", APIService.getAPIUrl('buyerinterest'), $scope.interest)
                         .then(function(response){
                             $rootScope.$broadcast('endProgressbar');
-                            ToastService.showActionToast('Successfull', 0);
+                            ToastService.showActionToast('Successfull', 0)
+                            .then(function(response){
+                                $route.reload();
+                            })
                         },function(error){
                             $rootScope.$broadcast('endProgressbar');
                             ToastService.showActionToast('Something went wrong! Please try again', 0);

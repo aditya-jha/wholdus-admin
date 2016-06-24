@@ -172,8 +172,9 @@
         </md-input-container>
     </div> -->
 </div><br>
-    <div layout="row" data-ng-if="data.buyer.buyer_interests.length" flex layout-align="center">
-        <div layout="column" flex= "60">
+    <div layout="row" flex layout-align="center">
+        <div flex="20"></div>
+        <div layout="column" data-ng-if="data.buyer.buyer_interests.length" flex= "60">
         <div layout ="row">
             <div style="height:35px; line-height:0.2em; background-color:rgb(255,87,34); color:white" flex="100" layout-padding class ="md-warn md-whiteframe-2dp" layout="row" layout-align="start"><span>Buyer Interests</span></div>
         </div>
@@ -207,11 +208,14 @@
                         </md-input-container>
                     </div>
                     <div flex="5">
-                        <svg data-ng-click="editInterest(i.buyerinterestID,$index)" class="link" style="width:28px;height:28px" viewBox="0 0 24 24">
-                        <path fill="rgb(255,87,34)" d="M17,7V3H7V7H17M14,17A3,3 0 0,0 17,14A3,3 0 0,0 14,11A3,3 0 0,0 11,14A3,3 0 0,0 14,17M19,1L23,5V17A2,2 0 0,1 21,19H7C5.89,19 5,18.1 5,17V3A2,2 0 0,1 7,1H19M1,7H3V21H17V23H3A2,2 0 0,1 1,21V7Z" />
+                        <svg data-ng-click="editInterest('DELETE',i.buyerinterestID,$index)" class="link" fill="rgb(255,87,34)" height="35" viewBox="0 0 24 24" width="35" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                            <path d="M0 0h24v24H0z" fill="none"/>
                         </svg><md-tooltip md-visible="true" md-delay="400" md-direction="bottom" md-autohide="true">
-                          Save
+                          Remove
                         </md-tooltip>
+                        
+                        
                     </div>
                     
 
@@ -225,15 +229,25 @@
                       <md-button class="md-warn md-fab small" aria-label="scale">{{i.scale}}</md-button>
                       </div>
                       <div flex="20"></div>
-                      <div layout = "row" layout-align="start center">
+                      <div flex="20" layout = "row" layout-align="start center">
                         <md-checkbox data-ng-true = "1"  data-ng-false = "0" data-ng-model="i.is_active" class="md-warn" aria-label="string">Active
                         </md-checkbox>
                     </div>
+                    <div flex="5">
+                        <svg data-ng-click="editInterest('PUT',i.buyerinterestID,$index)" class="link" style="width:28px;height:28px" viewBox="0 0 24 24">
+                            <path fill="rgb(255,87,34)" d="M17,7V3H7V7H17M14,17A3,3 0 0,0 17,14A3,3 0 0,0 14,11A3,3 0 0,0 11,14A3,3 0 0,0 14,17M19,1L23,5V17A2,2 0 0,1 21,19H7C5.89,19 5,18.1 5,17V3A2,2 0 0,1 7,1H19M1,7H3V21H17V23H3A2,2 0 0,1 1,21V7Z" />
+                        </svg><md-tooltip md-visible="true" md-delay="400" md-direction="bottom" md-autohide="true">
+                          Save
+                        </md-tooltip>
+                        </div>
                 </div>
                 </div>
                 <md-divider></md-divider>
             </div>
         </div>
+        </div>
+        <div layout="column" flex="20" layout-align="center">
+            
         </div>
     </div>
         <div flex layout="row" layout-align="space-around">
