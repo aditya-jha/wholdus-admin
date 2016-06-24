@@ -21,6 +21,11 @@
                 shipmentID: null,
                 shipment: {}
             };
+             $scope.settings = {
+                enablePagination: false,
+                page: UtilService.getPageNumber(),
+                itemsPerPage:10
+            };
 
             function statusAvailable(shipment){
                 shipment.state = [
@@ -128,6 +133,13 @@
                         else{
 
                             $scope.data.shipments = response.order_shipments;
+                            if(response.total_pages > 1) {
+                                 $scope.settings.enablePagination = true;
+                                 $rootScope.$broadcast('setPage', {
+                                    page: $scope.settings.page,
+                                    totalPages: Math.ceil(response.total_items/$scope.settings.itemsPerPage)
+                                }); 
+                             }
                             for(var i=0;i<$scope.data.shipments.length;i++) {
                                 var shipment=$scope.data.shipments[i];
                                 statusAvailable(shipment);
@@ -159,7 +171,9 @@
                     });
                 }
                 else{
-                    getShipments();
+                    getShipments({
+                                    items_per_page:$scope.settings.itemsPerPage,
+                                    page_number:$scope.settings.page});
                 }
             }
 

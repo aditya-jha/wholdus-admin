@@ -7,39 +7,38 @@
 <div layout="row" layout-align="end center" layout-margin flex="100" class="md-subhead">
 	<span class="bold">Created At :</span> {{data.buyer_interest.created_at | date:'MMM dd,yyyy h:mma':'+0530'}}
 </div>
-<div layout="row" layout-align="space-around start" flex>
-<div layout="row"  layout-align="center center" flex="45" layout-margin>	
-	<div  layout="column" md-whiteframe="2" flex>
-		<div layout="column" flex >
-			<div layout="row" layout-align="center center" class="md-title property-title" layout-padding flex>Buyer Details</div>
-			<md-divider></md-divider>
-			<div layout="row" layout-align="center" flex layout-padding>
-				<div layout="column" flex>
-					<div layout="column"  class="card-item">
-						<span class="card-item-title">Buyer ID</span>
-						<span>{{ data.buyer.buyerID }}</span>
-					</div>
-					<div layout="column" class="card-item">
-						<span class="card-item-title">Buyer Name</span>
-						<span>{{ data.buyer.name }}</span>
-					</div>
-				</div>
-				<div layout="column" flex>	
-					<div layout="column" class="card-item">
-						<span class="card-item-title">Buyer Company</span>
-						<span>{{ data.buyer.company_name}}</span>
-					</div>
-					<div layout="column" class="card-item">
-						<span class="card-item-title">Mobile No</span>
-						<span>{{ data.buyer.mobile_number}}</span>
-					</div>
-				</div>
-			</div>          
-		</div>
-	</div>
-</div>    
-
+<div layout="row" layout-align="space-around" flex>
 	
+	<div layout="row"  layout-align="center center" flex="45" layout-margin>	
+		<div  layout="column" md-whiteframe="2" flex>
+			<div layout="column" flex >
+				<div layout="row" layout-align="center center" class="md-title property-title" layout-padding flex>Buyer Details</div>
+				<md-divider></md-divider>
+				<div layout="row" layout-align="center" flex layout-padding>
+					<div layout="column" flex>
+						<div layout="column"  class="card-item">
+							<span class="card-item-title">Buyer ID</span>
+							<span>{{ data.buyer.buyerID }}</span>
+						</div>
+						<div layout="column" class="card-item">
+							<span class="card-item-title">Buyer Name</span>
+							<span>{{ data.buyer.name }}</span>
+						</div>
+					</div>
+					<div layout="column" flex>	
+						<div layout="column" class="card-item">
+							<span class="card-item-title">Buyer Company</span>
+							<span>{{ data.buyer.company_name}}</span>
+						</div>
+						<div layout="column" class="card-item">
+							<span class="card-item-title">Mobile No</span>
+							<span>{{ data.buyer.mobile_number}}</span>
+						</div>
+					</div>
+				</div>          
+			</div>
+		</div>
+	</div>    
 	<div layout="row"  layout-align="center center" flex="45" layout-margin>	
 		<div  layout="column" md-whiteframe="2" flex >
 			<div layout="column" flex >
