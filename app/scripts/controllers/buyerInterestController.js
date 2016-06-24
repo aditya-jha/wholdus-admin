@@ -10,7 +10,8 @@
         'ToastService',
         '$location',
         'UtilService',
-        function($scope, $log, APIService, $routeParams, $rootScope, ngProgressBarService, ToastService, $location,UtilService) {
+        function($scope, $log, APIService, $routeParams, $rootScope, ngProgressBarService, 
+            ToastService, $location,UtilService) {
 
             $scope.data = {
                 buyer_interests: [],
@@ -18,6 +19,7 @@
                 buyer_interest: {},
                 products:[],
                 buyer:{},
+                products:[],
                 buyerID:null
             };
             $scope.settings = {
@@ -26,7 +28,7 @@
                 noProduct: false,
             };
 
-            $scope.settings.itemsPerPage = 20;
+            $scope.settings.itemsPerPage = 10;
             $scope.categoryID = UtilService.categoryID ? UtilService.categoryID : 1;
             // function getbuyerInterest(params) {
             //     $rootScope.$broadcast('showProgressbar');
@@ -78,7 +80,7 @@
                         } 
                         if(flag)
                         {
-                            pageSetting2();
+                            // pageSetting2();
                         }
 
                     }
@@ -159,13 +161,29 @@
        }
 
 
+           pageSetting2();
+
+
     $scope.create = function(){
         getbuyers('POST');
     };
 
-          function updatebuyerInterest(params) {
+        $scope.updateBuyerInterest=function() {
                 $rootScope.$broadcast('showProgressbar');
                 
+                var array = (($scope.data.buyer_interest.productid_filter_text).split(','));
+                
+                for(var i=0;i<$scope.data.products.length;i++)
+                {
+                    var isShow=$scope.data.products[i].isShow;
+                    // && array.indexOf($scope.data.products[i].productID)
+                    if(isShow && (array.indexOf(($scope.data.products[i].productID).toString())==-1)){
+                    if($scope.data.buyer_interest.productid_filter_text!=""){
+                        $scope.data.buyer_interest.productid_filter_text+=',';
+                    }
+                        $scope.data.buyer_interest.productid_filter_text+=$scope.data.products[i].productID.toString();
+                    }   
+                }
                 APIService.apiCall('PUT', APIService.getAPIUrl('buyerInterest'),$scope.data.buyer_interest)
                 .then(function(response) {
                         $rootScope.$broadcast('endProgressbar');

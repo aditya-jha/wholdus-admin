@@ -21,8 +21,12 @@
 							<span>{{ data.buyer.buyerID }}</span>
 						</div>
 						<div layout="column" class="card-item">
+						
 							<span class="card-item-title">Buyer Name</span>
+							<a class="link" data-ng-href="users/buyers/{{data.buyer.buyerID}}" target="_blank">
 							<span>{{ data.buyer.name }}</span>
+							<md-tooltip md-direction="top">view buyer</md-tooltip>
+						</a>	
 						</div>
 					</div>
 					<div layout="column" flex>	
@@ -176,8 +180,11 @@
 	</div>
 
 </div>
-
 </div>
+<div layout="row" flex layout-align="center">
+	<md-button class="md-raised md-primary" aria-label="description" data-ng-click="updateBuyerInterest()" flex="50"	>SAVE</md-button>
+</div>
+
 <div layout="row"  data-ng-show="settings.enablePagination" wu-pagination></div>
 
 
