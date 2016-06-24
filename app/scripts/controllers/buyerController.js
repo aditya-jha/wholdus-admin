@@ -9,13 +9,25 @@
         'ngProgressBarService',
         'ToastService',
         '$location',
-        function($scope, $log, APIService, $routeParams, $rootScope, ngProgressBarService, ToastService, $location) {
+        '$timeout',
+        '$compile',
+        function($scope, $log, APIService, $routeParams, $rootScope, ngProgressBarService, ToastService, $location, $timeout, $compile) {
 
             $scope.data = {
                 buyers: [],
                 buyerID: null,
                 buyer: {}
             };
+
+            $scope.selectedStates = [];
+            // $scope.yo = "";
+            // $scope.convert = function(){
+                
+            //     // for(var i=0; i<$scope.selectedStates.length;i++){
+            //     //     $scope.yo = $scope.yo +","+ $scope.selectedStates[i];
+            //     // }
+            //     $scope.yo = JSON.stringify($scope.selectedStates)
+            // }
 
             function getbuyers(type, params) {
                 $rootScope.$broadcast('showProgressbar');
@@ -36,7 +48,19 @@
                     }, function(error) {
                         $rootScope.$broadcast('endProgressbar');
                     });
-            }
+            };
+
+            $scope.getStates = function(event){
+                return $timeout(function() {
+                    APIService.apiCall("GET", APIService.getAPIUrl('states'))
+                    .then(function(response){
+                        $scope.states = response.states;
+                    },function(error){
+                        $scope.states = [];
+                        ToastService.showActionToast("Unable to load States! Please reload the page",0)
+                    });
+                }, 500);
+            };
 
             function pageSetting() {
                     if($routeParams.buyerID) {
@@ -47,7 +71,7 @@
                     } else {
                     getbuyers('GET');
                 }
-            }
+            };
 
             pageSetting();
 
@@ -68,6 +92,7 @@
                     else{
                         $scope.data.buyer.address = $scope.data.buyer.address[0];
                     }
+                    $scope.data.buyer.details.purchasing_states = JSON.stringify($scope.selectedStates);
                     APIService.apiCall(type, APIService.getAPIUrl("buyers"), $scope.data.buyer)
                         .then(function(response) {
                             $rootScope.$broadcast('endProgressbar');
@@ -90,6 +115,23 @@
                             ToastService.showActionToast("something went wrong! Please reload and try again", 0);
                         });
                 
+            };
+
+             $scope.addInterest = function(ID) {
+                var el = $compile("<div layout='row' flex='100' wua-buyer-interest md-whiteframe='2dp' id="+ID+" style='margin-top:1em' layout-wrap></div>")($scope);
+                angular.element(document.querySelector("#interestContainer")).append(el);
+            };
+
+            $scope.editInterest = function(interestID,index){
+                $rootScope.$broadcast('showProgressbar');
+                APIService.apiCall('PUT', APIService.getAPIUrl("buyerinterest"), $scope.data.buyer.buyer_interests[index])
+                .then(function(response){
+                    $rootScope.$broadcast('endProgressbar');
+                    ToastService.showSimpleToast('Changes Saved',3000);
+                },function(error){
+                    $rootScope.$broadcast('endProgressbar');
+                    ToastService.showActionToast("Something went wrong! Please try again");
+                })
             };
 
         }
