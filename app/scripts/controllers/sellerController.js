@@ -17,10 +17,9 @@
                 seller: {}
             };
 
-            function getSellers(type, params) {
+            function getSellers(params) {
                 $rootScope.$broadcast('showProgressbar');
-                if(type == "GET"){
-                    APIService.apiCall(type, APIService.getAPIUrl('sellers'), null, params)
+                    APIService.apiCall("GET", APIService.getAPIUrl('sellers'), null, params)
                     .then(function(response) {
                         $rootScope.$broadcast('endProgressbar');
                         if(response.sellers.length) {
@@ -36,30 +35,16 @@
                     }, function(error) {
                         $rootScope.$broadcast('endProgressbar');
                     });
-                }
-                else if(type == "POST"){
-                    $scope.data.seller.address = $scope.data.seller.address[0];
-                    $scope.data.seller.bank_details = $scope.data.seller.bank_details[0];
-                    APIService.apiCall(type, APIService.getAPIUrl("sellers"), $scope.data.seller)
-                    .then(function(response){
-                        $rootScope.$broadcast('endProgressbar');
-                        $location.url('/users/sellers');
-                        ToastService.showActionToast("New Seller Created", 0);
-                    }, function(error){
-                        $rootScope.$broadcast('endProgressbar');
-                        ToastService.showActionToast("something went wrong! Reload and try again", 0);
-                    });
-                }
             }
 
             function pageSetting() {
                 if($routeParams.sellerID) {
                     $scope.data.sellerID = parseInt($routeParams.sellerID);
-                    getSellers('GET', {
+                    getSellers({
                         sellerID: $routeParams.sellerID
                     });
                 } else {
-                    getSellers('GET');
+                    getSellers();
                 }
             }
 
@@ -70,22 +55,37 @@
             };
 
             $scope.create = function(){
-                getSellers('POST');
+                $scope.changeSeller(null,'POST');
             };
 
             $scope.changeSeller = function(event, type) {
-                if(type=="DELETE" || type=="PUT") {
+                    if(type == "POST"){
+                        $scope.data.seller.address = $scope.data.seller.temp.address[0];
+                        if($scope.data.seller.temp.bank_details!=null){
+                            $scope.data.seller.bank_details = $scope.data.seller.temp.bank_details[0];
+                        }
+                    }
+                    else{
+                        $scope.data.seller.address = $scope.data.seller.address[0];
+                        if($scope.data.seller.bank_details!=null){
+                            $scope.data.seller.bank_details = $scope.data.seller.bank_details[0];
+                        }
+                    }   
                     $rootScope.$broadcast('showProgressbar');
-                    $scope.data.seller.address = $scope.data.seller.address[0];
-                    $scope.data.seller.bank_details = $scope.data.seller.bank_details[0];
                     APIService.apiCall(type, APIService.getAPIUrl("sellers"), $scope.data.seller)
                     .then(function(response) {
                         $rootScope.$broadcast('endProgressbar');
-                        if(type=="DELETE") {
+                        if(type=="DELETE" || type=="POST") {
                             $location.url('/users/sellers');
-                            ToastService.showActionToast("Seller Deleted Successfully", 0);
+                            switch(type){
+                                case "DELETE":
+                                    ToastService.showActionToast("Seller Deleted Successfully", 0);
+                                    break;
+                                case "POST":
+                                    ToastService.showActionToast("New Seller Created", 0);
+                            }
                         }
-                        else{
+                        else if(type == "PUT"){
                             pageSetting();
                             ToastService.showActionToast("Changes Saved", 0);
                         }
@@ -94,7 +94,7 @@
                         $rootScope.$broadcast('endProgressbar');
                         ToastService.showActionToast("something went wrong! please reload", 0);
                     });
-                }
+                
             };
 
         }
