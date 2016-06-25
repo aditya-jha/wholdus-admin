@@ -14,7 +14,8 @@
         '$route',
         'DialogService',
         '$mdDialog',
-        function($scope, $log, APIService, $routeParams, $rootScope, ngProgressBarService, ToastService, $location, $timeout, $compile, $route, DialogService, $mdDialog) {
+        'UtilService',
+        function($scope, $log, APIService, $routeParams, $rootScope, ngProgressBarService, ToastService, $location, $timeout, $compile, $route, DialogService, $mdDialog, UtilService) {
 
             $scope.data = {
                 buyers: [],
@@ -31,6 +32,11 @@
 
             $scope.interest = {
                 buyer_products: [],
+            }
+
+            $scope.feedStatus={
+                buyerproductID:null,
+                is_active:0
             }
         
 
@@ -183,20 +189,22 @@
                 switch(DialogService.val){
                     case "feed":
                         params = {
-                            is_shortlisted:0,
-                            is_disliked:0,
-                            items_per_page:20
+                            responded:0,
+                            buyerID:$scope.data.buyerID,
+                            items_per_page:20,
                         }
                         break;
                     case "like":
                         params = {
-                            is_shortlisted:1,
+                            shortlisted:1,
+                            buyerID:$scope.data.buyerID,
                             items_per_page:20
                         }
                         break;
                     case "dislike":
                         params = {
-                            is_disliked:1,
+                            disliked:1,
+                            buyerID:$scope.data.buyerID,
                             items_per_page:20
                         }
                         break;    
@@ -206,6 +214,16 @@
                 .then(function(response){
                     $rootScope.$broadcast('endProgressbar');
                     if(response.buyer_products.length){
+                        angular.forEach(response.buyer_products, function(value, key) {
+                                value.product.images = UtilService.getImages(value.product);
+                                if(value.product.images.length){
+                                    value.product.imageUrl = UtilService.getImageUrl(value.product.images[0], '200x200');
+                                }
+                                else{
+                                    value.product.imageUrl = 'images/200.png';
+                                }
+                            });
+
                         $scope.interest.buyer_products = response.buyer_products;
                     }
                     else{
@@ -216,6 +234,22 @@
                     ToastService.showActionToast('Something went wrong! Please reload and try again.',0);
                 });
             };
+
+            $scope.changeFeedStatus = function(id, state){
+                $scope.feedStatus.buyerproductID = id;
+                if(state==true){
+                    $scope.feedStatus.is_active = 0;
+                }
+                else{
+                    $scope.feedStatus.is_active = 1;
+                }
+                APIService.apiCall('PUT', APIService.getAPIUrl('buyerproduct'), $scope.feedStatus)
+                .then(function(response){
+                   
+                },function(error){
+                     ToastService.showActionToast('Error: Unable to change Status!',0);
+                })
+            }
 
         }
     ]);

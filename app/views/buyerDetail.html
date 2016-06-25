@@ -192,10 +192,13 @@
                 </md-button>
             </div> 
         </div>
-        <div flex="60" data-ng-if="!data.buyer.buyer_interests.length"></div>
-        <div layout="column" data-ng-if="data.buyer.buyer_interests.length" flex= "60">
+        <div layout="column" flex= "60">
+        
         <div layout ="row">
             <div style="height:35px; line-height:0.2em; background-color:rgb(255,87,34); color:white" flex="100" layout-padding class ="md-warn md-whiteframe-2dp" layout="row" layout-align="start"><span>Buyer Interests</span></div>
+        </div>
+        <div layout="row" data-ng-if="!data.buyer.buyer_interests.length">
+            <h3>No Buyer Interests available</h3>
         </div>
         <div layout="column">
             <div layout="column" flex data-ng-repeat = "i in data.buyer.buyer_interests">
@@ -267,11 +270,11 @@
         </div>
         <div layout="column" flex="20" layout-align="space-around center">
             <div layout="column" flex="50">
-                <md-button data-ng-click="additionalInterest($event)" class="md-fab md-warn md-raised" layout="row" layout-align="center center">
+                <md-button data-ng-click="additionalInterest($event)" class="md-warn md-raised" layout="row" layout-align="center center">
                     <svg fill="#FFF" height="30" viewBox="0 0 24 24" width="30"  xmlns="http://www.w3.org/2000/svg">
                     <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
                    <path d="M0 0h24v24H0z" fill="none"/>
-                    </svg>
+                    </svg>Add Products
                 </md-button>
             </div>
         </div>

@@ -1,4 +1,4 @@
-<div layout="row">
+<div class="feeddialog" layout="row">
 	<div layout="column" flex>
 		<div layout="row">
 			<md-toolbar>
@@ -15,10 +15,42 @@
             </div>
         </md-toolbar>
 		</div>
-		<div layout="column">
+		<div class="interestfeed" layout="column" layout-padding>
 			 <div layout="column" data-ng-repeat="b in interest.buyer_products">
-			 	<div layout="row">
-			 		
+			 	<div layout="row" flex>
+			 		<div flex="20" layout="row" layout-align="center center">
+			 			<img data-ng-src="{{b.product.imageUrl}}" class="small-image">
+			 		</div>
+			 		<div flex="70" layout="column">
+			 				<h3>{{b.product.name}}</h3>
+			 			<div flex layout="column">
+			 				<div flex layout="row" layout-align="center">
+			 					<div flex="45" layout="column">
+			 						<span class="card-item-title">Merchant Name</span>
+			 						<span class="small-font">{{b.product.seller.company_name}}</span>
+			 					</div>
+			 					<div flex="45" layout="column">
+			 						<span class="card-item-title">Catalog no.</span>
+			 						<span class="small-font">{{b.product.details.seller_catalog_number}}</span>
+			 					</div>
+			 				</div>
+			 				<div flex layout="row" layout-align="center">
+			 					<div flex="45" layout="column">
+			 						<span class="card-item-title">Category</span>
+			 						<span class="small-font">{{b.product.category.name}}</span>
+			 					</div>
+			 					<div flex="45" layout="column">
+			 						<span class="card-item-title">Price per unit</span>
+			 						<span class="small-font">{{b.product.price_per_unit}}</span>
+			 					</div>
+			 				</div>
+			 			</div>
+			 		</div>
+			 		<div ng-if="interestType=='feed'" flex="10" layout="column" layout-align="center center">
+			 			<md-checkbox ng-model="b.is_active" data-ng-true = "1"  data-ng-false = "0" data-ng-click="changeFeedStatus(b.buyerproductID, b.is_active)">
+			 			</md-checkbox>
+			 			<span>Active</span>
+			 		</div> 
 			 	</div>
 			 	<md-divider></md-divider>
 			 </div>
