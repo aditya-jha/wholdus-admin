@@ -26,10 +26,7 @@
                     orderitem:'orderitem',
                     ordershipment:'ordershipment',
                     suborder:'suborder',
-                    category: 'category',
-                    states: 'address/state',
-                    buyerinterest: 'users/buyer/buyerinterest',
-                    buyerproduct: 'users/buyer/buyerproducts'
+                    category: 'category'
                 },
                 accessTokenKey: 'randomData',
                 loggedInUserKey: 'loggedInUser',
