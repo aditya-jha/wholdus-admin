@@ -35,8 +35,7 @@
             $scope.settings = {
                 enablePagination: false,
                 page: UtilService.getPageNumber(),
-                noProduct: false,
-                itemsPerPage:20
+                itemsPerPage:10
             };
             $scope.styles={
                 toBeShippedItem:{
@@ -58,49 +57,49 @@
                                     if($scope.data.orderID) {
                                         $scope.data.order = response.orders[0];
                                         for (var i = 0; i < $scope.data.order.sub_orders.length; i++) {
-                                         var sub_order=$scope.data.order.sub_orders[i];
-                                         sub_order.allItems=1;
-                                         sub_order.fullyPaid=1;
-                                         sub_order.isShipable=0;
-                                         sub_order.isPayable=0;
+                                           var sub_order=$scope.data.order.sub_orders[i];
+                                           sub_order.allItems=1;
+                                           sub_order.fullyPaid=1;
+                                           sub_order.isShipable=0;
+                                           sub_order.isPayable=0;
 
-                                         for(var j=0;j<sub_order.order_items.length;j++)
-                                         {
-                                             sub_order.order_items[j].addForDelivery=1;
-                                             var product=sub_order.order_items[j].product;
+                                           for(var j=0;j<sub_order.order_items.length;j++)
+                                           {
+                                               sub_order.order_items[j].addForDelivery=1;
+                                               var product=sub_order.order_items[j].product;
 
-                                             product.images=UtilService.getImages(product);
-                                             if(product.images.length){
-                                                 product.imageUrl = UtilService.getImageUrl(product.images[0], '200x200');
-                                             }
-                                             else{
+                                               product.images=UtilService.getImages(product);
+                                               if(product.images.length){
+                                                   product.imageUrl = UtilService.getImageUrl(product.images[0], '200x200');
+                                               }
+                                               else{
                                                 product.imageUrl = 'images/200.png';
                                             }
                                             if(!sub_order.isShipable && sub_order.order_items[j].order_item_status.value<=2)
                                             {
-                                             sub_order.isShipable=1;
-                                         }
-                                         if(!sub_order.isPayable && sub_order.order_items[j].order_item_status.value>=5)
-                                         {
-                                             sub_order.isPayable=1;
-                                         }
-                                     }
-                                 }
+                                               sub_order.isShipable=1;
+                                           }
+                                           if(!sub_order.isPayable && sub_order.order_items[j].order_item_status.value>=5)
+                                           {
+                                               sub_order.isPayable=1;
+                                           }
+                                       }
+                                   }
 
 
 
-                             } else {
+                               } else {
                                 $scope.data.orders = response.orders;
                                 if(response.total_pages > 1) {
-                                   $scope.settings.enablePagination = true;
-                                   $rootScope.$broadcast('setPage', {
+                                 $scope.settings.enablePagination = true;
+                                 $rootScope.$broadcast('setPage', {
                                     page: $scope.settings.page,
-                                    totalPages: Math.ceil(response.total_products/$scope.settings.itemsPerPage)
+                                    totalPages: Math.ceil(response.total_items/$scope.settings.itemsPerPage)
                                 }); 
-                               }
-                           }
-                       }
-                       else if($scope.data.orderID) {
+                             }
+                         }
+                     }
+                     else if($scope.data.orderID) {
                         ToastService.showActionToast("No such order exists! GO BACK", 0)
                         .then(function(response) {
                             $location.url('/orders');
@@ -132,9 +131,9 @@
 
 
                         $scope.deleteOrderItem=function(){
-                           $rootScope.$broadcast('showProgressbar');
-                           APIService.apiCall("DELETE", APIService.getAPIUrl("orderitem"), $scope.data.orderitem)
-                           .then(function(response) {
+                         $rootScope.$broadcast('showProgressbar');
+                         APIService.apiCall("DELETE", APIService.getAPIUrl("orderitem"), $scope.data.orderitem)
+                         .then(function(response) {
                             $rootScope.$broadcast('endProgressbar');
                             pageSetting();
                             ToastService.showActionToast("successful", 0).then(function(response) {
@@ -144,10 +143,10 @@
                             $rootScope.$broadcast('endProgressbar');
                             ToastService.showActionToast("something went wrong! please reload", 0);
                         });
-                       };
+                     };
 
-                       $scope.sub_total=0;
-                       $scope.calcAmount=function(index){
+                     $scope.sub_total=0;
+                     $scope.calcAmount=function(index){
                         var amount=0;
                         var sub_order=$scope.data.order.sub_orders[index];
                         for (var i = 0; i < sub_order.order_items.length; i++) {
@@ -194,12 +193,12 @@
                 });
                     };
                     $scope.confirmDelivery = function(ev, index) {
-                       $scope.ordershipment.suborderID=$scope.data.order.sub_orders[index].suborderID;
-                       $scope.ordershipment.order_items=[];
-                       $scope.ordershipment.all_items=$scope.data.order.sub_orders[index].allItems;
-                       if(!$scope.ordershipment.all_items){
-                           for(var i=0;i<$scope.data.order.sub_orders[index].order_items.length;i++)
-                           {
+                     $scope.ordershipment.suborderID=$scope.data.order.sub_orders[index].suborderID;
+                     $scope.ordershipment.order_items=[];
+                     $scope.ordershipment.all_items=$scope.data.order.sub_orders[index].allItems;
+                     if(!$scope.ordershipment.all_items){
+                         for(var i=0;i<$scope.data.order.sub_orders[index].order_items.length;i++)
+                         {
                             var order_item=$scope.data.order.sub_orders[index].order_items[i];
                             if(order_item.addForDelivery && order_item.order_item_status.value <= 2){
                                 $scope.ordershipment.order_items.push({orderitemID : order_item.orderitemID});
@@ -213,18 +212,18 @@
                         DialogService.viewDialog(ev,'DeliveryController','views/partials/confirmDelivery.html');
                     }
                     else{
-                       ToastService.showActionToast("Add items to send for the Shipment", 0);
-                   }
+                     ToastService.showActionToast("Add items to send for the Shipment", 0);
+                 }
 
-               };
+             };
 
-               $scope.paySeller = function(ev, index) {
-                   $scope.sellerpayment.suborderID=$scope.data.order.sub_orders[index].suborderID;
-                   $scope.sellerpayment.order_items=[];
-                   $scope.sellerpayment.fully_paid=$scope.data.order.sub_orders[index].fullyPaid;
-                   if(!$scope.sellerpayment.fully_paid){
-                       for(var i=0;i<$scope.data.order.sub_orders[index].order_items.length;i++)
-                       {
+             $scope.paySeller = function(ev, index) {
+                 $scope.sellerpayment.suborderID=$scope.data.order.sub_orders[index].suborderID;
+                 $scope.sellerpayment.order_items=[];
+                 $scope.sellerpayment.fully_paid=$scope.data.order.sub_orders[index].fullyPaid;
+                 if(!$scope.sellerpayment.fully_paid){
+                     for(var i=0;i<$scope.data.order.sub_orders[index].order_items.length;i++)
+                     {
                         var order_item = $scope.data.order.sub_orders[index].order_items[i];
                         if(order_item.addForPayment && order_item.order_item_status.value >=5){
                             $scope.sellerpayment.order_items.push({orderitemID : order_item.orderitemID});
@@ -238,28 +237,28 @@
                     DialogService.viewDialog(ev,'CreateSellerPaymentController','views/partials/createSellerPayment.html');
                 }
                 else{
-                   ToastService.showActionToast("Add items for the Payment", 0);
-               }
+                 ToastService.showActionToast("Add items for the Payment", 0);
+             }
 
-           };
+         };
 
-           $scope.changeItemsSelected=function(index){
+         $scope.changeItemsSelected=function(index){
 
             var sub_order=$scope.data.order.sub_orders[index];
             for (var i = 0; i < sub_order.order_items.length; i++) {
-             sub_order.order_items[i].addForDelivery=sub_order.allItems;
-         }
+               sub_order.order_items[i].addForDelivery=sub_order.allItems;
+           }
 
-     };
-
-
-     $scope.buyerPayment = function(event, va){
-         DialogService.viewDialog(event,'PaymentController','views/partials/create-buyer-payment.html', va);
-     };
+       };
 
 
+       $scope.buyerPayment = function(event, va){
+           DialogService.viewDialog(event,'PaymentController','views/partials/create-buyer-payment.html', va);
+       };
 
- }
- ]);
+
+
+   }
+   ]);
 
 })();
