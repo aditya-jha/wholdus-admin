@@ -13,7 +13,7 @@
         '$mdDialog',
         'DialogService',
         'DeliveryService',
-        function($scope, $log, APIService, $routeParams, $rootScope, ngProgressBarService, ToastService, 
+        function($scope, $log, APIService, $routeParams, $rootScope, ngProgressBarService, ToastService,
             $location, UtilService,$mdDialog,DialogService,DeliveryService){
 
             $scope.data = {
@@ -112,7 +112,7 @@
                     $scope.allImages.push('images/200.png');
                 }
             }
-            
+
 
             function getShipments(params){
                 $rootScope.$broadcast('showProgressbar');
@@ -138,7 +138,7 @@
                                  $rootScope.$broadcast('setPage', {
                                     page: $scope.settings.page,
                                     totalPages: Math.ceil(response.total_items/$scope.settings.itemsPerPage)
-                                }); 
+                                });
                              }
                             for(var i=0;i<$scope.data.shipments.length;i++) {
                                 var shipment=$scope.data.shipments[i];
@@ -183,7 +183,7 @@
 
             $scope.totalAmount=function(){
                 var total = 0;
-                if($scope.data.shipment.order_items!=null){
+                if($scope.data.shipment.order_items){
                     for(var i = 0 ;i < $scope.data.shipment.order_items.length; i++){
                         total += parseInt($scope.data.shipment.order_items[i].final_price);
                     }
@@ -194,7 +194,7 @@
             $scope.changeStatus= function(event, index, shipment){
 
                 shipment.change.status= shipment.state[index].value;
-               
+
                 if(index==3){
                     DeliveryService.setShipment(shipment);
                     DialogService.viewDialog(event,'ShipmentDeliveredController','views/partials/shipmentDelivered.html');

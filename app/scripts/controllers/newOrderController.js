@@ -88,14 +88,13 @@
 
 
             function productOrder() {
-            if($routeParams.product){
-                var prods = JSON.parse($routeParams.product);
-                for(var i=0;i<prods.length;i++){
-
-                $scope.addProduct('reload', i);
-                };
-            };
-        }; 
+                if($routeParams.product){
+                    var prods = JSON.parse($routeParams.product);
+                    for(var i=0;i<prods.length;i++) {
+                        $scope.addProduct('reload', i);
+                    }
+                }
+            }
             productOrder();
 
 

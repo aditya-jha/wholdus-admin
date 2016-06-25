@@ -77,7 +77,7 @@
                         watchCount++;
                     }
 
-                
+
 
                     $scope.searchProduct = function() {
                         if($scope.product.ID > 0) {
@@ -89,9 +89,9 @@
                             $rootScope.$broadcast("showProgressbar");
                             APIService.apiCall("GET", APIService.getAPIUrl('products'), null, params)
                                 .then(function(response) {
-                                    
+
                                     if(response.products.length) {
-                                        
+
                                         if(response.products[0].show_online && response.products[0].verification) {
                                             $scope.product.item = response.products[0];
                                             $scope.product.item.details.weight_per_unit = parseFloat($scope.product.item.details.weight_per_unit);
@@ -118,9 +118,9 @@
                                  $scope.product.ID = (JSON.parse($routeParams.product)[$scope.ind].ID);
                                  $scope.searchProduct();
                                  $scope.product.orderDetail = JSON.parse($routeParams.product)[$scope.ind].orderDetail;
-                                }   
+                                }
                             }
-                        };
+                        }
 
 
 
@@ -128,55 +128,54 @@
 
                     $scope.selectProduct = function() {
                         var pieces = parseInt($scope.product.orderDetail.pieces);
-                             $scope.produc = {
-                                    ID:$scope.product.ID,
-                                    orderDetail: $scope.product.orderDetail
-                                }
-                                if($routeParams.product){
-                                   prods = JSON.parse($routeParams.product);
-                                   var count=0;
-                                   for(var i=0; i<prods.length;i++){
-                                        if(prods[i].ID == $scope.produc.ID){
-                                            prods[i] = $scope.produc;
-                                            count =1;
-                                            break;
-                                        }
+                            $scope.produc = {
+                                ID:$scope.product.ID,
+                                orderDetail: $scope.product.orderDetail
+                            };
+                            if($routeParams.product){
+                                prods = JSON.parse($routeParams.product);
+                                var count=0;
+                                for(var i=0; i<prods.length;i++) {
+                                    if(prods[i].ID == $scope.produc.ID) {
+                                        prods[i] = $scope.produc;
+                                        count =1;
+                                        break;
                                     }
-                                    if(count==0){
-                                        prods.push($scope.produc);
-                                    }
-                                    
                                 }
-                                else{
+                                if(count===0){
                                     prods.push($scope.produc);
                                 }
-                                $location.search("product", JSON.stringify(prods));
-                                        
-                        if(isNaN(pieces) || pieces <= 0) {
-                            ToastService.showActionToast("Number of Pieces cannot be 0", 0);
-                        } else {
-                            $scope.product.disable = true;
-                            $rootScope.$broadcast("addProductChanged", $scope.product);
-                        }
-                    };
+                            }
+                            else{
+                                prods.push($scope.produc);
+                            }
+                            $location.search("product", JSON.stringify(prods));
 
-                    $scope.editProduct = function(index) {
-                        $scope.product.disable = false;
-                        if(index == -1) {
-                            $scope.product.item = null;
-                            initProductData($scope.product.ID);
-                            $rootScope.$broadcast("addProductChanged", $scope.product);
-                            $scope.$destroy();
-                            $element.remove();
-                        }
-                    };
+                            if(isNaN(pieces) || pieces <= 0) {
+                                ToastService.showActionToast("Number of Pieces cannot be 0", 0);
+                            } else {
+                                $scope.product.disable = true;
+                                $rootScope.$broadcast("addProductChanged", $scope.product);
+                            }
+                        };
 
-                    $scope.$watch('product.orderDetail.pieces', function(newVal, oldVal) {
-                        if(newVal === '' || !newVal) {
-                            $scope.product.orderDetail.pieces = 0;
-                        }
-                        calculatePriceFromLot();
-                    });
+                        $scope.editProduct = function(index) {
+                            $scope.product.disable = false;
+                            if(index == -1) {
+                                $scope.product.item = null;
+                                initProductData($scope.product.ID);
+                                $rootScope.$broadcast("addProductChanged", $scope.product);
+                                $scope.$destroy();
+                                $element.remove();
+                            }
+                        };
+
+                        $scope.$watch('product.orderDetail.pieces', function(newVal, oldVal) {
+                            if(newVal === '' || !newVal) {
+                                $scope.product.orderDetail.pieces = 0;
+                            }
+                            calculatePriceFromLot();
+                        });
                 }
             ]
         };
