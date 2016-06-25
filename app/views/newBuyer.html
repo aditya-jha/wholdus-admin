@@ -25,6 +25,7 @@
             <label>Email</label>
             <input type="email" data-ng-model="data.buyer.email" ng-required="false" />
         </md-input-container>
+        
         <md-switch data-ng-model="data.buyer.mobile_verification">Mobile Verification</md-switch>
         <md-switch data-ng-model="data.buyer.email_verification">Email Verification</md-switch>
         
@@ -33,24 +34,36 @@
         <h3>Buying Details</h3>
        
         <md-input-container>
-            <label>Interest</label>
-            <textarea data-ng-model="data.buyer.details.buyer_interest" ng-required="false"></textarea>
+            <label>Purchasing Duration</label>
+            <textarea data-ng-model="data.buyer.details.purchase_duration" ng-required="false"></textarea>
         </md-input-container>
         <md-input-container>
-            <label>Capacity</label>
+            <label>Purchasing Capacity</label>
             <input type="text" data-ng-model="data.buyer.details.buying_capacity" ng-required="false"></textarea>
         </md-input-container>
         <md-input-container>
-            <label>Customer-type</label>
+            <label>Customer Type</label>
             <input type="text" data-ng-model="data.buyer.details.customer_type" ng-required="false"></textarea>
         </md-input-container>
         <md-input-container>
-            <label>Buys from</label>
-            <input type="text" data-ng-model="data.buyer.details.buys_from" ng-required="false"></textarea>
-        </md-input-container>
-        <md-input-container>
             <label>Purchasing-states</label>
-            <input type="text" data-ng-model="data.buyer.details.purchasing_states" ng-required="false"></textarea>
+            <md-select style="margin-bottom:10px" ng-model="selectedStates" md-on-open="getStates($event)" multiple>
+                <md-optgroup label="Indian States">
+                <md-option ng-repeat="state in states">{{ state.name }}</md-option>
+                </md-optgroup>
+            </md-select>
+        </md-input-container>
+        <md-input-container class="placeholder">
+            <label>Buys from</label><br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<md-checkbox class="md-warn" ng-true-value="1" ng-false-value="0">
+                Retailer
+            </md-checkbox>
+            &nbsp;&nbsp;&nbsp;&nbsp;<md-checkbox class="md-warn" ng-true-value="1" ng-false-value="0">
+                Wholeseller
+            </md-checkbox>
+            &nbsp;&nbsp;&nbsp;&nbsp;<md-checkbox class="md-warn" ng-true-value="1" ng-false-value="0">
+                Manufacturer
+            </md-checkbox>
         </md-input-container>
         <md-input-container>
             <label>VAT / TIN</label>
@@ -60,6 +73,8 @@
             <label>CST</label>
             <input type="text" data-ng-model="data.buyer.details.cst" ng-required="false"></textarea>
         </md-input-container>
+        
+        
         <!-- <md-switch data-ng-model="">PAN Verification</md-switch> -->
         <!-- <md-switch data-ng-model="">TIN Verification</md-switch> -->
     </div>
@@ -127,6 +142,15 @@
         </md-input-container>
     </div> -->
 </div>
+<div layout="row" layout-align="space-around">
+    <div id="interestContainer">
+
+        </div>
+        </div>
+        <!-- <div layout="row" layout-align="center center">
+        <md-button class="md-raised md-warn" data-ng-click="addInterest()">Add Interest</md-button>
+        </div> -->
+
 <div flex layout="row">
     <div layout="row" flex="95" layout-align="end">
         <md-button type="reset" class="md-raised md-warn">Reset</md-button>

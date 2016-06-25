@@ -7,7 +7,7 @@
         function($mdMedia, $mdDialog) {
         	var factory = {};
 
-            factory.viewDialog = function(event,controller,templateUrl, va) {
+            factory.viewDialog = function(event,controller,templateUrl, va=null) {
                 var useFullScreen = $mdMedia('xs');
                 $mdDialog.show({
                     controller: controller,
@@ -21,7 +21,7 @@
                     },
 
                 });
-                factory.ID = va;
+                factory.val = va;
             };
 
             return factory;
