@@ -26,7 +26,8 @@
                     suborder:'suborder',
                     category: 'category',
                     states: 'address/state',
-                    buyerinterest: 'users/buyer/buyerinterest'
+                    buyerinterest: 'users/buyer/buyerinterest',
+                    buyerproduct: 'users/buyer/buyerproducts'
                 },
                 accessTokenKey: 'randomData',
                 loggedInUserKey: 'loggedInUser',

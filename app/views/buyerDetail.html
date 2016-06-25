@@ -173,7 +173,26 @@
     </div> -->
 </div><br>
     <div layout="row" flex layout-align="center">
-        <div flex="20"></div>
+        <div flex="20" layout="column" layout-align="start center">
+           <div layout="column" flex="50">
+                <md-button data-ng-click="interestFeed($event,'feed')" class="md-warn md-raised" layout="row" layout-align="center center">
+                    <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                        <path fill="#FFF" d="M4,6V4H4.1C12.9,4 20,11.1 20,19.9V20H18V19.9C18,12.2 11.8,6 4,6M4,10V8A12,12 0 0,1 16,20H14A10,10 0 0,0 4,10M4,14V12A8,8 0 0,1 12,20H10A6,6 0 0,0 4,14M4,16A4,4 0 0,1 8,20H4V16Z" />
+                    </svg>&nbsp;&nbsp;Feed
+                </md-button>
+                <md-button data-ng-click="interestFeed($event,'like')" class="md-warn md-raised" layout="row" layout-align="center center">
+                    <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                        <path fill="#FFF" d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" />
+                    </svg>&nbsp;&nbsp;Likes
+                </md-button>
+                <md-button data-ng-click="interestFeed($event,'dislike')" class="md-warn md-raised" layout="row" layout-align="center center">
+                   <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                        <path fill="#FFF" d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C8.17,3 8.82,3.12 9.44,3.33L13,9.35L9,14.35L12,21.35V21.35M16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35L11,14.35L15.5,9.35L12.85,4.27C13.87,3.47 15.17,3 16.5,3Z" />
+                    </svg>&nbsp;&nbsp;Dislikes
+                </md-button>
+            </div> 
+        </div>
+        <div flex="60" data-ng-if="!data.buyer.buyer_interests.length"></div>
         <div layout="column" data-ng-if="data.buyer.buyer_interests.length" flex= "60">
         <div layout ="row">
             <div style="height:35px; line-height:0.2em; background-color:rgb(255,87,34); color:white" flex="100" layout-padding class ="md-warn md-whiteframe-2dp" layout="row" layout-align="start"><span>Buyer Interests</span></div>
@@ -183,7 +202,7 @@
                 <div layout="column" layout-padding>
                 <div layout="row" flex layout-align="center center">
                     <div flex="5">
-                        <h2>{{$index+1}}</h2>
+                        <h2>{{$index+1}}.</h2>
                     </div>
                     <div flex="25" layout="column" class="card-item">
                                 <span style="margin-top:-10px;margin-bottom:6px" class="card-item-title">Category</span>
@@ -246,8 +265,15 @@
             </div>
         </div>
         </div>
-        <div layout="column" flex="20" layout-align="center">
-            
+        <div layout="column" flex="20" layout-align="space-around center">
+            <div layout="column" flex="50">
+                <md-button data-ng-click="additionalInterest($event)" class="md-fab md-warn md-raised" layout="row" layout-align="center center">
+                    <svg fill="#FFF" height="30" viewBox="0 0 24 24" width="30"  xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                   <path d="M0 0h24v24H0z" fill="none"/>
+                    </svg>
+                </md-button>
+            </div>
         </div>
     </div>
         <div flex layout="row" layout-align="space-around">
