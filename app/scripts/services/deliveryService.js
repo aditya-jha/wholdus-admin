@@ -11,6 +11,9 @@
             factory.suborderID=null;
 
             factory.order_items=[];
+            factory.shipment={
+
+            };
 
             factory.setProp = function(property) {
                 factory.suborderID=property.suborderID;
@@ -22,6 +25,9 @@
                 }
             };
             
+            factory.setShipment=function(shipment){
+                factory.shipment=shipment;
+            };
             return factory;
         }
     );

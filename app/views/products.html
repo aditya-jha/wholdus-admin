@@ -8,31 +8,36 @@
 
 	<md-input-container flex="30">
 		<label>Category</label>
-		<md-select data-ng-model="categoryID">
+		<md-select data-ng-model="categoryID" ng-change="categoryChanged()">
 			<md-option ng-repeat="category in categories" value="{{category.categoryID}}">{{category.display_name}}</md-option>
 		</md-select>
 	</md-input-container>
-	<md-button class="md-raised md-primary" data-ng-click="categoryChanged()">
-		Submit
-	</md-button>
 </div>
 <div layout="row" layout-wrap layout-margin layout-align="space-around start">
 	<div  layout="row" flex="45" md-whiteframe="4dp" data-ng-repeat="product in data.products" style="padding:8px">
-		<div layout="column" flex="95">
+			<div layout="column" flex="20" style="width: 100px;max-height: 140px;" layout-align="center center">
+					<div layout="row" layout-align="center center">
+					<img data-ng-src="{{product.imageUrl}}" class="small-image">
+					</div>
+			</div>
+
+		<div layout="column" flex="75">
 			<div layout="row" flex>
-				<span style="margin-right:1em">{{product.productID}}</span>
-				Name: &nbsp;<span class="bold" flex="75">{{product.display_name}}</span>
-				<span flex></span>
+				<!-- <span style="margin-right:1em">{{product.productID}}</span> -->
+				<span class="bold">{{product.display_name}}</span>
+			
 				<!-- <md-button class="md-warn" data-ng-href="users/sellers/{{s.sellerID}}">view</md-button> -->
 				
 			</div>
-			<div>
-				<div layout="row">
+			<div layout="row" layout-align="space-around start">
+
+			
+				<div layout="column" flex>
 					<div layout="column" class="card-item" flex>
 
 						<span class="card-item-title" flex>Merchant Name</span>
 						<a class="link" data-ng-href="users/sellers/{{product.seller.sellerID}}" target="_blank"><span>{{product.seller.name}}</span>
-						<md-tooltip md-direction="top">view seller details</md-tooltip>	
+							<md-tooltip md-direction="top">view seller details</md-tooltip>	
 						</a>
 					</div>
 					<div layout="column" class="card-item" flex>
@@ -41,18 +46,20 @@
 					</div>
 					
 				</div>
-				<div layout="row">
-					<div class="card-item" flex>
+				<div layout="column" flex>
+					<div class="card-item" layout="column" flex>
 						<span class="card-item-title" flex>	Catalog No.</span> 
 						<span>{{product.details.seller_catalog_number}}</span>
 					</div>
-					<div class="card-item" flex>
+					<div class="card-item"  layout="column" flex>
 						<span class="card-item-title" flex>Price Per Unit </span>
 						<span>&#8377; {{product.price_per_unit}}</span>
 					</div>
 				</div>
+
 			</div>
 		</div>
+
 		<div layout="column" flex="5">
 			<div layout="row" layout-align="center">
 				<a data-ng-href="products/{{product.productID}}">
@@ -65,7 +72,7 @@
 			<md-divider></md-divider>
 			<div layout="row" layout-align="center">	
 				<a data-ng-href="http://www.wholdus.com/{{product.url}}" target="_blank">
-				<svg fill="#FF5722" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+					<svg fill="#FF5722" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M7 19h10V4H7v15zm-5-2h4V6H2v11zM18 6v11h4V6h-4z"/>
 						<path d="M0 0h24v24H0z" fill="none"/>
 					</svg>

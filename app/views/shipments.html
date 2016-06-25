@@ -1,38 +1,80 @@
+
 <div layout="row" layout-align="center start" flex="100">
-    <h2>Order Shipments</h2>
+<h2>Order Shipments</h2>
 </div>
 <div layout="row" layout-wrap layout-align="center start">
-    <span><span class="bold small-font">Total Shipments:</span> {{data.shipments.length}}</span>
+<span><span class="bold small-font">Total Shipments:</span> {{data.shipments.length}}</span>
 </div>
 <div layout="row" layout-wrap layout-margin layout-align="space-around start">
-    <div  flex="45" md-whiteframe="4dp" data-ng-repeat="s in data.shipments" layout-padding>
+<div layout="row" flex="45" md-whiteframe="4dp" data-ng-repeat="s in data.shipments" layout-padding>
+    <div layout="column" flex="95">
         <div layout="row" layout-align="start center">
             <label>Suborder-no.&nbsp;:&nbsp;</label><span >{{s.suborder_display_number}}</span>
             <div flex></div>
-            <a data-ng-href="shipments/{{s.ordershipmentID}}">
-                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                    <path fill="#FF5722" d="M4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H16L12,22L8,18H4A2,2 0 0,1 2,16V4A2,2 0 0,1 4,2M18,14V12H12.5L10.5,14H18M6,14H8.5L15.35,7.12C15.55,6.93 15.55,6.61 15.35,6.41L13.59,4.65C13.39,4.45 13.07,4.45 12.88,4.65L6,11.53V14Z" />
-                </svg>
-                <md-tooltip md-direction="bottom">view more</md-tooltip>
-            </a>
-        </div>
-        <div layout="row" flex layout-align="start center">
-            <div flex="30"><label class="sub-color small-font">AWB&nbsp;:&nbsp;</label><span class="small-font">{{s.waybill_number}}</span></div>
-            <div flex= "30"><label class="sub-color small-font">Date&nbsp;:&nbsp;</label><span class="small-font">{{s.created_at | date}}</span></div>
-            <div flex= "30"><label class="sub-color small-font">Shipment ID&nbsp;:&nbsp;</label><span class="small-font">{{s.ordershipmentID}}</span></div>
+
         </div>
         <div layout="row" flex layout-align="start center" class="small-font">
-            <div flex="30">
+            <div flex><label class="sub-color">AWB&nbsp;:&nbsp;</label><span>{{s.waybill_number}}</span></div>
+            <div flex><label class="sub-color">Date&nbsp;:&nbsp;</label><span>{{s.created_at | date}}</span></div>
+            <div flex= "35"><label class="sub-color">Shipment ID&nbsp;:&nbsp;</label><span>{{s.ordershipmentID}}</span></div>
+        </div>
+        <div layout="row" flex layout-align="space-between center" class="small-font">
+            <div flex layout="row">
                 <label class="sub-color">Buyer&nbsp;:&nbsp;</label><span class="word-wrap">{{s.buyer.name}}</span>
             </div>
-            <div flex="30">
-                <label class="sub-color">Seller&nbsp;:&nbsp;</label><span class="word-wrap">{{s.seller.company_name}}</span>    
+            <div flex layout="row">
+                <label class="sub-color">Seller&nbsp;:&nbsp;</label>
+                <span class="word-wrap">{{s.seller.company_name}}</span>    
             </div>
-            <div flex ="40" layout="row" layout-align="end center">
-                <label class="sub-color">Status&nbsp;:&nbsp;</label><label class="bold">{{s.order_shipment_status.display_value}}</label>&nbsp;&nbsp;<span><a href="{{s.tracking_url}}" target="_blank"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
-    <path fill="#FF5722" d="M12,2C15.31,2 18,4.66 18,7.95C18,12.41 12,19 12,19C12,19 6,12.41 6,7.95C6,4.66 8.69,2 12,2M12,6A2,2 0 0,0 10,8A2,2 0 0,0 12,10A2,2 0 0,0 14,8A2,2 0 0,0 12,6M20,19C20,21.21 16.42,23 12,23C7.58,23 4,21.21 4,19C4,17.71 5.22,16.56 7.11,15.83L7.75,16.74C6.67,17.19 6,17.81 6,18.5C6,19.88 8.69,21 12,21C15.31,21 18,19.88 18,18.5C18,17.81 17.33,17.19 16.25,16.74L16.89,15.83C18.78,16.56 20,17.71 20,19Z" />
-</svg></a><md-tooltip md-direction="bottom">Track order</md-tooltip></span>
+            <div flex="35" layout="row" layout-align="start center">
+                <label class="sub-color">Status&nbsp;:&nbsp;</label>
+                <label class="bold">{{s.order_shipment_status.display_value}}</label><span>
+                <md-menu md-offset="0 -5">
+                    <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                        <div style="width:24px, height:24px">
+                        <svg fill="#FF5722" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs>
+                                <path d="M0 0h24v24H0V0z" id="a"/>
+                            </defs>
+                            <clipPath id="b">
+                                <use overflow="visible" xlink:href="#a"/>
+                            </clipPath>
+                            <path clip-path="url(#b)" d="M21 10.12h-6.78l2.74-2.82c-2.73-2.7-7.15-2.8-9.88-.1-2.73 2.71-2.73 7.08 0 9.79 2.73 2.71 7.15 2.71 9.88 0C18.32 15.65 19 14.08 19 12.1h2c0 1.98-.88 4.55-2.64 6.29-3.51 3.48-9.21 3.48-12.72 0-3.5-3.47-3.53-9.11-.02-12.58 3.51-3.47 9.14-3.47 12.65 0L21 3v7.12zM12.5 8v4.25l3.5 2.08-.72 1.21L11 13V8h1.5z"/>
+                        </svg>
+                        </div>
+                    </md-button>
+                    <md-menu-content width="3">
+                        <md-menu-item ng-repeat="i in s.state">
+                            <md-button ng-click="changeStatus($event, $index,s)" data-ng-disabled = "i.active"> <span md-menu-align-target></span> {{i.display_value}} </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+
             </div>
         </div>
     </div>
+    <div layout="column" flex="5" layout-align="center center">
+    <div layout="row" flex>
+       <a data-ng-href="shipments/{{s.ordershipmentID}}">
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+            <path fill="#FF5722" d="M4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H16L12,22L8,18H4A2,2 0 0,1 2,16V4A2,2 0 0,1 4,2M18,14V12H12.5L10.5,14H18M6,14H8.5L15.35,7.12C15.55,6.93 15.55,6.61 15.35,6.41L13.59,4.65C13.39,4.45 13.07,4.45 12.88,4.65L6,11.53V14Z" />
+        </svg>
+        <md-tooltip md-direction="top">view more</md-tooltip>
+    </a>
+    </div>
+    <md-divider></md-divider>
+    <div layout="row" flex>
+    <a href="{{s.tracking_url}}" target="_blank">
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+            <path fill="#FF5722" d="M12,2C15.31,2 18,4.66 18,7.95C18,12.41 12,19 12,19C12,19 6,12.41 6,7.95C6,4.66 8.69,2 12,2M12,6A2,2 0 0,0 10,8A2,2 0 0,0 12,10A2,2 0 0,0 14,8A2,2 0 0,0 12,6M20,19C20,21.21 16.42,23 12,23C7.58,23 4,21.21 4,19C4,17.71 5.22,16.56 7.11,15.83L7.75,16.74C6.67,17.19 6,17.81 6,18.5C6,19.88 8.69,21 12,21C15.31,21 18,19.88 18,18.5C18,17.81 17.33,17.19 16.25,16.74L16.89,15.83C18.78,16.56 20,17.71 20,19Z" />
+        </svg>
+        <md-tooltip md-direction="top">Track order</md-tooltip>
+    </a>
+    </div>
+
+
 </div>
+</div>
+</div>
+
+<div layout="row"  data-ng-show="settings.enablePagination" wu-pagination></div>

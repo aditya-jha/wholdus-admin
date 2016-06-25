@@ -17,6 +17,11 @@
              $scope.payments = [];
              $scope.paymentID =null;
              $scope.payment ={};
+              $scope.settings = {
+                enablePagination: false,
+                page: UtilService.getPageNumber(),
+                itemsPerPage:10
+            };
 
 
               $scope.time={
@@ -74,6 +79,13 @@
                                 }
                                 else{
                                     $scope.payments = response.seller_payments;
+                                    if(response.total_pages > 1) {
+                                 $scope.settings.enablePagination = true;
+                                 $rootScope.$broadcast('setPage', {
+                                    page: $scope.settings.page,
+                                    totalPages: Math.ceil(response.total_items/$scope.settings.itemsPerPage)
+                                }); 
+                             }
                                 }
                             }
                         }
@@ -81,6 +93,13 @@
                         if(person == 'buyerpayment'){
                             if(response.buyer_payments.length>0) {
                                     $scope.payments = response.buyer_payments;
+                                    if(response.total_pages > 1) {
+                                 $scope.settings.enablePagination = true;
+                                 $rootScope.$broadcast('setPage', {
+                                    page: $scope.settings.page,
+                                    totalPages: Math.ceil(response.total_items/$scope.settings.itemsPerPage)
+                                }); 
+                             }
                             }
                         }
                     }, function(error) {
@@ -96,12 +115,16 @@
                         viewPayment({sellerpaymentID: $routeParams.paymentID});
                     }
                     else{
-                    viewPayment();
+                    viewPayment({
+                                    items_per_page:$scope.settings.itemsPerPage,
+                                    page_number:$scope.settings.page});
                     }
                 }
                 else if($routeParams.paymentType == 'buyer-payment'){
                     person = 'buyerpayment';
-                    viewPayment();
+                    viewPayment({
+                                    items_per_page:$scope.settings.itemsPerPage,
+                                    page_number:$scope.settings.page});
                 }
             }
             identify();

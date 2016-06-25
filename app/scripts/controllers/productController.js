@@ -41,7 +41,7 @@
                 {
                     $scope.allImages[0]='images/400.png';
                 }
-            }
+            } 
 
             function getCategory(params) {
                 APIService.apiCall("GET", APIService.getAPIUrl("category"))
@@ -64,14 +64,24 @@
                             $scope.data.product = response.products[0];
                             $scope.data.images= UtilService.getImages($scope.data.product);
                             praseProductDetails(response.products[0]);
-                        } else {
+                        } 
+                        else {
+                            angular.forEach(response.products, function(value, key) {
+                                value.images = UtilService.getImages(value);
+                                if(value.images.length){
+                                    value.imageUrl = UtilService.getImageUrl(value.images[0], '200x200');
+                                }
+                                else{
+                                    value.imageUrl = 'images/200.png';
+                                }
+                            });
                             $scope.data.products = response.products;
                             if(response.total_pages > 1) {
                                $scope.settings.enablePagination = true;
                                $rootScope.$broadcast('setPage', {
                                 page: $scope.settings.page,
                                 totalPages: Math.ceil(response.total_products/$scope.settings.itemsPerPage)
-                            });
+                            }); 
                            }
                        }
                    }
@@ -95,53 +105,53 @@
                 } else {
                     if(!UtilService.categoryID){
                        UtilService.setCategory(1);
-                    }
-                    getproducts(
-                    {
-                        categoryID: UtilService.categoryID,
-                        items_per_page:$scope.settings.itemsPerPage,
-                        page_number:$scope.settings.page
-                    });
-                }
-            }
+                   }
+                   getproducts(
+                   {
+                    categoryID: UtilService.categoryID,
+                    items_per_page:$scope.settings.itemsPerPage,
+                    page_number:$scope.settings.page
+                });
+               }
+           }
 
 
+           pageSetting();
+
+
+           $scope.categoryChanged=function(){
+             UtilService.setCategory($scope.categoryID);
+             $scope.settings.page=1;
+             $location.search('page', 1);
+             pageSetting();
+         };
+
+         $scope.reset = function() {
             pageSetting();
+        };
 
-
-            $scope.categoryChanged=function(){
-                 UtilService.setCategory($scope.categoryID);
-                 $scope.settings.page=1;
-                 $location.search('page', 1);
+        $scope.changeProduct = function(type,hide) {
+         $rootScope.$broadcast('showProgressbar');
+         if(hide){
+            $scope.data.product.show_online=false;}
+            APIService.apiCall(type, APIService.getAPIUrl("products"), $scope.data.product)
+            .then(function(response) {
+                $rootScope.$broadcast('endProgressbar');
                 pageSetting();
-            };
+                ToastService.showActionToast("successful", 0).then(function(response) {
+                 if(type=="DELETE"){
+                    $location.url('/products');
+                }
 
-            $scope.reset = function() {
-                pageSetting();
-            };
-
-            $scope.changeProduct = function(type,hide) {
-             $rootScope.$broadcast('showProgressbar');
-             if(hide){
-                $scope.data.product.show_online=false;}
-                APIService.apiCall(type, APIService.getAPIUrl("products"), $scope.data.product)
-                .then(function(response) {
-                    $rootScope.$broadcast('endProgressbar');
-                    pageSetting();
-                    ToastService.showActionToast("successful", 0).then(function(response) {
-                     if(type=="DELETE"){
-                        $location.url('/products');
-                    }
-
-                });
-                }, function(error) {
-                    $rootScope.$broadcast('endProgressbar');
-                    ToastService.showActionToast("something went wrong! please reload", 0);
-                });
-            };
+            });
+            }, function(error) {
+                $rootScope.$broadcast('endProgressbar');
+                ToastService.showActionToast("something went wrong! please reload", 0);
+            });
+        };
 
 
 
-        }
-        ]);
+    }
+    ]);
 })();
