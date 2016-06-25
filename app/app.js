@@ -59,12 +59,6 @@ adminapp.config([
         }).when('/users/buyers/:buyerID',{
             templateUrl: 'views/buyerDetail.html',
             controller: 'BuyerController'
-        }).when('/users/buyers/:buyerID/interest',{
-            templateUrl: 'views/buyerInterestFeed.html',
-            controller: 'BuyerInterestController'
-        }).when('/users/buyers/:buyerID/interest/:buyerinterestID',{
-            templateUrl: 'views/buyerInterestDetail.html',
-            controller: 'BuyerInterestController'
         }).when('/users/new-buyer',{
             templateUrl: 'views/newBuyer.html',
             controller: 'BuyerController'
