@@ -76,7 +76,7 @@ md-input-container {
 margin: 0px 0px !important;
 }
 
-.dash-card>div:hover{
+.dash-card div>a:hover{
 background-color: rgba(158, 158, 158, 0.2);
 
 }
