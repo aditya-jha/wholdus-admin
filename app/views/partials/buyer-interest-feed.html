@@ -16,18 +16,19 @@
         </md-toolbar>
 		</div>
 		<div class="interestfeed" layout="column" layout-padding>
+			<div flex data-ng-if="!interest.buyer_products.length" layout="row" layout-align="center">No Products available</div>
 			 <div layout="column" data-ng-repeat="b in interest.buyer_products">
 			 	<div layout="row" flex>
 			 		<div flex="20" layout="row" layout-align="center center">
 			 			<img data-ng-src="{{b.product.imageUrl}}" class="small-image">
 			 		</div>
 			 		<div flex="70" layout="column">
-			 				<h3>{{b.product.name}}</h3>
+			 				<a href="/products/{{b.product.productID}}" target="_blank" class="link"><h3>{{b.product.name}}</h3></a>
 			 			<div flex layout="column">
 			 				<div flex layout="row" layout-align="center">
 			 					<div flex="45" layout="column">
 			 						<span class="card-item-title">Merchant Name</span>
-			 						<span class="small-font">{{b.product.seller.company_name}}</span>
+			 						<a href="/users/sellers/{{b.product.seller.sellerID}}" target="_blank"><span class="small-font link">{{b.product.seller.company_name}}</span></a>
 			 					</div>
 			 					<div flex="45" layout="column">
 			 						<span class="card-item-title">Catalog no.</span>
@@ -54,7 +55,12 @@
 			 	</div>
 			 	<md-divider></md-divider>
 			 </div>
+			 <span data-ng-if="interest.total_pages > 1" layout="row" layout-align="space-around start">
+			<md-button class="md-raised md-warn" data-ng-click="viewInterestFeed(-1)" data-ng-disabled="interest.page_number<=1">Back</md-button>
+			<md-button class="md-raised md-warn" data-ng-click="viewInterestFeed(+1)" data-ng-disabled="interest.page_number>=interest.total_pages">Next</md-button>
+		</span>
 		</div>
+		
 		
 	</div>
 </div>
