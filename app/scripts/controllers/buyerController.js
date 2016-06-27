@@ -38,7 +38,7 @@
                 buyerproductID:null,
                 is_active:0
             };
-
+        
 
             function getbuyers(type, params) {
                 $rootScope.$broadcast('showProgressbar');
@@ -73,21 +73,7 @@
                 }, 500);
             };
 
-            function pageSetting() {
-                    if($routeParams.buyerID) {
-                        $scope.data.buyerID = parseInt($routeParams.buyerID);
-                        getbuyers('GET',{
-                            buyerID: $routeParams.buyerID
-                        });
-                    } else {
-                    getbuyers('GET');
-                }
-                if(DialogService.val){
-                    viewInterestFeed();
-                }
-            }
-
-            pageSetting();
+            
 
             $scope.reset = function() {
                 pageSetting();
@@ -98,7 +84,7 @@
             };
 
             $scope.changebuyer = function(event, type) {
-
+            
                     $rootScope.$broadcast('showProgressbar');
                     if(type=="POST"){
                         $scope.data.buyer.address  = $scope.data.buyer.temp.address[0];
@@ -117,7 +103,7 @@
                                             ToastService.showActionToast("Buyer Deleted Successfully", 0);
                                             break;
                                         case "POST":
-                                             ToastService.showActionToast("New Buyer Created", 0);
+                                             ToastService.showActionToast("New Buyer Created", 0);   
                                     }
                                 }
                              else if(type=="PUT"){
@@ -128,7 +114,7 @@
                             $rootScope.$broadcast('endProgressbar');
                             ToastService.showActionToast("something went wrong! Please reload and try again", 0);
                         });
-
+                
             };
 
              $scope.addInterest = function(ID) {
@@ -144,7 +130,7 @@
                     if(type=="DELETE"){
                         $route.reload();
                         ToastService.showSimpleToast('Interest Removed Successfully',3000);
-
+                        
                     }
                     else{
                     ToastService.showSimpleToast('Changes Saved',3000);
@@ -155,7 +141,7 @@
                 });
             };
 
-
+             
             $scope.additionalInterest = function(ev){
                 DialogService.viewDialog(ev, 'BuyerController', 'views/partials/additional-interest-product.html', null);
             };
@@ -178,11 +164,21 @@
             };
 
             $scope.interestFeed = function(ev,type){
+               
                 DialogService.viewDialog(ev, 'BuyerController', 'views/partials/buyer-interest-feed.html',type);
+            
             };
 
-            function viewInterestFeed(){
+            var page=0;
+            $scope.viewInterestFeed = function(pag){
                 $scope.interestType = DialogService.val;
+                
+                if (pag === undefined) {
+                        page = 1;
+                    }
+                else{
+                    page +=pag;
+                }
                 var params;
                 switch(DialogService.val){
                     case "feed":
@@ -190,22 +186,25 @@
                             responded:0,
                             buyerID:$scope.data.buyerID,
                             items_per_page:20,
+                            page_number:page
                         };
                         break;
                     case "like":
                         params = {
                             shortlisted:1,
                             buyerID:$scope.data.buyerID,
-                            items_per_page:20
+                            items_per_page:10,
+                            page_number:page
                         };
                         break;
                     case "dislike":
                         params = {
                             disliked:1,
                             buyerID:$scope.data.buyerID,
-                            items_per_page:20
+                            items_per_page:10,
+                            page_number:page
                         };
-                        break;
+                        break;    
                 }
                 $rootScope.$broadcast('showProgressbar');
                 APIService.apiCall('GET', APIService.getAPIUrl('buyerproduct'), null, params)
@@ -221,8 +220,8 @@
                                     value.product.imageUrl = 'images/200.png';
                                 }
                             });
-
-                        $scope.interest.buyer_products = response.buyer_products;
+                        $scope.interest = response;
+                        // $scope.interest.buyer_products = response.buyer_products;
                     }
                     else{
                         $scope.interest.buyer_products = [];
@@ -231,7 +230,7 @@
                     $rootScope.$broadcast('endProgressbar');
                     ToastService.showActionToast('Something went wrong! Please reload and try again.',0);
                 });
-            }
+            };
 
             $scope.changeFeedStatus = function(id, state){
                 $scope.feedStatus.buyerproductID = id;
@@ -243,11 +242,27 @@
                 }
                 APIService.apiCall('PUT', APIService.getAPIUrl('buyerproduct'), $scope.feedStatus)
                 .then(function(response){
-
+                   
                 },function(error){
                      ToastService.showActionToast('Error: Unable to change Status!',0);
                 });
             };
+
+            function pageSetting() {
+                    if($routeParams.buyerID) {
+                        $scope.data.buyerID = parseInt($routeParams.buyerID);
+                        getbuyers('GET',{
+                            buyerID: $routeParams.buyerID
+                        });
+                    } else {
+                    getbuyers('GET');
+                }
+                if(DialogService.val){
+                    $scope.viewInterestFeed();
+                }
+            }
+
+            pageSetting();
 
         }
     ]);
