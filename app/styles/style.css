@@ -270,3 +270,8 @@ min-height: 25px;
   font-size: 0.8em;
   color:grey;
 }
+
+.message-grey{
+  font-size: 0.9em;
+  color:grey;
+}
