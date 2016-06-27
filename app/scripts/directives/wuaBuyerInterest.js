@@ -27,7 +27,7 @@
                         fabric_filter_text:null,
                         is_active:0,
                         scale:5,
-                    }
+                    };
 
                     $scope.getCategory = function(event,params){
                         return $timeout(function() {
@@ -36,7 +36,7 @@
                                 $scope.categories = response.categories;
                             },function(error){
                                 $scope.categories = [];
-                                ToastService.showActionToast("Unable to load Categories! Please reload the page",0)
+                                ToastService.showActionToast("Unable to load Categories! Please reload the page",0);
                             });
                         }, 500);
                     };
@@ -49,13 +49,13 @@
                             ToastService.showActionToast('Successfull', 0)
                             .then(function(response){
                                 $route.reload();
-                            })
+                            });
                         },function(error){
                             $rootScope.$broadcast('endProgressbar');
                             ToastService.showActionToast('Something went wrong! Please try again', 0);
-                        })
+                        });
                     };
-                    
+
 
                 }
             ]
