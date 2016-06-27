@@ -1,0 +1,26 @@
+<div layout="row">
+	<div layout="column">
+		<div layout="row">
+			<md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 flex class="popup-title">Add more products to Buyer Interest</h2>
+            </div>
+        </md-toolbar>
+		</div>
+		<div layout="column" layout-padding>
+			<div layout="row" layout-align="center center">
+				<label>Enter Product IDs (comma-seperated)</label>
+			</div>
+			<div layout="row" layout-align="center center">
+				<md-input-container>
+					<label>eg. 2243,2249,1023..</label>
+					<textarea type="text" ng-model="addInterestProduct.productID"></textarea>
+				</md-input-container>
+			</div>
+			<div layout="row" layout-align="center center">
+				<md-button data-ng-click="submitAdditionalInterest()" class="md-raised md-primary">Submit</md-button>
+			</div>
+		</div>
+		
+	</div>
+</div>

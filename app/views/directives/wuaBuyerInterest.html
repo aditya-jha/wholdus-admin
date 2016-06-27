@@ -1,0 +1,51 @@
+<div layout="column">
+    <div layout="row" flex layout-margin>
+        <label flex="90" class="placeholder">Buyer Interest</label>
+        <span flex="10">
+            <svg data-ng-click="saveInterest()" style="width:24px;height:24px" viewBox="0 0 24 24">
+            <path fill="rgb(255,87,34)" d="M17,7V3H7V7H17M14,17A3,3 0 0,0 17,14A3,3 0 0,0 14,11A3,3 0 0,0 11,14A3,3 0 0,0 14,17M19,1L23,5V17A2,2 0 0,1 21,19H7C5.89,19 5,18.1 5,17V3A2,2 0 0,1 7,1H19M1,7H3V21H17V23H3A2,2 0 0,1 1,21V7Z" />
+            </svg><md-tooltip md-visible="true" md-delay="400" md-direction="bottom" md-autohide="true">
+              Save
+            </md-tooltip>
+        </span>
+    </div>
+    <div style="margin-top:-15px; margin-bottom:-15px" layout-align="center start" layout = "row" layout-padding>
+      <div layout = "column">
+        <md-input-container>
+            <label>Category</label>
+            <md-select ng-model="interest.categoryID" md-on-open="getCategory($event)">
+                <md-optgroup label="Categories">
+                    <md-option ng-value="category.id" ng-repeat="category in categories">{{ category.name }}</md-option>
+                </md-optgroup>
+            </md-select>
+        </md-input-container>
+    </div>
+    <div layout = "column">
+        <md-input-container>
+            <label>Min Price</label>
+            <input style="max-width:75px" type="number" data-ng-model="interest.min_price_per_unit" ng-required="true" />
+        </md-input-container>
+    </div>
+    <div layout = "column">
+        <md-input-container>
+            <label>Max Price</label>
+            <input style="max-width:75px" type="number" data-ng-model="interest.max_price_per_unit" ng-required="true" />
+        </md-input-container>
+    </div>
+    <div layout = "column">
+        <md-input-container>
+            <label>Fabric</label>
+            <input style="max-width:100px" type="text" data-ng-model="interest.fabric_filter_text" ng-required="false"/>
+        </md-input-container>
+    </div>
+    <div layout = "column" layout-align="start center">
+        <md-checkbox data-ng-true-value = '1' data-ng-false-value = '0' data-ng-model="interest.is_active" class="md-warn" aria-label="string">
+        </md-checkbox>
+        <label>Active</label>
+    </div>
+</div>
+<div layout="row" layout-align="center">
+    <md-slider flex="80" min="0" max="10" ng-model="interest.scale" aria-label="scale">
+      </md-slider>
+</div>
+</div>

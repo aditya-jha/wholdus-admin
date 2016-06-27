@@ -21,7 +21,7 @@
                     },
 
                 });
-                factory.ID = va;
+                factory.val = va;
             };
 
             return factory;

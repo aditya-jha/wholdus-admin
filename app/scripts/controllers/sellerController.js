@@ -61,16 +61,16 @@
             $scope.changeSeller = function(event, type) {
                     if(type == "POST"){
                         $scope.data.seller.address = $scope.data.seller.temp.address[0];
-                        if($scope.data.seller.temp.bank_details!=null){
+                        if($scope.data.seller.temp.bank_details){
                             $scope.data.seller.bank_details = $scope.data.seller.temp.bank_details[0];
                         }
                     }
                     else{
                         $scope.data.seller.address = $scope.data.seller.address[0];
-                        if($scope.data.seller.bank_details!=null){
+                        if($scope.data.seller.bank_details){
                             $scope.data.seller.bank_details = $scope.data.seller.bank_details[0];
                         }
-                    }   
+                    }
                     $rootScope.$broadcast('showProgressbar');
                     APIService.apiCall(type, APIService.getAPIUrl("sellers"), $scope.data.seller)
                     .then(function(response) {
@@ -94,7 +94,7 @@
                         $rootScope.$broadcast('endProgressbar');
                         ToastService.showActionToast("something went wrong! please reload", 0);
                     });
-                
+
             };
 
         }

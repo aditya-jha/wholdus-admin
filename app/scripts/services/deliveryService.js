@@ -19,12 +19,12 @@
                 factory.suborderID=property.suborderID;
                 factory.order_items=property.order_items;
                 factory.all_items=property.all_items;
-                
-                if(property.fully_paid!=null){
+
+                if(property.fully_paid){
                     factory.fully_paid=property.fully_paid;
                 }
             };
-            
+
             factory.setShipment=function(shipment){
                 factory.shipment=shipment;
             };
