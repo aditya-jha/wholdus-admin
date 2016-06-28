@@ -38,6 +38,8 @@
                 buyerproductID:null,
                 is_active:0
             };
+
+            var selectProduct = [];
         
 
             function getbuyers(type, params) {
@@ -191,7 +193,7 @@
                         break;
                     case "like":
                         params = {
-                            shortlisted:1,
+                            responded:1,
                             buyerID:$scope.data.buyerID,
                             items_per_page:10,
                             page_number:page
@@ -199,7 +201,7 @@
                         break;
                     case "dislike":
                         params = {
-                            disliked:1,
+                            responded:2,
                             buyerID:$scope.data.buyerID,
                             items_per_page:10,
                             page_number:page
@@ -246,6 +248,43 @@
                 },function(error){
                      ToastService.showActionToast('Error: Unable to change Status!',0);
                 });
+            };
+
+            $scope.selectProduct = function(va, id){
+                var temp={
+                    ID: id,
+                    active: va,
+                };
+                if(selectProduct.length){
+                    var count=0;
+                    for(var i=0;i<selectProduct.length;i++){
+                        if(selectProduct[i].ID == id){
+                            selectProduct[i].active = va;
+                            count++;
+                            break;
+                        }
+                    }
+                    if(count==0){
+                        selectProduct.push(temp);
+                    }
+                }
+                else {
+                    selectProduct.push(temp);
+                }
+            };
+
+            $scope.placeOrder = function(){
+                var prods= [];
+                for(var i=0; i<selectProduct.length;i++){
+                    if(selectProduct[i].active===true){
+                        prods.push(selectProduct[i]);
+                    }
+                }
+                    var temp='';
+                    temp=temp+JSON.stringify(prods);
+                    $mdDialog.cancel();
+                    $location.url('new-order?buyerID='+$scope.data.buyerID+'&product='+temp);
+                
             };
 
             function pageSetting() {
