@@ -1,37 +1,83 @@
-<div layout="row" layout-align="center start" flex="100">
-	<h2>Products</h2>
-</div>
+
 <!-- <div layout="row" layout-wrap layout-align="center start">
 	<span><span class="bold small-font">Total products:</span> {{data.products.length}}</span>
 </div> -->
-<div layout="row" layout-align="center center">
-
-	<md-input-container flex="30">
+<md-content class="md-primary"  md-whiteframe="1">
+<div layout="row" layout-align="space-around start" layout-margin style="margin-top:20px;" layout-wrap>
+	<md-input-container flex="15" flex-xs="80">
 		<label>Category</label>
-		<md-select data-ng-model="categoryID" ng-change="categoryChanged()">
-			<md-option ng-repeat="category in categories" value="{{category.categoryID}}">{{category.display_name}}</md-option>
+		<md-select data-ng-model="selectedCategories" multiple >
+		
+		<md-optgroup label="Categories">
+			<md-option ng-value="{{category.categoryID}}" ng-repeat="category in categories">{{category.display_name}}</md-option>
+		</md-optgroup>
 		</md-select>
 	</md-input-container>
+	<md-input-container flex="15" flex-xs="80">
+		<label>Seller</label>
+		<md-select data-ng-model="selectedSellers"
+		multiple >
+	
+		<md-optgroup label="Sellers">
+			<md-option ng-value="{{seller.sellerID}}" ng-repeat="seller in sellers">{{seller.company_name}}</md-option>
+		</md-optgroup>
+		</md-select>
+	</md-input-container>
+	<md-input-container flex="15" flex-xs="30">
+		<label>Fabric</label>
+		<input type="text" data-ng-model="fabric" />
+	</md-input-container>
+	<md-input-container flex="15" flex-xs="30">
+		<label>Colour</label>
+		<input type="text" data-ng-model="colour" />
+	</md-input-container>
+	<md-input-container flex="15" flex-xs="30">
+		<label>Minimum Price</label>
+		<input type="number" data-ng-model="minPrice" />
+	</md-input-container>
+	<md-input-container flex="15" flex-xs="30">
+		<label>Maximum Price</label>
+		<input type="number" data-ng-model="maxPrice" />
+	</md-input-container>
+	</div>
+	<div layout="row" layout-align="center start" layout-margin  layout-wrap>
+	<md-button layout="row" layout-align="center center" class="md-raised md-warn"  aria-label="filter" data-ng-click="filterProducts()" flex-xs="80" flex="15">
+	<svg style="width:20px;height:20px" viewBox="0 0 485.008 485.008" style="enable-background:new 0 0 485.008 485.008;">
+		<path fill="#FFF" d="M171.501,464.698v-237.9l-166.3-192.6c-8.9-10.9-7.9-33.3,15.1-33.3h443.6c21.6,0,26.6,19.8,15.1,33.3l-162.3,187.5v147.2    c0,6-2,11.1-7.1,15.1l-103.8,95.8C193.801,488.698,171.501,483.898,171.501,464.698z M64.701,41.298l142.2,164.3c3,4,5,8.1,5,13.1    v200.6l64.5-58.5v-146.1c0-5,2-9.1,5-13.1l138.1-160.3L64.701,41.298L64.701,41.298z" />
+	</svg>
+	<span>&nbsp;Filter</span>
+	</md-button>
+	<md-button layout="row" layout-align="center center" class="md-raised md-warn"  aria-label="filter" data-ng-click="reload()" flex-xs="80" flex="15">
+	<svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+	<span>&nbsp;Reset</span>
+	</md-button>
+</div>
+</md-content>
+<div layout="row" layout-align="center start" flex="100">
+	<h2>Products</h2>
 </div>
 <div layout="row" layout-wrap layout-margin layout-align="space-around start">
-	<div  layout="row" flex="45" md-whiteframe="4dp" data-ng-repeat="product in data.products" style="padding:8px">
-			<div layout="column" flex="20" style="width: 100px;max-height: 140px;" layout-align="center center">
-					<div layout="row" layout-align="center center">
-					<img data-ng-src="{{product.imageUrl}}" class="small-image">
-					</div>
+	<div  layout="row" flex="45" flex-xs="95" md-whiteframe="4dp" data-ng-repeat="product in data.products" style="padding:8px">
+		<div layout="column" flex="20" style="width: 100px;max-height: 140px;" layout-align="center center">
+			<div layout="row" layout-align="center center">
+				<img data-ng-src="{{product.imageUrl}}" class="small-image">
 			</div>
+		</div>
 
 		<div layout="column" flex="75">
 			<div layout="row" flex>
 				<!-- <span style="margin-right:1em">{{product.productID}}</span> -->
 				<span class="bold">{{product.display_name}}</span>
-			
+
 				<!-- <md-button class="md-warn" data-ng-href="users/sellers/{{s.sellerID}}">view</md-button> -->
 				
 			</div>
 			<div layout="row" layout-align="space-around start">
 
-			
+
 				<div layout="column" flex>
 					<div layout="column" class="card-item" flex>
 
@@ -55,14 +101,31 @@
 						<span class="card-item-title" flex>Price Per Unit </span>
 						<span>&#8377; {{product.price_per_unit}}</span>
 					</div>
+					
+				</div>
+				<div layout="column" flex>
+					<div class="card-item" layout="column" flex>
+						<span class="card-item-title" flex>	Fabric</span> 
+						<span>{{product.details.fabric_gsm}}</span>
+					</div>
+					<div class="card-item" layout="column" flex>
+						<span class="card-item-title" flex>Colours</span> 
+						<span>{{product.details.colours}}</span>
+					</div>
 				</div>
 
+			</div>
+			<div layout="row" flex >
+			<div class="card-item"  layout="row" >
+						<span class="card-item-title" flex>Minimum Price Per Unit:&nbsp; </span>
+						<span>&#8377; {{product.min_price_per_unit}}</span>
+			</div>
 			</div>
 		</div>
 
 		<div layout="column" flex="5">
 			<div layout="row" layout-align="center">
-				<a data-ng-href="products/{{product.productID}}">
+				<a data-ng-href="products/{{product.productID}}" target="_blank">
 					<svg style="width:24px;height:24px" viewBox="0 0 24 24">
 						<path fill="#FF5722" d="M4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H16L12,22L8,18H4A2,2 0 0,1 2,16V4A2,2 0 0,1 4,2M18,14V12H12.5L10.5,14H18M6,14H8.5L15.35,7.12C15.55,6.93 15.55,6.61 15.35,6.41L13.59,4.65C13.39,4.45 13.07,4.45 12.88,4.65L6,11.53V14Z" />
 					</svg>
