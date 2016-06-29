@@ -24,7 +24,7 @@
 	<div layout="column" flex >
 		<md-input-container>
 			<label>Product Name</label>
-			<input type="text" data-ng-model="data.product.name" ng-required="true" />
+			<input type="text" data-ng-model="data.product.display_name" ng-required="true" />
 		</md-input-container>
 		<md-input-container>
 			<label>Brand</label>
@@ -117,7 +117,11 @@
 				<label>Retails Price Per Unit</label>
 				<input type="text" data-ng-model="data.product.price_per_unit" ng-required="true" />
 			</md-input-container>
-			<div flex="20"></div>	
+			<md-input-container>
+				<label>Minimum Price Per Unit</label>
+				<input type="text" data-ng-model="data.product.min_price_per_unit" ng-required="true" />
+			</md-input-container>
+				
 			<md-input-container>
 				<label>Lot Size</label>
 				<input type="text" data-ng-model="data.product.lot_size" ng-required="true" />

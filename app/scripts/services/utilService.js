@@ -94,6 +94,9 @@
                 obj[3].formItems.ifsc.value = values.bank_details.length ? values.bank_details[0].ifsc : null;
             };
 
+            factory.categoryString=null;
+            factory.sellerString=null;
+
             factory.redirectTo = function(to) {
                 $location.url(to);
             };
@@ -137,6 +140,19 @@
 
             factory.setCategory = function(categoryID) {
                 factory.categoryID=categoryID;
+            };
+
+             factory.setCategoryString = function(categoryString) {
+                factory.categoryString=categoryString;
+            }; 
+            factory.setSellerString = function(sellerString) {
+                factory.sellerString=sellerString;
+            };
+            factory.setProp = function(minPrice,maxPrice,fabric,colour) {
+                factory.minPrice=minPrice;
+                factory.maxPrice=maxPrice;
+                factory.fabric=fabric;
+                factory.colour=colour;
             };
 
             return factory;

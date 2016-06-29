@@ -275,3 +275,7 @@ min-height: 25px;
   font-size: 0.9em;
   color:grey;
 }
+.white-text{
+  color:#fff !important;
+}
+
