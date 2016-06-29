@@ -130,7 +130,7 @@
             identify();
 
             $scope.paymentData = {
-                orderID: DialogService.val,
+                orderID: DialogService.val1,
                 payment_method: null,
                 ordershipmentID: null,
                 reference_number: null,

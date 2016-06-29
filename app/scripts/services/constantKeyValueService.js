@@ -29,7 +29,8 @@
                     category: 'category',
                     states: 'address/state',
                     buyerinterest: 'users/buyer/buyerinterest',
-                    buyerproduct: 'users/buyer/buyerproducts'
+                    buyerproduct: 'users/buyer/buyerproducts',
+                    buyersharedproduct: '/users/buyer/buyersharedproductid'
                 },
                 accessTokenKey: 'randomData',
                 loggedInUserKey: 'loggedInUser',

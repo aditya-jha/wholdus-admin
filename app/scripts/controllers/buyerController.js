@@ -23,7 +23,10 @@
                 buyer: {}
             };
 
-            $scope.selectedStates = [];
+            $scope.buyer_shared_product = {
+                ids: [],
+                id: {}
+            };
 
             $scope.addInterestProduct={
                 buyerID: null,
@@ -63,6 +66,25 @@
                     });
             }
 
+            function buyerSharedProduct (params){
+                APIService.apiCall('GET', APIService.getAPIUrl('buyersharedproduct'),null, params)
+                .then(function(response){
+                    if(response.buyer_shared_product_id){
+                        if(params == null){
+                            $scope.buyer_shared_product.ids = response.buyer_shared_product_id;
+                        }
+                        else{
+                            $scope.buyer_shared_product.id = response.buyer_shared_product_id[0];
+                        }
+                    }
+                    else{
+                        $scope.buyer_shared_product.ids = [];
+                    }
+                },function(error){
+                    ToastService.showActionToast('Unable to load buyer shared product', 0)
+                })
+            }
+
             $scope.getStates = function(event){
                 return $timeout(function() {
                     APIService.apiCall("GET", APIService.getAPIUrl('states'))
@@ -94,7 +116,7 @@
                     else{
                         $scope.data.buyer.address = $scope.data.buyer.address[0];
                     }
-                    $scope.data.buyer.details.purchasing_states = JSON.stringify($scope.selectedStates);
+                    $scope.data.buyer.details.purchasing_states = JSON.stringify($scope.data.buyer.details.purchasing_states);
                     APIService.apiCall(type, APIService.getAPIUrl("buyers"), $scope.data.buyer)
                         .then(function(response) {
                             $rootScope.$broadcast('endProgressbar');
@@ -124,7 +146,7 @@
                 angular.element(document.querySelector("#interestContainer")).append(el);
             };
 
-            $scope.editInterest = function(type,interestID,index){
+            $scope.editInterest = function(type,index){
                 $rootScope.$broadcast('showProgressbar');
                 APIService.apiCall(type, APIService.getAPIUrl("buyerinterest"), $scope.data.buyer.buyer_interests[index])
                 .then(function(response){
@@ -155,25 +177,27 @@
                     APIService.apiCall('POST', APIService.getAPIUrl("buyerproduct"), $scope.addInterestProduct)
                     .then(function(response){
                         $rootScope.$broadcast('endProgressbar');
-                        ToastService.showActionToast('Product Added to buyer Interest',0)
-                        .then(function(response){
-                            $mdDialog.cancel();
-                        });
+                            ToastService.showActionToast('Product Added to buyer Interest',0)
+                            .then(function(response){
+                                $mdDialog.cancel();
+                                buyerSharedProduct(null);
+                                $route.reload();
+                            });
                     }, function(error){
                         $rootScope.$broadcast('endProgressbar');
                         ToastService.showActionToast("Something went wrong! Please try again");
                     });
             };
 
-            $scope.interestFeed = function(ev,type){
+            $scope.interestFeed = function(ev,type,id){
                
-                DialogService.viewDialog(ev, 'BuyerController', 'views/partials/buyer-interest-feed.html',type);
+                DialogService.viewDialog(ev, 'BuyerController', 'views/partials/buyer-interest-feed.html',type, id);
             
             };
 
             var page=0;
-            $scope.viewInterestFeed = function(pag){
-                $scope.interestType = DialogService.val;
+            $scope.viewInterestFeed = function(pag,id){
+                $scope.interestType = DialogService.val1;
                 
                 if (pag === undefined) {
                         page = 1;
@@ -182,7 +206,7 @@
                     page +=pag;
                 }
                 var params;
-                switch(DialogService.val){
+                switch(DialogService.val1){
                     case "feed":
                         params = {
                             responded:0,
@@ -206,7 +230,25 @@
                             items_per_page:10,
                             page_number:page
                         };
-                        break;    
+                        break;
+                    case "interest":
+                        params = {
+                            buyerinterestID:id,
+                            responded:0,
+                            buyerID:$scope.data.buyerID,
+                            items_per_page:20,
+                            page_number:page
+                        };
+                        break;
+                    case "added":
+                        params = {
+                            responded:0,
+                            buyersharedproductID:id,
+                            buyerID:$scope.data.buyerID,
+                            items_per_page:20,
+                            page_number:page
+                        };
+                        break;   
                 }
                 $rootScope.$broadcast('showProgressbar');
                 APIService.apiCall('GET', APIService.getAPIUrl('buyerproduct'), null, params)
@@ -293,12 +335,17 @@
                         getbuyers('GET',{
                             buyerID: $routeParams.buyerID
                         });
+                        buyerSharedProduct(null);
                     } else {
                     getbuyers('GET');
                 }
-                if(DialogService.val){
-                    $scope.viewInterestFeed();
-                }
+                if(DialogService.val1 == 'feed' || DialogService.val1 == 'dislike' || DialogService.val1== 'like' || DialogService.val1 == 'interest' || DialogService.val1 == 'added'){
+                    $scope.viewInterestFeed(undefined, DialogService.val2);
+                    if(DialogService.val1 == 'added'){
+                        buyerSharedProduct({
+                            buyersharedproductID:DialogService.val2});
+                    }
+                };
             }
 
             pageSetting();
