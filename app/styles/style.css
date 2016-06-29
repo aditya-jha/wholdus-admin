@@ -75,6 +75,13 @@ font-size: 0.8em;
   color: grey !important;
 }
 
+.ellipsis{
+  white-space: nowrap; 
+    width: 5em; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 md-input-container {
 margin: 0px 0px !important;
 }
@@ -123,7 +130,7 @@ color:grey;
 }
 .interestfeed{
   max-height:600px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .feeddialog{

@@ -117,7 +117,9 @@
                             if($scope.state == 'reload'){
                                  $scope.product.ID = (JSON.parse($routeParams.product)[$scope.ind].ID);
                                  $scope.searchProduct();
-                                 $scope.product.orderDetail = JSON.parse($routeParams.product)[$scope.ind].orderDetail;
+                                 if(JSON.parse($routeParams.product)[$scope.ind].orderDetail){
+                                     $scope.product.orderDetail = JSON.parse($routeParams.product)[$scope.ind].orderDetail;
+                                    }
                                 }
                             }
                         }
