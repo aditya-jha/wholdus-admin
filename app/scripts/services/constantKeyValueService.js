@@ -18,6 +18,7 @@
                     sellerpayment: 'sellerpayment',
                     buyerpayment: 'buyerpayment',
                     products: 'products',
+                    generateProducts: 'products/generatefile',
                     sellerLogin: 'users/seller/login',
                     internalUserLogin: 'users/internaluser/login',
                     buyerLeads:'leads/buyer',
