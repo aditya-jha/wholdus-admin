@@ -283,10 +283,15 @@
                 </md-button>
                 <div layout="column">
                     <div layout="column" ng-repeat="i in buyer_shared_product.ids">
-                        <div data-ng-click="interestFeed($event,'added',i.buyersharedproductID)" layout="row" layout-padding class="cursor-pointer" flex>
-                            <span flex="20">{{$index+1}}.</span>
-                            <span flex="20" style="text-decoration:underline;text-decoration-color:rgb(255,87,34)">{{i.buyersharedproductID}}</span>
-                            <span flex="60" class="ellipsis">{{i.productID}}</span>
+                        <div layout="row" layout-padding layout-align="start center" flex>
+                            <span flex="80" data-ng-click="interestFeed($event,'added',i.buyersharedproductID)" class="cursor-pointer">
+                                <span flex="40">{{$index+1}}.</span>
+                                <span flex="60" class="ellipsis">{{i.productID}}</span>
+                            </span>
+                            <span flex="20"><svg class="cursor-pointer" data-ng-click="deleteAdditionalInterest(i.buyersharedproductID)" style="width:18px;height:18px" viewBox="0 0 24 24">
+                                <path fill="darkred" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+                                </svg>
+                            </span>
                         </div>
                         <md-divider></md-divider>
                     </div>

@@ -66,24 +66,7 @@
                     });
             }
 
-            function buyerSharedProduct (params){
-                APIService.apiCall('GET', APIService.getAPIUrl('buyersharedproduct'),null, params)
-                .then(function(response){
-                    if(response.buyer_shared_product_id){
-                        if(params == null){
-                            $scope.buyer_shared_product.ids = response.buyer_shared_product_id;
-                        }
-                        else{
-                            $scope.buyer_shared_product.id = response.buyer_shared_product_id[0];
-                        }
-                    }
-                    else{
-                        $scope.buyer_shared_product.ids = [];
-                    }
-                },function(error){
-                    ToastService.showActionToast('Unable to load buyer shared product', 0)
-                })
-            }
+            
 
             $scope.getStates = function(event){
                 return $timeout(function() {
@@ -146,6 +129,8 @@
                 angular.element(document.querySelector("#interestContainer")).append(el);
             };
 
+           
+
             $scope.editInterest = function(type,index){
                 $rootScope.$broadcast('showProgressbar');
                 APIService.apiCall(type, APIService.getAPIUrl("buyerinterest"), $scope.data.buyer.buyer_interests[index])
@@ -170,6 +155,24 @@
                 DialogService.viewDialog(ev, 'BuyerController', 'views/partials/additional-interest-product.html', null);
             };
 
+             function getAdditionalProduct(params){
+                APIService.apiCall('GET', APIService.getAPIUrl('buyersharedproduct'),null, params)
+                .then(function(response){
+                    if(response.buyer_shared_product_id){
+                        if(params){
+                            $scope.buyer_shared_product.id = response.buyer_shared_product_id[0];
+                        }
+                        else{
+                            $scope.buyer_shared_product.ids = response.buyer_shared_product_id;
+                        }
+                    }
+                    else{
+                        $scope.buyer_shared_product.ids = [];
+                    }
+                },function(error){
+                    ToastService.showActionToast('Unable to load buyer shared product', 0);
+                });
+            }
 
             $scope.submitAdditionalInterest=function(){
                     $scope.addInterestProduct.buyerID = $scope.data.buyer.buyerID;
@@ -180,13 +183,18 @@
                             ToastService.showActionToast('Product Added to buyer Interest',0)
                             .then(function(response){
                                 $mdDialog.cancel();
-                                buyerSharedProduct(null);
+                                // getAdditionalProduct();
                                 $route.reload();
                             });
                     }, function(error){
                         $rootScope.$broadcast('endProgressbar');
                         ToastService.showActionToast("Something went wrong! Please try again");
                     });
+            };
+
+            $scope.deleteAdditionalInterest = function(id){
+                APIService.apiCall('DELETE', APIService.getAPIUrl("buyersharedproduct"), {buyersharedproductID:id});
+                getAdditionalProduct();
             };
 
             $scope.interestFeed = function(ev,type,id){
@@ -306,7 +314,7 @@
                             break;
                         }
                     }
-                    if(count==0){
+                    if(count===0){
                         selectProduct.push(temp);
                     }
                 }
@@ -335,17 +343,17 @@
                         getbuyers('GET',{
                             buyerID: $routeParams.buyerID
                         });
-                        buyerSharedProduct(null);
+                        getAdditionalProduct();
                     } else {
                     getbuyers('GET');
                 }
                 if(DialogService.val1 == 'feed' || DialogService.val1 == 'dislike' || DialogService.val1== 'like' || DialogService.val1 == 'interest' || DialogService.val1 == 'added'){
                     $scope.viewInterestFeed(undefined, DialogService.val2);
                     if(DialogService.val1 == 'added'){
-                        buyerSharedProduct({
+                        getAdditionalProduct({
                             buyersharedproductID:DialogService.val2});
                     }
-                };
+                }
             }
 
             pageSetting();
