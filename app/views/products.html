@@ -23,48 +23,55 @@
 		</md-optgroup>
 		</md-select>
 	</md-input-container>
-	<md-input-container flex="15" flex-xs="30">
+	<md-input-container flex="15" flex-xs="40">
 		<label>Fabric</label>
 		<input type="text" data-ng-model="fabric" />
 	</md-input-container>
-	<md-input-container flex="15" flex-xs="30">
+	<md-input-container flex="15" flex-xs="40">
 		<label>Colour</label>
 		<input type="text" data-ng-model="colour" />
 	</md-input-container>
-	<md-input-container flex="15" flex-xs="30">
+	<md-input-container flex="15" flex-xs="40">
 		<label>Minimum Price</label>
 		<input type="number" data-ng-model="minPrice" />
 	</md-input-container>
-	<md-input-container flex="15" flex-xs="30">
+	<md-input-container flex="15" flex-xs="40">
 		<label>Maximum Price</label>
 		<input type="number" data-ng-model="maxPrice" />
 	</md-input-container>
 	</div>
-	<div layout="row" layout-align="center start" layout-margin  layout-wrap>
+	<div layout="row" layout-align="center start"  layout-wrap style="margin-top:-20px">
 	<md-button layout="row" layout-align="center center" class="md-raised md-warn"  aria-label="filter" data-ng-click="filterProducts()" flex-xs="80" flex="15">
-	<svg style="width:20px;height:20px" viewBox="0 0 485.008 485.008" style="enable-background:new 0 0 485.008 485.008;">
+	<svg style="width:20px;height:20px" viewBox="0 0 485.008 485.008">
 		<path fill="#FFF" d="M171.501,464.698v-237.9l-166.3-192.6c-8.9-10.9-7.9-33.3,15.1-33.3h443.6c21.6,0,26.6,19.8,15.1,33.3l-162.3,187.5v147.2    c0,6-2,11.1-7.1,15.1l-103.8,95.8C193.801,488.698,171.501,483.898,171.501,464.698z M64.701,41.298l142.2,164.3c3,4,5,8.1,5,13.1    v200.6l64.5-58.5v-146.1c0-5,2-9.1,5-13.1l138.1-160.3L64.701,41.298L64.701,41.298z" />
 	</svg>
 	<span>&nbsp;Filter</span>
 	</md-button>
-	<md-button layout="row" layout-align="center center" class="md-raised md-warn"  aria-label="download" data-ng-click="downloadFile()" flex-xs="80" flex="15">
+	<md-button layout="row" layout-align="center center" class="md-raised md-warn"  aria-label="download" data-ng-click="downloadFile(1)" flex-xs="80" flex="15">
 <svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
     <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
     <path d="M0 0h24v24H0z" fill="none"/>
 </svg>
 	<span>&nbsp;Generate File</span>
 	</md-button>
+	<md-button layout="row" layout-align="center center" class="md-raised md-warn"  aria-label="download" data-ng-click="downloadFile(2)" flex-xs="80" flex="20">
+<svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
+</svg>
+	<span>&nbsp;Generate Catalog</span>
+	</md-button>
 	<md-button layout="row" layout-align="center center" class="md-raised md-warn"  aria-label="filter" data-ng-click="reload()" flex-xs="80" flex="15">
 	<svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
     <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>
     <path d="M0 0h24v24H0z" fill="none"/>
-</svg>
+	</svg>
 	<span>&nbsp;Reset</span>
 	</md-button>
 </div>
 </md-content>
-<div layout="row" layout-align="center start" flex="100">
-	<h2>Products</h2>
+<div layout="row" layout-align="center start" flex="100" layout-margin>
+	<span class="md-title bold">PRODUCTS</span>
 </div>
 <div layout="row" layout-wrap layout-margin layout-align="space-around start">
 	<div  layout="row" flex="45" flex-xs="95" md-whiteframe="4dp" data-ng-repeat="product in data.products" style="padding:8px">

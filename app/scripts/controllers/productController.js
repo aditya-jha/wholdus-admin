@@ -189,7 +189,7 @@
          pageSetting();
      };
 
-     $scope.downloadFile=function(){
+     $scope.downloadFile=function(id){
          $scope.filterProducts();
          var paramsString='';
          if($scope.categoryString.length>0)
@@ -205,8 +205,12 @@
         if($scope.colour!=null)
             paramsString+='&colour='+$scope.colour;
 
-       
+   if(id==1){
         window.open(ConstantKeyValueService.apiBaseUrl+'products/generatefile/?'+paramsString);
+    }
+   else if(id==2){
+        window.open(ConstantKeyValueService.apiBaseUrl+'products/generatecatalog/?'+paramsString);
+   } 
 
    }
 
