@@ -43,6 +43,8 @@
             };
 
             var selectProduct = [];
+
+            $scope.checkout = [];
         
 
             function getbuyers(type, params) {

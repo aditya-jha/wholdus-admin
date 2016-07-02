@@ -71,7 +71,7 @@
 			 			<span>Active</span>
 			 		</div>
 			 		<div ng-if="interestType=='like'" flex="10" layout="column" layout-align="center center">
-			 			<md-checkbox ng-model="value" data-ng-change="selectProduct(value, b.product.productID)" data-ng-true = "1" aria-label="checkout"  data-ng-false = "0">
+			 			<md-checkbox ng-model="checkout[interest.page_number][$index]" data-ng-change="selectProduct(checkout[interest.page_number][$index], b.product.productID)" data-ng-true = "1" aria-label="checkout"  data-ng-false = "0">
 			 			</md-checkbox>
 			 			<span>Checkout</span>
 			 		</div> 
