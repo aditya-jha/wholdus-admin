@@ -47,7 +47,7 @@
         </md-input-container>
         <md-input-container>
             <label>Purchasing-states</label>
-            <md-select style="margin-bottom:10px" ng-model="selectedStates" md-on-open="getStates($event)" multiple>
+            <md-select style="margin-bottom:10px" ng-model="data.buyer.details.purchasing_states" md-on-open="getStates($event)" multiple>
                 <md-optgroup label="Indian States">
                 <md-option ng-repeat="state in states">{{ state.name }}</md-option>
                 </md-optgroup>

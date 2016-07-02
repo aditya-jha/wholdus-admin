@@ -101,7 +101,11 @@
                     else{
                         $scope.data.buyer.address = $scope.data.buyer.address[0];
                     }
-                    $scope.data.buyer.details.purchasing_states = JSON.stringify($scope.data.buyer.details.purchasing_states);
+                    if($scope.data.buyer.details!= undefined){
+                        if($scope.data.buyer.details.purchasing_states!=undefined){
+                        $scope.data.buyer.details.purchasing_states = JSON.stringify($scope.data.buyer.details.purchasing_states);
+                        }
+                    }
                     APIService.apiCall(type, APIService.getAPIUrl("buyers"), $scope.data.buyer)
                         .then(function(response) {
                             $rootScope.$broadcast('endProgressbar');
