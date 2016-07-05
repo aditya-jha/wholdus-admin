@@ -72,7 +72,11 @@
 </md-content>
 <div layout="row" layout-align="center start" flex="100" layout-margin>
 	<span class="md-title bold">PRODUCTS</span>
+
 </div>
+<div layout="row" layout-align="center start" flex="100">
+	<span class="bold">Total Products:{{total_products}}</span>
+</div>	
 <div layout="row" layout-wrap layout-margin layout-align="space-around start">
 	<div  layout="row" flex="45" flex-xs="95" md-whiteframe="4dp" data-ng-repeat="product in data.products" style="padding:8px">
 		<div layout="column" flex="20" style="width: 100px;max-height: 140px;" layout-align="center center">

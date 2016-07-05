@@ -106,6 +106,7 @@
                             }
                         });
                         $scope.data.products = response.products;
+                        $scope.total_products=response.total_products;
                         
 
                     }
