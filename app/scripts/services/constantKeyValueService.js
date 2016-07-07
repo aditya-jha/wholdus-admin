@@ -11,6 +11,7 @@
                     users: 'users',
                     buyers: 'users/buyer',
                     buyerInterest: 'users/buyer/buyerinterest',
+                    masterupdate:'users/buyer/buyerproducts/masterupdate',
                     sellers: 'users/seller',
                     orders: 'orders',
                     shipments: 'shipments',
