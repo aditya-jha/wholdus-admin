@@ -150,7 +150,20 @@
                 });
             };
 
-             
+            $scope.updateBuyerInterest=function(){
+                    $rootScope.$broadcast('showProgressbar');
+                    APIService.apiCall('POST', APIService.getAPIUrl("masterupdate"), $scope.data.buyer)
+                     .then(function(response){
+                    $rootScope.$broadcast('endProgressbar');
+                    ToastService.showActionToast('Updated Successfully!',0);
+                    
+                },function(error){
+                    $rootScope.$broadcast('endProgressbar');
+                    ToastService.showActionToast("Something went wrong! Please try again",0);
+                });
+            } 
+
+
             $scope.additionalInterest = function(ev){
                 DialogService.viewDialog(ev, 'BuyerController', 'views/partials/additional-interest-product.html', null);
             };
