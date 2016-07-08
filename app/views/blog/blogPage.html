@@ -31,7 +31,7 @@
             <div flex="100">
                 {{art.created_at | date}}
             </div>
-            <div flex="100" class="blogcontent">
+            <div flex="100" class="blogcontent" ng-cloak>
                 <div flex="100" ng-hide="detail[$index]!=true" class="padding-1em" ng-bind-html="art.content">
                 </div>
             </div>
