@@ -18,7 +18,7 @@
 			<md-toolbar style="min-height:30px; font-size:14px; letter-spacing:1px;" flex="100" layout-padding class ="md-warn md-whiteframe-2dp" layout="row" layout-align="start"><span>DASHBOARD</span></md-toolbar>
 		</div>
 		<div layout="column" layout-align="space-around" layout-margin>
-			<div layout="row" flex layout-padding layout-align="space-around">
+			<div layout="row" flex layout-padding layout-align="space-around start">
 				<div layout="column" layout-padding flex="45" md-whiteframe="2dp">
 					<!-- <div layout="row" layout-align="center">
 					<img src="http://traffic.alexa.com/graph?&amp;w=400&amp;h=220&amp;o=f&amp;c=1&amp;y=t&amp;b=ffffff&amp;r=6m&amp;u=wholdus.com&amp;" />
@@ -27,7 +27,7 @@
 					<a href="http://www.alexa.com/siteinfo/wholdus.com" rel="nofollow" target="_blank"><script src="http://xslt.alexa.com/site_stats/js/t/a?url=wholdus.com" type="text/javascript"></script></a>
 					</div> -->
 					<div layout="row" layout-align="center">
-					<img src="http://traffic.alexa.com/graph?&amp;w=400&amp;h=220&amp;o=f&amp;c=1&amp;y=r&amp;b=ffffff&amp;r=6m&amp;u=wholdus.com&amp;" />
+					<img src="http://traffic.alexa.com/graph?o=lt&y=t&b=ffffff&n=666666&f=999999&p=4e8cff&r=1y&t=2&z=30&c=1&h=150&w=340&u=wholdus.com" />
 					</div>
 				</div>
 				<div layout="column" flex= "45" md-whiteframe="2dp" class="dash-card">
@@ -46,9 +46,10 @@
 					</a>
 				<md-divider></md-divider>
 				</div>
+					<div layout="row" layout-align="center center" layout-padding ng-if="data.buyerLeads.length==0" class="input-label">No new Buyer Leads</div>
 				</div>
 			</div>
-			<div layout="row" flex="100" layout-wrap layout-padding layout-margin layout-align="space-around center">
+			<div layout="row" flex="100" layout-wrap layout-padding layout-margin layout-align="space-around start">
 				<div layout="column" flex="45" md-whiteframe="2dp" class="dash-card">
 					<h3><svg style="width:18.5px;height:18.5px" viewBox="0 0 20 20">
 						<path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
@@ -64,6 +65,7 @@
 						</div></a>
 						<md-divider></md-divider>
 					</div>
+					<div layout="row" layout-align="center center" layout-padding ng-if="data.contactusLeads.length==0" class="input-label">No new Contactus Leads</div>
 				</div>
 				<div layout="column" flex="45" md-whiteframe="2dp" class="dash-card">
 					<h3><svg style="width:18.5px;height:18.5px" viewBox="0 0 20 20">
@@ -77,8 +79,10 @@
 							<div flex="45">{{sl.company_name}}</div>
 							<div flex="50">{{sl.mobile_number}}</div>
 						</div></a>
-						<md-divider md-inset></md-divider>
+						<md-divider></md-divider>
+
 					</div>
+					<div layout="row" layout-align="center center" layout-padding ng-if="data.sellerLeads.length==0" class="message-grey">No new Seller Leads</div>
 				</div>
 			
 				<div layout="column" flex="45" md-whiteframe="2dp" class="dash-card">
@@ -117,3 +121,4 @@
 	</div>
 </div>
 
+    

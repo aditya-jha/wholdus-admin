@@ -90,6 +90,7 @@
 
                                } else {
                                 $scope.data.orders = response.orders;
+                                $scope.total_items=response.total_items;
                                 if(response.total_pages > 1) {
                                  $scope.settings.enablePagination = true;
                                  $rootScope.$broadcast('setPage', {

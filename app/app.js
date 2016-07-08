@@ -82,6 +82,7 @@ adminapp.config([
         $mdThemingProvider.theme('default')
                    .primaryPalette('deep-purple')
                    .accentPalette('deep-orange');
+             
 
         localStorageServiceProvider.setPrefix('wholdus-admin');
     }

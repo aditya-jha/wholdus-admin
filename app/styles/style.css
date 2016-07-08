@@ -299,3 +299,12 @@ min-height: 25px;
     cursor: pointer;
   /*opacity: 0;*/
 }
+
+.message-grey{
+  font-size: 0.9em;
+  color:grey;
+}
+.white-text{
+  color:#fff !important;
+}
+
