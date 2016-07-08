@@ -7,7 +7,7 @@
                 apiBaseUrl: 'http://api.wholdus.com/',
                 apiUrl: {
                     login: 'admin/login',
-                    internalUsers: 'users/internal-users',
+                    internaluser: 'users/internaluser',
                     users: 'users',
                     buyers: 'users/buyer',
                     buyerInterest: 'users/buyer/buyerinterest',
@@ -30,7 +30,8 @@
                     states: 'address/state',
                     buyerinterest: 'users/buyer/buyerinterest',
                     buyerproduct: 'users/buyer/buyerproducts',
-                    buyersharedproduct: '/users/buyer/buyersharedproductid'
+                    buyersharedproduct: '/users/buyer/buyersharedproductid',
+                    blogarticle: '/blog/articles'
                 },
                 accessTokenKey: 'randomData',
                 loggedInUserKey: 'loggedInUser',

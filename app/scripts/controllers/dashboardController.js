@@ -69,7 +69,10 @@
             {
                 name: 'Contact Us Leads',
                 url: '/leads/contactusLeads'
-
+            },
+            {
+                name: 'Manage Blogs',
+                url: '/blogs'
             }
             ];
             $scope.apiCalls=['buyerLeads','contactusLeads','sellerLeads','buyers','sellers'];        

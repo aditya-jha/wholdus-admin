@@ -71,6 +71,9 @@ adminapp.config([
         }).when('/shipments/:shipmentID', {
             templateUrl: 'views/shipmentDetails.html',
             controller: 'ShipmentController'
+        }).when('/blogs', {
+            templateUrl: 'views/blog/blogPage.html',
+            controller: 'BlogController'
         }).otherwise({
             redirectTo: "/"
         });

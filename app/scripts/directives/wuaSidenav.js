@@ -58,7 +58,10 @@
                         {
                             name: 'Contact Us Leads',
                             url: '/leads/contactusLeads'
-
+                        },
+                        {
+                            name: 'Manage Blogs',
+                            url: '/blogs'
                         }
                     ];
 
