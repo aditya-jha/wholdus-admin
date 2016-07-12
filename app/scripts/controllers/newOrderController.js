@@ -82,7 +82,7 @@
             };
 
             $scope.addProduct = function(con, i) {
-                var el = $compile("<div layout='row' flex='100' wua-add-product cond="+con+" ind="+i+" class='new-order-buyer-container' md-whiteframe='4dp' style='margin-top:1em' layout-wrap></div>")($scope);
+                var el = $compile("<div layout='row' flex='100' wua-add-product cond="+con+" ind="+i+" class='new-order-buyer-container' md-whiteframe='4dp' style='margin-top:1em' ng-cloak layout-wrap></div>")($scope);
                 angular.element(document.querySelector("#productContainer")).append(el);
             };
 

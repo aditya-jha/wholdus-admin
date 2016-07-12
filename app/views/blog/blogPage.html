@@ -1,0 +1,42 @@
+
+<div layout="row" layout-align="center start" flex="100">
+    <h2>Blogs</h2>
+</div>
+<div layout="row" flex layout-wrap layout-align="start center">
+    <div layout="row" layout-align="end" flex="55">
+        <span><span class="bold small-font">Total Blogs:</span> {{data.total_items}}</span>
+    </div>
+    <div layout="row" layout-align="end" flex="40">
+        <md-button data-ng-click="createBlog($event)" class="md-warn md-raised">Create Blog</md-button>
+    </div>
+</div>
+<div layout="row" layout-wrap layout-margin layout-align="center start">
+<div layout="row" ng-class="{blogbig : detail[$index] , blog : !detail[$index]}" layout-align="center" data-ng-repeat="art in data.articles" layout-padding>
+    <div md-whiteframe="4dp" flex="100" data-ng-click = "selectBlog($index,art.articleID)">
+        <img data-ng-src="{{art.cover_image_link}}" width="100%" height="100%"/>
+        <div layout-padding>
+            <div flex="100" class="padding-1em">
+            <span>{{art.author.name}}</span>
+            </div>
+            <md-divider flex="100"></md-divider>
+            <div flex="100" layout="row" layout-align="start center" class="bold" style="font-size:1.2em">
+                   <span flex="90">{{art.title}}</span>
+                <md-button  ng-if="detail[$index]==true" data-ng-disabled="art.author.internaluserID != internaluser.internaluserID" class="md-fab md-mini" data-ng-click="editBlog($event,$index)" layout="row" layout-align="center center"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                    <path fill="#FFFFFF" d="M4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H16L12,22L8,18H4A2,2 0 0,1 2,16V4A2,2 0 0,1 4,2M18,14V12H12.5L10.5,14H18M6,14H8.5L15.35,7.12C15.55,6.93 15.55,6.61 15.35,6.41L13.59,4.65C13.39,4.45 13.07,4.45 12.88,4.65L6,11.53V14Z" />
+                </svg><md-tooltip md-delay="400" md-direction="bottom" md-autohide="true">
+                  Edit blog
+                </md-tooltip>
+            </md-button>
+            </div>
+            <div flex="100">
+                {{art.created_at | date}}
+            </div>
+            <div flex="100" class="blogcontent" ng-cloak>
+                <div flex="100" ng-hide="detail[$index]!=true" class="padding-1em" ng-bind-html="art.content">
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+

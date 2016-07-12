@@ -54,10 +54,15 @@
             <input type="text" data-ng-model="data.buyer.alternate_phone_number" ng-required="false" />
         </md-input-container>
         <md-input-container>
+            <label>Whatsapp Number</label>
+            <input type="text" data-ng-model="data.buyer.whatsapp_number" ng-required="true" />
+        </md-input-container>
+        <md-input-container>
             <label>Email</label>
             <input type="email" data-ng-model="data.buyer.email" ng-required="true" />
         </md-input-container>
         <md-switch data-ng-model="data.buyer.mobile_verification">Mobile Verification</md-switch>
+        <md-switch data-ng-model="data.buyer.whatsapp_sharing_active">Whatsapp Sharing</md-switch>
         <md-switch data-ng-model="data.buyer.email_verification">Email Verification</md-switch>
         
     </div>
