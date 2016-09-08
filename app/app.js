@@ -30,16 +30,30 @@ adminapp.config([
             controller: 'NewOrderController',
             reloadOnSearch: false
         }).when('/leads/:leadType', {
-            templateUrl: function(params){ return 'views/'+params.leadType +'.html'},
+            templateUrl: function(params) {
+                return 'views/'+params.leadType +'.html';
+            },
             controller: 'LeadsController'
         }).when('/leads/:leadType/:leadID', {
-            templateUrl:  function(params){ return 'views/'+params.leadType +'Details.html'},
+            templateUrl:  function(params) {
+                return 'views/'+params.leadType +'Details.html';
+            },
             controller: 'LeadsController'
         }).when('/payments/:paymentType',{
-            templateUrl: function(params){if(params.paymentType == 'seller-payment'){return 'views/sellerPayment.html'} else if(params.paymentType == 'buyer-payment') {return 'views/buyerPayment.html'}},
+            templateUrl: function(params) {
+                if(params.paymentType == 'seller-payment') {
+                    return 'views/sellerPayment.html';
+                } else if(params.paymentType == 'buyer-payment') {
+                    return 'views/buyerPayment.html';
+                }
+            },
             controller: 'PaymentController'
         }).when('/payments/:paymentType/:paymentID',{
-            templateUrl: function(params){if(params.paymentType == 'seller-payment'){return 'views/sellerPaymentDetails.html'}},
+            templateUrl: function(params) {
+                if(params.paymentType == 'seller-payment') {
+                    return 'views/sellerPaymentDetails.html';
+                }
+            },
             controller: 'PaymentController'
         }).when('/orders', {
             templateUrl: 'views/orders.html',
@@ -71,6 +85,9 @@ adminapp.config([
         }).when('/shipments/:shipmentID', {
             templateUrl: 'views/shipmentDetails.html',
             controller: 'ShipmentController'
+        }).when('/blogs', {
+            templateUrl: 'views/blog/blogPage.html',
+            controller: 'BlogController'
         }).otherwise({
             redirectTo: "/"
         });
@@ -79,6 +96,7 @@ adminapp.config([
         $mdThemingProvider.theme('default')
                    .primaryPalette('deep-purple')
                    .accentPalette('deep-orange');
+
 
         localStorageServiceProvider.setPrefix('wholdus-admin');
     }

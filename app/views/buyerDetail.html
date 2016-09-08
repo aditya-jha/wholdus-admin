@@ -54,10 +54,15 @@
             <input type="text" data-ng-model="data.buyer.alternate_phone_number" ng-required="false" />
         </md-input-container>
         <md-input-container>
+            <label>Whatsapp Number</label>
+            <input type="text" data-ng-model="data.buyer.whatsapp_number" ng-required="true" />
+        </md-input-container>
+        <md-input-container>
             <label>Email</label>
             <input type="email" data-ng-model="data.buyer.email" ng-required="true" />
         </md-input-container>
         <md-switch data-ng-model="data.buyer.mobile_verification">Mobile Verification</md-switch>
+        <md-switch data-ng-model="data.buyer.whatsapp_sharing_active">Whatsapp Sharing</md-switch>
         <md-switch data-ng-model="data.buyer.email_verification">Email Verification</md-switch>
         
     </div>
@@ -78,7 +83,7 @@
         </md-input-container>
         <md-input-container>
             <label>Purchasing-states</label>
-            <md-select style="margin-bottom:10px" ng-model="selectedStates" md-on-open="getStates($event)" multiple>
+            <md-select style="margin-bottom:10px" ng-model="data.buyer.details.purchasing_states" md-on-open="getStates($event)" multiple>
                 <md-optgroup label="Indian States">
                 <md-option ng-repeat="state in states">{{ state.name }}</md-option>
                 </md-optgroup>
@@ -175,20 +180,23 @@
     <div layout="row" flex layout-align="center">
         <div flex="20" layout="column" layout-align="start center">
            <div layout="column" flex="50">
-                <md-button data-ng-click="interestFeed($event,'feed')" class="md-warn md-raised" layout="row" layout-align="center center">
+                <md-button data-ng-click="interestFeed($event,'feed')" class="md-warn md-raised">
+                    <span layout="row" layout-align="center center">
                     <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                         <path fill="#FFF" d="M4,6V4H4.1C12.9,4 20,11.1 20,19.9V20H18V19.9C18,12.2 11.8,6 4,6M4,10V8A12,12 0 0,1 16,20H14A10,10 0 0,0 4,10M4,14V12A8,8 0 0,1 12,20H10A6,6 0 0,0 4,14M4,16A4,4 0 0,1 8,20H4V16Z" />
-                    </svg>&nbsp;&nbsp;Feed
+                    </svg>&nbsp;&nbsp;Feed</span>
                 </md-button>
-                <md-button data-ng-click="interestFeed($event,'like')" class="md-warn md-raised" layout="row" layout-align="center center">
+                <md-button data-ng-click="interestFeed($event,'like')" class="md-warn md-raised">
+                    <span layout="row" layout-align="center center">
                     <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                         <path fill="#FFF" d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" />
-                    </svg>&nbsp;&nbsp;Likes
+                    </svg>&nbsp;&nbsp;Likes</span>
                 </md-button>
-                <md-button data-ng-click="interestFeed($event,'dislike')" class="md-warn md-raised" layout="row" layout-align="center center">
+                <md-button data-ng-click="interestFeed($event,'dislike')" class="md-warn md-raised">
+                   <span layout="row" layout-align="center center">
                    <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                         <path fill="#FFF" d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C8.17,3 8.82,3.12 9.44,3.33L13,9.35L9,14.35L12,21.35V21.35M16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35L11,14.35L15.5,9.35L12.85,4.27C13.87,3.47 15.17,3 16.5,3Z" />
-                    </svg>&nbsp;&nbsp;Dislikes
+                    </svg>&nbsp;&nbsp;Dislikes</span>
                 </md-button>
             </div> 
         </div>
@@ -214,27 +222,27 @@
                     <div flex="15">
                         <md-input-container layout="row" layout-align="start end">
                             <label>Min Price</label>
-                            <input style="max-width:75px" type="text" data-ng-model="i.min_price_per_unit" ng-required="true" />
+                            <input style="max-width:75px" type="text" data-ng-model="i.min_price_per_unit" ng-required="false" />
                         </md-input-container>
                     </div>
                     <div flex="15">
                         <md-input-container layout="row" layout-align="start end">
                             <label>Max Price</label>
-                            <input style="max-width:75px" type="text" data-ng-model="i.max_price_per_unit" ng-required="true" />
+                            <input style="max-width:75px" type="text" data-ng-model="i.max_price_per_unit" ng-required="false" />
                         </md-input-container>
                     </div>
                     <div flex="35">
                         <md-input-container layout="row" layout-align="start end">
                             <label>Fabric</label>
-                            <input style="max-width:200px" type="text" data-ng-model="i.fabric_filter_text" ng-required="true" />
+                            <input style="max-width:200px" type="text" data-ng-model="i.fabric_filter_text" ng-required="false" />
                         </md-input-container>
                     </div>
                     <div flex="5">
-                        <svg data-ng-click="editInterest('DELETE',i.buyerinterestID,$index)" class="link" fill="rgb(255,87,34)" height="35" viewBox="0 0 24 24" width="35" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                        <svg data-ng-click="interestFeed($event,'interest',i.buyerinterestID)" class="link" height="30" viewBox="0 0 24 24" width="30" xmlns="http://www.w3.org/2000/svg">
+                             <path fill="rgb(255,87,34)" d="M4,6V4H4.1C12.9,4 20,11.1 20,19.9V20H18V19.9C18,12.2 11.8,6 4,6M4,10V8A12,12 0 0,1 16,20H14A10,10 0 0,0 4,10M4,14V12A8,8 0 0,1 12,20H10A6,6 0 0,0 4,14M4,16A4,4 0 0,1 8,20H4V16Z" />
                             <path d="M0 0h24v24H0z" fill="none"/>
-                        </svg><md-tooltip md-visible="true" md-delay="400" md-direction="bottom" md-autohide="true">
-                          Remove
+                        </svg><md-tooltip md-delay="400" md-direction="bottom" md-autohide="true">
+                          View Feed
                         </md-tooltip>
                         
                         
@@ -256,9 +264,9 @@
                         </md-checkbox>
                     </div>
                     <div flex="5">
-                        <svg data-ng-click="editInterest('PUT',i.buyerinterestID,$index)" class="link" style="width:28px;height:28px" viewBox="0 0 24 24">
+                        <svg data-ng-click="editInterest('PUT',$index)" class="link" style="width:28px;height:28px" viewBox="0 0 24 24">
                             <path fill="rgb(255,87,34)" d="M17,7V3H7V7H17M14,17A3,3 0 0,0 17,14A3,3 0 0,0 14,11A3,3 0 0,0 11,14A3,3 0 0,0 14,17M19,1L23,5V17A2,2 0 0,1 21,19H7C5.89,19 5,18.1 5,17V3A2,2 0 0,1 7,1H19M1,7H3V21H17V23H3A2,2 0 0,1 1,21V7Z" />
-                        </svg><md-tooltip md-visible="true" md-delay="400" md-direction="bottom" md-autohide="true">
+                        </svg><md-tooltip md-delay="400" md-direction="bottom" md-autohide="true">
                           Save
                         </md-tooltip>
                         </div>
@@ -268,14 +276,32 @@
             </div>
         </div>
         </div>
-        <div layout="column" flex="20" layout-align="space-around center">
-            <div layout="column" flex="50">
-                <md-button data-ng-click="additionalInterest($event)" class="md-warn md-raised" layout="row" layout-align="center center">
-                    <svg fill="#FFF" height="30" viewBox="0 0 24 24" width="30"  xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-                   <path d="M0 0h24v24H0z" fill="none"/>
-                    </svg>Add Products
+        <div layout="column" flex="20" layout-align="start center">
+            <div layout="column" flex="80">
+                <md-button data-ng-click="additionalInterest($event)" class="md-warn md-raised">
+                    <span layout="row" layout-align="center center">
+                        <svg fill="#FFF" height="30" viewBox="0 0 24 24" width="30" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                            <path d="M0 0h24v24H0z" fill="none"/>
+                        </svg>
+                    Add Products</span>
                 </md-button>
+                <div layout="column">
+                    <div layout="column" ng-repeat="i in buyer_shared_product.ids">
+                        <div layout="row" layout-padding layout-align="start center" flex>
+                            <span flex="80" data-ng-click="interestFeed($event,'added',i.buyersharedproductID)" class="cursor-pointer">
+                                <span flex="40">{{$index+1}}.</span>
+                                <span flex="60" class="ellipsis">{{i.productID}}</span>
+                            </span>
+                            <span flex="20"><svg class="cursor-pointer" data-ng-click="deleteAdditionalInterest(i.buyersharedproductID)" style="width:18px;height:18px" viewBox="0 0 24 24">
+                                <path fill="darkred" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+                                </svg>
+                            </span>
+                        </div>
+                        <md-divider></md-divider>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

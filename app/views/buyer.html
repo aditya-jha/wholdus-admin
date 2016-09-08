@@ -1,11 +1,14 @@
 <div layout="row" layout-align="center start" flex="100">
     <h2>Buyers</h2>
 </div>
-<div layout="row" flex layout-wrap layout-align="start center">
-    <div layout="row" layout-align="end" flex="55">
+<div layout="row" flex  layout-align="space-around center">
+    <div layout="row" flex="33" layout-align="center">
+        <md-button data-ng-click="updateBuyerInterest()" class="md-warn md-raised">Update Buyer Interest</md-button>
+    </div>
+    <div layout="row" flex="33" layout-align="center">
         <span><span class="bold small-font">Total Buyers:</span> {{data.buyers.length}}</span>
     </div>
-    <div layout="row" layout-align="end" flex="40">
+    <div layout="row" flex="33" layout-align="center">
         <md-button data-ng-href = "/users/new-buyer" class="md-warn md-raised">Create buyer</md-button>
     </div>
 </div>

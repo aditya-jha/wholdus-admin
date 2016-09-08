@@ -23,21 +23,28 @@
                 buyer: {}
             };
 
-            $scope.selectedStates = [];
+            $scope.buyer_shared_product = {
+                ids: [],
+                id: {}
+            };
 
             $scope.addInterestProduct={
                 buyerID: null,
                 productID : null
-            }
+            };
 
             $scope.interest = {
                 buyer_products: [],
-            }
+            };
 
             $scope.feedStatus={
                 buyerproductID:null,
                 is_active:0
-            }
+            };
+
+            var selectProduct = [];
+
+            $scope.checkout = [];
         
 
             function getbuyers(type, params) {
@@ -59,7 +66,9 @@
                     }, function(error) {
                         $rootScope.$broadcast('endProgressbar');
                     });
-            };
+            }
+
+            
 
             $scope.getStates = function(event){
                 return $timeout(function() {
@@ -68,26 +77,12 @@
                         $scope.states = response.states;
                     },function(error){
                         $scope.states = [];
-                        ToastService.showActionToast("Unable to load States! Please reload the page",0)
+                        ToastService.showActionToast("Unable to load States! Please reload the page",0);
                     });
                 }, 500);
             };
 
-            function pageSetting() {
-                    if($routeParams.buyerID) {
-                        $scope.data.buyerID = parseInt($routeParams.buyerID);
-                        getbuyers('GET',{
-                            buyerID: $routeParams.buyerID
-                        });
-                    } else {
-                    getbuyers('GET');
-                }
-                if(DialogService.val){
-                    viewInterestFeed();
-                }
-            };
-
-            pageSetting();
+            
 
             $scope.reset = function() {
                 pageSetting();
@@ -106,7 +101,11 @@
                     else{
                         $scope.data.buyer.address = $scope.data.buyer.address[0];
                     }
-                    $scope.data.buyer.details.purchasing_states = JSON.stringify($scope.selectedStates);
+                    if($scope.data.buyer.details!= undefined){
+                        if($scope.data.buyer.details.purchasing_states!=undefined){
+                        $scope.data.buyer.details.purchasing_states = JSON.stringify($scope.data.buyer.details.purchasing_states);
+                        }
+                    }
                     APIService.apiCall(type, APIService.getAPIUrl("buyers"), $scope.data.buyer)
                         .then(function(response) {
                             $rootScope.$broadcast('endProgressbar');
@@ -136,7 +135,9 @@
                 angular.element(document.querySelector("#interestContainer")).append(el);
             };
 
-            $scope.editInterest = function(type,interestID,index){
+           
+
+            $scope.editInterest = function(type,index){
                 $rootScope.$broadcast('showProgressbar');
                 APIService.apiCall(type, APIService.getAPIUrl("buyerinterest"), $scope.data.buyer.buyer_interests[index])
                 .then(function(response){
@@ -152,14 +153,45 @@
                 },function(error){
                     $rootScope.$broadcast('endProgressbar');
                     ToastService.showActionToast("Something went wrong! Please try again");
-                })
+                });
             };
 
-             
+            $scope.updateBuyerInterest=function(){
+                    $rootScope.$broadcast('showProgressbar');
+                    APIService.apiCall('POST', APIService.getAPIUrl("masterupdate"), $scope.data.buyer)
+                     .then(function(response){
+                    $rootScope.$broadcast('endProgressbar');
+                    ToastService.showActionToast('Updated Successfully!',0);
+                    
+                },function(error){
+                    $rootScope.$broadcast('endProgressbar');
+                    ToastService.showActionToast("Something went wrong! Please try again",0);
+                });
+            } 
+
+
             $scope.additionalInterest = function(ev){
-                DialogService.viewDialog(ev, 'BuyerController', 'views/partials/additional-interest-product.html', null)
+                DialogService.viewDialog(ev, 'BuyerController', 'views/partials/additional-interest-product.html', null);
             };
 
+             function getAdditionalProduct(params){
+                APIService.apiCall('GET', APIService.getAPIUrl('buyersharedproduct'),null, params)
+                .then(function(response){
+                    if(response.buyer_shared_product_id){
+                        if(params){
+                            $scope.buyer_shared_product.id = response.buyer_shared_product_id[0];
+                        }
+                        else{
+                            $scope.buyer_shared_product.ids = response.buyer_shared_product_id;
+                        }
+                    }
+                    else{
+                        $scope.buyer_shared_product.ids = [];
+                    }
+                },function(error){
+                    ToastService.showActionToast('Unable to load buyer shared product', 0);
+                });
+            }
 
             $scope.submitAdditionalInterest=function(){
                     $scope.addInterestProduct.buyerID = $scope.data.buyer.buyerID;
@@ -167,47 +199,83 @@
                     APIService.apiCall('POST', APIService.getAPIUrl("buyerproduct"), $scope.addInterestProduct)
                     .then(function(response){
                         $rootScope.$broadcast('endProgressbar');
-                        ToastService.showActionToast('Product Added to buyer Interest',0)
-                        .then(function(response){
-                            $mdDialog.cancel();
-                        });
+                            ToastService.showActionToast('Product Added to buyer Interest',0)
+                            .then(function(response){
+                                $mdDialog.cancel();
+                                // getAdditionalProduct();
+                                $route.reload();
+                            });
                     }, function(error){
                         $rootScope.$broadcast('endProgressbar');
                         ToastService.showActionToast("Something went wrong! Please try again");
                     });
             };
 
-            $scope.interestFeed = function(ev,type){
-               
-                DialogService.viewDialog(ev, 'BuyerController', 'views/partials/buyer-interest-feed.html',type);
-            
-            }
+            $scope.deleteAdditionalInterest = function(id){
+                APIService.apiCall('DELETE', APIService.getAPIUrl("buyersharedproduct"), {buyersharedproductID:id});
+                getAdditionalProduct();
+            };
 
-            function viewInterestFeed(){
-                $scope.interestType = DialogService.val;
+            $scope.interestFeed = function(ev,type,id){
+               
+                DialogService.viewDialog(ev, 'BuyerController', 'views/partials/buyer-interest-feed.html',type, id);
+            
+            };
+
+            var page=0;
+            $scope.viewInterestFeed = function(pag,id){
+                $scope.interestType = DialogService.val1;
+                
+                if (pag === undefined) {
+                        page = 1;
+                    }
+                else{
+                    page +=pag;
+                }
                 var params;
-                switch(DialogService.val){
+                switch(DialogService.val1){
                     case "feed":
                         params = {
                             responded:0,
                             buyerID:$scope.data.buyerID,
                             items_per_page:20,
-                        }
+                            page_number:page
+                        };
                         break;
                     case "like":
                         params = {
-                            shortlisted:1,
+                            responded:1,
                             buyerID:$scope.data.buyerID,
-                            items_per_page:20
-                        }
+                            items_per_page:10,
+                            page_number:page
+                        };
                         break;
                     case "dislike":
                         params = {
-                            disliked:1,
+                            responded:2,
                             buyerID:$scope.data.buyerID,
-                            items_per_page:20
-                        }
-                        break;    
+                            items_per_page:10,
+                            page_number:page
+                        };
+                        break;
+                    case "interest":
+                        params = {
+                            buyerinterestID:id,
+                            responded:0,
+                            buyerID:$scope.data.buyerID,
+                            items_per_page:20,
+                            page_number:page
+                        };
+                        break;
+                    case "added":
+                        params = {
+                            responded:0,
+                            buyersharedproductID:id,
+                            buyerID:$scope.data.buyerID,
+                            items_per_page:20,
+                            page_number:page
+                        };
+                        break;   
                 }
                 $rootScope.$broadcast('showProgressbar');
                 APIService.apiCall('GET', APIService.getAPIUrl('buyerproduct'), null, params)
@@ -223,8 +291,8 @@
                                     value.product.imageUrl = 'images/200.png';
                                 }
                             });
-
-                        $scope.interest.buyer_products = response.buyer_products;
+                        $scope.interest = response;
+                        // $scope.interest.buyer_products = response.buyer_products;
                     }
                     else{
                         $scope.interest.buyer_products = [];
@@ -237,7 +305,7 @@
 
             $scope.changeFeedStatus = function(id, state){
                 $scope.feedStatus.buyerproductID = id;
-                if(state==true){
+                if(state===true){
                     $scope.feedStatus.is_active = 0;
                 }
                 else{
@@ -248,8 +316,66 @@
                    
                 },function(error){
                      ToastService.showActionToast('Error: Unable to change Status!',0);
-                })
+                });
+            };
+
+            $scope.selectProduct = function(va, id){
+                var temp={
+                    ID: id,
+                    active: va,
+                };
+                if(selectProduct.length){
+                    var count=0;
+                    for(var i=0;i<selectProduct.length;i++){
+                        if(selectProduct[i].ID == id){
+                            selectProduct[i].active = va;
+                            count++;
+                            break;
+                        }
+                    }
+                    if(count===0){
+                        selectProduct.push(temp);
+                    }
+                }
+                else {
+                    selectProduct.push(temp);
+                }
+            };
+
+            $scope.placeOrder = function(){
+                var prods= [];
+                for(var i=0; i<selectProduct.length;i++){
+                    if(selectProduct[i].active===true){
+                        prods.push(selectProduct[i]);
+                    }
+                }
+                    var temp='';
+                    temp=temp+JSON.stringify(prods);
+                    $mdDialog.cancel();
+                    $location.url('new-order?buyerID='+$scope.data.buyerID+'&product='+temp);
+                
+            };
+
+            function pageSetting() {
+                    if($routeParams.buyerID) {
+                        $scope.data.buyerID = parseInt($routeParams.buyerID);
+                        getbuyers('GET',{
+                            buyerID: $routeParams.buyerID
+                        });
+                        getAdditionalProduct();
+                    } else {
+                    getbuyers('GET');
+                }
+                if(DialogService.val1 == 'feed' || DialogService.val1 == 'dislike' || DialogService.val1== 'like' || DialogService.val1 == 'interest' || DialogService.val1 == 'added'){
+                    $scope.viewInterestFeed(undefined, DialogService.val2);
+                    if(DialogService.val1 == 'added'){
+                        getAdditionalProduct({
+                            buyersharedproductID:DialogService.val2});
+                    }
+                }
             }
+
+            pageSetting();
 
         }
     ]);

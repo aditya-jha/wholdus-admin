@@ -1,14 +1,26 @@
-<div class="feeddialog" layout="row">
+<div class="dialogwidth" layout="row">
 	<div layout="column" flex>
 		<div layout="row">
 			<md-toolbar>
             <div class="md-toolbar-tools">
-                <h2 layout="row" layout-align="start center" flex ng-if="interestType=='feed'" class="popup-title">Buyer Feed&nbsp;&nbsp;<svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                        <path fill="#FFF" d="M4,6V4H4.1C12.9,4 20,11.1 20,19.9V20H18V19.9C18,12.2 11.8,6 4,6M4,10V8A12,12 0 0,1 16,20H14A10,10 0 0,0 4,10M4,14V12A8,8 0 0,1 12,20H10A6,6 0 0,0 4,14M4,16A4,4 0 0,1 8,20H4V16Z" />
-                    </svg></h2>
-                <h2 layout="row" layout-align="start center" flex ng-if="interestType=='like'" class="popup-title">Buyer Likes&nbsp;&nbsp;<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+            	<h2 layout="row" layout-align="start center" flex ng-if="interestType=='feed' || interestType=='interest' || interestType=='added'" class="popup-title">
+            	<span layout="row" flex="50" layout-align="start center">Buyer Feed&nbsp;&nbsp;<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+            			<path fill="#FFF" d="M4,6V4H4.1C12.9,4 20,11.1 20,19.9V20H18V19.9C18,12.2 11.8,6 4,6M4,10V8A12,12 0 0,1 16,20H14A10,10 0 0,0 4,10M4,14V12A8,8 0 0,1 12,20H10A6,6 0 0,0 4,14M4,16A4,4 0 0,1 8,20H4V16Z" />
+            		</svg>
+            	</span>
+            	<span data-ng-if="interestType=='added'" flex="50" layout="row" layout-align="end center">
+            		<span>Product Shared ID&nbsp;:&nbsp;</span><span>{{buyer_shared_product.id.buyersharedproductID}}</span>
+            	</span>
+            </h2>
+                <h2 layout="row" layout-align="start center" flex ng-if="interestType=='like'" class="popup-title">
+                	<span layout="row" flex="50" layout-align="start center">Buyer Likes&nbsp;&nbsp;<svg style="width:24px;height:24px" viewBox="0 0 24 24">
                         <path fill="#FFF" d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" />
-                    </svg></h2>
+                    	</svg>
+                    </span>
+                    <span flex="50" layout="row" layout-align="end">
+                    	<md-button data-ng-click="placeOrder()" class="md-raised md-warn">Place Order</md-button>
+                    </span>
+                </h2>
                 <h2 layout="row" layout-align="start center" flex ng-if="interestType=='dislike'" class="popup-title">Buyer Dislikes&nbsp;&nbsp;<svg style="width:24px;height:24px" viewBox="0 0 24 24">
                         <path fill="#FFF" d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C8.17,3 8.82,3.12 9.44,3.33L13,9.35L9,14.35L12,21.35V21.35M16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35L11,14.35L15.5,9.35L12.85,4.27C13.87,3.47 15.17,3 16.5,3Z" />
                     </svg></h2>
@@ -16,18 +28,25 @@
         </md-toolbar>
 		</div>
 		<div class="interestfeed" layout="column" layout-padding>
+			
+			<div flex data-ng-if="interestType=='added'" layout="column">
+				<div layout="row" layout-align="center"><span>Product IDs&nbsp;:&nbsp;</span><span>{{buyer_shared_product.id.productID}}</span>
+				</div>
+			</div>
+			<div flex data-ng-if="!interest.buyer_products.length" layout="row" layout-align="center">No Products available</div>
+
 			 <div layout="column" data-ng-repeat="b in interest.buyer_products">
 			 	<div layout="row" flex>
 			 		<div flex="20" layout="row" layout-align="center center">
 			 			<img data-ng-src="{{b.product.imageUrl}}" class="small-image">
 			 		</div>
 			 		<div flex="70" layout="column">
-			 				<h3>{{b.product.name}}</h3>
+			 				<a href="/products/{{b.product.productID}}" target="_blank" class="link"><h3>{{b.product.name}}</h3></a>
 			 			<div flex layout="column">
 			 				<div flex layout="row" layout-align="center">
 			 					<div flex="45" layout="column">
 			 						<span class="card-item-title">Merchant Name</span>
-			 						<span class="small-font">{{b.product.seller.company_name}}</span>
+			 						<a href="/users/sellers/{{b.product.seller.sellerID}}" target="_blank"><span class="small-font link">{{b.product.seller.company_name}}</span></a>
 			 					</div>
 			 					<div flex="45" layout="column">
 			 						<span class="card-item-title">Catalog no.</span>
@@ -46,15 +65,25 @@
 			 				</div>
 			 			</div>
 			 		</div>
-			 		<div ng-if="interestType=='feed'" flex="10" layout="column" layout-align="center center">
-			 			<md-checkbox ng-model="b.is_active" data-ng-true = "1"  data-ng-false = "0" data-ng-click="changeFeedStatus(b.buyerproductID, b.is_active)">
+			 		<div ng-if="interestType=='feed' || interestType=='interest' || interestType=='added'" flex="10" layout="column" layout-align="center center">
+			 			<md-checkbox ng-model="b.is_active" data-ng-true = "1"  data-ng-false = "0" data-ng-click="changeFeedStatus(b.buyerproductID, b.is_active)" aria-label="active">
 			 			</md-checkbox>
 			 			<span>Active</span>
+			 		</div>
+			 		<div ng-if="interestType=='like'" flex="10" layout="column" layout-align="center center">
+			 			<md-checkbox ng-model="checkout[interest.page_number][$index]" data-ng-change="selectProduct(checkout[interest.page_number][$index], b.product.productID)" data-ng-true = "1" aria-label="checkout"  data-ng-false = "0">
+			 			</md-checkbox>
+			 			<span>Checkout</span>
 			 		</div> 
 			 	</div>
 			 	<md-divider></md-divider>
 			 </div>
+			 <span data-ng-if="interest.total_pages > 1" layout="row" layout-align="space-around start">
+			<md-button class="md-raised md-warn" data-ng-click="viewInterestFeed(-1)" data-ng-disabled="interest.page_number<=1">Back</md-button>
+			<md-button class="md-raised md-warn" data-ng-click="viewInterestFeed(+1)" data-ng-disabled="interest.page_number>=interest.total_pages">Next</md-button>
+		</span>
 		</div>
+		
 		
 	</div>
 </div>

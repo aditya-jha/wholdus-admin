@@ -75,9 +75,17 @@ font-size: 0.8em;
   color: grey !important;
 }
 
+.ellipsis{
+  white-space: nowrap; 
+    width: 5em; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 md-input-container {
 margin: 0px 0px !important;
 }
+
 
 .md-button.small{
     width: 20px;
@@ -90,7 +98,8 @@ margin: 0px 0px !important;
   margin: 0; 
 }
 
-.dash-card>div:hover{
+.dash-card div>a:hover{
+
 background-color: rgba(158, 158, 158, 0.2);
 
 }
@@ -121,11 +130,14 @@ color:grey;
 }
 .interestfeed{
   max-height:600px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
-.feeddialog{
+.dialogwidth{
   min-width:70vw;
+}
+.dialogwidth-short{
+  min-width:50vw;
 }
 
 .interestfeed > div{
@@ -268,3 +280,31 @@ min-height: 25px;
   font-size: 0.8em;
   color:grey;
 }
+
+.blogbig{
+  transition: all linear 0.4s;
+  width: 61.2%;
+  position: relative;
+  overflow-y: hidden;
+  transition-timing-function: ease-in;
+  /*transition: 1s linear all;
+  transition-timing-function: ease-in-out;
+    opacity: 1;*/
+}
+
+.blog{
+    transition: all linear 0.5s;
+    width: 30%;
+    transition-timing-function: ease-out;
+    cursor: pointer;
+  /*opacity: 0;*/
+}
+
+.message-grey{
+  font-size: 0.9em;
+  color:grey;
+}
+.white-text{
+  color:#fff !important;
+}
+
