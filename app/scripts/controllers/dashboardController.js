@@ -10,7 +10,8 @@
         'ToastService',
         '$location',
         '$mdSidenav',
-        function($scope, $log, APIService, $routeParams, $rootScope, ngProgressBarService, ToastService, $location, $mdSidenav) {
+        '$q',
+        function($scope, $log, APIService, $routeParams, $rootScope, ngProgressBarService, ToastService, $location, $mdSidenav, $q) {
 
             $scope.data = {
                 buyers: [],
@@ -22,153 +23,121 @@
             };
 
             $scope.items = [
-            {
-                name: "Dashboard",
-                url: "/"
-            },
-            {
-                name: 'Orders',
-                url: '/orders'
-            },
-            {
-                name: 'Create Order',
-                url: '/new-order'
-            },
-            {
-                name: "Buyers",
-                url: "/users/buyers"
-            },
-            {
-                name: 'Products',
-                url: '/products'
-            },
-            {
-                name: 'Buyer Leads',
-                url: '/leads/buyerLeads'
-            },
-            {
-                name: 'Sellers',
-                url: '/users/sellers'
-            },
-            {
-                name: 'Seller Leads',
-                url: '/leads/sellerLeads'
-            },
-            {
-                name: 'Shipments',
-                url: '/shipments'
-            },
-            {
-                name: 'Buyer Payments',
-                url: '/payments/buyer-payment'
-            },
-            {
-                name: 'Seller Payments',
-                url: '/payments/seller-payment'
-            },
-            {
-                name: 'Contact Us Leads',
-                url: '/leads/contactusLeads'
-            },
-            {
-                name: 'Manage Blogs',
-                url: '/blogs'
-            }
+                {
+                    name: "Dashboard",
+                    url: "/"
+                },
+                {
+                    name: 'Orders',
+                    url: '/orders'
+                },
+                {
+                    name: 'Create Order',
+                    url: '/new-order'
+                },
+                {
+                    name: "Buyers",
+                    url: "/users/buyers"
+                },
+                {
+                    name: 'Products',
+                    url: '/products'
+                },
+                {
+                    name: 'Buyer Leads',
+                    url: '/leads/buyerLeads'
+                },
+                {
+                    name: 'Sellers',
+                    url: '/users/sellers'
+                },
+                {
+                    name: 'Seller Leads',
+                    url: '/leads/sellerLeads'
+                },
+                {
+                    name: 'Shipments',
+                    url: '/shipments'
+                },
+                {
+                    name: 'Buyer Payments',
+                    url: '/payments/buyer-payment'
+                },
+                {
+                    name: 'Seller Payments',
+                    url: '/payments/seller-payment'
+                },
+                {
+                    name: 'Contact Us Leads',
+                    url: '/leads/contactusLeads'
+                },
+                {
+                    name: 'Manage Blogs',
+                    url: '/blogs'
+                }
             ];
-            $scope.apiCalls=['buyerLeads','contactusLeads','sellerLeads','buyers','sellers'];        
+            $scope.apiCalls=['buyerLeads','contactusLeads','sellerLeads'];
+
             function getorders(params) {
-                $rootScope.$broadcast('showProgressbar');
+                var deferred = $q.defer();
                 APIService.apiCall('GET', APIService.getAPIUrl('orders'), null, params)
                 .then(function(response) {
-                    $rootScope.$broadcast('endProgressbar');
-
                     $scope.data.orders = response.orders;
-
+                    deferred.resolve(response);
                 }, function(error) {
-                    $rootScope.$broadcast('endProgressbar');
+                    deferred.reject(error);
                 });
             }
-
-            getorders();
-
-            function getbuyers(params) {
-                $rootScope.$broadcast('showProgressbar');
-                APIService.apiCall('GET', APIService.getAPIUrl('buyers'), null, params)
-                .then(function(response) {
-                    $rootScope.$broadcast('endProgressbar');
-
-                    $scope.data.buyers = response.buyers;
-
-                }, function(error) {
-                    $rootScope.$broadcast('endProgressbar');
-                });
-            }
-
-            getbuyers();
-
-            function getsellers(params) {
-                $rootScope.$broadcast('showProgressbar');
-                APIService.apiCall('GET', APIService.getAPIUrl('sellers'), null, params)
-                .then(function(response) {
-                    $rootScope.$broadcast('endProgressbar');
-
-                    $scope.data.sellers = response.sellers;
-
-                }, function(error) {
-                    $rootScope.$broadcast('endProgressbar');
-                });
-            }
-
-            getsellers();
 
             function getBuyerLeads(params) {
-                $rootScope.$broadcast('showProgressbar');
+                var deferred = $q.defer();
                 APIService.apiCall('GET', APIService.getAPIUrl('buyerLeads'), null, {status:0})
                 .then(function(response) {
-                    $rootScope.$broadcast('endProgressbar');
-
                     $scope.data.buyerLeads = response.buyer_leads;
-
+                    deferred.resolve(response);
                 }, function(error) {
-                    $rootScope.$broadcast('endProgressbar');
-                });
-            }  
-
-            getBuyerLeads(); 
-
-            function getContactusLeads(params){
-                $rootScope.$broadcast('showProgressbar');
-                APIService.apiCall('GET', APIService.getAPIUrl('contactusLeads'), null, {status:0})
-                .then(function(response) {
-                    $rootScope.$broadcast('endProgressbar');
-
-                    $scope.data.contactusLeads = response.contactus_leads;
-
-                }, function(error) {
-                    $rootScope.$broadcast('endProgressbar');
-                });
-            }    
-
-            getContactusLeads();
-
-            function getSellerLeads(params){
-                $rootScope.$broadcast('showProgressbar');
-                APIService.apiCall('GET', APIService.getAPIUrl('sellerLeads'), null, {status:0})
-                .then(function(response) {
-                    $rootScope.$broadcast('endProgressbar');
-
-                    $scope.data.sellerLeads = response.seller_leads;
-
-                }, function(error) {
-                    $rootScope.$broadcast('endProgressbar');
+                    deferred.reject(error);
                 });
             }
 
-            getSellerLeads();
+            function getContactusLeads(params){
+                var deferred = $q.defer();
+                APIService.apiCall('GET', APIService.getAPIUrl('contactusLeads'), null, {status:0})
+                .then(function(response) {
+                    $scope.data.contactusLeads = response.contactus_leads;
+                    deferred.resolve(response);
+                }, function(error) {
+                    deferred.reject(error);
+                });
+            }
 
-            
-            
+            function getSellerLeads(params) {
+                var deferred = $q.defer();
+                APIService.apiCall('GET', APIService.getAPIUrl('sellerLeads'), null, {status:0})
+                .then(function(response) {
+                    $scope.data.sellerLeads = response.seller_leads;
+                    deferred.resolve(response);
+                }, function(error) {
+                    deferred.reject(error);
+                });
+                return deferred.promise;
+            }
 
+            function init() {
+                var promises = [];
+
+                $rootScope.$broadcast('showProgressbar');
+
+                promises.push(getSellerLeads());
+                promises.push(getContactusLeads());
+                promises.push(getBuyerLeads());
+                promises.push(getorders());
+
+                $q.all(promises).then(function(response) {
+                    $rootScope.$broadcast('endProgressbar');
+                });
+            }
+            init();
         }
-        ]);
+    ]);
 })();
