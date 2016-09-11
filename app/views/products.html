@@ -1,82 +1,74 @@
-
-<!-- <div layout="row" layout-wrap layout-align="center start">
-	<span><span class="bold small-font">Total products:</span> {{data.products.length}}</span>
-</div> -->
 <md-content class="md-primary"  md-whiteframe="1">
-<div layout="row" layout-align="space-around start" layout-margin style="margin-top:20px;" layout-wrap>
-	<md-input-container flex="15" flex-xs="80">
-		<label>Category</label>
-		<md-select data-ng-model="selectedCategories" multiple >
-		
-		<md-optgroup label="Categories">
-			<md-option ng-value="{{category.categoryID}}" ng-repeat="category in categories">{{category.display_name}}</md-option>
-		</md-optgroup>
-		</md-select>
-	</md-input-container>
-	<md-input-container flex="15" flex-xs="80">
-		<label>Seller</label>
-		<md-select data-ng-model="selectedSellers"
-		multiple >
-	
-		<md-optgroup label="Sellers">
-			<md-option ng-value="{{seller.sellerID}}" ng-repeat="seller in sellers">{{seller.company_name}}</md-option>
-		</md-optgroup>
-		</md-select>
-	</md-input-container>
-	<md-input-container flex="15" flex-xs="40">
-		<label>Fabric</label>
-		<input type="text" data-ng-model="fabric" />
-	</md-input-container>
-	<md-input-container flex="15" flex-xs="40">
-		<label>Colour</label>
-		<input type="text" data-ng-model="colour" />
-	</md-input-container>
-	<md-input-container flex="15" flex-xs="40">
-		<label>Minimum Price</label>
-		<input type="number" data-ng-model="minPrice" />
-	</md-input-container>
-	<md-input-container flex="15" flex-xs="40">
-		<label>Maximum Price</label>
-		<input type="number" data-ng-model="maxPrice" />
-	</md-input-container>
+	<div layout="row" layout-align="space-around start" layout-margin style="margin-top:20px;" layout-wrap>
+		<md-input-container flex="15" flex-xs="80">
+			<label>Category</label>
+			<md-select data-ng-model="selectedCategories" multiple>
+				<md-optgroup label="Categories">
+					<md-option ng-value="{{category.categoryID}}" ng-repeat="category in categories">{{category.display_name}}</md-option>
+				</md-optgroup>
+			</md-select>
+		</md-input-container>
+		<md-input-container flex="15" flex-xs="80">
+			<label>Seller</label>
+			<md-select data-ng-model="selectedSellers" multiple>
+				<md-optgroup label="Sellers">
+					<md-option ng-value="{{seller.sellerID}}" ng-repeat="seller in sellers">{{seller.company_name}}</md-option>
+				</md-optgroup>
+			</md-select>
+		</md-input-container>
+		<md-input-container flex="15" flex-xs="40">
+			<label>Fabric</label>
+			<input type="text" ng-model="fabric" />
+		</md-input-container>
+		<md-input-container flex="15" flex-xs="40">
+			<label>Colour</label>
+			<input type="text" ng-model="colour" />
+		</md-input-container>
+		<md-input-container flex="15" flex-xs="40">
+			<label>Minimum Price</label>
+			<input type="number" ng-model="minPrice" />
+		</md-input-container>
+		<md-input-container flex="15" flex-xs="40">
+			<label>Maximum Price</label>
+			<input type="number" ng-model="maxPrice" />
+		</md-input-container>
 	</div>
-	<div layout="row" layout-align="center start"  layout-wrap style="margin-top:-20px">
-	<md-button layout="row" layout-align="center center" class="md-raised md-warn"  aria-label="filter" data-ng-click="filterProducts()" flex-xs="80" flex="15">
-	<svg style="width:20px;height:20px" viewBox="0 0 485.008 485.008">
-		<path fill="#FFF" d="M171.501,464.698v-237.9l-166.3-192.6c-8.9-10.9-7.9-33.3,15.1-33.3h443.6c21.6,0,26.6,19.8,15.1,33.3l-162.3,187.5v147.2    c0,6-2,11.1-7.1,15.1l-103.8,95.8C193.801,488.698,171.501,483.898,171.501,464.698z M64.701,41.298l142.2,164.3c3,4,5,8.1,5,13.1    v200.6l64.5-58.5v-146.1c0-5,2-9.1,5-13.1l138.1-160.3L64.701,41.298L64.701,41.298z" />
-	</svg>
-	<span>&nbsp;Filter</span>
-	</md-button>
-	<md-button layout="row" layout-align="center center" class="md-raised md-warn"  aria-label="download" data-ng-click="downloadFile(1)" flex-xs="80" flex="15">
-<svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-    <path d="M0 0h24v24H0z" fill="none"/>
-</svg>
-	<span>&nbsp;Generate File</span>
-	</md-button>
-	<md-button layout="row" layout-align="center center" class="md-raised md-warn"  aria-label="download" data-ng-click="downloadFile(2)" flex-xs="80" flex="20">
-<svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-    <path d="M0 0h24v24H0z" fill="none"/>
-</svg>
-	<span>&nbsp;Generate Catalog</span>
-	</md-button>
-	<md-button layout="row" layout-align="center center" class="md-raised md-warn"  aria-label="filter" data-ng-click="reload()" flex-xs="80" flex="15">
-	<svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>
-    <path d="M0 0h24v24H0z" fill="none"/>
-	</svg>
-	<span>&nbsp;Reset</span>
-	</md-button>
-</div>
+	<div layout="row" layout-align="center start" layout-wrap style="margin-top:-20px">
+		<md-button layout="row" layout-align="center center" class="md-raised md-warn"  aria-label="filter" data-ng-click="filterProducts()" flex-xs="80" flex="15">
+			<svg style="width:20px;height:20px" viewBox="0 0 485.008 485.008">
+				<path fill="#FFF" d="M171.501,464.698v-237.9l-166.3-192.6c-8.9-10.9-7.9-33.3,15.1-33.3h443.6c21.6,0,26.6,19.8,15.1,33.3l-162.3,187.5v147.2    c0,6-2,11.1-7.1,15.1l-103.8,95.8C193.801,488.698,171.501,483.898,171.501,464.698z M64.701,41.298l142.2,164.3c3,4,5,8.1,5,13.1    v200.6l64.5-58.5v-146.1c0-5,2-9.1,5-13.1l138.1-160.3L64.701,41.298L64.701,41.298z" />
+			</svg>
+			<span>&nbsp;Filter</span>
+		</md-button>
+		<md-button layout="row" layout-align="center center" class="md-raised md-warn"  aria-label="download" data-ng-click="downloadFile(1)" flex-xs="80" flex="15">
+			<svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    			<path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+    			<path d="M0 0h24v24H0z" fill="none"/>
+			</svg>
+			<span>&nbsp;Generate File</span>
+		</md-button>
+		<md-button layout="row" layout-align="center center" class="md-raised md-warn"  aria-label="download" data-ng-click="downloadFile(2)" flex-xs="80" flex="20">
+			<svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    			<path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+    			<path d="M0 0h24v24H0z" fill="none"/>
+			</svg>
+			<span>&nbsp;Generate Catalog</span>
+		</md-button>
+		<md-button layout="row" layout-align="center center" class="md-raised md-warn"  aria-label="filter" data-ng-click="reload()" flex-xs="80" flex="15">
+			<svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    			<path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>
+    			<path d="M0 0h24v24H0z" fill="none"/>
+			</svg>
+			<span>&nbsp;Reset</span>
+		</md-button>
+	</div>
 </md-content>
 <div layout="row" layout-align="center start" flex="100" layout-margin>
 	<span class="md-title bold">PRODUCTS</span>
-
 </div>
 <div layout="row" layout-align="center start" flex="100">
 	<span class="bold">Total Products:{{total_products}}</span>
-</div>	
+</div>
 <div layout="row" layout-wrap layout-margin layout-align="space-around start">
 	<div  layout="row" flex="45" flex-xs="95" md-whiteframe="4dp" data-ng-repeat="product in data.products" style="padding:8px">
 		<div layout="column" flex="20" style="width: 100px;max-height: 140px;" layout-align="center center">
@@ -84,63 +76,51 @@
 				<img data-ng-src="{{product.imageUrl}}" class="small-image">
 			</div>
 		</div>
-
 		<div layout="column" flex="75">
 			<div layout="row" flex>
-				<!-- <span style="margin-right:1em">{{product.productID}}</span> -->
 				<span class="bold">{{product.display_name}}</span>
-
-				<!-- <md-button class="md-warn" data-ng-href="users/sellers/{{s.sellerID}}">view</md-button> -->
-				
 			</div>
 			<div layout="row" layout-align="space-around start">
-
-
 				<div layout="column" flex>
 					<div layout="column" class="card-item" flex>
-
 						<span class="card-item-title" flex>Merchant Name</span>
 						<a class="link" data-ng-href="users/sellers/{{product.seller.sellerID}}" target="_blank"><span>{{product.seller.name}}</span>
-							<md-tooltip md-direction="top">view seller details</md-tooltip>	
+							<md-tooltip md-direction="top">view seller details</md-tooltip>
 						</a>
 					</div>
 					<div layout="column" class="card-item" flex>
 						<span class="card-item-title" flex>Category </span>
 						<span>{{product.category.display_name}}</span>
 					</div>
-					
 				</div>
 				<div layout="column" flex>
 					<div class="card-item" layout="column" flex>
-						<span class="card-item-title" flex>	Catalog No.</span> 
+						<span class="card-item-title" flex>	Catalog No.</span>
 						<span>{{product.details.seller_catalog_number}}</span>
 					</div>
 					<div class="card-item"  layout="column" flex>
 						<span class="card-item-title" flex>Price Per Unit </span>
 						<span>&#8377; {{product.price_per_unit}}</span>
 					</div>
-					
 				</div>
 				<div layout="column" flex>
 					<div class="card-item" layout="column" flex>
-						<span class="card-item-title" flex>	Fabric</span> 
+						<span class="card-item-title" flex>	Fabric</span>
 						<span>{{product.details.fabric_gsm}}</span>
 					</div>
 					<div class="card-item" layout="column" flex>
-						<span class="card-item-title" flex>Colours</span> 
+						<span class="card-item-title" flex>Colours</span>
 						<span>{{product.details.colours}}</span>
 					</div>
 				</div>
-
 			</div>
-			<div layout="row" flex >
-			<div class="card-item"  layout="row" >
-						<span class="card-item-title" flex>Minimum Price Per Unit:&nbsp; </span>
-						<span>&#8377; {{product.min_price_per_unit}}</span>
-			</div>
+			<div layout="row" flex>
+				<div class="card-item" layout="row" >
+					<span class="card-item-title" flex>Minimum Price Per Unit:&nbsp; </span>
+					<span>&#8377; {{product.min_price_per_unit}}</span>
+				</div>
 			</div>
 		</div>
-
 		<div layout="column" flex="5">
 			<div layout="row" layout-align="center">
 				<a data-ng-href="products/{{product.productID}}" target="_blank">
@@ -151,7 +131,7 @@
 				</a>
 			</div>
 			<md-divider></md-divider>
-			<div layout="row" layout-align="center">	
+			<div layout="row" layout-align="center">
 				<a data-ng-href="http://www.wholdus.com/{{product.url}}" target="_blank">
 					<svg fill="#FF5722" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M7 19h10V4H7v15zm-5-2h4V6H2v11zM18 6v11h4V6h-4z"/>
@@ -159,39 +139,8 @@
 					</svg>
 					<md-tooltip md-direction="top">view on website</md-tooltip>
 				</a>
-			</div>		
+			</div>
 		</div>
-
 	</div>
-
 </div>
 <div layout="row"  data-ng-show="settings.enablePagination" wu-pagination></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
