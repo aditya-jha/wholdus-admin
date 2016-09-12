@@ -1,28 +1,27 @@
 <div layout="row" layout-margin>
-
-    <md-button class="md-fab md-mini" aria-label="go back" data-ng-href="/users/buyers">
+    <md-button class="md-fab md-mini" aria-label="go back" ng-href="/users/buyers">
         <md-icon>
             <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                <path fill="#fff" d="M21,11H6.83L10.41,7.41L9,6L3,12L9,18L10.41,16.58L6.83,13H21V11Z" />
+                <path fill="#fff" d="M21,11H6.83L10.41,7.41L9,6L3,12L9,18L10.41,16.58L6.83,13H21V11Z"/>
             </svg>
         </md-icon>
         <md-tooltip md-direction="right">back</md-tooltip>
     </md-button>
     <div flex></div>
-    <md-button class="md-raised md-primary" aria-label="save" data-ng-click="changebuyer($event, 'PUT')">
+    <md-button class="md-raised md-primary" aria-label="save" ng-click="changebuyer($event, 'PUT')">
         <span>Save</span>
         <md-tooltip md-direction="right">save the changes</md-tooltip>
     </md-button>
     <div flex></div>
-    <md-button class="md-raised md-warn" aria-label="reset" data-ng-click="reset()">
+    <md-button class="md-raised md-warn" aria-label="reset" ng-click="reset()">
         <span>Reset</span>
         <md-tooltip md-direction="left">reset the changes</md-tooltip>
     </md-button>
     <div flex></div>
-    <md-button class="md-fab md-mini" aria-label="delete" data-ng-click="changebuyer($event, 'DELETE')">
+    <md-button class="md-fab md-mini" aria-label="delete" ng-click="changebuyer($event, 'DELETE')">
         <md-icon>
             <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                <path fill="#fff" d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z" />
+                <path fill="#fff" d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"/>
             </svg>
         </md-icon>
         <md-tooltip md-direction="left">delete this buyer</md-tooltip>
@@ -31,7 +30,7 @@
 <div layout="row" layout-align="end" layout-margin>
     <div>
         <strong>Updated-at&nbsp;:&nbsp;</strong>
-        <span>{{data.buyer.updated_at | date:'MMM dd,yyyy h:mma':'+0530'}}</span>
+        <span>{{::data.buyer.updated_at | date:'MMM dd,yyyy h:mma':'+0530'}}</span>
     </div>
 </div>
 <div layout="row" layout-align="space-around start">
@@ -39,278 +38,279 @@
         <h3>Personal Details</h3>
         <md-input-container>
             <label>Name</label>
-            <input type="text" data-ng-model="data.buyer.name" ng-required="true" />
+            <input type="text" ng-model="data.buyer.name" ng-required="true"/>
         </md-input-container>
-         <md-input-container>
+        <md-input-container>
             <label>Company-name</label>
-            <input type="text" data-ng-model="data.buyer.company_name" ng-required="true" />
+            <input type="text" ng-model="data.buyer.company_name" ng-required="true"/>
         </md-input-container>
         <md-input-container>
             <label>Mobile Number</label>
-            <input type="text" data-ng-model="data.buyer.mobile_number" ng-required="true" />
+            <input type="text" ng-model="data.buyer.mobile_number" ng-required="true"/>
         </md-input-container>
         <md-input-container>
             <label>Alt. Phone Number</label>
-            <input type="text" data-ng-model="data.buyer.alternate_phone_number" ng-required="false" />
+            <input type="text" ng-model="data.buyer.alternate_phone_number" ng-required="false"/>
         </md-input-container>
         <md-input-container>
             <label>Whatsapp Number</label>
-            <input type="text" data-ng-model="data.buyer.whatsapp_number" ng-required="true" />
+            <input type="text" ng-model="data.buyer.whatsapp_number" ng-required="true"/>
         </md-input-container>
         <md-input-container>
             <label>Email</label>
-            <input type="email" data-ng-model="data.buyer.email" ng-required="true" />
+            <input type="email" ng-model="data.buyer.email" ng-required="true"/>
         </md-input-container>
-        <md-switch data-ng-model="data.buyer.mobile_verification">Mobile Verification</md-switch>
-        <md-switch data-ng-model="data.buyer.whatsapp_sharing_active">Whatsapp Sharing</md-switch>
-        <md-switch data-ng-model="data.buyer.email_verification">Email Verification</md-switch>
-        
+        <md-switch ng-model="data.buyer.mobile_verification">Mobile Verification</md-switch>
+        <md-switch ng-model="data.buyer.whatsapp_sharing_active">Whatsapp Sharing</md-switch>
+        <md-switch ng-model="data.buyer.email_verification">Email Verification</md-switch>
+
     </div>
     <div layout="column" ng-cloak>
         <h3>Buying Details</h3>
-       
+
         <md-input-container>
             <label>Purchasing Duration</label>
-            <textarea data-ng-model="data.buyer.details.purchase_duration" ng-required="false"></textarea>
+            <textarea ng-model="data.buyer.details.purchase_duration" ng-required="false"></textarea>
         </md-input-container>
         <md-input-container>
             <label>Purchasing Capacity</label>
-            <input type="text" data-ng-model="data.buyer.details.buying_capacity" ng-required="false"></textarea>
+            <input type="text" ng-model="data.buyer.details.buying_capacity" ng-required="false"></textarea>
         </md-input-container>
         <md-input-container>
             <label>Customer Type</label>
-            <input type="text" data-ng-model="data.buyer.details.customer_type" ng-required="false"></textarea>
+            <input type="text" ng-model="data.buyer.details.customer_type" ng-required="false"></textarea>
         </md-input-container>
         <md-input-container>
             <label>Purchasing-states</label>
             <md-select style="margin-bottom:10px" ng-model="data.buyer.details.purchasing_states" md-on-open="getStates($event)" multiple>
                 <md-optgroup label="Indian States">
-                <md-option ng-repeat="state in states">{{ state.name }}</md-option>
+                    <md-option ng-repeat="state in states">{{:: state.name }}</md-option>
                 </md-optgroup>
             </md-select>
         </md-input-container>
         <md-input-container class="placeholder">
             <label>Buys from</label><br><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<md-checkbox class="md-warn" ng-true-value="1" ng-false-value="0">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <md-checkbox class="md-warn" ng-true-value="1" ng-false-value="0">
                 Retailer
             </md-checkbox>
-            &nbsp;&nbsp;&nbsp;&nbsp;<md-checkbox class="md-warn" ng-true-value="1" ng-false-value="0">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <md-checkbox class="md-warn" ng-true-value="1" ng-false-value="0">
                 Wholeseller
             </md-checkbox>
-            &nbsp;&nbsp;&nbsp;&nbsp;<md-checkbox class="md-warn" ng-true-value="1" ng-false-value="0">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <md-checkbox class="md-warn" ng-true-value="1" ng-false-value="0">
                 Manufacturer
             </md-checkbox>
         </md-input-container>
         <md-input-container>
             <label>VAT / TIN</label>
-            <input type="text" data-ng-model="data.buyer.details.vat_tin" ng-required="false"></textarea>
+            <input type="text" ng-model="data.buyer.details.vat_tin" ng-required="false"></textarea>
         </md-input-container>
         <md-input-container>
             <label>CST</label>
-            <input type="text" data-ng-model="data.buyer.details.cst" ng-required="false"></textarea>
+            <input type="text" ng-model="data.buyer.details.cst" ng-required="false"></textarea>
         </md-input-container>
-        
-        
-        <!-- <md-switch data-ng-model="">PAN Verification</md-switch> -->
-        <!-- <md-switch data-ng-model="">TIN Verification</md-switch> -->
+
+<!-- <md-switch ng-model="">PAN Verification</md-switch> -->
+<!-- <md-switch ng-model="">TIN Verification</md-switch> -->
     </div>
     <div layout="column" ng-cloak>
         <h3>Address</h3>
         <md-input-container>
             <label>Address</label>
-            <input type="text" data-ng-model="data.buyer.address[0].address" ng-required="true" />
+            <input type="text" ng-model="data.buyer.address[0].address" ng-required="true"/>
         </md-input-container>
         <md-input-container>
             <label>Landmark</label>
-            <input type="text" data-ng-model="data.buyer.address[0].landmark" ng-required="true" />
+            <input type="text" ng-model="data.buyer.address[0].landmark" ng-required="true"/>
         </md-input-container>
         <md-input-container>
             <label>Contact No.</label>
-            <input type="text" data-ng-model="data.buyer.address[0].contact_number" ng-required="true" />
+            <input type="text" ng-model="data.buyer.address[0].contact_number" ng-required="true"/>
         </md-input-container>
         <md-input-container>
             <label>City</label>
-            <input type="text" data-ng-model="data.buyer.address[0].city" ng-required="true" />
+            <input type="text" ng-model="data.buyer.address[0].city" ng-required="true"/>
         </md-input-container>
         <md-input-container>
             <label>State</label>
-            <input type="text" data-ng-model="data.buyer.address[0].state" ng-required="true" />
+            <input type="text" ng-model="data.buyer.address[0].state" ng-required="true"/>
         </md-input-container>
         <md-input-container>
             <label>Country</label>
-            <input type="text" data-ng-model="data.buyer.address[0].country" ng-required="true" />
+            <input type="text" ng-model="data.buyer.address[0].country" ng-required="true"/>
         </md-input-container>
         <md-input-container>
             <label>Pincode</label>
-            <input type="text" data-ng-model="data.buyer.address[0].pincode" ng-required="true" />
+            <input type="text" ng-model="data.buyer.address[0].pincode" ng-required="true"/>
         </md-input-container>
     </div>
-    <!-- <div layout="column" ng-cloak>
+<!-- <div layout="column" ng-cloak>
         <h3>Bank Details</h3>
         <md-input-container>
             <label>Bank Name</label>
-            <input type="text" data-ng-model="data.seller.bank_details[0].bank_name" ng-required="false" />
+            <input type="text" ng-model="data.seller.bank_details[0].bank_name" ng-required="false" />
         </md-input-container>
         <md-input-container>
             <label>Account Number</label>
-            <input type="text" data-ng-model="data.seller.bank_details[0].account_number" ng-required="false" />
+            <input type="text" ng-model="data.seller.bank_details[0].account_number" ng-required="false" />
         </md-input-container>
         <md-input-container>
             <label>Account Holders Name</label>
-            <input type="text" data-ng-model="data.seller.bank_details[0].account_holders_name" ng-required="false" />
+            <input type="text" ng-model="data.seller.bank_details[0].account_holders_name" ng-required="false" />
         </md-input-container>
         <md-input-container>
             <label>IFSC</label>
-            <input type="text" data-ng-model="data.seller.bank_details[0].ifsc" ng-required="false" />
+            <input type="text" ng-model="data.seller.bank_details[0].ifsc" ng-required="false" />
         </md-input-container>
         <md-input-container>
             <label>Branch</label>
-            <input type="text" data-ng-model="data.seller.bank_details[0].branch" ng-required="false" />
+            <input type="text" ng-model="data.seller.bank_details[0].branch" ng-required="false" />
         </md-input-container>
         <md-input-container>
             <label>Branch Pincode</label>
-            <input type="text" data-ng-model="data.seller.bank_details[0].branch_pincode" ng-required="false" />
+            <input type="text" ng-model="data.seller.bank_details[0].branch_pincode" ng-required="false" />
         </md-input-container>
         <md-input-container>
             <label>Branch City</label>
-            <input type="text" data-ng-model="data.seller.bank_details[0].branch_city" ng-required="false" />
+            <input type="text" ng-model="data.seller.bank_details[0].branch_city" ng-required="false" />
         </md-input-container>
     </div> -->
-</div><br>
+    </div><br>
     <div layout="row" flex layout-align="center">
         <div flex="20" layout="column" layout-align="start center">
-           <div layout="column" flex="50">
-                <md-button data-ng-click="interestFeed($event,'feed')" class="md-warn md-raised">
+            <div layout="column" flex="50">
+                <md-button ng-click="interestFeed($event,'feed')" class="md-warn md-raised">
                     <span layout="row" layout-align="center center">
-                    <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                        <path fill="#FFF" d="M4,6V4H4.1C12.9,4 20,11.1 20,19.9V20H18V19.9C18,12.2 11.8,6 4,6M4,10V8A12,12 0 0,1 16,20H14A10,10 0 0,0 4,10M4,14V12A8,8 0 0,1 12,20H10A6,6 0 0,0 4,14M4,16A4,4 0 0,1 8,20H4V16Z" />
-                    </svg>&nbsp;&nbsp;Feed</span>
+                        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                            <path fill="#FFF" d="M4,6V4H4.1C12.9,4 20,11.1 20,19.9V20H18V19.9C18,12.2 11.8,6 4,6M4,10V8A12,12 0 0,1 16,20H14A10,10 0 0,0 4,10M4,14V12A8,8 0 0,1 12,20H10A6,6 0 0,0 4,14M4,16A4,4 0 0,1 8,20H4V16Z"/>
+                        </svg>
+                        &nbsp;&nbsp;Feed
+                    </span>
                 </md-button>
-                <md-button data-ng-click="interestFeed($event,'like')" class="md-warn md-raised">
+                <md-button ng-click="interestFeed($event,'like')" class="md-warn md-raised">
                     <span layout="row" layout-align="center center">
-                    <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                        <path fill="#FFF" d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" />
-                    </svg>&nbsp;&nbsp;Likes</span>
+                        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                            <path fill="#FFF" d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"/>
+                        </svg>&nbsp;&nbsp;Likes
+                    </span>
                 </md-button>
-                <md-button data-ng-click="interestFeed($event,'dislike')" class="md-warn md-raised">
-                   <span layout="row" layout-align="center center">
-                   <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                        <path fill="#FFF" d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C8.17,3 8.82,3.12 9.44,3.33L13,9.35L9,14.35L12,21.35V21.35M16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35L11,14.35L15.5,9.35L12.85,4.27C13.87,3.47 15.17,3 16.5,3Z" />
-                    </svg>&nbsp;&nbsp;Dislikes</span>
+                <md-button ng-click="interestFeed($event,'dislike')" class="md-warn md-raised">
+                    <span layout="row" layout-align="center center">
+                        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                            <path fill="#FFF" d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C8.17,3 8.82,3.12 9.44,3.33L13,9.35L9,14.35L12,21.35V21.35M16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35L11,14.35L15.5,9.35L12.85,4.27C13.87,3.47 15.17,3 16.5,3Z"/>
+                        </svg>
+                        &nbsp;&nbsp;Dislikes
+                    </span>
                 </md-button>
-            </div> 
-        </div>
-        <div layout="column" flex= "60">
-        
-        <div layout ="row">
-            <div style="height:35px; line-height:0.2em; background-color:rgb(255,87,34); color:white" flex="100" layout-padding class ="md-warn md-whiteframe-2dp" layout="row" layout-align="start"><span>Buyer Interests</span></div>
-        </div>
-        <div layout="row" data-ng-if="!data.buyer.buyer_interests.length">
-            <h3>No Buyer Interests available</h3>
-        </div>
-        <div layout="column">
-            <div layout="column" flex data-ng-repeat = "i in data.buyer.buyer_interests">
-                <div layout="column" layout-padding>
-                <div layout="row" flex layout-align="center center">
-                    <div flex="5">
-                        <h2>{{$index+1}}.</h2>
-                    </div>
-                    <div flex="25" layout="column" class="card-item">
-                                <span style="margin-top:-10px;margin-bottom:6px" class="card-item-title">Category</span>
-                                <span>{{ i.category.name }}</span>
-                    </div>
-                    <div flex="15">
-                        <md-input-container layout="row" layout-align="start end">
-                            <label>Min Price</label>
-                            <input style="max-width:75px" type="text" data-ng-model="i.min_price_per_unit" ng-required="false" />
-                        </md-input-container>
-                    </div>
-                    <div flex="15">
-                        <md-input-container layout="row" layout-align="start end">
-                            <label>Max Price</label>
-                            <input style="max-width:75px" type="text" data-ng-model="i.max_price_per_unit" ng-required="false" />
-                        </md-input-container>
-                    </div>
-                    <div flex="35">
-                        <md-input-container layout="row" layout-align="start end">
-                            <label>Fabric</label>
-                            <input style="max-width:200px" type="text" data-ng-model="i.fabric_filter_text" ng-required="false" />
-                        </md-input-container>
-                    </div>
-                    <div flex="5">
-                        <svg data-ng-click="interestFeed($event,'interest',i.buyerinterestID)" class="link" height="30" viewBox="0 0 24 24" width="30" xmlns="http://www.w3.org/2000/svg">
-                             <path fill="rgb(255,87,34)" d="M4,6V4H4.1C12.9,4 20,11.1 20,19.9V20H18V19.9C18,12.2 11.8,6 4,6M4,10V8A12,12 0 0,1 16,20H14A10,10 0 0,0 4,10M4,14V12A8,8 0 0,1 12,20H10A6,6 0 0,0 4,14M4,16A4,4 0 0,1 8,20H4V16Z" />
-                            <path d="M0 0h24v24H0z" fill="none"/>
-                        </svg><md-tooltip md-delay="400" md-direction="bottom" md-autohide="true">
-                          View Feed
-                        </md-tooltip>
-                        
-                        
-                    </div>
-                    
-
-                </div>
-                <div layout="row" layout-align="start center">
-                    <div flex="50" layout="row" layout-align="center">
-                        <md-slider class="md-primary" flex="80" min="0" max="10" ng-model="i.scale" aria-label="scale">
-                        </md-slider>
-                    </div>
-                      <div flex="5">
-                      <md-button class="md-warn md-fab small" aria-label="scale">{{i.scale}}</md-button>
-                      </div>
-                      <div flex="20"></div>
-                      <div flex="20" layout = "row" layout-align="start center">
-                        <md-checkbox data-ng-true = "1"  data-ng-false = "0" data-ng-model="i.is_active" class="md-warn" aria-label="string">Active
-                        </md-checkbox>
-                    </div>
-                    <div flex="5">
-                        <svg data-ng-click="editInterest('PUT',$index)" class="link" style="width:28px;height:28px" viewBox="0 0 24 24">
-                            <path fill="rgb(255,87,34)" d="M17,7V3H7V7H17M14,17A3,3 0 0,0 17,14A3,3 0 0,0 14,11A3,3 0 0,0 11,14A3,3 0 0,0 14,17M19,1L23,5V17A2,2 0 0,1 21,19H7C5.89,19 5,18.1 5,17V3A2,2 0 0,1 7,1H19M1,7H3V21H17V23H3A2,2 0 0,1 1,21V7Z" />
-                        </svg><md-tooltip md-delay="400" md-direction="bottom" md-autohide="true">
-                          Save
-                        </md-tooltip>
-                        </div>
-                </div>
-                </div>
-                <md-divider></md-divider>
             </div>
         </div>
-        </div>
-        <div layout="column" flex="20" layout-align="start center">
-            <div layout="column" flex="80">
-                <md-button data-ng-click="additionalInterest($event)" class="md-warn md-raised">
-                    <span layout="row" layout-align="center center">
-                        <svg fill="#FFF" height="30" viewBox="0 0 24 24" width="30" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-                            <path d="M0 0h24v24H0z" fill="none"/>
-                        </svg>
-                    Add Products</span>
-                </md-button>
-                <div layout="column">
-                    <div layout="column" ng-repeat="i in buyer_shared_product.ids">
-                        <div layout="row" layout-padding layout-align="start center" flex>
-                            <span flex="80" data-ng-click="interestFeed($event,'added',i.buyersharedproductID)" class="cursor-pointer">
-                                <span flex="40">{{$index+1}}.</span>
-                                <span flex="60" class="ellipsis">{{i.productID}}</span>
-                            </span>
-                            <span flex="20"><svg class="cursor-pointer" data-ng-click="deleteAdditionalInterest(i.buyersharedproductID)" style="width:18px;height:18px" viewBox="0 0 24 24">
-                                <path fill="darkred" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
-                                </svg>
-                            </span>
-                        </div>
-                        <md-divider></md-divider>
-                    </div>
+        <div layout="column" flex="50">
+            <div layout="row">
+                <div style="height:35px; line-height:0.2em; background-color:rgb(255,87,34); color:white" flex="100" layout-padding class="md-warn md-whiteframe-2dp" layout="row" layout-align="start">
+                    <span>Buyer Interests</span>
                 </div>
-
+            </div>
+            <div layout="row" ng-if="!data.buyer.buyer_interests.length">
+                <h3>No Buyer Interests available</h3>
+            </div>
+            <div layout="column">
+                <div layout="column" flex ng-repeat="i in data.buyer.buyer_interests">
+                    <div layout="column" layout-padding>
+                        <div layout="row" flex layout-align="center center">
+                            <div flex="5">
+                                <h2>{{::$index+1}}.</h2>
+                            </div>
+                            <div flex="25" layout="column" class="card-item">
+                                <span style="margin-top:-10px;margin-bottom:6px" class="card-item-title">Category</span>
+                                <span>{{:: i.category.name }}</span>
+                            </div>
+                            <div flex="15">
+                                <md-input-container layout="row" layout-align="start end">
+                                    <label>Min Price</label>
+                                    <input style="max-width:75px" type="text" ng-model="i.min_price_per_unit" ng-required="false"/>
+                                </md-input-container>
+                            </div>
+                            <div flex="15">
+                                <md-input-container layout="row" layout-align="start end">
+                                    <label>Max Price</label>
+                                    <input style="max-width:75px" type="text" ng-model="i.max_price_per_unit" ng-required="false"/>
+                                </md-input-container>
+                            </div>
+                            <div flex="35">
+                                <md-input-container layout="row" layout-align="start end">
+                                    <label>Fabric</label>
+                                    <input style="max-width:200px" type="text" ng-model="i.fabric_filter_text" ng-required="false"/>
+                                </md-input-container>
+                            </div>
+                            <div flex="5">
+                                <svg ng-click="interestFeed($event,'interest',i.buyerinterestID)" class="link" height="30" viewBox="0 0 24 24" width="30" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="rgb(255,87,34)" d="M4,6V4H4.1C12.9,4 20,11.1 20,19.9V20H18V19.9C18,12.2 11.8,6 4,6M4,10V8A12,12 0 0,1 16,20H14A10,10 0 0,0 4,10M4,14V12A8,8 0 0,1 12,20H10A6,6 0 0,0 4,14M4,16A4,4 0 0,1 8,20H4V16Z"/>
+                                    <path d="M0 0h24v24H0z" fill="none"/>
+                                </svg>
+                                <md-tooltip md-delay="400" md-direction="bottom" md-autohide="true">
+                                    View Feed
+                                </md-tooltip>
+                            </div>
+                        </div>
+                        <div layout="row" layout-align="start center">
+                            <div flex="50" layout="row" layout-align="center">
+                                <md-slider class="md-primary" flex="80" min="0" max="10" ng-model="i.scale" aria-label="scale"></md-slider>
+                            </div>
+                            <div flex="5">
+                                <md-button class="md-warn md-fab small" aria-label="scale">{{::i.scale}}</md-button>
+                            </div>
+                            <div flex="20"></div>
+                            <div flex="20" layout="row" layout-align="start center">
+                                <md-checkbox ng-true="1" ng-false="0" ng-model="i.is_active" class="md-warn" aria-label="string">Active
+                                </md-checkbox>
+                            </div>
+                            <div flex="5">
+                                <svg ng-click="editInterest('PUT',$index)" class="link" style="width:28px;height:28px" viewBox="0 0 24 24">
+                                    <path fill="rgb(255,87,34)" d="M17,7V3H7V7H17M14,17A3,3 0 0,0 17,14A3,3 0 0,0 14,11A3,3 0 0,0 11,14A3,3 0 0,0 14,17M19,1L23,5V17A2,2 0 0,1 21,19H7C5.89,19 5,18.1 5,17V3A2,2 0 0,1 7,1H19M1,7H3V21H17V23H3A2,2 0 0,1 1,21V7Z"/>
+                                </svg>
+                                <md-tooltip md-delay="400" md-direction="bottom" md-autohide="true">
+                                    Save
+                                </md-tooltip>
+                            </div>
+                        </div>
+                    </div>
+                    <md-divider></md-divider>
+                </div>
+            </div>
+        </div>
+        <div layout="row" flex="30" layout-align="start center" layout-wrap>
+            <md-button ng-click="additionalInterest($event)" class="md-warn md-raised" flex="100">
+                <span layout="row" layout-align="center center">
+                    <svg fill="#FFF" height="30" viewBox="0 0 24 24" width="30" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                    </svg>
+                    Add Products
+                </span>
+            </md-button>
+            <div layout="row" flex="100" layout-wrap>
+                <div layout="row" ng-repeat="i in buyer_shared_product.ids" flex="100" layout-wrap>
+                    <div layout="row" layout-align="start center" flex="100" class="md-padding">
+                        <span flex="95" ng-click="interestFeed($event,'added',i.buyersharedproductID)" class="cursor-pointer" style="word-break: break-word;">
+                            {{::i.productID}}
+                        </span>
+                        <span flex>
+                            <svg class="cursor-pointer" ng-click="deleteAdditionalInterest(i.buyersharedproductID)" style="width:18px;height:18px" viewBox="0 0 24 24">
+                                <path fill="darkred" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
+                            </svg>
+                        </span>
+                    </div>
+                    <hr flex="100"></hr>
+                </div>
             </div>
         </div>
     </div>
-        <div flex layout="row" layout-align="space-around">
-            <div id="interestContainer">
-
-            </div>
-        </div>
-        <div layout="row" layout-align="center center" flex="100">
-            <md-button class="md-raised md-warn" data-ng-click="addInterest(data.buyer.buyerID)">Add Interest</md-button>
-        </div>
-
+</div>
+<div flex layout="row" layout-align="space-around">
+<div id="interestContainer"></div>
+</div>
+<div layout="row" layout-align="center center" flex="100">
+<md-button class="md-raised md-warn" ng-click="addInterest(data.buyer.buyerID)">Add Interest</md-button>
+</div>
