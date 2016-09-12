@@ -45,7 +45,7 @@
             var selectProduct = [];
 
             $scope.checkout = [];
-        
+
 
             function getbuyers(type, params) {
                 $rootScope.$broadcast('showProgressbar');
@@ -68,7 +68,7 @@
                     });
             }
 
-            
+
 
             $scope.getStates = function(event){
                 return $timeout(function() {
@@ -82,7 +82,7 @@
                 }, 500);
             };
 
-            
+
 
             $scope.reset = function() {
                 pageSetting();
@@ -93,7 +93,6 @@
             };
 
             $scope.changebuyer = function(event, type) {
-            
                     $rootScope.$broadcast('showProgressbar');
                     if(type=="POST"){
                         $scope.data.buyer.address  = $scope.data.buyer.temp.address[0];
@@ -101,9 +100,9 @@
                     else{
                         $scope.data.buyer.address = $scope.data.buyer.address[0];
                     }
-                    if($scope.data.buyer.details!= undefined){
-                        if($scope.data.buyer.details.purchasing_states!=undefined){
-                        $scope.data.buyer.details.purchasing_states = JSON.stringify($scope.data.buyer.details.purchasing_states);
+                    if($scope.data.buyer.details){
+                        if($scope.data.buyer.details.purchasing_states) {
+                            $scope.data.buyer.details.purchasing_states = JSON.stringify($scope.data.buyer.details.purchasing_states);
                         }
                     }
                     APIService.apiCall(type, APIService.getAPIUrl("buyers"), $scope.data.buyer)
@@ -116,7 +115,7 @@
                                             ToastService.showActionToast("Buyer Deleted Successfully", 0);
                                             break;
                                         case "POST":
-                                             ToastService.showActionToast("New Buyer Created", 0);   
+                                             ToastService.showActionToast("New Buyer Created", 0);
                                     }
                                 }
                              else if(type=="PUT"){
@@ -127,7 +126,7 @@
                             $rootScope.$broadcast('endProgressbar');
                             ToastService.showActionToast("something went wrong! Please reload and try again", 0);
                         });
-                
+
             };
 
              $scope.addInterest = function(ID) {
@@ -135,20 +134,18 @@
                 angular.element(document.querySelector("#interestContainer")).append(el);
             };
 
-           
+
 
             $scope.editInterest = function(type,index){
                 $rootScope.$broadcast('showProgressbar');
                 APIService.apiCall(type, APIService.getAPIUrl("buyerinterest"), $scope.data.buyer.buyer_interests[index])
                 .then(function(response){
                     $rootScope.$broadcast('endProgressbar');
-                    if(type=="DELETE"){
+                    if(type == "DELETE"){
                         $route.reload();
                         ToastService.showSimpleToast('Interest Removed Successfully',3000);
-                        
-                    }
-                    else{
-                    ToastService.showSimpleToast('Changes Saved',3000);
+                    } else {
+                        ToastService.showSimpleToast('Changes Saved',3000);
                     }
                 },function(error){
                     $rootScope.$broadcast('endProgressbar');
@@ -156,32 +153,31 @@
                 });
             };
 
-            $scope.updateBuyerInterest=function(){
-                    $rootScope.$broadcast('showProgressbar');
-                    APIService.apiCall('POST', APIService.getAPIUrl("masterupdate"), $scope.data.buyer)
-                     .then(function(response){
+            $scope.updateBuyerInterest = function() {
+                $rootScope.$broadcast('showProgressbar');
+                APIService.apiCall('POST', APIService.getAPIUrl("masterupdate"), $scope.data.buyer)
+                .then(function(response){
                     $rootScope.$broadcast('endProgressbar');
                     ToastService.showActionToast('Updated Successfully!',0);
-                    
-                },function(error){
+                }, function(error){
                     $rootScope.$broadcast('endProgressbar');
                     ToastService.showActionToast("Something went wrong! Please try again",0);
                 });
-            } 
-
+            };
 
             $scope.additionalInterest = function(ev){
                 DialogService.viewDialog(ev, 'BuyerController', 'views/partials/additional-interest-product.html', null);
             };
 
              function getAdditionalProduct(params){
-                APIService.apiCall('GET', APIService.getAPIUrl('buyersharedproduct'),null, params)
-                .then(function(response){
-                    if(response.buyer_shared_product_id){
-                        if(params){
+                 if(!params) params = {};
+                 params.buyerID = $scope.data.buyerID;
+                 APIService.apiCall('GET', APIService.getAPIUrl('buyersharedproduct'),null, params)
+                 .then(function(response){
+                     if(response.buyer_shared_product_id){
+                        if(params && params.buyersharedproductID){
                             $scope.buyer_shared_product.id = response.buyer_shared_product_id[0];
-                        }
-                        else{
+                        } else {
                             $scope.buyer_shared_product.ids = response.buyer_shared_product_id;
                         }
                     }
@@ -193,22 +189,20 @@
                 });
             }
 
-            $scope.submitAdditionalInterest=function(){
-                    $scope.addInterestProduct.buyerID = $scope.data.buyer.buyerID;
-                    $rootScope.$broadcast('showProgressbar');
-                    APIService.apiCall('POST', APIService.getAPIUrl("buyerproduct"), $scope.addInterestProduct)
-                    .then(function(response){
-                        $rootScope.$broadcast('endProgressbar');
-                            ToastService.showActionToast('Product Added to buyer Interest',0)
-                            .then(function(response){
-                                $mdDialog.cancel();
-                                // getAdditionalProduct();
-                                $route.reload();
-                            });
-                    }, function(error){
-                        $rootScope.$broadcast('endProgressbar');
-                        ToastService.showActionToast("Something went wrong! Please try again");
+            $scope.submitAdditionalInterest = function(){
+                $scope.addInterestProduct.buyerID = $scope.data.buyer.buyerID;
+                $rootScope.$broadcast('showProgressbar');
+                APIService.apiCall('POST', APIService.getAPIUrl("buyerproduct"), $scope.addInterestProduct)
+                .then(function(response){
+                    $rootScope.$broadcast('endProgressbar');
+                    ToastService.showActionToast('Product Added to buyer Interest',0).then(function(response){
+                        $mdDialog.cancel();
+                        $route.reload();
                     });
+                }, function(error){
+                    $rootScope.$broadcast('endProgressbar');
+                    ToastService.showActionToast("Something went wrong! Please try again");
+                });
             };
 
             $scope.deleteAdditionalInterest = function(id){
@@ -217,19 +211,15 @@
             };
 
             $scope.interestFeed = function(ev,type,id){
-               
                 DialogService.viewDialog(ev, 'BuyerController', 'views/partials/buyer-interest-feed.html',type, id);
-            
             };
 
             var page=0;
             $scope.viewInterestFeed = function(pag,id){
                 $scope.interestType = DialogService.val1;
-                
-                if (pag === undefined) {
-                        page = 1;
-                    }
-                else{
+                if (!pag) {
+                    page = 1;
+                } else{
                     page +=pag;
                 }
                 var params;
@@ -275,7 +265,7 @@
                             items_per_page:20,
                             page_number:page
                         };
-                        break;   
+                        break;
                 }
                 $rootScope.$broadcast('showProgressbar');
                 APIService.apiCall('GET', APIService.getAPIUrl('buyerproduct'), null, params)
@@ -313,7 +303,7 @@
                 }
                 APIService.apiCall('PUT', APIService.getAPIUrl('buyerproduct'), $scope.feedStatus)
                 .then(function(response){
-                   
+
                 },function(error){
                      ToastService.showActionToast('Error: Unable to change Status!',0);
                 });
@@ -349,21 +339,20 @@
                         prods.push(selectProduct[i]);
                     }
                 }
-                    var temp='';
-                    temp=temp+JSON.stringify(prods);
-                    $mdDialog.cancel();
-                    $location.url('new-order?buyerID='+$scope.data.buyerID+'&product='+temp);
-                
+                var temp='';
+                temp = temp+JSON.stringify(prods);
+                $mdDialog.cancel();
+                $location.url('new-order?buyerID='+$scope.data.buyerID+'&product='+temp);
             };
 
             function pageSetting() {
-                    if($routeParams.buyerID) {
-                        $scope.data.buyerID = parseInt($routeParams.buyerID);
-                        getbuyers('GET',{
-                            buyerID: $routeParams.buyerID
-                        });
-                        getAdditionalProduct();
-                    } else {
+                if($routeParams.buyerID) {
+                    $scope.data.buyerID = parseInt($routeParams.buyerID);
+                    getbuyers('GET',{
+                        buyerID: $routeParams.buyerID
+                    });
+                    getAdditionalProduct();
+                } else {
                     getbuyers('GET');
                 }
                 if(DialogService.val1 == 'feed' || DialogService.val1 == 'dislike' || DialogService.val1== 'like' || DialogService.val1 == 'interest' || DialogService.val1 == 'added'){
