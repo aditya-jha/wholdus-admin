@@ -14,8 +14,9 @@
         '$route',
         'DialogService',
         '$mdDialog',
+        '$mdMedia',
         'UtilService',
-        function($scope, $log, APIService, $routeParams, $rootScope, ngProgressBarService, ToastService, $location, $timeout, $compile, $route, DialogService, $mdDialog, UtilService) {
+        function($scope, $log, APIService, $routeParams, $rootScope, ngProgressBarService, ToastService, $location, $timeout, $compile, $route, DialogService, $mdDialog, $mdMedia, UtilService) {
 
             $scope.data = {
                 buyers: [],
@@ -46,7 +47,6 @@
 
             $scope.checkout = [];
 
-
             function getbuyers(type, params) {
                 $rootScope.$broadcast('showProgressbar');
                 APIService.apiCall(type, APIService.getAPIUrl('buyers'), null, params)
@@ -68,8 +68,6 @@
                     });
             }
 
-
-
             $scope.getStates = function(event){
                 return $timeout(function() {
                     APIService.apiCall("GET", APIService.getAPIUrl('states'))
@@ -81,8 +79,6 @@
                     });
                 }, 500);
             };
-
-
 
             $scope.reset = function() {
                 pageSetting();
@@ -133,8 +129,6 @@
                 var el = $compile("<div layout='row' flex='100' wua-buyer-interest md-whiteframe='2dp' id="+ID+" style='margin-top:1em' layout-wrap></div>")($scope);
                 angular.element(document.querySelector("#interestContainer")).append(el);
             };
-
-
 
             $scope.editInterest = function(type,index){
                 $rootScope.$broadcast('showProgressbar');
@@ -345,6 +339,18 @@
                 $location.url('new-order?buyerID='+$scope.data.buyerID+'&product='+temp);
             };
 
+            $scope.addProductsToShare = function($event) {
+                $mdDialog.show({
+                    controller: 'ProductsToSharePopupController',
+                    templateUrl: 'views/partials/productsToSharePopup.html',
+                    parent: angular.element(document.body),
+                    targetEvent: event,
+                    clickOutsideToClose:true,
+                    fullscreen: $mdMedia('xs'),
+                    locals: {},
+                });
+            };
+
             function pageSetting() {
                 if($routeParams.buyerID) {
                     $scope.data.buyerID = parseInt($routeParams.buyerID);
@@ -363,7 +369,6 @@
                     }
                 }
             }
-
             pageSetting();
 
         }
