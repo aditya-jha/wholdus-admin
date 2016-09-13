@@ -1,4 +1,3 @@
-    
 <div layout="column" layout-align="center">
 	<div layout="row" layout-align="center center" layout-margin flex="100" class="md-title">
 		<md-button class="md-fab md-mini" aria-label="go back" data-ng-href="/orders">
@@ -17,13 +16,12 @@
 		<span class="bold">Created At :</span> {{data.order.created_at | date:'MMM dd,yyyy h:mma':'+0530'}}
 	</div>
 
-	<div layout="row"  layout-align="center center" flex="100" layout-margin>	
-		<div  layout="column" md-whiteframe="2" flex="90">
-			<div layout="column" flex >
+	<div layout="row" layout-align="center center" flex="100" layout-margin>
+		<div layout="column" md-whiteframe="2" flex="90">
+			<div layout="column" flex>
 				<div layout="row" layout-align="center center" class="md-title property-title" layout-padding flex>Order Details</div>
-				<div layout="row"  layout-align="center" flex layout-padding>
+				<div layout="row" layout-align="center" flex layout-padding>
 					<div layout="column" layout-padding flex>
-
 						<div layout="column" class="card-item">
 							<span class="card-item-title">Order ID</span>
 							<span>{{data.order.orderID}}</span>
@@ -32,11 +30,8 @@
 							<span class="card-item-title">Order Number</span>
 							<span>{{data.order.display_number}}</span>
 						</div>
-
 					</div>
 					<div layout="column" layout-padding flex>
-
-
 						<div layout="column" class="card-item">
 							<span class="card-item-title">Order Status</span>
 							<span>{{data.order.order_status.display_value}}</span>
@@ -45,7 +40,7 @@
 							<span class="card-item-title">Total Products</span>
 							<span>{{data.order.product_count}}</span>
 						</div>
-					</div>	
+					</div>
 					<div layout="column" layout-padding flex>
 						<div layout="column" class="card-item">
 							<span class="card-item-title">Final Price</span>
@@ -55,30 +50,24 @@
 							<span class="card-item-title">Edited Price</span>
 							<span>&#8377; {{data.order.edited_price}}</span>
 						</div>
-
 					</div>
 					<div layout="column" layout-padding flex="15">
 						<div layout="column" class="card-item">
 							<span class="card-item-title">Retail Price</span>
 							<span>&#8377; {{data.order.retail_price}}</span>
-						</div>		
+						</div>
 						<div layout="column" class="card-item">
 							<span class="card-item-title">Remarks</span>
 							<span>{{data.order.remarks}}</span>
 						</div>
-
-
 					</div>
 					<div layout="column" layout-padding flex>
 						<div layout="column" class="card-item">
 							<span class="card-item-title">Payment Status</span>
 							<span>{{data.order.order_payment_status.display_value}}</span>
-						</div>		
-						
-
-
+						</div>
 					</div>
-					<div layout="column" layout-padding flex>	
+					<div layout="column" layout-padding flex>
 						<div layout="column" class="card-item" ng-show="data.order.order_status.value >= 3">
 							<span class="card-item-title">COD Charge</span>
 							<span>&#8377; {{data.order.cod_charge}}</span>
@@ -88,25 +77,23 @@
 							<span>&#8377; {{data.order.shipping_charge}}</span>
 						</div>
 					</div>
-
-				</div> 
+				</div>
 				<div layout="row" layout-align="center">
-					<md-button class="md-raised md-warn" data-ng-click="buyerPayment($event, data.order.orderID)"  aria-label="create-buyer-payment">Create Buyer Payment
+					<md-button class="md-raised md-warn" data-ng-click="buyerPayment($event, data.order.orderID)" aria-label="create-buyer-payment">Create Buyer Payment
 					</md-button>
-
-				</div>       
+				</div>
 			</div>
 		</div>
 	</div>
 	<!-- buyer details starts -->
-	<div layout="row"  layout-align="center center" flex="100" layout-margin>	
-		<div  layout="column" md-whiteframe="2" flex="90">
-			<div layout="column" flex >
+	<div layout="row" layout-align="center center" flex="100" layout-margin>
+		<div layout="column" md-whiteframe="2" flex="90">
+			<div layout="column" flex>
 				<div layout="row" layout-align="center center" class="md-title property-title" layout-padding flex>Buyer Details</div>
 				<md-divider></md-divider>
 				<div layout="row" layout-align="center" flex layout-padding>
 					<div layout="column" flex>
-						<div layout="column"  class="card-item">
+						<div layout="column" class="card-item">
 							<span class="card-item-title">Buyer ID</span>
 							<span>{{ data.order.buyer.buyerID }}</span>
 						</div>
@@ -115,7 +102,7 @@
 							<span>{{ data.order.buyer.name }}</span>
 						</div>
 					</div>
-					<div layout="column" flex>	
+					<div layout="column" flex>
 						<div layout="column" class="card-item">
 							<span class="card-item-title">Buyer Company</span>
 							<span>{{ data.order.buyer.company_name}}</span>
@@ -136,7 +123,7 @@
 							<span>{{ data.order.buyer.address[0].city }}</span>
 						</div>
 					</div>
-					<div layout="column" flex>	
+					<div layout="column" flex>
 						<div layout="column" class="card-item">
 							<span class="card-item-title">State</span>
 							<span>{{ data.order.buyer.address[0].state}}</span>
@@ -146,23 +133,24 @@
 							<span>{{ data.order.buyer.address[0].pincode}}</span>
 						</div>
 					</div>
-				</div>          
+				</div>
 			</div>
 		</div>
 	</div>
-	<!-- buyer details ends -->	
+	<!-- buyer details ends -->
 
 	<div layout="row" data-ng-repeat="sub_order in data.order.sub_orders" flex="100" layout-align="center center" layout-margin>
 		<!-- $index suborder starts-->
-		<div  lauout="column" md-whiteframe="2" flex="90"> 
+		<div lauout="column" md-whiteframe="2" flex="90">
 			<div layout="row" layout-align="center" flex class="md-title property-title" layout-padding>Sub Order: {{$index+1}}</div>
 			<div layout="column" flex>
 				<div layout="row" flex>
-					<div layout="row" flex="45"> <!-- suborder details row --> 
-						<div layout="column" layout-padding flex> 
+					<div layout="row" flex="45">
+						<!-- suborder details row -->
+						<div layout="column" layout-padding flex>
 
-							<div layout="row"  layout-align="center" class="md-title bold" layout-padding>Suborder Details</div>
-							<div layout="row"  flex layout-align="space-around start" layout-padding>
+							<div layout="row" layout-align="center" class="md-title bold" layout-padding>Suborder Details</div>
+							<div layout="row" flex layout-align="space-around start" layout-padding>
 
 								<div layout="column" flex>
 									<div layout="column" class="card-item">
@@ -177,10 +165,10 @@
 										<span class="card-item-title">Status</span>
 										<span>{{ sub_order.sub_order_status.display_value }}</span>
 									</div>
-									
-									
-									
-								</div>	
+
+
+
+								</div>
 								<div layout="column" flex>
 									<div layout="column" class="card-item">
 										<span class="card-item-title">Product Count</span>
@@ -190,21 +178,21 @@
 										<span class="card-item-title">Edited Price</span>
 										<span>&#8377; {{ sub_order.edited_price }}</span>
 									</div>
-									
+
 									<div layout="column" class="card-item" ng-if="sub_order.sub_order_status.value>=4">
 										<span class="card-item-title">COD Charge</span>
 										<span>&#8377; {{ sub_order.cod_charge }}</span>
 									</div>
-									
+
 
 								</div>
 
-								
+
 								<div layout="column" flex>
 									<div layout="column" class="card-item">
-									<span class="card-item-title">Payment Status</span>
-									<span>{{ sub_order.sub_order_payment_status.display_value}}</span>
-								</div>
+										<span class="card-item-title">Payment Status</span>
+										<span>{{ sub_order.sub_order_payment_status.display_value}}</span>
+									</div>
 									<div layout="column" class="card-item">
 										<span class="card-item-title">Final Price</span>
 										<span>&#8377; {{ sub_order.final_price }}</span>
@@ -214,14 +202,14 @@
 										<span>&#8377; {{ sub_order.shipping_charge }}</span>
 									</div>
 								</div>
-							</div> 
+							</div>
 						</div>
 						<md-divider></md-divider>
 					</div>
 					<!-- manufacturer details start -->
 					<div layout="row" flex="55">
-						<div layout="column"  layout-padding flex> 
-							
+						<div layout="column" layout-padding flex>
+
 							<div layout="row" layout-align="center" class="md-title bold" layout-padding>Manufacturer Details</div>
 							<div layout="row" flex layout-align="space-around start">
 								<div layout="column" flex="30">
@@ -239,7 +227,7 @@
 									</div>
 								</div>
 
-								<div layout="column" flex="35"> 
+								<div layout="column" flex="35">
 									<div layout="column" class="card-item">
 										<span class="card-item-title">Pick Up Address</span>
 										<span>{{ sub_order.seller.address[0].address }}</span>
@@ -250,7 +238,7 @@
 									</div>
 
 								</div>
-								<div layout="column" flex="25">	
+								<div layout="column" flex="25">
 
 									<div layout="column" class="card-item">
 										<span class="card-item-title">Pincode</span>
@@ -266,11 +254,11 @@
 									</div>
 								</div>
 
-							</div> 
+							</div>
 
 
-							
-						</div> 
+
+						</div>
 					</div>
 				</div>
 
@@ -280,181 +268,184 @@
 					<div layout="row" layout-align="space-around start" class="md-title bold" layout-padding>
 						<span>ORDER ITEMS</span>
 					</div>
-					<div layout="row" layout-align="space-around center" >
+					<div layout="row" layout-align="space-around center">
 						<div layout="row" flex="50" layout-align="space-around center" ng-if="sub_order.isShipable">
-							<md-checkbox  aria-label="Checkbox" data-ng-model="sub_order.allItems" class="md-primary"
-							ng-true-value="1" ng-false-value="0" ng-change="changeItemsSelected($index)">
-							Add all items for shipment
-						</md-checkbox>
-						<md-button class="md-primary md-raised" ng-click="confirmDelivery($event,$index)" >
-							<md-icon>
-								<svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-									<path d="M0 0h24v24H0z" fill="none"/>
-									<path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
-								</svg>
-							</md-icon>
-							<span class="bold">Send For Shipment</span>
-						</md-button>
+							<md-checkbox aria-label="Checkbox" data-ng-model="sub_order.allItems" class="md-primary" ng-true-value="1" ng-false-value="0" ng-change="changeItemsSelected($index)">
+								Add all items for shipment
+							</md-checkbox>
+							<md-button class="md-primary md-raised" ng-click="confirmDelivery($event,$index)">
+								<md-icon>
+									<svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+										<path d="M0 0h24v24H0z" fill="none" />
+										<path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"
+										/>
+									</svg>
+								</md-icon>
+								<span class="bold">Send For Shipment</span>
+							</md-button>
+						</div>
+						<div layout="row" flex="50" layout-align="space-around center" ng-if="sub_order.isPayable">
+							<md-checkbox aria-label="Checkbox" data-ng-model="sub_order.fullyPaid" class="md-primary" ng-true-value="1" ng-false-value="0" ng-change="changeItemsSelected($index)">
+								Add all items for payment
+							</md-checkbox>
+							<md-button class="md-primary md-raised" ng-click="paySeller($event,$index)">
+								<md-icon>
+									<svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+										<path d="M0 0h24v24H0z" fill="none" />
+										<path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z" />
+									</svg>
+								</md-icon>
+								<span class="bold">Pay Seller</span>
+							</md-button>
+						</div>
+
 					</div>
-					<div layout="row"  flex="50" layout-align="space-around center" ng-if="sub_order.isPayable">
-						<md-checkbox  aria-label="Checkbox" data-ng-model="sub_order.fullyPaid" class="md-primary"
-						ng-true-value="1" ng-false-value="0" ng-change="changeItemsSelected($index)">
-						Add all items for payment
-					</md-checkbox>
-					<md-button class="md-primary md-raised" ng-click="paySeller($event,$index)" >
-						<md-icon>
-							<svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-								<path d="M0 0h24v24H0z" fill="none"/>
-								<path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/>
-							</svg>
-						</md-icon>
-						<span class="bold">Pay Seller</span>
-					</md-button>
-				</div>
-
-			</div>
 
 
-			<md-divider md-inset></md-divider>
-			<div layout="row" flex layout-align="space-around center" layout-padding>
-				<div layout="row" layout-align="start center">
-					<div class="color-display blue"></div>
-					<span>To be shipped</span>
-				</div>
-				<div layout="row" layout-align="start center">
-					<div class="color-display red"></div>
-					<span>Canceled</span>
-				</div>
-				<div layout="row" layout-align="start center">
-					<div class="color-display green"></div>
-					<span>Shipped</span>
-				</div>
-			</div>
-			<div layout="row">	
-				<div layout="column" layout-align="space-between" ng-cloak flex="100">
-					<div  layout="column" data-ng-repeat="order_item in sub_order.order_items | orderBy:'current_status'" style="font-size:0.95em">
-						<div ng-style="order_item.order_item_status.value <= 2 && styles.toBeShippedItem  || order_item.order_item_status.value == 4 && styles.canceledItem || order_item.order_item_status.value >=5 
-							&& styles.shippedItem" style="margin:2px 0">
-							<!-- suborder order item details starts -->
-							<div layout="row" layout-align="space-around start" layout-padding>
-								<div layout="column" layout-padding class="bold" style="font-size:2em">{{$index+1}}.
-								</div>
-
-								<div layout="column" layout-align="center center" style="width:100px, height:100px;" flex="15">
-									<a class="link" data-ng-href="products/{{order_item.product.productID}}" target="_blank">
-										<img class="small-image" data-ng-src="{{order_item.product.imageUrl}}"/>
-									</a>
-								</div>
-								<div layout="column"  flex="25">
-									<div layout="column" class="card-item">
-										<span class="card-item-title">Product ID</span>
-										<span>{{ order_item.product.productID }}</span>
-									</div>
-									<div layout="column" class="card-item">
-										<span class="card-item-title">Product Name</span>
-										<a class="link" data-ng-href="products/{{order_item.product.productID}}" target="_blank">
-											<span>{{ order_item.product.name }}</span>
-										</a>
-									</div>
-									<div layout="column" class="card-item">
-										<span class="card-item-title">Catalog No</span>
-										<span>{{ order_item.product.details.seller_catalog_number}}</span>
-									</div>
-								</div>
-								<div layout="column"  flex >	
-
-									<div layout="column" class="card-item">
-										<span class="card-item-title">Pcs Sold</span>
-										<span>{{ order_item.pieces }}</span>
-									</div>
-									<div layout="column" class="card-item">
-										<span class="card-item-title">Current Status</span>
-										<span>{{ order_item.order_item_status.display_value}}</span>
-									</div>
-									<div layout="column" class="card-item">
-										<span class="card-item-title">Remarks</span>
-										<span>{{ order_item.remarks}}</span>
-									</div>
-								</div>  
-								<div layout="column" flex >
-									<div layout="column" class="card-item">
-										<span class="card-item-title">Retail Price Per Piece</span>
-										<span>&#8377; {{ order_item.retail_price_per_piece }}</span>
-									</div>
-									<div layout="column" class="card-item">
-										<span class="card-item-title">Negotiated Price Per Piece</span>
-										<span>&#8377; {{ order_item.edited_price_per_piece }}</span>
-									</div>
-
-									<div layout="column" class="card-item">
-										<span class="card-item-title">Final Price</span>
-										<span>&#8377; {{ order_item.final_price}}</span>
-									</div>
-								</div>
-								<div layout="column"  flex layout-align="center center" layout-padding	ng-if="order_item.order_item_status.value<=2">	
-									<md-checkbox  aria-label="Checkbox 1" data-ng-model="order_item.addForDelivery" class="md-primary" ng-true-value="1" ng-false-value="0" ng-if="!sub_order.allItems">
-										Add for Shipment
-									</md-checkbox>
-
-									<md-button class="md-fab md-mini" aria-label="delete" ng-click="showPrompt($event,order_item.orderitemID)" style="padding:0px" >
-										<md-icon>
-											<svg style="width:24px;height:24px" viewBox="0 0 24 24">
-												<path fill="#fff" d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z" />
-											</svg>
-										</md-icon>
-										<md-tooltip md-direction="right">Cancel the product</md-tooltip>
-									</md-button>
-
-								</div>
-								<div layout="column"  flex layout-align="center center" layout-padding ng-if="order_item.order_item_status.value>=5">
-									<md-checkbox  aria-label="Checkbox 1" data-ng-model="order_item.addForPayment" class="md-primary" ng-true-value="1" ng-false-value="0" ng-if="!sub_order.fullyPaid ">
-										Add for Payment
-									</md-checkbox>	
-									<a data-ng-href="shipments/{{order_item.ordershipmentID}}" target="_blank">
-										<md-button class="md-fab md-mini" aria-label="shipment"  style="padding:0px" >
-											<md-icon>
-												<svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-													<path d="M0 0h24v24H0z" fill="none"/>
-													<path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
-												</svg>
-											</md-icon>
-											<md-tooltip md-direction="left">View shipment</md-tooltip>
-										</md-button>
-									</a>
-								</div>
-								<div layout="column"  flex  layout-padding ng-if="order_item.order_item_status.value==4">
-									<div layout="column" class="card-item">
-										<span class="card-item-title">Cancellation Date and Time</span>
-										<span>{{ order_item.cancellation_time | date:'MMM dd,yyyy h:mma'}}</span>
-									</div>
-
-									<div layout="column" class="card-item">
-										<span class="card-item-title">Cancellation Remarks</span>
-										<span>{{ order_item.cancellation_remarks}}</span>
-									</div>
-
-								</div>
-							</div>
-							<md-divider md-inset ng-if="!$last"></md-divider>
-							<md-divider  ng-if="$last"></md-divider>
-							<!-- suborder order item details ends -->
+					<md-divider md-inset></md-divider>
+					<div layout="row" flex layout-align="space-around center" layout-padding>
+						<div layout="row" layout-align="start center">
+							<div class="color-display blue"></div>
+							<span>To be shipped</span>
+						</div>
+						<div layout="row" layout-align="start center">
+							<div class="color-display red"></div>
+							<span>Canceled</span>
+						</div>
+						<div layout="row" layout-align="start center">
+							<div class="color-display green"></div>
+							<span>Shipped</span>
 						</div>
 					</div>
+					<div layout="row">
+						<div layout="column" layout-align="space-between" ng-cloak flex="100">
+							<div layout="column" data-ng-repeat="order_item in sub_order.order_items | orderBy:'current_status'" style="font-size:0.95em">
+								<div ng-style="order_item.order_item_status.value <= 2 && styles.toBeShippedItem  || order_item.order_item_status.value == 4 && styles.canceledItem || order_item.order_item_status.value >=5
+							&& styles.shippedItem" style="margin:2px 0">
+									<!-- suborder order item details starts -->
+									<div layout="row" layout-align="space-around start" layout-padding>
+										<div layout="column" layout-padding class="bold" style="font-size:2em">{{$index+1}}.
+										</div>
+
+										<div layout="column" layout-align="center center" style="width:100px, height:100px;" flex="15">
+											<a class="link" data-ng-href="products/{{order_item.product.productID}}" target="_blank">
+												<img class="small-image" data-ng-src="{{order_item.product.imageUrl}}" />
+											</a>
+										</div>
+										<div layout="column" flex="25">
+											<div layout="column" class="card-item">
+												<span class="card-item-title">Product ID</span>
+												<span>{{ order_item.product.productID }}</span>
+											</div>
+											<div layout="column" class="card-item">
+												<span class="card-item-title">Product Name</span>
+												<a class="link" data-ng-href="products/{{order_item.product.productID}}" target="_blank">
+													<span>{{ order_item.product.name }}</span>
+												</a>
+											</div>
+											<div layout="column" class="card-item">
+												<span class="card-item-title">Catalog No</span>
+												<span>{{ order_item.product.details.seller_catalog_number}}</span>
+											</div>
+										</div>
+										<div layout="column" flex>
+
+											<div layout="column" class="card-item">
+												<span class="card-item-title">Pcs Sold</span>
+												<span>{{ order_item.pieces }}</span>
+											</div>
+											<div layout="column" class="card-item">
+												<span class="card-item-title">Current Status</span>
+												<span>{{ order_item.order_item_status.display_value}}</span>
+											</div>
+											<div layout="column" class="card-item">
+												<span class="card-item-title">Remarks</span>
+												<span>{{ order_item.remarks}}</span>
+											</div>
+										</div>
+										<div layout="column" flex>
+											<div layout="column" class="card-item">
+												<span class="card-item-title">Retail Price Per Piece</span>
+												<span>&#8377; {{ order_item.retail_price_per_piece }}</span>
+											</div>
+											<div layout="column" class="card-item">
+												<span class="card-item-title">Negotiated Price Per Piece</span>
+												<span>&#8377; {{ order_item.edited_price_per_piece }}</span>
+											</div>
+
+											<div layout="column" class="card-item">
+												<span class="card-item-title">Final Price</span>
+												<span>&#8377; {{ order_item.final_price}}</span>
+											</div>
+										</div>
+										<div layout="column" flex layout-align="center center" layout-padding ng-if="order_item.order_item_status.value<=2">
+											<md-checkbox aria-label="Checkbox 1" data-ng-model="order_item.addForDelivery" class="md-primary" ng-true-value="1" ng-false-value="0" ng-if="!sub_order.allItems">
+												Add for Shipment
+											</md-checkbox>
+
+											<md-button class="md-fab md-mini" aria-label="delete" ng-click="showPrompt($event,order_item.orderitemID)" style="padding:0px">
+												<md-icon>
+													<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+														<path fill="#fff" d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z" />
+													</svg>
+												</md-icon>
+												<md-tooltip md-direction="right">Cancel the product</md-tooltip>
+											</md-button>
+
+										</div>
+										<div layout="column" flex layout-align="center center" layout-padding ng-if="order_item.order_item_status.value>=5">
+											<md-checkbox aria-label="Checkbox 1" data-ng-model="order_item.addForPayment" class="md-primary" ng-true-value="1" ng-false-value="0" ng-if="!sub_order.fullyPaid ">
+												Add for Payment
+											</md-checkbox>
+											<a data-ng-href="shipments/{{order_item.ordershipmentID}}" target="_blank">
+												<md-button class="md-fab md-mini" aria-label="shipment" style="padding:0px">
+													<md-icon>
+														<svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+															<path d="M0 0h24v24H0z" fill="none" />
+															<path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"
+															/>
+														</svg>
+													</md-icon>
+													<md-tooltip md-direction="left">View shipment</md-tooltip>
+												</md-button>
+											</a>
+										</div>
+										<div layout="column" flex layout-padding ng-if="order_item.order_item_status.value==4">
+											<div layout="column" class="card-item">
+												<span class="card-item-title">Cancellation Date and Time</span>
+												<span>{{ order_item.cancellation_time | date:'MMM dd,yyyy h:mma'}}</span>
+											</div>
+
+											<div layout="column" class="card-item">
+												<span class="card-item-title">Cancellation Remarks</span>
+												<span>{{ order_item.cancellation_remarks}}</span>
+											</div>
+
+										</div>
+									</div>
+									<md-divider md-inset ng-if="!$last"></md-divider>
+									<md-divider ng-if="$last"></md-divider>
+									<!-- suborder order item details ends -->
+								</div>
+							</div>
+						</div>
+					</div>
+					<div layout="row" ng-cloak layout-padding>
+						<div flex></div>
+						<div layout="column" class="card-item">
+							<span class="md-title" flex>Shipment Amount</span>
+							<span class="bold md-title">&#8377; {{ calcAmount($index)}}</span>
+						</div>
+
+					</div>
 				</div>
 			</div>
-			<div layout="row"  ng-cloak  layout-padding>
-				<div flex></div>
-				<div layout="column" class="card-item">
-					<span class="md-title" flex>Shipment Amount</span>
-					<span class="bold md-title">&#8377; {{ calcAmount($index)}}</span>
-				</div>
-
-			</div>	
 		</div>
+		<!-- $index suborder ends-->
+	</div>
+	<div layout="row" ng-if="data.order.order_status.value == 0" layout-margin>
+		<span flex></span>
+		<md-button class="md-raised md-primary" ng-click="confirmOrder($event)" flex ng-disabled="$scope.confirmOrderAPICall">Confirm Order</md-button>
+		<span flex></span>
 	</div>
 </div>
-<!-- $index suborder ends-->
-</div>
-
-</div>
-

@@ -9,7 +9,7 @@
 
             var settings = {
                 color: '#FF5722',
-                height: '3px',
+                height: '4px',
             };
             var progressbar;
 
