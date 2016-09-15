@@ -359,7 +359,10 @@
                     });
                     getAdditionalProduct();
                 } else {
-                    getbuyers('GET');
+                    var url = $location.url();
+                    if(url.indexOf('/new-buyer') == -1) {
+                        getbuyers('GET');
+                    }
                 }
                 if(DialogService.val1 == 'feed' || DialogService.val1 == 'dislike' || DialogService.val1== 'like' || DialogService.val1 == 'interest' || DialogService.val1 == 'added'){
                     $scope.viewInterestFeed(undefined, DialogService.val2);
