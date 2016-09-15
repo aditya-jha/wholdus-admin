@@ -39,11 +39,9 @@
             }
 
             function productOrder() {
-                if($routeParams.product){
-                    var prods = JSON.parse($routeParams.product);
-                    for(var i=0;i<prods.length;i++) {
-                        $scope.addProduct('reload', i);
-                    }
+                var totalProducts = JSON.parse($routeParams.product).length;
+                for(var i=0; i<totalProducts; i++) {
+                    $scope.addProduct('reload', i);
                 }
             }
 
@@ -114,13 +112,17 @@
                     $scope.costs.subTotal += (value.orderDetail.pieces*value.orderDetail.edited_price_per_piece);
                     weight += parseInt(value.orderDetail.pieces)*(parseInt(value.item.details.weight_per_unit)+50);
                 });
-                $scope.costs.shippingCost += (weight*38)/1000;
+
+                $scope.costs.subTotal = Math.ceil($scope.costs.subTotal);
+                //$scope.costs.shippingCost += (weight*38)/1000;
+                $scope.costs.shippingCost = 150*$scope.totals.merchants;
+
                 if(Object.keys(products).length > 0) {
-                    if($scope.costs.shippingCost < 55) {
-                        $scope.costs.shippingCost = 55;
+                    if($scope.costs.shippingCost < 150) {
+                        $scope.costs.shippingCost = 150;
                     }
                     $scope.costs.shippingCost = Math.ceil($scope.costs.shippingCost);
-                    $scope.costs.COD = 50*$scope.totals.merchants;
+                    $scope.costs.COD = Math.ceil(0.02*$scope.costs.subTotal);
                     $scope.costs.total = Math.ceil($scope.costs.subTotal + $scope.costs.COD + $scope.costs.shippingCost);
                 } else {
                     $scope.costs = initCosts();
@@ -187,7 +189,9 @@
                     $scope.searchBuyer();
                 }
 
-                productOrder();
+                if($routeParams.product) {
+                    productOrder();
+                }
             }
             init();
 
