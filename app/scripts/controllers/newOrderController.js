@@ -11,30 +11,41 @@
         '$routeParams',
         function($scope, $log, APIService, $rootScope, ngProgressBarService, $compile, ToastService, $location, $routeParams) {
 
-            var listeners = [];
-
-            $scope.input = {
-                buyerID: '',
-                disableBuyerID: false
-            };
-
-            $scope.selectedBuyer = null;
+            var listeners = [], products = {};
 
             function initCosts() {
-                $scope.costs = {
+                return {
                     COD: 0,
                     shippingCost: 0,
                     subTotal: 0,
                     total: 0
                 };
             }
-            initCosts();
 
-            $scope.totals = {
-                merchants: 0,
-                products: 0,
-                pieces: 0,
-            };
+            function getBuyerFromUrl() {
+                if($routeParams.buyerID){
+                    var buyerID = parseInt($routeParams.buyerID);
+                    if(isNaN(buyerID)) {
+                        return '';
+                    } else {
+                        return buyerID;
+                    }
+                }
+                return '';
+            }
+
+            function setBuyerInUrl(buyerID) {
+                $location.search("buyerID", buyerID);
+            }
+
+            function productOrder() {
+                if($routeParams.product){
+                    var prods = JSON.parse($routeParams.product);
+                    for(var i=0;i<prods.length;i++) {
+                        $scope.addProduct('reload', i);
+                    }
+                }
+            }
 
             $scope.searchBuyer = function() {
                 if($scope.input.buyerID) {
@@ -43,10 +54,10 @@
                         buyerID: $scope.input.buyerID
                     };
                     APIService.apiCall('GET', APIService.getAPIUrl('buyers'), null, params)
-                        .then(function(response) {
-                            $rootScope.$broadcast('endProgressbar');
-                            $location.search("buyerID",$scope.input.buyerID);
-                            if(response.buyers && response.buyers.length == 1) {
+                    .then(function(response) {
+                        $rootScope.$broadcast('endProgressbar');
+                        if(response.buyers && response.buyers.length == 1) {
+                                setBuyerInUrl($scope.input.buyerID);
                                 $scope.selectedBuyer = response.buyers[0];
                             } else {
                                 $scope.selectedBuyer = null;
@@ -56,19 +67,10 @@
                         }, function(error) {
                             $scope.selectedBuyer = null;
                             $rootScope.$broadcast('endProgressbar');
-                        });
+                        }
+                    );
                 }
             };
-
-            function buyerOrder() {
-                if($routeParams.buyerID){
-                    $scope.input.buyerID = parseInt($routeParams.buyerID);
-                    $scope.searchBuyer();
-                }
-            }
-            buyerOrder();
-
-
 
             $scope.selectBuyer = function() {
                 $scope.input.disableBuyerID = true;
@@ -85,20 +87,6 @@
                 var el = $compile("<div layout='row' flex='100' wua-add-product cond="+con+" ind="+i+" class='new-order-buyer-container' md-whiteframe='4dp' style='margin-top:1em' ng-cloak layout-wrap></div>")($scope);
                 angular.element(document.querySelector("#productContainer")).append(el);
             };
-
-
-            function productOrder() {
-                if($routeParams.product){
-                    var prods = JSON.parse($routeParams.product);
-                    for(var i=0;i<prods.length;i++) {
-                        $scope.addProduct('reload', i);
-                    }
-                }
-            }
-            productOrder();
-
-
-            var products = {};
 
             function setSummaryTotals(obj) {
                 var merchants = {}, pieces = 0;
@@ -119,7 +107,7 @@
             function setTotals() {
                 var weight = 0;
 
-                initCosts();
+                $scope.costs = initCosts();
                 setSummaryTotals(products);
 
                 angular.forEach(products, function(value, key) {
@@ -135,7 +123,7 @@
                     $scope.costs.COD = 50*$scope.totals.merchants;
                     $scope.costs.total = Math.ceil($scope.costs.subTotal + $scope.costs.COD + $scope.costs.shippingCost);
                 } else {
-                    initCosts();
+                    $scope.costs = initCosts();
                 }
             }
 
@@ -178,6 +166,30 @@
                     ToastService.showSimpleToast("no products added or buyer selected", 3000);
                 }
             };
+
+            function init() {
+                $scope.input = {
+                    buyerID: getBuyerFromUrl(),
+                    disableBuyerID: false
+                };
+
+                $scope.selectedBuyer = null;
+
+                $scope.totals = {
+                    merchants: 0,
+                    products: 0,
+                    pieces: 0,
+                };
+
+                $scope.costs = initCosts();
+
+                if($scope.input.buyerID) {
+                    $scope.searchBuyer();
+                }
+
+                productOrder();
+            }
+            init();
 
             var addProductChangedListener = $rootScope.$on("addProductChanged", function(event, data) {
                 if(data.ID) {

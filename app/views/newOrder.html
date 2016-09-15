@@ -7,19 +7,19 @@
         <div layout="column" flex="10">
             <md-input-container>
                 <label>Buyer ID</label>
-                <input type="number" data-ng-model="input.buyerID" min=1 data-ng-disabled="input.disableBuyerID" />
+                <input type="number" ng-model="input.buyerID" min=1 ng-disabled="input.disableBuyerID" />
             </md-input-container>
-            <md-button class="md-raised md-warn" data-ng-click="searchBuyer()" data-ng-disabled="input.disableBuyerID">
+            <md-button class="md-raised md-warn" ng-click="searchBuyer()" ng-disabled="input.disableBuyerID">
                 select
             </md-button>
         </div>
         <md-divider></md-divider>
 
-        <div layout="row" data-ng-if="!selectedBuyer" layout-align="center center" flex="90">
+        <div layout="row" ng-if="!selectedBuyer" layout-align="center center" flex="90">
             <h3>No Buyer Selected</h3>
         </div>
 
-        <div layout="row" data-ng-if="selectedBuyer" flex="90" data-ng-include="'views/partials/new-order-buyer.html'"></div>
+        <div layout="row" ng-if="selectedBuyer" flex="90" ng-include="'views/partials/new-order-buyer.html'"></div>
 
     </div>
 </div>
@@ -29,7 +29,7 @@
 </div>
 
 <div layout="row" layout-align="center center" flex="100">
-    <md-button class="md-raised md-warn" data-ng-click="addProduct('add', null)">Add Product</md-button>
+    <md-button class="md-raised md-warn" ng-click="addProduct('add', null)">Add Product</md-button>
 </div>
 
 <div layout="row" flex="100" layout-wrap layout-margin>
@@ -74,5 +74,5 @@
 </div>
 
 <div layout="row" layout-margin layout-align="center center" flex="100">
-    <md-button class="md-raised md-primary" data-ng-disabled="place" data-ng-click="placeOrder()">Place Order</md-button>
+    <md-button class="md-raised md-primary" ng-disabled="place" ng-click="placeOrder()">Place Order</md-button>
 </div>
