@@ -1,11 +1,11 @@
 <div layout="row" flex="20" style="max-width: 105px;max-height: 140px;">
-    <img data-ng-src="{{product.item.imageUrl}}" width="100" />
+    <img ng-src="{{product.item.imageUrl}}" width="100" />
 </div>
 
 <div layout="row" flex="30" layout-wrap layout-padding>
     <div flex="100" layout="row" layout-wrap>
         <span flex="100" class="small-font secondary-text-color">Name</span>
-        <a data-ng-href="/products/{{product.ID}}" target="_blank" flex="100" class="bold link">{{product.item.name}}</a>
+        <a ng-href="/products/{{product.ID}}" target="_blank" flex="100" class="bold link">{{product.item.name}}</a>
     </div>
     <div flex="100" layout="row" layout-wrap>
         <div layout="row" layout-wrap flex="75">
@@ -25,7 +25,7 @@
     <div layout="row" layout-wrap flex="100">
         <md-input-container>
             <label>Pcs To Sell</label>
-            <input type="text" data-ng-model="product.orderDetail.pieces" min=0 required data-ng-disabled="product.disable" />
+            <input type="text" ng-model="product.orderDetail.pieces" min=0 required ng-disabled="product.disable" />
         </md-input-container>
     </div>
     <div layout="row" layout-wrap flex="100">
@@ -40,7 +40,7 @@
     <div layout="row" layout-wrap flex="100">
         <md-input-container>
             <label>Negotiated Price / Pcs</label>
-            <input type="text" data-ng-model="product.orderDetail.edited_price_per_piece" required data-ng-disabled="product.disable" />
+            <input type="text" ng-model="product.orderDetail.edited_price_per_piece" required ng-disabled="product.disable" />
         </md-input-container>
     </div>
     <div layout="row" layout-wrap flex="100">
@@ -55,7 +55,7 @@
     <div layout="row" layout-wrap flex="100">
         <md-input-container>
             <label>Remarks</label>
-            <textarea data-ng-model="product.orderDetail.remarks" required data-ng-disabled="product.disable"></textarea>
+            <textarea ng-model="product.orderDetail.remarks" required ng-disabled="product.disable"></textarea>
         </md-input-container>
     </div>
     <div layout="row" layout-wrap flex="100">
@@ -66,7 +66,7 @@
 
 <div layout="row" flex="5" layout-wrap layout-padding layout-align="left center">
     <div layout="row" flex="100" layout-align="left center">
-        <md-icon data-ng-click="selectProduct()" class="cursor-pointer">
+        <md-icon ng-click="selectProduct()" class="cursor-pointer" ng-disabled="product.disable">
             <svg style="width:35px;height:35px" viewBox="0 0 35 35">
                 <path fill="#FF5722" d="M10,17L5,12L6.41,10.58L10,14.17L17.59,6.58L19,8M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
             </svg>
@@ -74,7 +74,7 @@
         </md-icon>
     </div>
     <div layout="row" flex="100" layout-align="left center">
-        <md-icon data-ng-click="editProduct()" class="cursor-pointer">
+        <md-icon ng-click="editProduct()" class="cursor-pointer">
             <svg style="width:35px;height:35px" viewBox="0 0 35 35">
                 <path fill="#FF5722" d="M21.7,13.35L20.7,14.35L18.65,12.3L19.65,11.3C19.86,11.08 20.21,11.08 20.42,11.3L21.7,12.58C21.92,12.79 21.92,13.14 21.7,13.35M12,18.94L18.07,12.88L20.12,14.93L14.06,21H12V18.94M4,2H18A2,2 0 0,1 20,4V8.17L16.17,12H12V16.17L10.17,18H4A2,2 0 0,1 2,16V4A2,2 0 0,1 4,2M4,6V10H10V6H4M12,6V10H18V6H12M4,12V16H10V12H4Z" />
             </svg>
@@ -82,7 +82,7 @@
         </md-icon>
     </div>
     <div layout="row" flex="100" layout-align="left center">
-        <md-icon data-ng-click="editProduct(-1)" class="cursor-pointer">
+        <md-icon ng-click="editProduct(-1)" class="cursor-pointer">
             <svg style="width:35px;height:35px" viewBox="0 0 35 35">
                 <path fill="#FF5722" d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z" />
             </svg>
