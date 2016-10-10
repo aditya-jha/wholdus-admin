@@ -141,8 +141,14 @@
                             <path fill="#FFFFFF" d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z"/>
                         </svg>
                     </md-button>
-                    <md-button ng-if="data.shipment.csv_link" ng-href="http://api.wholdus.com/{{::data.shipment.csv_link}}" target="_blank" class="md-warn md-raised" layout="row" layout-align="center center">
-                        Download CSV
+                    <md-button ng-if="data.shipment.vendor_pickup_csv_link" ng-href="http://api.wholdus.com/{{::data.shipment.vendor_pickup_csv_link}}" target="_blank" class="md-warn md-raised" layout="row" layout-align="center center">
+                        Download Vendor Pickup CSV
+                        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                            <path fill="#FFFFFF" d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z"/>
+                        </svg>
+                    </md-button>
+                    <md-button ng-if="data.shipment.soft_data_csv_link" ng-href="http://api.wholdus.com/{{::data.shipment.soft_data_csv_link}}" target="_blank" class="md-warn md-raised" layout="row" layout-align="center center">
+                        Download Soft Data CSV
                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                             <path fill="#FFFFFF" d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z"/>
                         </svg>
